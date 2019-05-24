@@ -1,5 +1,11 @@
 * NGC 6210
 
+** Basic data on NGC 6210
++ Coordinates
+  + (RA, Dec) = (16 44 29.5195973292, +23 47 59.491267229) sexagesimal
+  + (RA, Dec) = (251.122998321, 23.7998586853) degrees
+
+
 ** Original data files
 + [[file:~/Dropbox/Papers/LL-Objects/NGC6210/]]
 
@@ -22,3 +28,61 @@
 + Some are [O III] images
 + Others are properly saturated, but one is deep enough to show the halo well
   + ~spm238~ although it has artefacts from the central star
+
+**** Astrometry of image+slit exposures
+***** First test with astrometry.net
++ Based on what I did with \sigma Ori in [[id:B5B60BC7-5392-4245-93D6-8D17A6B56E5E][WCS solution from command line astrometry.net tools]]
++ Need to find the right index files
+  + ICRS coords: 251.1230, 23.7999
+  + Annoyingly, this falls at boundary of HEALPIX tiles, so we need ~10~ and ~31~ for the small scales
+  + I am just getting scales ~00~ \to ~04~, which covers 2 to 11 arcmin.  Since the FOV is only 5 arcmin, this should be more than enough
+  + Downloading from http://data.astrometry.net/5000/
+    + The ~00~ scales are the biggest and take 15 min each
+  + Copied to [[file:~/Work/astrometry/data/][file:~/Work/astrometry/data/]]
+  + What should plate scale be?
+    + FOV is 6.5 arcmin from Meaburn:2003a
+    + Image size is 1024 pixels in all that I looked at
+    + 6.5 60 / 1024 = 0.381 so try the range 0.35 \to 0.4
+  + Test command - run in Terminal for safety
+    #+begin_src sh :dir ../data/imslit :eval no 
+      D=~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015
+      solve-field --ra 251.1230 --dec 23.7999 --radius 1.0 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' $D/spm0030o_b.fits 
+    #+end_src
+  + That worked, but it wrote output to Teresa's shared Dropbox folder
+    + Fix it using ~--dir .~ option
+    + Try again with ~0035~
+    + That worked fine, although the alignment is not perfect
+    + If this turns out to be a problem I could try one or more of the following
+      1. [X] Use ~--no-tweak~ setting to avoid using SIP polynomial
+         - *yes* - that worked much better
+         - and there should not be much need for distortion correction since nebula is much smaller than CCD
+         - We also need to add ~--overwrite~ option in order to re-do the same image
+      2. Maybe increase ~--odds-to-solve~ (default 1e9)
+      3. Maybe play with ~--code-tolerance~ or ~--pixel-error~ but I am not sure what these mean (need to read Lang:2010a more carefully).
+***** Production run with astrometry.net
++ First, need to get a list of all the image+slit files
+****** ~solve-astrometry-imslit.sh~
+#+name: imslit-list-2015
++ spm0030
++ spm0035
++ spm0036
++ spm0041
+
+Note that we need to use the ~${var[*]}~ syntax to access whole of array
+
+#+header: :var files=imslit-list-2015
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit.sh
+  for f in ${files[*]}; do
+      echo $f
+  done
+#+end_src
+
+#+RESULTS:
+| spm0030 | spm0035 | spm0036 | spm0041 |
+| spm0030 |         |         |         |
+| spm0035 |         |         |         |
+| spm0036 |         |         |         |
+| spm0041 |         |         |         |
+
+
+
