@@ -1,0 +1,24 @@
+* NGC 6210
+
+** Original data files
++ [[file:~/Dropbox/Papers/LL-Objects/NGC6210/]]
+
+
+** Plan of action
++ Follow what I did for the Owl Nebula
+  1. Make a median image and then use it to get slit positions
+  2. Flux calibration using the median image
+  3. At same time find offsets along slit
+  4. Add WCS info to PV images
+  5. Construct spectral maps (with tetrablock algorithm)
+
+
+*** Median image
++ We need to add WCS info to all of them
+  + [ ] Use astrometry.net
++ Most are Ha + [N II] image + slit
++ ~spm165~ is just an image and is saturated
+  + [ ] Fix it - it is wrapping around the integers to negative values, so we just have to add 65536 to the negative pixels
++ Some are [O III] images
++ Others are properly saturated, but one is deep enough to show the halo well
+  + ~spm238~ although it has artefacts from the central star
