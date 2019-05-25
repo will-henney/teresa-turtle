@@ -67,22 +67,219 @@
 + spm0035
 + spm0036
 + spm0041
++ spm0042
++ spm0047
++ spm0048
++ spm0053
++ spm0056
++ spm0061
++ spm0109
++ spm0114
++ spm0115
++ spm0120
++ spm0121
++ spm0123
++ spm0128
++ spm0172
++ spm0177
++ spm0178
++ spm0183
++ spm0185
++ spm0190
 
 Note that we need to use the ~${var[*]}~ syntax to access whole of array
 
 #+header: :var files=imslit-list-2015
-#+begin_src sh :tangle ../scripts/solve-astrometry-imslit.sh
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015
   for f in ${files[*]}; do
-      echo $f
+      solve-field --ra 251.1230 --dec 23.7999 --radius 1.0 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}o_b.fits
+  done
+#+end_src
+****** ~solve-astrometry-imslit-failed.sh~
+Some of these did not solve - see [[file:astrometry-imslit-2015.log]]
+
+#+name: imslit-failed-2015
++ 0053
++ 0061
++ 0128
++ 0183
++ 0190
+
+What do these have in common?
+******* Try again with some modifications
+
+Reduce required odds from 1e9 to 1e6
+
+#+header: :var files=imslit-failed-2015
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-failed.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 1.0 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/spm${f}o_b.fits --odds-to-solve 1e6
   done
 #+end_src
 
-#+RESULTS:
-| spm0030 | spm0035 | spm0036 | spm0041 |
-| spm0030 |         |         |         |
-| spm0035 |         |         |         |
-| spm0036 |         |         |         |
-| spm0041 |         |         |         |
+Some of these succeeded this time, and the solutions are totally fine
++ [X] 0053
++ 0061
++ 0128
++ 0183
++ [X] 0190
+
+Reduce required odds still further
+
++ [X] 0061 (worked with 1e3)
++ [X] 0183 (worked with 30)
++ [X] 0128 (finally with 15, and increasing ~code-tol~ from 0.01 to 0.03)
 
 
+#+name: imslit-stubborn-2015
++ 0128
 
+#+header: :var files=imslit-stubborn-2015
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-stubborn.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/spm${f}o_b.fits --odds-to-solve 15 --quad-size-min 0.03 --code-tol 0.03 -v
+  done
+#+end_src
+
+
+******* Example of successful run
+#+begin_example
+  Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0030o_b.fits"...
+  Extracting sources...
+  simplexy: found 44 sources.
+  Solving...
+  system: No such file or directory
+  engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+  Reading file "./spm0030o_b.axy"...
+  Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+    log-odds ratio 31.3066 (3.94724e+13), 19 match, 1 conflict, 20 distractors, 71 index.
+    RA,Dec = (251.122,23.7979), pixel scale 0.35018 arcsec/pix.
+    Hit/miss:   Hit/miss: -++++--+--+c---++--+-+--++-+----+-+++-++(best)++++
+  Field 1: solved with index index-5000-10.fits.
+  Field 1 solved: writing to file ./spm0030o_b.solved to indicate this.
+  Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0030o_b.fits
+  Field center: (RA,Dec) = (251.121851, 23.797830) deg.
+  Field center: (RA H:M:S, Dec D:M:S) = (16:44:29.244, +23:47:52.188).
+  Field size: 5.51533 x 5.92387 arcminutes
+  Field rotation angle: up is -87.8426 degrees E of N
+  Field parity: pos
+  Creating new FITS file "./spm0030o_b-wcs.fits"...
+  Creating index object overlay plot...
+  Creating annotation plot...
+  Your field contains:
+    NGC 6210
+#+end_example
+******* Examples of failed runs
+******** 0053
+#+begin_example
+  Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits"...
+  Extracting sources...
+  simplexy: found 46 sources.
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: divide by zero encountered in log
+    logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: invalid value encountered in multiply
+    logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:26: RuntimeWarning: invalid value encountered in less
+    badbins = occupied[logpoisson < logcut]
+  Solving...
+  system: No such file or directory
+  engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+  Reading file "./spm0053o_b.axy"...
+  Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+  Field 1 did not solve (index index-5000-10.fits).
+  Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits
+  Did not solve (or no WCS file was written).
+#+end_example
+******** 0061
+#+begin_example
+  Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits"...
+  Extracting sources...
+  simplexy: found 51 sources.
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: divide by zero encountered in log
+    logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: invalid value encountered in multiply
+    logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+  /usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:26: RuntimeWarning: invalid value encountered in less
+    badbins = occupied[logpoisson < logcut]
+  Solving...
+  system: No such file or directory
+  engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+  Reading file "./spm0061o_b.axy"...
+  Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+  Field 1 did not solve (index index-5000-10.fits).
+  Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits
+  Did not solve (or no WCS file was written).
+#+end_example
+****** ~solve-astrometry-imslit-missing.sh~
+And some were missing 
+
+#+name: imslit-missing-2015
++ 0042
++ 0047
+
+#+header: :var files=imslit-missing-2015
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-missing.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 1.0 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/spm${f}o_b.fits
+  done
+#+end_src
+
+Missing ones now got from Tere, and they worked
+****** ~solve-astrometry-imslit-varias.sh~
+
+#+name: imslit-list-varias
++ obj1002_bcr 
++ obj1006_bcr 
++ obj1009_bcr 
++ obj1012_bcr 
++ obj1017_bcr 
++ spm110_u
++ spm115_bcr 
++ spm118_bcr 
++ spm121_bcr 
++ spm124_bcr 
++ spm127_bcr 
++ spm134_bcr 
++ spm165_bcr 
++ spm223_bcr 
++ spm229_bcr 
++ spm318_bcr 
++ spm328_bcr 
++ spm331_bcr 
++ spm414_bcr 
++ spm236_bcr 
++ spm238_bcr 
++ spm242_bcr 
++ spm251_bcr 
++ spm256_bcr 
++ spm293_bcr 
++ spm296_bcr 
++ spm302_bcr 
++ spm303_bcr 
++ spm305_bcr 
++ spm306_bcr 
++ spm350_bcr 
++ spm358_bcr 
++ spm407_bcr
++ spm111_bcr
++ spm116_bcr
++ spm003_b
++ spm004_b
++ spm017_b
+
+These have 512x512 arrays, so image pixels are bigger.  Use all the loose tolerances from the startt
+
+#+header: :var files=imslit-list-varias
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-varias.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.5 --scale-high 0.8 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1000 --quad-size-min 0.03 --code-tol 0.03
+  done
+#+end_src
