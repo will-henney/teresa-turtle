@@ -29,7 +29,8 @@
 + Others are properly saturated, but one is deep enough to show the halo well
   + ~spm238~ although it has artefacts from the central star
 
-**** Astrometry of image+slit exposures
+**** DONE Astrometry of image+slit exposures
+CLOSED: [2019-05-26 Sun 17:53]
 ***** First test with astrometry.net
 + Based on what I did with \sigma Ori in [[id:B5B60BC7-5392-4245-93D6-8D17A6B56E5E][WCS solution from command line astrometry.net tools]]
 + Need to find the right index files
@@ -274,12 +275,40 @@ Missing ones now got from Tere, and they worked
 + spm004_b
 + spm017_b
 
-These have 512x512 arrays, so image pixels are bigger.  Use all the loose tolerances from the startt
+These have 512x512 arrays, so image pixels are bigger.  Use all the loose tolerances from the start
 
 #+header: :var files=imslit-list-varias
 #+begin_src sh :tangle ../scripts/solve-astrometry-imslit-varias.sh :eval no
   D=~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
   for f in ${files[*]}; do
-      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.5 --scale-high 0.8 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1000 --quad-size-min 0.03 --code-tol 0.03
+      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.5 --scale-high 0.8 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e6 --quad-size-min 0.01 --code-tol 0.03
+  done
+#+end_src
+
+Six failed with the more stringent limits.  Three we will try with looser limits
+
+#+name: imslit-failed-varias
++ obj1002_bcr
++ obj1006_bcr
++ spm293_bcr
+#+header: :var files=imslit-failed-varias
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-varias-failed.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.5 --scale-high 0.8 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e3 --quad-size-min 0.01 --code-tol 0.03
+  done
+#+end_src
+
+
+But with 3 it is because the plate scale is smaller
+#+name: imslit-1024-varias
++ spm003_b
++ spm004_b
++ spm017_b
+#+header: :var files=imslit-1024-varias
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-varias-1024.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  for f in ${files[*]}; do
+      solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.3 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e6 --quad-size-min 0.03 --code-tol 0.01
   done
 #+end_src
