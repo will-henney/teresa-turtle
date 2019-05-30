@@ -1,1 +1,2 @@
 data/imslit/*.fits
+__pycache__

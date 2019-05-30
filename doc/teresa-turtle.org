@@ -39,16 +39,17 @@
 
 
 ** Plan of action
-+ [1/6] Follow what I did for the Owl Nebula
-  1. [X] Add WCS tom image+slits
-  2. [ ] Make a median image and then use it to get slit positions
++ [2/6] Follow what I did for the Owl Nebula
+  1. [X] Add WCS to image+slits
+  2. [X] Make a median image and then use it to get slit positions
   3. [ ] Flux calibration using the median image
   4. [ ] At same time find offsets along slit
   5. [ ] Add WCS info to PV images
   6. [ ] Construct spectral maps (with tetrablock algorithm)
 
 
-*** Median image
+** [2/2] Median image
+CLOSED: [2019-05-28 Tue 08:56]
 + We need to add WCS info to all of them
   + [X] Use astrometry.net
 + Most are Ha + [N II] image + slit
@@ -58,9 +59,9 @@
 + Others are properly saturated, but one is deep enough to show the halo well
   + ~spm238~ although it has artefacts from the central star
 
-**** DONE Astrometry of image+slit exposures
+*** DONE Astrometry of image+slit exposures
 CLOSED: [2019-05-26 Sun 17:53]
-***** First test with astrometry.net
+**** First test with astrometry.net
 + Based on what I did with \sigma Ori in [[id:B5B60BC7-5392-4245-93D6-8D17A6B56E5E][WCS solution from command line astrometry.net tools]]
 + Need to find the right index files
   + ICRS coords: 251.1230, 23.7999
@@ -89,9 +90,9 @@ CLOSED: [2019-05-26 Sun 17:53]
          - We also need to add ~--overwrite~ option in order to re-do the same image
       2. Maybe increase ~--odds-to-solve~ (default 1e9)
       3. Maybe play with ~--code-tolerance~ or ~--pixel-error~ but I am not sure what these mean (need to read Lang:2010a more carefully).
-***** Production run with astrometry.net
+**** Production run with astrometry.net
 + First, need to get a list of all the image+slit files
-****** ~solve-astrometry-imslit.sh~
+***** ~solve-astrometry-imslit.sh~
 #+name: imslit-list-2015
 + spm0030
 + spm0035
@@ -126,7 +127,7 @@ Note that we need to use the ~${var[*]}~ syntax to access whole of array
       solve-field --ra 251.1230 --dec 23.7999 --radius 1.0 --scale-units arcsecperpix --scale-low 0.35 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}o_b.fits
   done
 #+end_src
-****** ~solve-astrometry-imslit-failed.sh~
+***** ~solve-astrometry-imslit-failed.sh~
 Some of these did not solve - see [[file:astrometry-imslit-2015.log]]
 
 #+name: imslit-failed-2015
@@ -137,7 +138,7 @@ Some of these did not solve - see [[file:astrometry-imslit-2015.log]]
 + 0190
 
 What do these have in common?
-******* Try again with some modifications
+****** Try again with some modifications
 
 Reduce required odds from 1e9 to 1e6
 
@@ -175,7 +176,7 @@ Reduce required odds still further
 #+end_src
 
 
-******* Example of successful run
+****** Example of successful run
 #+begin_example
   Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0030o_b.fits"...
   Extracting sources...
@@ -203,8 +204,8 @@ Reduce required odds still further
   Your field contains:
     NGC 6210
 #+end_example
-******* Examples of failed runs
-******** 0053
+****** Examples of failed runs
+******* 0053
 #+begin_example
   Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits"...
   Extracting sources...
@@ -225,7 +226,7 @@ Reduce required odds still further
   Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits
   Did not solve (or no WCS file was written).
 #+end_example
-******** 0061
+******* 0061
 #+begin_example
   Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits"...
   Extracting sources...
@@ -246,7 +247,7 @@ Reduce required odds still further
   Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits
   Did not solve (or no WCS file was written).
 #+end_example
-****** ~solve-astrometry-imslit-missing.sh~
+***** ~solve-astrometry-imslit-missing.sh~
 And some were missing 
 
 #+name: imslit-missing-2015
@@ -262,7 +263,7 @@ And some were missing
 #+end_src
 
 Missing ones now got from Tere, and they worked
-****** ~solve-astrometry-imslit-varias.sh~
+***** ~solve-astrometry-imslit-varias.sh~
 
 #+name: imslit-list-varias
 + obj1002_bcr 
@@ -344,18 +345,27 @@ But with 4 it is because the plate scale is smaller
       solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.3 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e6 --quad-size-min 0.03 --code-tol 0.01
   done
 #+end_src
-**** Combining the image + slits
+*** DONE Combining the image + slits
+CLOSED: [2019-05-28 Tue 08:57]
 + We do this separately for [O III] and Ha+[N II]
 + [4/4] Steps
   1. [X] Make a common grid for all images
      + Try 0.3 arcsec pixels and 512x512
   2. [X] Then scale all to a common min/max
+     - This and the previous step are done in [[id:4FA9561B-6694-4D6F-98DE-320EB1FEAB0E][Re-gridding images]]
+     - We use the median of top-right corner (slice: [420:, 420:]) for the background
+     - We use the median of the central 18x18 arcsec portion (slice: [230:290, 230:290]) for the normalization
+     - Final pixel values range up to about 10
   3. [X] Calculate median image
+     - This is done in [[id:E0D99541-C96F-4927-8809-7912F10CB724][Combining into median image and divide by it]]
   4. [X] And take ratio of each individual to the median
 + Unfortunately, although this worked, the results are not very pretty
   + It will be difficult to automatically find the slits
-  + Maybe I should use Teresa's results
-***** Re-gridding images
+  + Maybe I should use Teresa's results (/no, not necessary - now I have found slit positions by hand/)
+**** Re-gridding images
+:PROPERTIES:
+:ID:       4FA9561B-6694-4D6F-98DE-320EB1FEAB0E
+:END:
 
 This should be run from top-level folder
 
@@ -478,7 +488,10 @@ This should be run from top-level folder
       fits.PrimaryHDU(header=W.to_header(), data=outimage).writeto(outfilename, overwrite=True)
 
 #+end_src
-***** Combining into median image and divide by it
+**** Combining into median image and divide by it
+:PROPERTIES:
+:ID:       E0D99541-C96F-4927-8809-7912F10CB724
+:END:
 #+BEGIN_SRC python :eval no :tangle ../scripts/medianize_images.py
   import sys
   import os
@@ -520,7 +533,10 @@ This should be run from top-level folder
 
 #+END_SRC
 
-***** H\alpha + [N II] positions
+**** H\alpha + [N II] positions
+:PROPERTIES:
+:ID:       BE8A01A9-0999-44B5-8A51-E8E4B37960F9
+:END:
 + 30 positions in total
 + ~wa = 1~ wavelength is first axis (fits order) in spec
 + ~wa = 2~ wavelength is second axis (fits order) in spec
@@ -530,39 +546,39 @@ This should be run from top-level folder
   - spm0172o_b is clearly at an angle to the image axis (of 0.5 deg)
 
 #+name: pos-ha
-| spec     | imslit      |     run |    t | wa | islit | ij |
-|----------+-------------+---------+------+----+-------+----|
-| obj1003  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |
-| obj1007  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |
-| obj1010  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |
-| obj1015  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
-| obj1018  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
-| spm112   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |
-| spm116   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |
-| spm119   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |
-| spm122   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |
-| spm125   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |
-| spm130   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |
-| spm135   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |
-| spm224   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
-| spm230   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
-| spm329   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |
-| spm112-2 | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |
-| spm018   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 |
-| spm020   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 |
-| spm023   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 |
-| spm0031  | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |
-| spm0037  | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |
-| spm0043  | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |
-| spm0049  | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |
-| spm0057  | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |
-| spm0110  | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |
-| spm0116  | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |
-| spm0124  | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |
-| spm0173  | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |
-| spm0179  | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |
-| spm0186  | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |
-***** [O III] positions
+| spec          | imslit      |     run |    t | wa | islit | ij |
+|---------------+-------------+---------+------+----+-------+----|
+| obj1003_bcrx  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |
+| obj1007_bcrx  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |
+| obj1010_bcrx  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |
+| obj1015_bcrx  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
+| obj1018_bcrx  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
+| spm112_bcrx   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |
+| spm116_bcrx   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |
+| spm119_bcrx   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |
+| spm122_bcrx   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |
+| spm125_bcrx   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |
+| spm130_bcrx   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |
+| spm135_bcrx   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |
+| spm224_bcrx   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
+| spm230_bcrx   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
+| spm329_bcrx   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |
+| spm112-2_bcrx | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |
+| spm018-bcrx   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 |
+| spm020-bcrx   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 |
+| spm023-bcrx   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 |
+| spm0031o_bcrx | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |
+| spm0037o_bcrx | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |
+| spm0043o_bcrx | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |
+| spm0049o_bcrx | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |
+| spm0057o_bcrx | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |
+| spm0110o_bcrx | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |
+| spm0116o_bcrx | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |
+| spm0124o_bcrx | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |
+| spm0173o_bcrx | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |
+| spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |
+| spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |
+**** [O III] positions
 
 #+name: pos-oiii
 | spec    | imslit     |     run |    t | wa | islit | ij |
@@ -585,17 +601,558 @@ This should be run from top-level folder
 | spm0181 | spm0183o_b | 2015-08 | 1800 |  2 |   482 |  2 |
 | spm0188 | spm0190o_b | 2015-08 | 1800 |  2 |   512 |  2 |
 
-***** [O III] short exposures
+**** [O III] short exposures
 | spec       | imslit |     run |   t | wa | islit | ij |
 |------------+--------+---------+-----+----+-------+----|
 | spm243-244 | spm242 | 2004-06 | 120 |  1 |   275 |  1 |
 | spm252     | spm251 | 2004-06 | 120 |  1 |   280 |  1 |
 | spm257     | spm256 | 2004-06 | 120 |  1 |   285 |  1 |
 |            |        |         |     |    |       |    |
-***** [S II] exposure
+**** [S II] exposure
 | spec   | imslit |     run |    t | wa | islit | ij |
 |--------+--------+---------+------+----+-------+----|
 | spm408 | spm407 | 2004-06 | 1800 |  1 |   269 |  1 |
+**** Write tables to files for later use
+
+First the H\alpha slits
+
+#+name: save-slit-table
+#+begin_src python :results file :return path :colnames no :var INTAB=pos-ha FN="ha-slits.tab"
+  from astropy.table import Table
+  path = f"../data/{FN}"
+  Table(rows=INTAB[1:], names=INTAB[0]).write(path, format="ascii.tab")
+#+end_src
+
+#+RESULTS: save-slit-table
+[[file:../data/ha-slits.tab]]
+
+Second, the [O III] slits
+
+#+call: save-slit-table(pos-oiii, "oiii-slits.tab")
+
+#+RESULTS:
+[[file:../data/oiii-slits.tab]]
+
+** [0/2] Relative photometric calibration of the slits
+*** TODO Obtain reference profiles from the median image
++ [2/2] Steps
+  1. [X] Find position of slit on median image
+     - ~islit~ from the [[id:BE8A01A9-0999-44B5-8A51-E8E4B37960F9][H\alpha + {N II} positions]] table gives the pixel position perpendicular to slit (give or take a small tilt)
+       - We have now written these to ascii files, such as [[file:~/Dropbox/Teresa-Turtle/data/ha-slits.tab]]
+     - We can use the star (Ra, Dec) to find (i0, j0) pixel position for star
+     - We then have a reference point on the slit (islit, j0), which is closest approach to the star
+       - With small modification for ~ij = 2~ since then ~islit~ is in j-direction
+  2. [X] With that info, we should be able to make a version of the ~find_slit_coords()~ function, as in the Owl project ([[id:4D50A4AB-80B1-4872-899F-8637EC758AB3][World coords from slit pixels]])
+     - Do we even need the star position?
+     - No, since we just get the world coords of all the pixels along the slit
+*** Compare the slit profiles with the reference profiles
++ In the Owl project, everything was all lumped together, but I am going to do things in stages
++ We don't know what ~shift~ values to use between the im+slit and the PV image, so we will plot the profile comparisons first
++ And first, we will just do Ha + [N II]
++ We will probably have to do it several times, in order to get the ~shift~ values
++ We can have a first guess by collapsing down the image and PV and looking at the location of maximum
+
+#+begin_src python :tangle ../scripts/compare-slit-profiles.py
+  import os
+  import sys
+  import numpy as np
+  import astropy
+  from astropy.table import Table, Row, hstack
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.wcs.utils import pixel_to_skycoord
+  from astropy import units as u
+  from astropy.coordinates import SkyCoord
+  import seaborn as sns
+  import turtle_utils
+  from turtle_utils import (
+      slit_profile,
+      extract_full_profile_from_pv,
+      extract_slit_profile_from_imslit,
+      get_orig_folder,
+      find_slit_coords,
+      subtract_bg_and_trim,
+      make_three_plots,
+  )
+
+  try:
+      choice = int(sys.argv[1])
+  except:
+      choice = None
+
+  restwavs = {'ha': 6562.79, 'nii': 6583.45}
+
+  # Position of star
+  RA0, Dec0 = 251.122998321, 23.7998586853
+
+
+  sns.set_palette('RdPu_d', 3)
+
+  table1 = Table.read('data/ha-slits.tab', format="ascii.tab")
+  table2 =  Table.read('data/align-ha.tab', format="ascii.tab")
+  # The align-ha table takes precedence if islit has been modified
+  table1.remove_column("islit")
+  # We already have spec in the ha-slits table
+  table2.remove_column("spec") 
+  table = hstack([table1, table2], join_type="exact")
+
+
+
+  # Photometric reference image
+  photom, = fits.open('data/imslit-ha/imslit-median.fits')
+  wphot = WCS(photom.header)
+  turtle_utils.VERBOSE = 1
+  neighbors = [-2, -1, 1, 2]
+  for row in table:
+      if choice is not None and row["id"] != choice:
+          # If we asked for a single spectrum, then skip all others
+          continue
+      spec_hdu, = fits.open(get_orig_folder(row["run"]) + "/" + row["spec"] + ".fits")
+      im_hdu, = fits.open("data/imslit/" + row["imslit"] + "-wcs.fits")
+      # trim the edge or arrays since sometimes the outer pixels contain garbage
+      spec_hdu.data = subtract_bg_and_trim(spec_hdu.data, row)
+      spec_profile = extract_full_profile_from_pv(spec_hdu.data, row)
+      imslit_profile = extract_slit_profile_from_imslit(im_hdu.data, row)
+      print(row)
+      jslit = np.arange(len(spec_profile))
+      # jslit0_spec = np.average(jslit, weights=spec_profile)
+      # jslit0_imslit = np.average(jslit, weights=imslit_profile)
+      # jslit0_spec = np.nanargmax(spec_profile)
+      # jslit0_imslit = np.nanargmax(imslit_profile)
+      jslit0_spec = row["j0_s"]
+      jslit0_imslit = row["j0_i"]
+      print(jslit0_spec, jslit0_imslit, 'shift =', row["shift"])
+      slit_coords = find_slit_coords(row, im_hdu.header, spec_hdu.header)
+      calib_profile = slit_profile(slit_coords['RA'], slit_coords['Dec'],
+                                   photom.data, wphot)
+
+
+      # Look at neighboring slit positions
+      nb_calib_profiles = {}
+      for nb in neighbors:
+          nbrow = Table(row)[0]   # This is the trick to get a copy of the row
+          nbrow["islit"] += nb
+          nb_slit_coords = find_slit_coords(nbrow, im_hdu.header, spec_hdu.header)
+          nb_calib_profiles[nb] = slit_profile(
+              nb_slit_coords['RA'], nb_slit_coords['Dec'], photom.data, wphot)
+
+      # Take a window about profile peak to normalize spec_profile
+      jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
+      rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile[jslice0])
+      print('Coarse calibration: ratio =', rat0)
+      spec_profile /= rat0
+
+      # Offset in arcsec along the slit
+      slit_points = (np.arange(len(spec_profile)) - jslit0_spec)*slit_coords["ds"]
+      # Extra correction for optical halos that show up at +/- 40 arcsec
+      halo_mask = np.abs(np.abs(slit_points) - 40.0) < 5.0
+      spec_profile -= np.median(spec_profile[halo_mask])
+
+      # Make a figure comparing the profiles
+      plt_prefix = f"figs/{row.index:03d}-calib"
+      ratio = make_three_plots(spec_profile, calib_profile, plt_prefix,
+                               slit_points=slit_points,
+                               neighbors=nb_calib_profiles)
+
+
+#+end_src
+
++ [ ] How to deal with saturation?
++ Manual changes to alignment along-slit (j0) and across-slit (islit) 
+  + 05 j0_i from 268 \to 273
+    + Much better in core
+  + 06 j0_i from 272 \to 274 AND islit from 263 \to 262
+  + 09 j0_i 264 \to 266 AND islit 269.5 \to 268.5
+    + Now almost perfect!
+  + 12 j0_i 268 \to 264
+    + Still not good
+  + 13 j0_i 187 -> 190
+  + 16 j0_i 644 \to 544
+  + 18 j0_i 512 \to 492 (enormous shift) islit 496 \to 500
+    + Still not great
+  + 19, 20, 21 good near peak - bad in faint parts
+  + 22 j0_i 446 \to 447
+    + good near peak - bad in faint parts
+  + 23 j0_i 448 \to 450 AND islit 476 \to 474
+    + Pretty good on left side, but not on right
+  + 24 good as is
+  + 26 j0_i 544 \to 543 AND islit 478 \to 476
+  + 27 j0_i 546 \to 536 AND islit 493 \to 492
+    + Another nearly perfect one!
+
+
+#+name: align-ha
+| id | spec          | islit | j0_s | j0_i | shift |
+|----+---------------+-------+------+------+-------|
+| 00 | obj1003_bcrx  |   390 |  336 |  252 |    84 |
+| 01 | obj1007_bcrx  |   388 |  325 |  243 |    82 |
+| 02 | obj1010_bcrx  |   388 |  327 |  245 |    82 |
+| 03 | obj1015_bcrx  | 390.5 |  335 |  259 |    76 |
+| 04 | obj1018_bcrx  | 390.5 |  336 |  252 |    84 |
+| 05 | spm112_bcrx   |   257 |  316 |  274 |    42 |
+| 06 | spm116_bcrx   |   262 |  318 |  273 |    45 |
+| 07 | spm119_bcrx   |   265 |  317 |  271 |    46 |
+| 08 | spm122_bcrx   |   267 |  321 |  274 |    47 |
+| 09 | spm125_bcrx   | 268.5 |  314 |  266 |    48 |
+| 10 | spm130_bcrx   | 272.5 |  325 |  271 |    54 |
+| 11 | spm135_bcrx   | 277.5 |  313 |  260 |    53 |
+| 12 | spm224_bcrx   | 294.5 |  329 |  264 |    65 |
+| 13 | spm230_bcrx   | 294.5 |  250 |  190 |    60 |
+| 14 | spm329_bcrx   |   273 |  321 |  266 |    55 |
+| 15 | spm112-2_bcrx |   531 |  509 |  589 |   -80 |
+| 16 | spm018-bcrx   |   505 |  508 |  518 |   -10 |
+| 17 | spm020-bcrx   |   483 |  529 |  502 |    27 |
+| 18 | spm023-bcrx   |   500 |  533 |  492 |    41 |
+| 19 | spm0031o_bcrx |   485 |  331 |  451 |  -120 |
+| 20 | spm0037o_bcrx |   484 |  325 |  443 |  -118 |
+| 21 | spm0043o_bcrx |   481 |  324 |  446 |  -122 |
+| 22 | spm0049o_bcrx |   480 |  324 |  448 |  -124 |
+| 23 | spm0057o_bcrx |   474 |  330 |  450 |  -120 |
+| 24 | spm0110o_bcrx | 490.5 |  414 |  537 |  -123 |
+| 25 | spm0116o_bcrx | 485.5 |  425 |  541 |  -116 |
+| 26 | spm0124o_bcrx |   476 |  419 |  543 |  -124 |
+| 27 | spm0173o_bcrx |   492 |  412 |  536 |  -124 |
+| 28 | spm0179o_bcrx | 489.5 |  410 |  527 |  -117 |
+| 29 | spm0186o_bcrx | 515.5 |  398 |  523 |  -125 |
+#+TBLFM: $6=$4 - $5
+
+#+call: save-slit-table(align-ha, "align-ha.tab")
+
+#+RESULTS:
+[[file:../data/align-ha.tab]]
+
+*** TODO Compare and correct slit profiles
+
+
+
+
+** Utility functions
+:PROPERTIES:
+:header-args: :tangle ../scripts/turtle_utils.py
+:ID:       60B2ED5C-7B49-4C33-9A59-EF1E7FBBDDDB
+:END:
+
++ Mainly copied from the Owl Nebula's [[id:D65007F8-669F-441C-9FD5-3AEF8BEA4705][Utility functions]]
++ Do ~C-u C-u C-c C-v C-t~ to tangle all blocks into the module ~turtle_utils.py~ in the [[file:../scripts/]] folder
+
+
+*** Imports
+#+BEGIN_SRC python
+import numpy as np
+from astropy.wcs import WCS
+from astropy.coordinates import SkyCoord
+from astropy.wcs.utils import pixel_to_skycoord
+from astropy import units as u
+from astropy.modeling import models, fitting
+from matplotlib import pyplot as plt
+import seaborn as sns
+
+VERBOSE = 0
+#+END_SRC
+
+*** Data paths
+We assume that we are running in the top-level project folder file:../
+
+#+begin_src python
+  ORIG_DATA_ROOT = "../Papers/LL-Objects/NGC6210"
+
+  def get_orig_folder(temporada):
+      if "2015" in temporada:
+          return ORIG_DATA_ROOT + "/Temporada2015"
+      else:
+          return  ORIG_DATA_ROOT + "/Varias-temporadas"
+
+
+#+end_src
+
+*** Synthetic slit from reference image: slit_profile()
++ Copied from [[id:28077E60-1BFE-4AD4-8DDE-5C292C252564][Construct the synthetic slit from the reference image]]
++ This uses nearest pixel algorithm - no interpolation at all
++ Slit pixels outside of the image are set to NaN 
+#+BEGIN_SRC python
+  def slit_profile(ra, dec, image, wcs):
+      """
+      Find the image intensity for a list of positions (ra and dec)
+      """
+      xi, yj = wcs.all_world2pix(ra, dec, 0)
+      # Find nearest integer pixel
+      ii, jj = np.floor(xi + 0.5).astype(int), np.floor(yj + 0.5).astype(int)
+      if VERBOSE > 0:
+          print(ra[::100], dec[::100])
+          print(ii[::100], jj[::100])
+      ny, nx = image.shape
+      return np.array([image[j, i]
+                       if (0 < i < nx and 0 < j < ny)
+                       else np.nan
+                       for i, j in list(zip(ii, jj))])
+
+
+#+END_SRC
+
+
+*** World coords from slit pixels: find_slit_coords()
++ This is based on the Owl Nebula version ([[id:4D50A4AB-80B1-4872-899F-8637EC758AB3][World coords from slit pixels]]) but with the following changes:
+  1. ~wa~ applies to the PV image, and ~ij~ applies to the im+slit
+     - In previous versions, ~saxis~ had been used for both
+     - The sense is opposite to previously:
+       - ~wa~ is the wavelength axis
+       - ~ij~ is the CCD axis perpendicular to slit
+  2. Check for case where on-chip binning is not specified in header (needed for 2003 data)
+#+begin_src python
+  def find_slit_coords(db, hdr, shdr):
+      """Find the coordinates of all the pixels along a spectrograph slit
+
+      Input arguments are a dict-like 'db' of hand-measured values (must
+      contain 'wa', 'ij', islit' and 'shift') and a FITS headers 'hdr' from
+      the image+slit exposure and 'shdr' from a spectrum exposure
+
+      Returns a dict of 'ds' (slit pixel scale), 'PA' (slit position
+      angle), 'RA' (array of RA values in degrees along slit), 'Dec'
+      (array of Dec values in degrees along slit)
+
+      """
+
+      # Decide on axis order for both spectrum and image. Note that
+      # values of 'wa' and 'ij' give the axis that is perpendicular to
+      # the slit length (wavelength or position, respectively). That is
+      # why we subtract from 3 to get the slit length axis
+      jstring_i = str(3 - db['ij'])  # which image axis lies along slit
+      jstring_s = str(3 - db['wa'])  # which spec (pv) axis lies along slit
+
+      dRA_arcsec = hdr['CD1_'+jstring_i]*3600*np.cos(np.radians(hdr['CRVAL2']))
+      dDEC_arcsec = hdr['CD2_'+jstring_i]*3600
+      ds = np.hypot(dRA_arcsec, dDEC_arcsec)
+      PA = np.degrees(np.arctan2(dRA_arcsec, dDEC_arcsec))
+
+      # Deal with parameters that depend on orientation of the PV image
+      if jstring_s == '1':
+          # PV slit has spatial axis horizontal in IMAGE coords
+          ns = shdr['NAXIS1']
+          # Mezcal has used two different ways of specifying on-chip binning
+          try:
+              # Older way
+              spec_binning = shdr['CBIN']
+          except KeyError:
+              try:
+                  # Newer way
+                  spec_binning = shdr['CCDXBIN']
+              except KeyError:
+                  # And the very old data don't have it at all
+                  spec_binning = 1
+      elif jstring_s == '2':
+          # PV slit has spatial axis vertical in IMAGE coords
+          ns = shdr['NAXIS2']
+          try:
+              spec_binning = shdr['RBIN']
+          except KeyError:
+              try:
+                  spec_binning = shdr['CCDYBIN']
+              except KeyError:
+                  spec_binning = 1
+      else:
+          raise ValueError('PV slit axis (3 - wa) must be 1 or 2')
+
+      # Pixel coords of each slit pixel on image (in 0-based convention)
+      # Deal with parameters that depend on orientation of the I+S image
+      if jstring_i == '1':
+          # Slit is horizontal in IMAGE coords
+          iarr = np.arange(ns) - float(db['shift'])
+          jarr = np.ones(ns)*float(db['islit'])
+          # Mezcal has used two different ways of specifying on-chip binning
+          try:
+              # Older way
+              image_binning = hdr['CBIN']
+          except KeyError:
+              try:
+                  # Newer way
+                  image_binning = hdr['CCDXBIN']
+              except KeyError:
+                  # And the very old data don't have it at all
+                  image_binning = 1
+          # correct for difference in binning between the image+slit and the spectrum
+          iarr *= spec_binning/image_binning
+      elif jstring_i == '2':
+          # Slit is vertical in IMAGE coords
+          iarr = np.ones(ns)*float(db['islit'])
+          jarr = np.arange(ns) - float(db['shift'])
+          try:
+              image_binning = hdr['RBIN']
+          except KeyError:
+              try:
+                  image_binning = hdr['CCDYBIN']
+              except KeyError:
+                  image_binning = 1
+          jarr *= spec_binning/image_binning
+      else:
+          raise ValueError('I+S slit axis (3 - ij) must be 1 or 2')
+
+      print('iarr =', iarr[::100], 'jarr =', jarr[::100])
+      # Also correct the nominal slit plate scale
+      ds *= spec_binning/image_binning
+
+      # Convert to world coords, using the native frame
+      w = WCS(hdr)
+      observed_frame = w.wcs.radesys.lower()
+      # Note it is vital to ensure the pix2world transformation returns
+      # values in the order (RA, Dec), even if the image+slit may have
+      # Dec first
+      coords = SkyCoord(*w.all_pix2world(iarr, jarr, 0, ra_dec_order=True),
+                        unit=(u.deg, u.deg), frame=observed_frame)
+      print('coords =', coords[::100])
+      print('Binning along slit: image =', image_binning, 'spectrum =', spec_binning)
+      # Make sure to return the coords in the ICRS frame
+      return {'ds': ds, 'PA': PA,
+              'RA': coords.icrs.ra.value,
+              'Dec': coords.icrs.dec.value}
+
+
+#+end_src
+
+
+*** Extract profile along PV slit
+#+begin_src python
+  def subtract_bg_and_trim(data, db, trim=3, margin=10):
+      """Assume that pixels within `trim` of edge might be bad, and use
+      average within margin of edge in wavelength direction to define
+      the bg
+      """
+      # convert axis notation from FITS to python convention
+      wav_axis = 2 - db["wa"]
+      if wav_axis == 0:
+          bg = 0.5*(data[:, trim:margin].mean() + data[:, -margin:-trim].mean())
+      else:
+          bg = 0.5*(data[trim:margin, :].mean() + data[-margin:-trim, :].mean())
+      # Remove background
+      newdata = data - bg
+      # And only then can we clean up the trim zone
+      newdata[:trim, :] = 0.0
+      newdata[-trim:, :] = 0.0
+      newdata[:, :trim] = 0.0
+      newdata[:, -trim:] = 0.0
+      return newdata
+
+
+  def extract_full_profile_from_pv(data, db, margin=10):
+      # convert axis notation from FITS to python convention
+      wav_axis = 2 - db["wa"]
+      return data.sum(axis=wav_axis)
+
+
+  def extract_slit_profile_from_imslit(data, db, slit_width=1):
+      print(db["islit"])
+      i1, i2 = int(db["islit"]) - slit_width, int(db["islit"]) + slit_width
+      if db["ij"] == 1:
+          return data[:, i1:i2].sum(axis=1)
+      elif db["ij"] == 2:
+          return data[i1:i2, :].sum(axis=0 )
+      else:
+          raise ValueError("ij must be 1 or 2")
+
+
+#+end_src
+
+*** Fit Chebyshev polynomial
+#+begin_src python
+  def fit_cheb(x, y, npoly=3, mask=None):
+      """Fits a Chebyshev poly to y(x) and returns fitted y-values"""
+      fitter = fitting.LinearLSQFitter()
+      p_init = models.Chebyshev1D(npoly, domain=[x.min(), x.max()])
+      if mask is None:
+          mask = np.ones_like(x).astype(bool)
+      p = fitter(p_init, x[mask], y[mask])
+      if VERBOSE > 0:
+          print(p)
+      return p(x)
+
+
+#+end_src
+
+*** Plot utilities
+#+begin_src python
+  def make_three_plots(spec, calib, prefix, slit_points=None, niirat=None, neighbors=None):
+      assert spec.shape == calib.shape
+      fig, axes = plt.subplots(3, 1)
+
+      if slit_points is None:
+          ypix = np.arange(len(calib))
+          xlabel = "Slit pixel"
+          xlim = None
+      else:
+          ypix = slit_points
+          xlabel = "Slit position, arcsec"
+          xlim = -80, 80
+
+      m = np.isfinite(spec) & np.isfinite(calib)
+      spec = spec[m]
+      calib = calib[m]
+      ypix = ypix[m]
+      xlim = xlim or (ypix.min(), ypix.max())
+      if niirat is not None:
+          niirat = niirat[m]
+
+      # vmax = np.percentile(calib, 95) + 2*calib.std()
+      vmax = 20.0
+      vmin = -0.01
+      ratio = spec/calib
+      mask = (spec > np.percentile(spec, 25)) & (ratio > 0.5) & (ratio < 2.0)
+      # mask = (ypix > 10.0) & (ypix < ypix.max() - 10.0) \
+      #        & (ratio > np.median(ratio) - 2*ratio.std()) \
+      #        & (ratio < np.median(ratio) + 2*ratio.std()) 
+      try:
+          ratio_fit = fit_cheb(ypix, ratio, mask=mask, npoly=1)
+      except:
+          ratio_fit = np.ones_like(ypix)
+
+      alpha = 0.8
+
+      # First, plot two profiles against each other to check for zero-point offsets
+      # axes[0].plot(calib, spec/ratio_fit, '.', alpha=alpha)
+      axes[0].plot(calib, spec, '.', alpha=alpha)
+      axes[0].plot([vmin, vmax], [vmin, vmax], '-', alpha=alpha)
+      axes[0].set_xlim(vmin, vmax)
+      axes[0].set_ylim(vmin, vmax)
+      axes[0].set_xlabel('Calibration Image')
+      axes[0].set_ylabel('Uncorrected Integrated Spectrum')
+      axes[0].set_xscale('symlog', linthreshx=0.01)
+      axes[0].set_yscale('symlog', linthreshy=0.01)
+
+      # Second, plot each against slit pixel to check spatial offset
+      axes[1].plot(ypix, calib, alpha=alpha, label='Calibration Image')
+      if neighbors is not None:
+          for nb, calib_nb in neighbors.items():
+              lw = 0.5 + 0.1*nb
+              axes[1].plot(ypix, calib_nb[m],
+                           alpha=0.3*alpha, lw=lw, color="k", label='_nolabel_')
+      # axes[1].plot(ypix, spec/ratio_fit, alpha=alpha, lw=1.0,
+      #              label='Corrected Integrated Spectrum')
+      axes[1].plot(ypix, spec, alpha=alpha, lw=1,
+                   label='Uncorrected Integrated Spectrum')
+      axes[1].set_xlim(*xlim)
+      axes[1].set_ylim(vmin, vmax)
+      axes[1].legend(fontsize='xx-small', loc='upper right')
+      axes[1].set_xlabel(xlabel)
+      axes[1].set_ylabel('Profile')
+      axes[1].set_yscale('symlog', linthreshy=0.01)
+
+      # Third, plot ratio to look for spatial trends
+      axes[2].plot(ypix, ratio, alpha=alpha)
+      axes[2].plot(ypix, ratio_fit, alpha=alpha)
+      if niirat is not None:
+          axes[2].plot(ypix, niirat, 'b', lw=0.5, alpha=0.5)
+      axes[2].set_xlim(*xlim)
+      axes[2].set_ylim(0.0, 5.0)
+      axes[2].set_xlabel(xlabel)
+      axes[2].set_ylabel('Ratio: Spec / Calib')
+
+
+      fig.set_size_inches(5, 8)
+      fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+      fig.savefig(prefix+'.png', dpi=300)
+
+      return ratio_fit
+
+
+#+end_src
 * Teresa's tables
 ** H alpha
 So, she has 11 positions missing
@@ -620,6 +1177,7 @@ So, she has 11 positions missing
   + lam0 :: 6557
   + lamscale :: 0.043752133
   + d vel :: 2
+
 *** 1998 \to 2013 Ha (8 positions)
 | #       |      RA |       Dec | dataset | helio corr |  NX |  NY | ypixscale | jcenter | ufiddle | fluxfiddle | "True File"                   |
 |---------+---------+-----------+---------+------------+-----+-----+-----------+---------+---------+------------+-------------------------------|
