@@ -16,7 +16,7 @@ from turtle_utils import (
     extract_slit_profile_from_imslit,
     get_orig_folder,
     find_slit_coords,
-    subtract_bg_and_trim,
+    subtract_sky_and_trim,
     make_three_plots,
 )
 
@@ -25,10 +25,12 @@ try:
 except:
     choice = None
 
-restwavs = {'ha': 6562.79, 'nii': 6583.45}
+restwavs = {'ha': 6562.79, 'nii': 6583.45, 'nii_s': 6548.05}
 
 # Position of star
 RA0, Dec0 = 251.122998321, 23.7998586853
+
+saturation = 6e4
 
 
 sns.set_palette('RdPu_d', 3)
@@ -54,9 +56,15 @@ for row in table:
         continue
     spec_hdu, = fits.open(get_orig_folder(row["run"]) + "/" + row["spec"] + ".fits")
     im_hdu, = fits.open("data/imslit/" + row["imslit"] + "-wcs.fits")
+    # Mask out saturated pixels with NaN
+    spec_hdu.data[spec_hdu.data > saturation] = np.nan
     # trim the edge or arrays since sometimes the outer pixels contain garbage
-    spec_hdu.data = subtract_bg_and_trim(spec_hdu.data, row)
-    spec_profile = extract_full_profile_from_pv(spec_hdu.data, row)
+    spec_hdu.data = subtract_sky_and_trim(spec_hdu.data, row)
+    spec_profile = extract_full_profile_from_pv(
+        spec_hdu,
+        wavaxis=row["wa"],
+        bandwidth=90.0,
+        linewavs=restwavs.values())
     imslit_profile = extract_slit_profile_from_imslit(im_hdu.data, row)
     print(row)
     jslit = np.arange(len(spec_profile))
@@ -81,11 +89,6 @@ for row in table:
         nb_calib_profiles[nb] = slit_profile(
             nb_slit_coords['RA'], nb_slit_coords['Dec'], photom.data, wphot)
 
-    # Take a window about profile peak to normalize spec_profile
-    jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
-    rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile[jslice0])
-    print('Coarse calibration: ratio =', rat0)
-    spec_profile /= rat0
 
     # Offset in arcsec along the slit
     slit_points = (np.arange(len(spec_profile)) - jslit0_spec)*slit_coords["ds"]
@@ -93,8 +96,18 @@ for row in table:
     halo_mask = np.abs(np.abs(slit_points) - 40.0) < 5.0
     spec_profile -= np.median(spec_profile[halo_mask])
 
+    # Take a window about profile peak to normalize spec_profile
+    jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
+    # propagate saturated pixels to the calibration profile
+    calib_profile_nan = calib_profile.copy()
+    calib_profile_nan[~np.isfinite(spec_profile)] = np.nan
+    rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile_nan[jslice0])
+    print('Coarse calibration: ratio =', rat0)
+    spec_profile /= rat0
+
+
     # Make a figure comparing the profiles
     plt_prefix = f"figs/{row.index:03d}-calib"
     ratio = make_three_plots(spec_profile, calib_profile, plt_prefix,
                              slit_points=slit_points,
-                             neighbors=nb_calib_profiles)
+                             neighbors=nb_calib_profiles, db=row, sdb=slit_coords)

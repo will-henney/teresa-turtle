@@ -48,15 +48,15 @@ def find_slit_coords(db, hdr, shdr):
 
     # Decide on axis order for both spectrum and image. Note that
     # values of 'wa' and 'ij' give the axis that is perpendicular to
-    # the slit length (wavelength or position, respectively). That is
-    # why we subtract from 3 to get the slit length axis
-    jstring_i = str(3 - db['ij'])  # which image axis lies along slit
+    # the slit length (wavelength or position, respectively). Hence we
+    # subtract from 3 to get the slit length axis
+    jstring_i = str(3 - db['ij'])  # which image (I+S) axis lies along slit
     jstring_s = str(3 - db['wa'])  # which spec (pv) axis lies along slit
 
     dRA_arcsec = hdr['CD1_'+jstring_i]*3600*np.cos(np.radians(hdr['CRVAL2']))
     dDEC_arcsec = hdr['CD2_'+jstring_i]*3600
     ds = np.hypot(dRA_arcsec, dDEC_arcsec)
-    PA = np.degrees(np.arctan2(dRA_arcsec, dDEC_arcsec))
+    PA = np.degrees(np.arctan2(dRA_arcsec, dDEC_arcsec)) % 360.0
 
     # Deal with parameters that depend on orientation of the PV image
     if jstring_s == '1':
@@ -120,6 +120,11 @@ def find_slit_coords(db, hdr, shdr):
     else:
         raise ValueError('I+S slit axis (3 - ij) must be 1 or 2')
 
+    if db['s'] < 0:
+        # Slit pixel axis has opposite sense in I+S and PV
+        iarr = iarr[::-1]
+        jarr = jarr[::-1]
+
     print('iarr =', iarr[::100], 'jarr =', jarr[::100])
     # Also correct the nominal slit plate scale
     ds *= spec_binning/image_binning
@@ -139,18 +144,20 @@ def find_slit_coords(db, hdr, shdr):
             'RA': coords.icrs.ra.value,
             'Dec': coords.icrs.dec.value}
 
-def subtract_bg_and_trim(data, db, trim=3, margin=10):
+def subtract_sky_and_trim(data, db, trim=3, margin=10):
     """Assume that pixels within `trim` of edge might be bad, and use
-    average within margin of edge in wavelength direction to define
+    average sky within margin of edge in spatial direction to define
     the bg
     """
     # convert axis notation from FITS to python convention
     wav_axis = 2 - db["wa"]
     if wav_axis == 0:
-        bg = 0.5*(data[:, trim:margin].mean() + data[:, -margin:-trim].mean())
+        bg = 0.5*(data[:, trim:margin] +
+                  data[:, -margin:-trim]).mean(axis=1, keepdims=True)
     else:
-        bg = 0.5*(data[trim:margin, :].mean() + data[-margin:-trim, :].mean())
-    # Remove background
+        bg = 0.5*(data[trim:margin, :] +
+                  data[-margin:-trim, :]).mean(axis=0, keepdims=True)
+    # Remove sky background
     newdata = data - bg
     # And only then can we clean up the trim zone
     newdata[:trim, :] = 0.0
@@ -159,11 +166,36 @@ def subtract_bg_and_trim(data, db, trim=3, margin=10):
     newdata[:, -trim:] = 0.0
     return newdata
 
+def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linewavs):
+    assert(wavaxis in [1, 2]) # wavaxis is in FITS convention
+    w = WCS(spec_hdu.header)
+    if wavaxis == 1:
+        nwav = spec_hdu.header['NAXIS1']
+        im = spec_hdu.data[:, :]
+        wavs, _ = w.all_pix2world(np.arange(nwav), [0], 0)
+    else:
+        nwav = spec_hdu.header['NAXIS2']
+        im = spec_hdu.data[:, :].T
+        _, wavs = w.all_pix2world([0], np.arange(nwav), 0)
 
-def extract_full_profile_from_pv(data, db, margin=10):
-    # convert axis notation from FITS to python convention
-    wav_axis = 2 - db["wa"]
-    return data.sum(axis=wav_axis)
+    # im should have wavelength as last axis (python convention)
+    assert(nwav == im.shape[-1])
+
+    wavmask = np.ones((nwav,)).astype(bool)
+    # remove from continuum mask +/- 150 km/s around each line
+    for wav0 in linewavs:
+        vels = 3e5*(wavs - wav0)/wav0
+        wavmask = wavmask & (np.abs(vels) > 150.0)
+    # broadcast to 2 dimensions
+    imwts = np.ones_like(im)*wavmask[None, :]
+    av_cont_profile = np.average(im, weights=imwts, axis=-1)
+    # find how much extra continuum to add
+    dwav = abs(wavs[1] - wavs[0])
+    pv_bw = abs(wavs[-1] - wavs[0])
+    missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
+    # Add to the profile summed over the PV bandwidth
+    full_profile = im.sum(axis=-1) + missing_cont_profile
+    return full_profile
 
 
 def extract_slit_profile_from_imslit(data, db, slit_width=1):
@@ -187,7 +219,8 @@ def fit_cheb(x, y, npoly=3, mask=None):
         print(p)
     return p(x)
 
-def make_three_plots(spec, calib, prefix, slit_points=None, niirat=None, neighbors=None):
+def make_three_plots(spec, calib, prefix,
+                     slit_points=None, niirat=None, neighbors=None, db=None, sdb=None):
     assert spec.shape == calib.shape
     fig, axes = plt.subplots(3, 1)
 
@@ -200,26 +233,12 @@ def make_three_plots(spec, calib, prefix, slit_points=None, niirat=None, neighbo
         xlabel = "Slit position, arcsec"
         xlim = -80, 80
 
-    m = np.isfinite(spec) & np.isfinite(calib)
-    spec = spec[m]
-    calib = calib[m]
-    ypix = ypix[m]
     xlim = xlim or (ypix.min(), ypix.max())
-    if niirat is not None:
-        niirat = niirat[m]
 
     # vmax = np.percentile(calib, 95) + 2*calib.std()
     vmax = 20.0
     vmin = -0.01
     ratio = spec/calib
-    mask = (spec > np.percentile(spec, 25)) & (ratio > 0.5) & (ratio < 2.0)
-    # mask = (ypix > 10.0) & (ypix < ypix.max() - 10.0) \
-    #        & (ratio > np.median(ratio) - 2*ratio.std()) \
-    #        & (ratio < np.median(ratio) + 2*ratio.std()) 
-    try:
-        ratio_fit = fit_cheb(ypix, ratio, mask=mask, npoly=1)
-    except:
-        ratio_fit = np.ones_like(ypix)
 
     alpha = 0.8
 
@@ -235,36 +254,55 @@ def make_three_plots(spec, calib, prefix, slit_points=None, niirat=None, neighbo
     axes[0].set_yscale('symlog', linthreshy=0.01)
 
     # Second, plot each against slit pixel to check spatial offset
+    axes[1].plot(ypix, spec, alpha=alpha, lw=1,
+                 label='Integrated Spectrum')
+    axes[2].plot(ypix, spec/np.nanmax(calib), alpha=alpha, lw=1,
+                 label='Integrated Spectrum')
     axes[1].plot(ypix, calib, alpha=alpha, label='Calibration Image')
+    axes[2].plot(ypix, calib/np.nanmax(calib), alpha=alpha, label='Calibration Image')
     if neighbors is not None:
         for nb, calib_nb in neighbors.items():
             lw = 0.5 + 0.1*nb
-            axes[1].plot(ypix, calib_nb[m],
-                         alpha=0.3*alpha, lw=lw, color="k", label='_nolabel_')
+            label = f"Slit $\Delta x = {nb:+1d}$"
+            axes[1].plot(ypix, calib_nb,
+                         alpha=0.3*alpha, lw=lw, color="k", label=label)
+            axes[2].plot(ypix, calib_nb/np.nanmax(calib_nb),
+                         alpha=0.3*alpha, lw=lw, color="k", label=label)
     # axes[1].plot(ypix, spec/ratio_fit, alpha=alpha, lw=1.0,
     #              label='Corrected Integrated Spectrum')
-    axes[1].plot(ypix, spec, alpha=alpha, lw=1,
-                 label='Uncorrected Integrated Spectrum')
     axes[1].set_xlim(*xlim)
     axes[1].set_ylim(vmin, vmax)
     axes[1].legend(fontsize='xx-small', loc='upper right')
     axes[1].set_xlabel(xlabel)
-    axes[1].set_ylabel('Profile')
+    axes[1].set_ylabel('Profile (absolute log scale)')
     axes[1].set_yscale('symlog', linthreshy=0.01)
 
-    # Third, plot ratio to look for spatial trends
-    axes[2].plot(ypix, ratio, alpha=alpha)
-    axes[2].plot(ypix, ratio_fit, alpha=alpha)
-    if niirat is not None:
-        axes[2].plot(ypix, niirat, 'b', lw=0.5, alpha=0.5)
-    axes[2].set_xlim(*xlim)
-    axes[2].set_ylim(0.0, 5.0)
+    # # Third, plot ratio to look for spatial trends
+    # axes[2].plot(ypix, ratio, alpha=alpha)
+    # axes[2].plot(ypix, ratio_fit, alpha=alpha)
+    # if niirat is not None:
+    #     axes[2].plot(ypix, niirat, 'b', lw=0.5, alpha=0.5)
+    axes[2].set_xlim(-40, 40)
+    axes[2].set_ylim(-0.05, 1.05)
     axes[2].set_xlabel(xlabel)
-    axes[2].set_ylabel('Ratio: Spec / Calib')
+    # axes[2].set_ylabel('Ratio: Spec / Calib')
+    axes[2].set_ylabel('Profile (relative linear scale)')
 
-
+    info = ""
+    if db is not None:
+        # Add some info to the graphs
+        info += fr"H$\alpha$ slit {db['id']:02d}" + "\n"
+        info += f"PV: {db['spec']}" +"\n"
+        info += f"I+S: {db['imslit']}" + "\n"
+        info += f"Date: {db['run']}, t = {db['t']} s" + "\n"
+    if sdb is not None:
+        info += fr"Slit PA = ${sdb['PA']:.1f}^\circ$, ds = {sdb['ds']:.2f} arcsec" + "\n"
+    if info:
+        axes[0].text(0.95, 0.05, info,
+                     fontsize="small",
+                     ha="right", va="bottom", transform=axes[0].transAxes)
     fig.set_size_inches(5, 8)
     fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
     fig.savefig(prefix+'.png', dpi=300)
 
-    return ratio_fit
+    return None

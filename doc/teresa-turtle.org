@@ -538,46 +538,47 @@ This should be run from top-level folder
 :ID:       BE8A01A9-0999-44B5-8A51-E8E4B37960F9
 :END:
 + 30 positions in total
-+ ~wa = 1~ wavelength is first axis (fits order) in spec
-+ ~wa = 2~ wavelength is second axis (fits order) in spec
-+ ~ij = 1~ slit is vertical in imslit, so ~islit~ is along x-axis
-+ ~ij = 2~ slit is horizontal in imslit, so ~islit~ is along y-axis
++ ~wa = 1~ wavelength is first axis (fits order) in PV spec
++ ~wa = 2~ wavelength is second axis (fits order) in PV spec
++ ~ij = 1~ slit is vertical in I+S, so ~islit~ is along x-axis
++ ~ij = 2~ slit is horizontal in I+S, so ~islit~ is along y-axis
++ ~s = -1~ means that slit axis in I+S is reversed with respect to PV image
 + *Note*
   - spm0172o_b is clearly at an angle to the image axis (of 0.5 deg)
 
 #+name: pos-ha
-| spec          | imslit      |     run |    t | wa | islit | ij |
-|---------------+-------------+---------+------+----+-------+----|
-| obj1003_bcrx  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |
-| obj1007_bcrx  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |
-| obj1010_bcrx  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |
-| obj1015_bcrx  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
-| obj1018_bcrx  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |
-| spm112_bcrx   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |
-| spm116_bcrx   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |
-| spm119_bcrx   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |
-| spm122_bcrx   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |
-| spm125_bcrx   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |
-| spm130_bcrx   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |
-| spm135_bcrx   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |
-| spm224_bcrx   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
-| spm230_bcrx   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |
-| spm329_bcrx   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |
-| spm112-2_bcrx | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |
-| spm018-bcrx   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 |
-| spm020-bcrx   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 |
-| spm023-bcrx   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 |
-| spm0031o_bcrx | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |
-| spm0037o_bcrx | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |
-| spm0043o_bcrx | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |
-| spm0049o_bcrx | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |
-| spm0057o_bcrx | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |
-| spm0110o_bcrx | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |
-| spm0116o_bcrx | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |
-| spm0124o_bcrx | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |
-| spm0173o_bcrx | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |
-| spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |
-| spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |
+| spec          | imslit      |     run |    t | wa | islit | ij |  s |
+|---------------+-------------+---------+------+----+-------+----+----|
+| obj1003_bcrx  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |  1 |
+| obj1007_bcrx  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |  1 |
+| obj1010_bcrx  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |  1 |
+| obj1015_bcrx  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 |
+| obj1018_bcrx  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 |
+| spm112_bcrx   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |  1 |
+| spm116_bcrx   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |  1 |
+| spm119_bcrx   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |  1 |
+| spm122_bcrx   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |  1 |
+| spm125_bcrx   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |  1 |
+| spm130_bcrx   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |  1 |
+| spm135_bcrx   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |  1 |
+| spm224_bcrx   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 |
+| spm230_bcrx   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 |
+| spm329_bcrx   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |  1 |
+| spm112-2_bcrx | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |  1 |
+| spm018-bcrx   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 | -1 |
+| spm020-bcrx   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 | -1 |
+| spm023-bcrx   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 | -1 |
+| spm0031o_bcrx | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |  1 |
+| spm0037o_bcrx | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |  1 |
+| spm0043o_bcrx | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |  1 |
+| spm0049o_bcrx | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |  1 |
+| spm0057o_bcrx | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |  1 |
+| spm0110o_bcrx | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |  1 |
+| spm0116o_bcrx | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |  1 |
+| spm0124o_bcrx | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |  1 |
+| spm0173o_bcrx | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |  1 |
+| spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |  1 |
+| spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |  1 |
 **** [O III] positions
 
 #+name: pos-oiii
@@ -671,7 +672,7 @@ Second, the [O III] slits
       extract_slit_profile_from_imslit,
       get_orig_folder,
       find_slit_coords,
-      subtract_bg_and_trim,
+      subtract_sky_and_trim,
       make_three_plots,
   )
 
@@ -680,10 +681,12 @@ Second, the [O III] slits
   except:
       choice = None
 
-  restwavs = {'ha': 6562.79, 'nii': 6583.45}
+  restwavs = {'ha': 6562.79, 'nii': 6583.45, 'nii_s': 6548.05}
 
   # Position of star
   RA0, Dec0 = 251.122998321, 23.7998586853
+
+  saturation = 6e4
 
 
   sns.set_palette('RdPu_d', 3)
@@ -709,9 +712,15 @@ Second, the [O III] slits
           continue
       spec_hdu, = fits.open(get_orig_folder(row["run"]) + "/" + row["spec"] + ".fits")
       im_hdu, = fits.open("data/imslit/" + row["imslit"] + "-wcs.fits")
+      # Mask out saturated pixels with NaN
+      spec_hdu.data[spec_hdu.data > saturation] = np.nan
       # trim the edge or arrays since sometimes the outer pixels contain garbage
-      spec_hdu.data = subtract_bg_and_trim(spec_hdu.data, row)
-      spec_profile = extract_full_profile_from_pv(spec_hdu.data, row)
+      spec_hdu.data = subtract_sky_and_trim(spec_hdu.data, row)
+      spec_profile = extract_full_profile_from_pv(
+          spec_hdu,
+          wavaxis=row["wa"],
+          bandwidth=90.0,
+          linewavs=restwavs.values())
       imslit_profile = extract_slit_profile_from_imslit(im_hdu.data, row)
       print(row)
       jslit = np.arange(len(spec_profile))
@@ -736,11 +745,6 @@ Second, the [O III] slits
           nb_calib_profiles[nb] = slit_profile(
               nb_slit_coords['RA'], nb_slit_coords['Dec'], photom.data, wphot)
 
-      # Take a window about profile peak to normalize spec_profile
-      jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
-      rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile[jslice0])
-      print('Coarse calibration: ratio =', rat0)
-      spec_profile /= rat0
 
       # Offset in arcsec along the slit
       slit_points = (np.arange(len(spec_profile)) - jslit0_spec)*slit_coords["ds"]
@@ -748,16 +752,27 @@ Second, the [O III] slits
       halo_mask = np.abs(np.abs(slit_points) - 40.0) < 5.0
       spec_profile -= np.median(spec_profile[halo_mask])
 
+      # Take a window about profile peak to normalize spec_profile
+      jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
+      # propagate saturated pixels to the calibration profile
+      calib_profile_nan = calib_profile.copy()
+      calib_profile_nan[~np.isfinite(spec_profile)] = np.nan
+      rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile_nan[jslice0])
+      print('Coarse calibration: ratio =', rat0)
+      spec_profile /= rat0
+
+
       # Make a figure comparing the profiles
       plt_prefix = f"figs/{row.index:03d}-calib"
       ratio = make_three_plots(spec_profile, calib_profile, plt_prefix,
                                slit_points=slit_points,
-                               neighbors=nb_calib_profiles)
+                               neighbors=nb_calib_profiles, db=row, sdb=slit_coords)
 
 
 #+end_src
 
-+ [ ] How to deal with saturation?
++ [X] How to deal with saturation?
+  + Done with NaNs
 + Manual changes to alignment along-slit (j0) and across-slit (islit) 
   + 05 j0_i from 268 \to 273
     + Much better in core
@@ -768,6 +783,7 @@ Second, the [O III] slits
     + Still not good
   + 13 j0_i 187 -> 190
   + 16 j0_i 644 \to 544
+  + 17 j0_i \to 620 and invert sense of axis AND islit 483 \to 481.5
   + 18 j0_i 512 \to 492 (enormous shift) islit 496 \to 500
     + Still not great
   + 19, 20, 21 good near peak - bad in faint parts
@@ -782,38 +798,38 @@ Second, the [O III] slits
 
 
 #+name: align-ha
-| id | spec          | islit | j0_s | j0_i | shift |
-|----+---------------+-------+------+------+-------|
-| 00 | obj1003_bcrx  |   390 |  336 |  252 |    84 |
-| 01 | obj1007_bcrx  |   388 |  325 |  243 |    82 |
-| 02 | obj1010_bcrx  |   388 |  327 |  245 |    82 |
-| 03 | obj1015_bcrx  | 390.5 |  335 |  259 |    76 |
-| 04 | obj1018_bcrx  | 390.5 |  336 |  252 |    84 |
-| 05 | spm112_bcrx   |   257 |  316 |  274 |    42 |
-| 06 | spm116_bcrx   |   262 |  318 |  273 |    45 |
-| 07 | spm119_bcrx   |   265 |  317 |  271 |    46 |
-| 08 | spm122_bcrx   |   267 |  321 |  274 |    47 |
-| 09 | spm125_bcrx   | 268.5 |  314 |  266 |    48 |
-| 10 | spm130_bcrx   | 272.5 |  325 |  271 |    54 |
-| 11 | spm135_bcrx   | 277.5 |  313 |  260 |    53 |
-| 12 | spm224_bcrx   | 294.5 |  329 |  264 |    65 |
-| 13 | spm230_bcrx   | 294.5 |  250 |  190 |    60 |
-| 14 | spm329_bcrx   |   273 |  321 |  266 |    55 |
-| 15 | spm112-2_bcrx |   531 |  509 |  589 |   -80 |
-| 16 | spm018-bcrx   |   505 |  508 |  518 |   -10 |
-| 17 | spm020-bcrx   |   483 |  529 |  502 |    27 |
-| 18 | spm023-bcrx   |   500 |  533 |  492 |    41 |
-| 19 | spm0031o_bcrx |   485 |  331 |  451 |  -120 |
-| 20 | spm0037o_bcrx |   484 |  325 |  443 |  -118 |
-| 21 | spm0043o_bcrx |   481 |  324 |  446 |  -122 |
-| 22 | spm0049o_bcrx |   480 |  324 |  448 |  -124 |
-| 23 | spm0057o_bcrx |   474 |  330 |  450 |  -120 |
-| 24 | spm0110o_bcrx | 490.5 |  414 |  537 |  -123 |
-| 25 | spm0116o_bcrx | 485.5 |  425 |  541 |  -116 |
-| 26 | spm0124o_bcrx |   476 |  419 |  543 |  -124 |
-| 27 | spm0173o_bcrx |   492 |  412 |  536 |  -124 |
-| 28 | spm0179o_bcrx | 489.5 |  410 |  527 |  -117 |
-| 29 | spm0186o_bcrx | 515.5 |  398 |  523 |  -125 |
+| id | spec          | islit | j0_s |  j0_i | shift |
+|----+---------------+-------+------+-------+-------|
+| 00 | obj1003_bcrx  |   390 |  336 |   252 |    84 |
+| 01 | obj1007_bcrx  |   388 |  325 |   243 |    82 |
+| 02 | obj1010_bcrx  |   388 |  327 |   243 |    84 |
+| 03 | obj1015_bcrx  | 390.5 |  335 |   254 |    81 |
+| 04 | obj1018_bcrx  | 390.5 |  336 |   252 |    84 |
+| 05 | spm112_bcrx   |   257 |  316 | 272.5 |  43.5 |
+| 06 | spm116_bcrx   |   262 |  318 |   276 |    42 |
+| 07 | spm119_bcrx   |   265 |  317 |   271 |    46 |
+| 08 | spm122_bcrx   |   266 |  321 | 274.5 |  46.5 |
+| 09 | spm125_bcrx   | 268.5 |  314 |   266 |    48 |
+| 10 | spm130_bcrx   | 272.5 |  325 |   271 |    54 |
+| 11 | spm135_bcrx   | 277.5 |  313 |   260 |    53 |
+| 12 | spm224_bcrx   | 294.5 |  329 |   264 |    65 |
+| 13 | spm230_bcrx   | 294.5 |  250 |   190 |    60 |
+| 14 | spm329_bcrx   |   273 |  321 |   264 |    57 |
+| 15 | spm112-2_bcrx |   531 |  509 |   589 |   -80 |
+| 16 | spm018-bcrx   |   505 |  508 |   602 |   -94 |
+| 17 | spm020-bcrx   | 481.5 |  529 |   622 |   -93 |
+| 18 | spm023-bcrx   |   500 |  533 |   640 |  -107 |
+| 19 | spm0031o_bcrx |   485 |  331 |   451 |  -120 |
+| 20 | spm0037o_bcrx |   484 |  325 |   443 |  -118 |
+| 21 | spm0043o_bcrx |   481 |  324 |   446 |  -122 |
+| 22 | spm0049o_bcrx |   480 |  324 |   448 |  -124 |
+| 23 | spm0057o_bcrx |   474 |  330 |   450 |  -120 |
+| 24 | spm0110o_bcrx | 490.5 |  414 |   537 |  -123 |
+| 25 | spm0116o_bcrx | 485.5 |  425 |   541 |  -116 |
+| 26 | spm0124o_bcrx |   476 |  419 |   543 |  -124 |
+| 27 | spm0173o_bcrx |   492 |  412 |   536 |  -124 |
+| 28 | spm0179o_bcrx | 489.5 |  410 |   527 |  -117 |
+| 29 | spm0186o_bcrx | 515.5 |  398 |   523 |  -125 |
 #+TBLFM: $6=$4 - $5
 
 #+call: save-slit-table(align-ha, "align-ha.tab")
@@ -821,7 +837,28 @@ Second, the [O III] slits
 #+RESULTS:
 [[file:../data/align-ha.tab]]
 
-*** TODO Compare and correct slit profiles
+**** TODO Refinements to the flux calibrations
++ [X] Faint slits: take into account that continuum bandwidth is 90\AA whereas I+S range is only 40\AA
+  + This made no discernible difference
++ [X] Bright slits: take into account saturated pixels
+  + Can spot them by looking at "Scale parameters" window in DS9
+    + Peak in the pixel distribution around the saturation value
+  + Saturated exposures
+    |    |             |   Sat |  j1 |  j2 |
+    |----+-------------+-------+-----+-----|
+    | 05 | spm112_bcrx | 63000 | 309 | 322 |
+    | 06 | spm116_bcrx | 63000 | 311 | 321 |
+    | 08 | spm122_bcrx | 63000 | 317 | 325 |
+    | 12 | spm224_bcrx | 63000 | 320 | 338 |
+    | 13 | spm230_bcrx | 63000 | 240 | 258 |
+    | 14 | spm329_bcrx | 63000 | 313 | 330 |
+  + All are from 2003 with 1800 s exposures
++ [ ] Try to deal better with the halo rings  
+
+
+
+
+
 
 
 
@@ -914,15 +951,15 @@ We assume that we are running in the top-level project folder file:../
 
       # Decide on axis order for both spectrum and image. Note that
       # values of 'wa' and 'ij' give the axis that is perpendicular to
-      # the slit length (wavelength or position, respectively). That is
-      # why we subtract from 3 to get the slit length axis
-      jstring_i = str(3 - db['ij'])  # which image axis lies along slit
+      # the slit length (wavelength or position, respectively). Hence we
+      # subtract from 3 to get the slit length axis
+      jstring_i = str(3 - db['ij'])  # which image (I+S) axis lies along slit
       jstring_s = str(3 - db['wa'])  # which spec (pv) axis lies along slit
 
       dRA_arcsec = hdr['CD1_'+jstring_i]*3600*np.cos(np.radians(hdr['CRVAL2']))
       dDEC_arcsec = hdr['CD2_'+jstring_i]*3600
       ds = np.hypot(dRA_arcsec, dDEC_arcsec)
-      PA = np.degrees(np.arctan2(dRA_arcsec, dDEC_arcsec))
+      PA = np.degrees(np.arctan2(dRA_arcsec, dDEC_arcsec)) % 360.0
 
       # Deal with parameters that depend on orientation of the PV image
       if jstring_s == '1':
@@ -986,6 +1023,11 @@ We assume that we are running in the top-level project folder file:../
       else:
           raise ValueError('I+S slit axis (3 - ij) must be 1 or 2')
 
+      if db['s'] < 0:
+          # Slit pixel axis has opposite sense in I+S and PV
+          iarr = iarr[::-1]
+          jarr = jarr[::-1]
+
       print('iarr =', iarr[::100], 'jarr =', jarr[::100])
       # Also correct the nominal slit plate scale
       ds *= spec_binning/image_binning
@@ -1009,20 +1051,26 @@ We assume that we are running in the top-level project folder file:../
 #+end_src
 
 
-*** Extract profile along PV slit
+
+*** Tidy up the PV image
+
++ Remove sky and extraneous border pixels
+
 #+begin_src python
-  def subtract_bg_and_trim(data, db, trim=3, margin=10):
+  def subtract_sky_and_trim(data, db, trim=3, margin=10):
       """Assume that pixels within `trim` of edge might be bad, and use
-      average within margin of edge in wavelength direction to define
+      average sky within margin of edge in spatial direction to define
       the bg
       """
       # convert axis notation from FITS to python convention
       wav_axis = 2 - db["wa"]
       if wav_axis == 0:
-          bg = 0.5*(data[:, trim:margin].mean() + data[:, -margin:-trim].mean())
+          bg = 0.5*(data[:, trim:margin] +
+                    data[:, -margin:-trim]).mean(axis=1, keepdims=True)
       else:
-          bg = 0.5*(data[trim:margin, :].mean() + data[-margin:-trim, :].mean())
-      # Remove background
+          bg = 0.5*(data[trim:margin, :] +
+                    data[-margin:-trim, :]).mean(axis=0, keepdims=True)
+      # Remove sky background
       newdata = data - bg
       # And only then can we clean up the trim zone
       newdata[:trim, :] = 0.0
@@ -1030,12 +1078,46 @@ We assume that we are running in the top-level project folder file:../
       newdata[:, :trim] = 0.0
       newdata[:, -trim:] = 0.0
       return newdata
+#+end_src
 
+*** Extract profile along PV slit
++ Add extra continuum since the filter is roughly twice as wide as can fit in the PV spectrum, for which we need:
+  - ~bandwidth~ full filter width in angstrom
+  - ~linewavs~ list of rest wavelengths of the lines so we know what to avoid
++ [ ] Also should deal with saturated pixels
 
-  def extract_full_profile_from_pv(data, db, margin=10):
-      # convert axis notation from FITS to python convention
-      wav_axis = 2 - db["wa"]
-      return data.sum(axis=wav_axis)
+#+begin_src python
+
+  def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linewavs):
+      assert(wavaxis in [1, 2]) # wavaxis is in FITS convention
+      w = WCS(spec_hdu.header)
+      if wavaxis == 1:
+          nwav = spec_hdu.header['NAXIS1']
+          im = spec_hdu.data[:, :]
+          wavs, _ = w.all_pix2world(np.arange(nwav), [0], 0)
+      else:
+          nwav = spec_hdu.header['NAXIS2']
+          im = spec_hdu.data[:, :].T
+          _, wavs = w.all_pix2world([0], np.arange(nwav), 0)
+
+      # im should have wavelength as last axis (python convention)
+      assert(nwav == im.shape[-1])
+
+      wavmask = np.ones((nwav,)).astype(bool)
+      # remove from continuum mask +/- 150 km/s around each line
+      for wav0 in linewavs:
+          vels = 3e5*(wavs - wav0)/wav0
+          wavmask = wavmask & (np.abs(vels) > 150.0)
+      # broadcast to 2 dimensions
+      imwts = np.ones_like(im)*wavmask[None, :]
+      av_cont_profile = np.average(im, weights=imwts, axis=-1)
+      # find how much extra continuum to add
+      dwav = abs(wavs[1] - wavs[0])
+      pv_bw = abs(wavs[-1] - wavs[0])
+      missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
+      # Add to the profile summed over the PV bandwidth
+      full_profile = im.sum(axis=-1) + missing_cont_profile
+      return full_profile
 
 
   def extract_slit_profile_from_imslit(data, db, slit_width=1):
@@ -1069,7 +1151,8 @@ We assume that we are running in the top-level project folder file:../
 
 *** Plot utilities
 #+begin_src python
-  def make_three_plots(spec, calib, prefix, slit_points=None, niirat=None, neighbors=None):
+  def make_three_plots(spec, calib, prefix,
+                       slit_points=None, niirat=None, neighbors=None, db=None, sdb=None):
       assert spec.shape == calib.shape
       fig, axes = plt.subplots(3, 1)
 
@@ -1082,26 +1165,12 @@ We assume that we are running in the top-level project folder file:../
           xlabel = "Slit position, arcsec"
           xlim = -80, 80
 
-      m = np.isfinite(spec) & np.isfinite(calib)
-      spec = spec[m]
-      calib = calib[m]
-      ypix = ypix[m]
       xlim = xlim or (ypix.min(), ypix.max())
-      if niirat is not None:
-          niirat = niirat[m]
 
       # vmax = np.percentile(calib, 95) + 2*calib.std()
       vmax = 20.0
       vmin = -0.01
       ratio = spec/calib
-      mask = (spec > np.percentile(spec, 25)) & (ratio > 0.5) & (ratio < 2.0)
-      # mask = (ypix > 10.0) & (ypix < ypix.max() - 10.0) \
-      #        & (ratio > np.median(ratio) - 2*ratio.std()) \
-      #        & (ratio < np.median(ratio) + 2*ratio.std()) 
-      try:
-          ratio_fit = fit_cheb(ypix, ratio, mask=mask, npoly=1)
-      except:
-          ratio_fit = np.ones_like(ypix)
 
       alpha = 0.8
 
@@ -1117,42 +1186,65 @@ We assume that we are running in the top-level project folder file:../
       axes[0].set_yscale('symlog', linthreshy=0.01)
 
       # Second, plot each against slit pixel to check spatial offset
+      axes[1].plot(ypix, spec, alpha=alpha, lw=1,
+                   label='Integrated Spectrum')
+      axes[2].plot(ypix, spec/np.nanmax(calib), alpha=alpha, lw=1,
+                   label='Integrated Spectrum')
       axes[1].plot(ypix, calib, alpha=alpha, label='Calibration Image')
+      axes[2].plot(ypix, calib/np.nanmax(calib), alpha=alpha, label='Calibration Image')
       if neighbors is not None:
           for nb, calib_nb in neighbors.items():
               lw = 0.5 + 0.1*nb
-              axes[1].plot(ypix, calib_nb[m],
-                           alpha=0.3*alpha, lw=lw, color="k", label='_nolabel_')
+              label = f"Slit $\Delta x = {nb:+1d}$"
+              axes[1].plot(ypix, calib_nb,
+                           alpha=0.3*alpha, lw=lw, color="k", label=label)
+              axes[2].plot(ypix, calib_nb/np.nanmax(calib_nb),
+                           alpha=0.3*alpha, lw=lw, color="k", label=label)
       # axes[1].plot(ypix, spec/ratio_fit, alpha=alpha, lw=1.0,
       #              label='Corrected Integrated Spectrum')
-      axes[1].plot(ypix, spec, alpha=alpha, lw=1,
-                   label='Uncorrected Integrated Spectrum')
       axes[1].set_xlim(*xlim)
       axes[1].set_ylim(vmin, vmax)
       axes[1].legend(fontsize='xx-small', loc='upper right')
       axes[1].set_xlabel(xlabel)
-      axes[1].set_ylabel('Profile')
+      axes[1].set_ylabel('Profile (absolute log scale)')
       axes[1].set_yscale('symlog', linthreshy=0.01)
 
-      # Third, plot ratio to look for spatial trends
-      axes[2].plot(ypix, ratio, alpha=alpha)
-      axes[2].plot(ypix, ratio_fit, alpha=alpha)
-      if niirat is not None:
-          axes[2].plot(ypix, niirat, 'b', lw=0.5, alpha=0.5)
-      axes[2].set_xlim(*xlim)
-      axes[2].set_ylim(0.0, 5.0)
+      # # Third, plot ratio to look for spatial trends
+      # axes[2].plot(ypix, ratio, alpha=alpha)
+      # axes[2].plot(ypix, ratio_fit, alpha=alpha)
+      # if niirat is not None:
+      #     axes[2].plot(ypix, niirat, 'b', lw=0.5, alpha=0.5)
+      axes[2].set_xlim(-40, 40)
+      axes[2].set_ylim(-0.05, 1.05)
       axes[2].set_xlabel(xlabel)
-      axes[2].set_ylabel('Ratio: Spec / Calib')
+      # axes[2].set_ylabel('Ratio: Spec / Calib')
+      axes[2].set_ylabel('Profile (relative linear scale)')
 
-
+      info = ""
+      if db is not None:
+          # Add some info to the graphs
+          info += fr"H$\alpha$ slit {db['id']:02d}" + "\n"
+          info += f"PV: {db['spec']}" +"\n"
+          info += f"I+S: {db['imslit']}" + "\n"
+          info += f"Date: {db['run']}, t = {db['t']} s" + "\n"
+      if sdb is not None:
+          info += fr"Slit PA = ${sdb['PA']:.1f}^\circ$, ds = {sdb['ds']:.2f} arcsec" + "\n"
+      if info:
+          axes[0].text(0.95, 0.05, info,
+                       fontsize="small",
+                       ha="right", va="bottom", transform=axes[0].transAxes)
       fig.set_size_inches(5, 8)
       fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
       fig.savefig(prefix+'.png', dpi=300)
 
-      return ratio_fit
+      return None
 
 
 #+end_src
+
+#+RESULTS:
+: None
+
 * Teresa's tables
 ** H alpha
 So, she has 11 positions missing
