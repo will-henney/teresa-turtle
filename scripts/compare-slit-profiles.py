@@ -18,6 +18,8 @@ from turtle_utils import (
     find_slit_coords,
     subtract_sky_and_trim,
     make_three_plots,
+    extract_line_and_regularize,
+    make_slit_wcs,
 )
 
 try:
@@ -64,7 +66,7 @@ for row in table:
         spec_hdu,
         wavaxis=row["wa"],
         bandwidth=90.0,
-        linewavs=restwavs.values())
+        linedict=restwavs)
     imslit_profile = extract_slit_profile_from_imslit(im_hdu.data, row)
     print(row)
     jslit = np.arange(len(spec_profile))
@@ -93,8 +95,9 @@ for row in table:
     # Offset in arcsec along the slit
     slit_points = (np.arange(len(spec_profile)) - jslit0_spec)*slit_coords["ds"]
     # Extra correction for optical halos that show up at +/- 40 arcsec
-    halo_mask = np.abs(np.abs(slit_points) - 40.0) < 5.0
-    spec_profile -= np.median(spec_profile[halo_mask])
+    halo_mask = np.abs(np.abs(slit_points) - 40.0) < 10.0
+    halo_correction = np.median(spec_profile[halo_mask])
+    spec_profile -= halo_correction
 
     # Take a window about profile peak to normalize spec_profile
     jslice0 = slice(jslit0_spec-20, jslit0_spec+20)
@@ -111,3 +114,32 @@ for row in table:
     ratio = make_three_plots(spec_profile, calib_profile, plt_prefix,
                              slit_points=slit_points,
                              neighbors=nb_calib_profiles, db=row, sdb=slit_coords)
+
+    # Write out the flux-calibrated spectra
+    spec_hdu.data -= halo_correction
+    spec_hdu.data /= rat0
+    save_prefix = f"data/pvextract/{row.index:03d}-{row['spec']}"
+    # The default header has minimal changes from the original
+    pvheader = fits.Header(spec_hdu.header, copy=True)
+
+    for lineid, wav0 in restwavs.items():
+        pvdata, contdata, wavs = extract_line_and_regularize(
+            spec_hdu.data, WCS(spec_hdu.header), wav0, row)
+        pvdata = pvdata[None, :, :]
+        contdata = contdata[None, :, :]
+
+        # Create a fancy WCS object for slit coordinates (and a simple one too)
+        wslit, wsimp = make_slit_wcs(row, slit_coords, wavs, jslit0_spec)
+        # Set the rest wavelength for this line
+        wslit.wcs.restwav = (wav0*u.Angstrom).to(u.m).value
+        pvheader.update(wsimp.to_header())
+        pvheader.update(wslit.to_header(key='A'))
+        pvheader['WEIGHT'] = rat0
+
+        pvfile = f"{save_prefix}-{lineid}.fits"
+        fits.PrimaryHDU(header=pvheader,
+                        data=pvdata).writeto(pvfile, overwrite=True)
+        fits.PrimaryHDU(header=pvheader,
+                        data=contdata).writeto(pvfile.replace(".fits",
+                                                              "-cont.fits"),
+                                               overwrite=True)

@@ -166,7 +166,11 @@ def subtract_sky_and_trim(data, db, trim=3, margin=10):
     newdata[:, -trim:] = 0.0
     return newdata
 
-def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linewavs):
+from astropy.constants import c
+
+
+
+def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linedict):
     assert(wavaxis in [1, 2]) # wavaxis is in FITS convention
     w = WCS(spec_hdu.header)
     if wavaxis == 1:
@@ -183,9 +187,10 @@ def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linewavs):
 
     wavmask = np.ones((nwav,)).astype(bool)
     # remove from continuum mask +/- 150 km/s around each line
-    for wav0 in linewavs:
+    for lineid, wav0 in linedict.items():
         vels = 3e5*(wavs - wav0)/wav0
         wavmask = wavmask & (np.abs(vels) > 150.0)
+
     # broadcast to 2 dimensions
     imwts = np.ones_like(im)*wavmask[None, :]
     av_cont_profile = np.average(im, weights=imwts, axis=-1)
@@ -207,6 +212,138 @@ def extract_slit_profile_from_imslit(data, db, slit_width=1):
         return data[i1:i2, :].sum(axis=0 )
     else:
         raise ValueError("ij must be 1 or 2")
+
+def extract_profile(data, wcs, wavrest, db, dw=7.0):
+    """We don't use this any more"""
+    data, bgdata = remove_bg_and_regularize(data, wcs, wavrest, db)
+    # pixel limits for line extraction
+    lineslice = wavs2slice([wavrest-dw/2, wavrest+dw/2], wcs, db)
+    return data[:, lineslice].sum(axis=1), bgdata.sum(axis=1)
+
+
+def wavs2slice(wavs, wcs, db):
+    """Convert a wavelength interval `wavs` (length-2 sequence) to a slice of the relevant axis`"""
+    assert len(wavs) == 2
+    isT = db['wa'] == 2
+    if isT:
+        _, xpixels = wcs.all_world2pix([0, 0], wavs, 0)
+    else:
+        xpixels, _ = wcs.all_world2pix(wavs, [0, 0], 0)
+    print('Wav:', wavs, 'Pixel:', xpixels)
+    i1, i2 = np.maximum(0, (xpixels+0.5).astype(int))
+    return slice(min(i1, i2), max(i1, i2))
+
+
+def extract_line_and_regularize(data, wcs, wavrest, db,
+                                dw=10.0, dwbg_in=7.0, dwbg_out=10.0):
+    '''
+    Transpose data if necessary, and then subtract off the continuum
+    (blue and red of line, inner width `dwbg_in`, outer width
+    `dwbg_out`) and restrict to window (width `dw`) around line
+    center.  Returns cont-subtracted PV array (2d), cont array (2d),
+    and wavs array (1d)
+    '''
+    isT = db['wa'] == 2
+    # Make sure array axis order is (position, wavelength)
+    if isT:
+        data = data.T
+        nwav = wcs.pixel_shape[1]
+        _, wavs = wcs.all_pix2world([0], np.arange(nwav), 0)
+    else:
+        nwav = wcs.pixel_shape[0]
+        wavs, _ = wcs.all_pix2world(np.arange(nwav), [0], 0)
+
+    # pixel limits for blue, red bg extraction
+    bslice = wavs2slice([wavrest-dwbg_out/2, wavrest-dwbg_in/2], wcs, db)
+    rslice = wavs2slice([wavrest+dwbg_in/2, wavrest+dwbg_out/2], wcs, db)
+    # extract backgrounds on blue and red sides
+    bgblu = data[:, bslice].mean(axis=1)
+    bgred = data[:, rslice].mean(axis=1)
+    # take weighted average, accounting for cases where the bg region
+    # does not fit in the image
+    weight_blu = data[:, bslice].size
+    weight_red = data[:, rslice].size
+    print('Background weights:', weight_blu, weight_red)
+    bg = (bgblu*weight_blu + bgred*weight_red)/(weight_blu + weight_red)
+
+    # pixel limits for entire window
+    wslice = wavs2slice([wavrest-dw/2, wavrest+dw/2], wcs, db)
+    # restrict to just this window
+    data = data[:, wslice]
+    # and actually subtract the continuum
+    bgdata = np.zeros_like(data)
+    bgdata += bg[:, None]
+
+    return data - bgdata, bgdata, wavs[wslice]
+
+def make_slit_wcs(db, slit_coords, wavs, j0):
+
+    #
+    # First, wavelength axis, which is easy
+    #
+    dwav = wavs[1] - wavs[0]
+    wav0 = wavs[0]
+    wavpix0 = 1
+
+    #
+    # Second, find the displacement scale and ref point from the slit_coords
+    #
+    # The slit_coords should already be in ICRS frame
+    c = SkyCoord(slit_coords['RA'], slit_coords['Dec'], unit=u.deg)
+    # Find vector of separations between adjacent pixels
+    seps = c[:-1].separation(c[1:])
+    # Ditto for the position angles
+    PAs = c[:-1].position_angle(c[1:])
+    # Check that they are all the same as the first one
+    assert(np.allclose(seps/seps[0], 1.0))
+    # assert(np.allclose(PAs/PAs[0], 1.0, rtol=1.e-4))
+    # Then use the first one as the slit pixel size and PA
+    ds, PA, PA_deg = seps[0].deg, PAs.mean().rad, PAs.mean().deg
+    # And for the reference values too
+    RA0, Dec0 = c[0].ra.deg, c[0].dec.deg
+
+    #
+    # Now make a new shiny output WCS, constructed from scratch
+    #
+    w = WCS(naxis=3)
+
+    # Make use of all the values that we calculated above
+    w.wcs.crpix = [wavpix0, 1, 1]
+    w.wcs.cdelt = [dwav, ds, ds]
+    w.wcs.crval = [wav0, RA0, Dec0]
+    # PC order is i_j = [[1_1, 1_2, 1_3], [2_1, 2_2, 2_3], [3_1, 3_2, 3_3]]
+    w.wcs.pc = [[1.0, 0.0, 0.0],
+                [0.0, np.sin(PA), -np.cos(PA)],
+                [0.0, np.cos(PA), np.sin(PA)]]
+
+    #
+    # Finally add in auxillary info
+    #
+    w.wcs.radesys = 'ICRS'
+    w.wcs.ctype = ['AWAV', 'RA---TAN', 'DEC--TAN']
+    w.wcs.specsys = 'TOPOCENT'
+    w.wcs.cunit = [u.Angstrom, u.deg, u.deg]
+    w.wcs.name = 'TopoWav'
+    w.wcs.cname = ['Observed air wavelength', 'Right Ascension', 'Declination']
+
+    # Check the new pixel values
+    npix = len(slit_coords['RA'])
+    check_coords = pixel_to_skycoord(np.arange(npix), [0]*npix, w, 0)
+    # These should be the same as the ICRS coords in slit_coords
+    print('New coords:', check_coords[::100])
+    print('Displacements in arcsec:', check_coords.separation(c).arcsec[::100])
+    # 15 Sep 2015: They seem to be equal to within about 1e-2 arcsec
+
+    #
+    # And a simple version with slit offsets in arcsec
+    #
+    w2 = WCS(naxis=2)
+    w2.wcs.crpix = [wavpix0, j0+1]
+    w2.wcs.cdelt = [dwav, ds]
+    w2.wcs.crval = [wav0, 0.0]
+    w2.wcs.ctype = ['LINEAR', 'LINEAR']
+
+    return w, w2
 
 def fit_cheb(x, y, npoly=3, mask=None):
     """Fits a Chebyshev poly to y(x) and returns fitted y-values"""
