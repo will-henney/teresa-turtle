@@ -890,6 +890,70 @@ CLOSED: [2019-05-31 Fri 13:43]
 
 
 
+** Test the heliocentric correction machinery
++ This is completely re-implemented using astropy.coordinates instead of pyslalib.slalib
++ These are largely similar to Teresa's values, but there are differences of up to 0.5 km/s
+
+#+BEGIN_SRC python :return outtab
+  import sys
+  import glob
+  from astropy.io import fits
+  import astropy.coordinates as coord
+  from astropy.wcs import WCS
+  from astropy.time import Time
+  import astropy.units as u
+
+  outtab = [['File', 'Date', 'JD', 'ST', 'RA', 'Dec', 'Helio'], None]
+  speclist = glob.glob('../data/pvextract/0*-ha.fits')
+  spm = coord.EarthLocation.of_site("spm")
+  for fn in sorted(speclist):
+      hdr = fits.open(fn)[0].header
+      w = WCS(hdr, key="A")
+      wav, c = w.pixel_to_world(1, 1, 1)
+      time = Time(w.wcs.dateobs)
+      heliocorr = c.radial_velocity_correction(
+          'barycentric', obstime=time, location=spm)
+      id_ = fn.split('/')[-1].split('.')[0]
+      outtab.append([id_, time.iso.split()[0],
+                     time.mjd,
+                     hdr.get('ST'), hdr.get('RA'), hdr.get('DEC'),
+                     '{:.2f}'.format(heliocorr.to(u.km/u.s).value)
+      ])
+#+END_SRC
+
+#+RESULTS:
+| File                 |       Date |      JD |          ST |         RA |        Dec |  Helio |
+|----------------------+------------+---------+-------------+------------+------------+--------|
+| 000-obj1003_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:18 | -10.23 |
+| 001-obj1007_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:30 | -10.23 |
+| 002-obj1010_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:41 | -10.23 |
+| 003-obj1015_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:07 | -10.23 |
+| 004-obj1018_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:25 |  +23:49:00 | -10.23 |
+| 005-spm112_bcrx-ha   | 2003-06-05 | 52795.0 |    12:52:39 | 16:44:33.1 |  +23:48:04 |  -2.70 |
+| 006-spm116_bcrx-ha   | 2003-06-05 | 52795.0 |    13:39:05 | 16:44:34.6 |  +23:47:59 |  -2.70 |
+| 007-spm119_bcrx-ha   | 2003-06-05 | 52795.0 |    14:19:50 | 16:44:33.2 |  +23:47:55 |  -2.70 |
+| 008-spm122_bcrx-ha   | 2003-06-05 | 52795.0 |    15:00:09 | 16:44:33.4 |  +23:47:52 |  -2.70 |
+| 009-spm125_bcrx-ha   | 2003-06-05 | 52795.0 |    15:40:59 | 16:44:33.6 |  +23:47:51 |  -2.70 |
+| 010-spm130_bcrx-ha   | 2003-06-05 | 52795.0 |    16:58:37 | 16:44:37.3 |  +23:47:53 |  -2.70 |
+| 011-spm135_bcrx-ha   | 2003-06-05 | 52795.0 |    17:33:41 | 16:44:39.6 |  +23:47:56 |  -2.70 |
+| 012-spm224_bcrx-ha   | 2003-10-16 | 52928.0 |    20:14:28 | 16:44:35.5 |  +23:48:04 | -14.08 |
+| 013-spm230_bcrx-ha   | 2003-10-16 | 52928.0 |    21:04:08 | 16:44:33.0 |  +23:48:17 | -14.08 |
+| 014-spm329_bcrx-ha   | 2003-10-17 | 52929.0 |    21:03:29 | 16:44:41.7 |  +23:48:16 | -13.79 |
+| 015-spm112-2_bcrx-ha | 2011-05-21 | 55702.0 |    13:13:44 | 16:44:58.3 |  +23:46:31 |   2.51 |
+| 016-spm018-bcrx-ha   | 2013-07-06 | 56479.0 |    16:47:45 | 16:45:07.1 | 23:46:20.0 | -12.53 |
+| 017-spm020-bcrx-ha   | 2013-07-06 | 56479.0 |    17:26:00 | 16:45:05.8 | 23:46:20.0 | -12.53 |
+| 018-spm023-bcrx-ha   | 2013-07-06 | 56479.0 |    18:04:36 | 16:45:05.9 | 23:46:21.0 | -12.53 |
+| 019-spm0031o_bcrx-ha | 2015-08-18 | 57252.0 | 18:02:23.50 | 16:45:10.6 | 23:46:44.0 | -20.04 |
+| 020-spm0037o_bcrx-ha | 2015-08-18 | 57252.0 | 18:54:04.96 | 16:45:09.9 | 23:46:45.0 | -20.04 |
+| 021-spm0043o_bcrx-ha | 2015-08-18 | 57252.0 | 19:35:53.81 | 16:45:08.9 | 23:46:49.0 | -20.04 |
+| 022-spm0049o_bcrx-ha | 2015-08-18 | 57252.0 | 20:13:41.00 | 16:45:08.1 | 23:46:54.0 | -20.04 |
+| 023-spm0057o_bcrx-ha | 2015-08-18 | 57252.0 | 20:59:43.55 | 16:45:08.1 | 23:46:59.0 | -20.04 |
+| 024-spm0110o_bcrx-ha | 2015-08-19 | 57253.0 | 17:48:56.19 | 16:45:08.7 | 23:46:43.0 | -20.10 |
+| 025-spm0116o_bcrx-ha | 2015-08-19 | 57253.0 | 18:47:13.74 | 16:45:08.6 | 23:46:44.0 | -20.10 |
+| 026-spm0124o_bcrx-ha | 2015-08-19 | 57253.0 | 20:19:25.85 | 16:45:05.1 | 23:46:52.0 | -20.10 |
+| 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |
+| 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |
+| 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |
 
 
 
