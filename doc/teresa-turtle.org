@@ -893,17 +893,24 @@ CLOSED: [2019-05-31 Fri 13:43]
 ** Test the heliocentric correction machinery
 + This is completely re-implemented using astropy.coordinates instead of pyslalib.slalib
 + These are largely similar to Teresa's values, but there are differences of up to 0.5 km/s
++ Although I managed to get the old method working as well
+  + In the table, ~Helio~ is the astropy result while ~Helio2~ is the slalib result
+  + Apart from the opposite sign convention, there are small differences.  Teresa's values seem more similar to the slalib ones (usually within 0.1 km/s)
++ *Conclusion* stick with slalib for now
 
 #+BEGIN_SRC python :return outtab
   import sys
+  import os
   import glob
   from astropy.io import fits
   import astropy.coordinates as coord
   from astropy.wcs import WCS
   from astropy.time import Time
   import astropy.units as u
+  sys.path.append('/Users/will/Dropbox/OrionWest')
+  from helio_utils import helio_topo_from_header
 
-  outtab = [['File', 'Date', 'JD', 'ST', 'RA', 'Dec', 'Helio'], None]
+  outtab = [['File', 'Date', 'JD', 'ST', 'RA', 'Dec', 'Helio', 'Helio2'], None]
   speclist = glob.glob('../data/pvextract/0*-ha.fits')
   spm = coord.EarthLocation.of_site("spm")
   for fn in sorted(speclist):
@@ -913,49 +920,192 @@ CLOSED: [2019-05-31 Fri 13:43]
       time = Time(w.wcs.dateobs)
       heliocorr = c.radial_velocity_correction(
           'barycentric', obstime=time, location=spm)
-      id_ = fn.split('/')[-1].split('.')[0]
+      heliocorr2 = helio_topo_from_header(hdr, usewcs='A')
+      id_, _ = os.path.splitext(os.path.basename(fn))
       outtab.append([id_, time.iso.split()[0],
                      time.mjd,
                      hdr.get('ST'), hdr.get('RA'), hdr.get('DEC'),
-                     '{:.2f}'.format(heliocorr.to(u.km/u.s).value)
+                     '{:.2f}'.format(heliocorr.to(u.km/u.s).value),
+                     '{:.2f}'.format(heliocorr2),
       ])
 #+END_SRC
 
 #+RESULTS:
-| File                 |       Date |      JD |          ST |         RA |        Dec |  Helio |
-|----------------------+------------+---------+-------------+------------+------------+--------|
-| 000-obj1003_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:18 | -10.23 |
-| 001-obj1007_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:30 | -10.23 |
-| 002-obj1010_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:41 | -10.23 |
-| 003-obj1015_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:07 | -10.23 |
-| 004-obj1018_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:25 |  +23:49:00 | -10.23 |
-| 005-spm112_bcrx-ha   | 2003-06-05 | 52795.0 |    12:52:39 | 16:44:33.1 |  +23:48:04 |  -2.70 |
-| 006-spm116_bcrx-ha   | 2003-06-05 | 52795.0 |    13:39:05 | 16:44:34.6 |  +23:47:59 |  -2.70 |
-| 007-spm119_bcrx-ha   | 2003-06-05 | 52795.0 |    14:19:50 | 16:44:33.2 |  +23:47:55 |  -2.70 |
-| 008-spm122_bcrx-ha   | 2003-06-05 | 52795.0 |    15:00:09 | 16:44:33.4 |  +23:47:52 |  -2.70 |
-| 009-spm125_bcrx-ha   | 2003-06-05 | 52795.0 |    15:40:59 | 16:44:33.6 |  +23:47:51 |  -2.70 |
-| 010-spm130_bcrx-ha   | 2003-06-05 | 52795.0 |    16:58:37 | 16:44:37.3 |  +23:47:53 |  -2.70 |
-| 011-spm135_bcrx-ha   | 2003-06-05 | 52795.0 |    17:33:41 | 16:44:39.6 |  +23:47:56 |  -2.70 |
-| 012-spm224_bcrx-ha   | 2003-10-16 | 52928.0 |    20:14:28 | 16:44:35.5 |  +23:48:04 | -14.08 |
-| 013-spm230_bcrx-ha   | 2003-10-16 | 52928.0 |    21:04:08 | 16:44:33.0 |  +23:48:17 | -14.08 |
-| 014-spm329_bcrx-ha   | 2003-10-17 | 52929.0 |    21:03:29 | 16:44:41.7 |  +23:48:16 | -13.79 |
-| 015-spm112-2_bcrx-ha | 2011-05-21 | 55702.0 |    13:13:44 | 16:44:58.3 |  +23:46:31 |   2.51 |
-| 016-spm018-bcrx-ha   | 2013-07-06 | 56479.0 |    16:47:45 | 16:45:07.1 | 23:46:20.0 | -12.53 |
-| 017-spm020-bcrx-ha   | 2013-07-06 | 56479.0 |    17:26:00 | 16:45:05.8 | 23:46:20.0 | -12.53 |
-| 018-spm023-bcrx-ha   | 2013-07-06 | 56479.0 |    18:04:36 | 16:45:05.9 | 23:46:21.0 | -12.53 |
-| 019-spm0031o_bcrx-ha | 2015-08-18 | 57252.0 | 18:02:23.50 | 16:45:10.6 | 23:46:44.0 | -20.04 |
-| 020-spm0037o_bcrx-ha | 2015-08-18 | 57252.0 | 18:54:04.96 | 16:45:09.9 | 23:46:45.0 | -20.04 |
-| 021-spm0043o_bcrx-ha | 2015-08-18 | 57252.0 | 19:35:53.81 | 16:45:08.9 | 23:46:49.0 | -20.04 |
-| 022-spm0049o_bcrx-ha | 2015-08-18 | 57252.0 | 20:13:41.00 | 16:45:08.1 | 23:46:54.0 | -20.04 |
-| 023-spm0057o_bcrx-ha | 2015-08-18 | 57252.0 | 20:59:43.55 | 16:45:08.1 | 23:46:59.0 | -20.04 |
-| 024-spm0110o_bcrx-ha | 2015-08-19 | 57253.0 | 17:48:56.19 | 16:45:08.7 | 23:46:43.0 | -20.10 |
-| 025-spm0116o_bcrx-ha | 2015-08-19 | 57253.0 | 18:47:13.74 | 16:45:08.6 | 23:46:44.0 | -20.10 |
-| 026-spm0124o_bcrx-ha | 2015-08-19 | 57253.0 | 20:19:25.85 | 16:45:05.1 | 23:46:52.0 | -20.10 |
-| 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |
-| 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |
-| 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |
+| File                 |       Date |      JD |          ST |         RA |        Dec |  Helio | Helio2 |
+|----------------------+------------+---------+-------------+------------+------------+--------+--------|
+| 000-obj1003_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:18 | -10.23 |  10.96 |
+| 001-obj1007_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:27 |  +23:49:30 | -10.23 |  10.96 |
+| 002-obj1010_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:41 | -10.23 |  10.96 |
+| 003-obj1015_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:26 |  +23:49:07 | -10.23 |  10.96 |
+| 004-obj1018_bcrx-ha  | 1998-06-28 | 50992.0 |        None |   16:44:25 |  +23:49:00 | -10.23 |  10.96 |
+| 005-spm112_bcrx-ha   | 2003-06-05 | 52795.0 |    12:52:39 | 16:44:33.1 |  +23:48:04 |  -2.70 |   2.72 |
+| 006-spm116_bcrx-ha   | 2003-06-05 | 52795.0 |    13:39:05 | 16:44:34.6 |  +23:47:59 |  -2.70 |   2.77 |
+| 007-spm119_bcrx-ha   | 2003-06-05 | 52795.0 |    14:19:50 | 16:44:33.2 |  +23:47:55 |  -2.70 |   2.81 |
+| 008-spm122_bcrx-ha   | 2003-06-05 | 52795.0 |    15:00:09 | 16:44:33.4 |  +23:47:52 |  -2.70 |   2.87 |
+| 009-spm125_bcrx-ha   | 2003-06-05 | 52795.0 |    15:40:59 | 16:44:33.6 |  +23:47:51 |  -2.70 |   2.93 |
+| 010-spm130_bcrx-ha   | 2003-06-05 | 52795.0 |    16:58:37 | 16:44:37.3 |  +23:47:53 |  -2.70 |   3.06 |
+| 011-spm135_bcrx-ha   | 2003-06-05 | 52795.0 |    17:33:41 | 16:44:39.6 |  +23:47:56 |  -2.70 |   3.11 |
+| 012-spm224_bcrx-ha   | 2003-10-16 | 52928.0 |    20:14:28 | 16:44:35.5 |  +23:48:04 | -14.08 |  14.26 |
+| 013-spm230_bcrx-ha   | 2003-10-16 | 52928.0 |    21:04:08 | 16:44:33.0 |  +23:48:17 | -14.08 |  14.30 |
+| 014-spm329_bcrx-ha   | 2003-10-17 | 52929.0 |    21:03:29 | 16:44:41.7 |  +23:48:16 | -13.79 |  14.00 |
+| 015-spm112-2_bcrx-ha | 2011-05-21 | 55702.0 |    13:13:44 | 16:44:58.3 |  +23:46:31 |   2.51 |  -2.50 |
+| 016-spm018-bcrx-ha   | 2013-07-06 | 56479.0 |    16:47:45 | 16:45:07.1 | 23:46:20.0 | -12.53 |  12.90 |
+| 017-spm020-bcrx-ha   | 2013-07-06 | 56479.0 |    17:26:00 | 16:45:05.8 | 23:46:20.0 | -12.53 |  12.96 |
+| 018-spm023-bcrx-ha   | 2013-07-06 | 56479.0 |    18:04:36 | 16:45:05.9 | 23:46:21.0 | -12.53 |  13.02 |
+| 019-spm0031o_bcrx-ha | 2015-08-18 | 57252.0 | 18:02:23.50 | 16:45:10.6 | 23:46:44.0 | -20.04 |  20.40 |
+| 020-spm0037o_bcrx-ha | 2015-08-18 | 57252.0 | 18:54:04.96 | 16:45:09.9 | 23:46:45.0 | -20.04 |  20.47 |
+| 021-spm0043o_bcrx-ha | 2015-08-18 | 57252.0 | 19:35:53.81 | 16:45:08.9 | 23:46:49.0 | -20.04 |  20.53 |
+| 022-spm0049o_bcrx-ha | 2015-08-18 | 57252.0 | 20:13:41.00 | 16:45:08.1 | 23:46:54.0 | -20.04 |  20.57 |
+| 023-spm0057o_bcrx-ha | 2015-08-18 | 57252.0 | 20:59:43.55 | 16:45:08.1 | 23:46:59.0 | -20.04 |  20.61 |
+| 024-spm0110o_bcrx-ha | 2015-08-19 | 57253.0 | 17:48:56.19 | 16:45:08.7 | 23:46:43.0 | -20.10 |  20.44 |
+| 025-spm0116o_bcrx-ha | 2015-08-19 | 57253.0 | 18:47:13.74 | 16:45:08.6 | 23:46:44.0 | -20.10 |  20.52 |
+| 026-spm0124o_bcrx-ha | 2015-08-19 | 57253.0 | 20:19:25.85 | 16:45:05.1 | 23:46:52.0 | -20.10 |  20.63 |
+| 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |  20.46 |
+| 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |  20.53 |
+| 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |  20.64 |
 
 
+
+** Finally make the spectral maps
++ Again, initially copied from Owl version
+  + [[id:B7F104C4-6CAA-4462-81A9-FBCB4C86BDE2][Construct spectral maps @ teresa-owl.org]]
++ Output image is same as in 
+
+#+BEGIN_SRC python :tangle ../scripts/turtle-spectral-map.py
+  import glob
+  import sys
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.wcs.utils import pixel_to_skycoord, skycoord_to_pixel
+  import astropy.units as u
+  sys.path.append('/Users/will/Dropbox/OrionWest')
+  from helio_utils import helio_topo_from_header, vels2waves
+
+  if len(sys.argv) == 3:
+      line_id = sys.argv[1]
+      vrange = sys.argv[2]
+  elif len(sys.argv) == 2:
+      line_id = sys.argv[1]
+      vrange = None
+  else:
+      print('Usage: {} LINE_ID [VRANGE]'.format(sys.argv[0]))
+
+  def waves2pixels(waves, w):
+      n = len(waves)
+      pixels, _, _ = w.all_world2pix(waves, [RA0]*n, [Dec0]*n, 0)
+      return pixels.astype(int)
+
+  # First set up WCS for the output image
+  #
+  NX, NY = 512, 512
+  pixel_scale = 0.3               # arcsec
+  dRA, dDec = -pixel_scale/3600., pixel_scale/3600.
+  # Center on central star of NGC 6210
+  RA0, Dec0 = 251.122998321, 23.7998586853
+  w = WCS(naxis=2)
+  w.wcs.cdelt = [dRA, dDec]
+  w.wcs.crpix = [0.5*(1 + NX), 0.5*(1 + NY)]
+  w.wcs.crval = [RA0, Dec0]
+  w.wcs.ctype = ['RA---TAN', 'DEC--TAN']
+  w.wcs.cunit = ['deg', 'deg']
+
+  # Arrays to hold the output image
+  outimage = np.zeros((NY, NX))
+  outweights = np.zeros((NY, NX))
+
+  # Use a slightly wider slit than is strictly accurate 
+  slit_width = 2.0                
+  slit_pix_width = slit_width/pixel_scale
+
+  speclist = glob.glob(f'data/pvextract/*-{line_id}.fits')
+
+  # Window widths for line and BG
+  dwline = 7.0*u.Angstrom
+
+  for fn in speclist:
+      print('Processing', fn)
+      spechdu, = fits.open(fn)
+      wspec = WCS(spechdu.header, key='A')
+
+      # Trim to good portion of the slit
+      goodslice = slice(None, None)
+
+      # Find per-slit weight
+      slit_weight = spechdu.header['WEIGHT']
+
+      # Find sign of delta wavelength
+      dwav = wspec.wcs.get_cdelt()[0]*wspec.wcs.get_pc()[0, 0]
+      sgn = int(dwav/abs(dwav))         # Need to take slices backwards if this is negative
+
+      # Eliminate degenerate 3rd dimension from data array and trim off bad bits
+      spec2d = spechdu.data[0]
+
+      # Rest wavelength from FITS header is in meters
+      wavrest = wspec.wcs.restwav*u.m
+
+      # Find wavelength limits for line extraction window
+      if vrange is None:
+          # Original case: use a window of wavelength full width dwline
+          waves =  wavrest + np.array([-0.5, 0.5])*dwline
+      else:
+          # Extract velocity limits from the vrange command line argument
+          # vrange should be of a form like '-100+100' or '+020+030'
+          v1, v2 = float(vrange[:4]), float(vrange[-4:])
+          print('Velocity window:', v1, 'to', v2)
+          waves = vels2waves([v1, v2], wavrest,  spechdu.header)
+      print('Wavelength window: {:.2f} to {:.2f}'.format(*waves.to(u.Angstrom)))
+
+      # Find pixel indices for line extraction window
+      i1, i2 = waves2pixels(waves, wspec)
+      print('Pixel window:', i1, 'to', i2, 'in direction', sgn)
+
+      # Extract profile for this wavelength or velocity window
+      profile = spec2d[:, i1:i2:sgn].sum(axis=-1)
+
+      # Find celestial coordinates for each pixel along the slit
+      NS = len(profile)
+      slit_coords = pixel_to_skycoord(range(NS), [0]*NS, wspec, 0)
+
+      # Trim off bad parts of slit
+      profile = profile[goodslice]
+      slit_coords = slit_coords[goodslice]
+
+      # Convert to pixel coordinates in output image
+      xp, yp = skycoord_to_pixel(slit_coords, w, 0)
+
+      for x, y, bright in zip(xp, yp, profile):
+          # Find output pixels corresponding to corners of slit pixel
+          # (approximate as square)
+          i1 = int(0.5 + x - slit_pix_width/2)
+          i2 = int(0.5 + x + slit_pix_width/2)
+          j1 = int(0.5 + y - slit_pix_width/2)
+          j2 = int(0.5 + y + slit_pix_width/2)
+          # Make sure we don't go outside the output grid
+          i1, i2 = max(0, i1), max(0, i2)
+          i1, i2 = min(NX, i1), min(NX, i2)
+          j1, j2 = max(0, j1), max(0, j2)
+          j1, j2 = min(NY, j1), min(NY, j2)
+          # Fill in the square
+          outimage[j1:j2, i1:i2] += bright*slit_weight
+          outweights[j1:j2, i1:i2] += slit_weight
+
+  # Save everything as different images in a single fits file:
+  # 1. The sum of the raw slits 
+  # 2. The weights
+  # 3. The slits normalized by the weights
+  if vrange is None:
+      label = line_id + '-allvels'
+  else:
+      label = line_id + vrange
+
+  fits.HDUList([
+      fits.PrimaryHDU(),
+      fits.ImageHDU(header=w.to_header(), data=outimage, name='slits'),
+      fits.ImageHDU(header=w.to_header(), data=outweights, name='weight'),
+      fits.ImageHDU(header=w.to_header(), data=outimage/outweights, name='scaled'),
+      ]).writeto('data/maps/turtle-slits-{}.fits'.format(label), overwrite=True)
+#+END_SRC
 
 
 ** Utility functions
