@@ -17,7 +17,7 @@
 + Coordinates
   + (RA, Dec) = (16 44 29.5195973292, +23 47 59.491267229) sexagesimal
   + (RA, Dec) = (251.122998321, 23.7998586853) degrees
-
++ Radial velocity: -35 km/s
 
 ** Weak lines in spectra
 + He II 6560.10
@@ -969,7 +969,12 @@ CLOSED: [2019-05-31 Fri 13:43]
 ** Finally make the spectral maps
 + Again, initially copied from Owl version
   + [[id:B7F104C4-6CAA-4462-81A9-FBCB4C86BDE2][Construct spectral maps @ teresa-owl.org]]
-+ Output image is same as in 
++ Output image is same as in [[id:4FA9561B-6694-4D6F-98DE-320EB1FEAB0E][Re-gridding images]] above
+  + 512x512 with 0.3 arcsec pixels
++ To deal with saturated pixels:
+  + Make an array of per-pixel weights
+  + Set profile and weight to zeros wherever there are NaNs
+
 
 #+BEGIN_SRC python :tangle ../scripts/turtle-spectral-map.py
   import glob
@@ -1053,7 +1058,7 @@ CLOSED: [2019-05-31 Fri 13:43]
           # vrange should be of a form like '-100+100' or '+020+030'
           v1, v2 = float(vrange[:4]), float(vrange[-4:])
           print('Velocity window:', v1, 'to', v2)
-          waves = vels2waves([v1, v2], wavrest,  spechdu.header)
+          waves = vels2waves([v1, v2], wavrest,  spechdu.header, usewcs="A")
       print('Wavelength window: {:.2f} to {:.2f}'.format(*waves.to(u.Angstrom)))
 
       # Find pixel indices for line extraction window
@@ -1071,10 +1076,18 @@ CLOSED: [2019-05-31 Fri 13:43]
       profile = profile[goodslice]
       slit_coords = slit_coords[goodslice]
 
+      # Deal with NaNs in profile:
+      # - Make an array of per-pixel weights
+      wp = np.ones_like(profile)*slit_weight
+      # - Set profile and weight to zeros wherever there are NaNs
+      badmask = ~np.isfinite(profile)
+      profile[badmask] = 0.0
+      wp[badmask] = 0.0
+
       # Convert to pixel coordinates in output image
       xp, yp = skycoord_to_pixel(slit_coords, w, 0)
 
-      for x, y, bright in zip(xp, yp, profile):
+      for x, y, bright, wt in zip(xp, yp, profile, wp):
           # Find output pixels corresponding to corners of slit pixel
           # (approximate as square)
           i1 = int(0.5 + x - slit_pix_width/2)
@@ -1087,8 +1100,8 @@ CLOSED: [2019-05-31 Fri 13:43]
           j1, j2 = max(0, j1), max(0, j2)
           j1, j2 = min(NY, j1), min(NY, j2)
           # Fill in the square
-          outimage[j1:j2, i1:i2] += bright*slit_weight
-          outweights[j1:j2, i1:i2] += slit_weight
+          outimage[j1:j2, i1:i2] += bright*wt
+          outweights[j1:j2, i1:i2] += wt
 
   # Save everything as different images in a single fits file:
   # 1. The sum of the raw slits 
@@ -1107,6 +1120,100 @@ CLOSED: [2019-05-31 Fri 13:43]
       ]).writeto('data/maps/turtle-slits-{}.fits'.format(label), overwrite=True)
 #+END_SRC
 
+
+
+*** Make the maps
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps.sh :eval no
+  ranges='+030+040 +020+030 +010+020 +000+010 -010+000 -020-010 -030-020 -040-030 -050-040 -060-050 -070-060 -080-070 -090-080'
+  # blueranges='-030-010 -050-030 -070-050'
+  # farblueranges='-090-070 -110-090 -130-110'
+  # for vrange in $redranges $blueranges $farblueranges; do
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py ha $vrange
+      python scripts/turtle-spectral-map.py nii $vrange
+  done
+#+END_SRC
+
+**** Look at some of the maps
+Central velocities in Ha
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-ha-030-020.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-ha-040-030.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-ha-050-040.fits[3]
+#+END_SRC
+
+Central velocities in [N II]
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-nii-030-020.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-nii-040-030.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-nii-050-040.fits[3]
+#+END_SRC
+
+Near red velocities in Ha
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-ha+000+010.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-ha-010+000.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-ha-020-010.fits[3]
+#+END_SRC
+
+Near red velocities in [N II]
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-nii+000+010.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-nii-010+000.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-nii-020-010.fits[3]
+#+END_SRC
+
+Blue velocities in Ha
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-ha-070-060.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-ha-080-070.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-ha-090-080.fits[3]
+#+END_SRC
+
+Blue velocities in [N II]
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-nii-070-060.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-nii-080-070.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-nii-090-080.fits[3]
+#+END_SRC
+
+Red velocities in [N II]
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-nii+030+040.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-nii+020+030.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-nii+010+020.fits[3]
+#+END_SRC
+
+Near blue velocities in [N II]
+#+BEGIN_SRC sh :dir ../data/maps :results silent
+xpaset -p ds9 rgb red
+xpaset -p ds9 fits $PWD/turtle-slits-nii-050-040.fits[3]
+xpaset -p ds9 rgb green
+xpaset -p ds9 fits $PWD/turtle-slits-nii-060-050.fits[3]
+xpaset -p ds9 rgb blue
+xpaset -p ds9 fits $PWD/turtle-slits-nii-070-060.fits[3]
+#+END_SRC
 
 ** Utility functions
 :PROPERTIES:
@@ -1640,19 +1747,19 @@ We assume that we are running in the top-level project folder file:../
 ** H alpha
 So, she has 11 positions missing
 *** 2015 Ha (11 positions)
-| #       |         RA |       Dec | dataset | helio corr |  NX |  NY | xpixscale | jcenter | ufiddle | fluxfiddle | "True File"          |
-|---------+------------+-----------+---------+------------+-----+-----+-----------+---------+---------+------------+----------------------|
-| east871 |    -0.8712 |   22.0212 |       1 |     -20.54 | 300 | 373 |     0.351 |     219 |       0 |         20 | spec0116-ha-inv.fits |
-| east612 |    -0.7104 |   22.1004 |       1 |     -20.45 | 300 | 373 |     0.351 |     225 |       0 |         30 | spec0110-ha-inv.fits |
-| east300 |       -0.3 |   -7.5708 |       1 |     -20.41 | 300 | 373 |     0.352 |     145 |       0 |          1 | spec0031-ha-inv.fits |
-| east148 |     -0.096 |   -8.5932 |       1 |     -20.49 | 300 | 373 |     0.352 |     144 |       0 |          1 | spec0037-ha-inv.fits |
-| west069 |     0.0696 |   -7.1784 |       1 |     -20.55 | 300 | 373 |     0.352 |     150 |       0 |          1 | spec0043-ha-inv.fits |
-| west300 |        0.3 |   -6.6456 |       1 |     -20.59 | 300 | 373 |     0.352 |     150 |       0 |          1 | spec0049-ha-inv.fits |
-| west492 |      0.492 |   -7.1532 |       1 |     -20.63 | 300 | 373 |     0.352 |     144 |       0 |          1 | spec0057-ha-inv.fits |
-| west528 |      0.528 |   22.9752 |       1 |     -20.47 | 300 | 373 |     0.351 |     224 |       0 |          1 | spec0173-ha-inv.fits |
-| west684 |      0.684 |   22.0284 |       1 |     -20.65 | 300 | 373 |     0.351 |     220 |       0 |          1 | spec0124-ha-inv.fits |
-| west873 |     0.8736 |   21.0384 |       1 |     -20.55 | 300 | 373 |     0.351 |     215 |       0 |          1 | spec0179-ha-inv.fits |
-| west120 |     1.2024 |   21.5748 |       1 |      -20.6 | 300 | 373 |     0.351 |     220 |       0 |          1 | spec0186-ha-inv.fits |
+| #       |      RA |     Dec | dataset | helio corr |  NX |  NY | xpixscale | jcenter | ufiddle | fluxfiddle | "True File"          |
+|---------+---------+---------+---------+------------+-----+-----+-----------+---------+---------+------------+----------------------|
+| east871 | -0.8712 | 22.0212 |       1 |     -20.54 | 300 | 373 |     0.351 |     219 |       0 |         20 | spec0116-ha-inv.fits |
+| east612 | -0.7104 | 22.1004 |       1 |     -20.45 | 300 | 373 |     0.351 |     225 |       0 |         30 | spec0110-ha-inv.fits |
+| east300 |    -0.3 | -7.5708 |       1 |     -20.41 | 300 | 373 |     0.352 |     145 |       0 |          1 | spec0031-ha-inv.fits |
+| east148 |  -0.096 | -8.5932 |       1 |     -20.49 | 300 | 373 |     0.352 |     144 |       0 |          1 | spec0037-ha-inv.fits |
+| west069 |  0.0696 | -7.1784 |       1 |     -20.55 | 300 | 373 |     0.352 |     150 |       0 |          1 | spec0043-ha-inv.fits |
+| west300 |     0.3 | -6.6456 |       1 |     -20.59 | 300 | 373 |     0.352 |     150 |       0 |          1 | spec0049-ha-inv.fits |
+| west492 |   0.492 | -7.1532 |       1 |     -20.63 | 300 | 373 |     0.352 |     144 |       0 |          1 | spec0057-ha-inv.fits |
+| west528 |   0.528 | 22.9752 |       1 |     -20.47 | 300 | 373 |     0.351 |     224 |       0 |          1 | spec0173-ha-inv.fits |
+| west684 |   0.684 | 22.0284 |       1 |     -20.65 | 300 | 373 |     0.351 |     220 |       0 |          1 | spec0124-ha-inv.fits |
+| west873 |  0.8736 | 21.0384 |       1 |     -20.55 | 300 | 373 |     0.351 |     215 |       0 |          1 | spec0179-ha-inv.fits |
+| west120 |  1.2024 | 21.5748 |       1 |      -20.6 | 300 | 373 |     0.351 |     220 |       0 |          1 | spec0186-ha-inv.fits |
 
 + Imported from file:~/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/SPMha/star-ha.csv
 + Constant columns removed:
@@ -1662,13 +1769,13 @@ So, she has 11 positions missing
   + d vel :: 2
 
 *** 1998 \to 2013 Ha (8 positions)
-| #       |      RA |       Dec | dataset | helio corr |  NX |  NY | ypixscale | jcenter | ufiddle | fluxfiddle | "True File"                   |
-|---------+---------+-----------+---------+------------+-----+-----+-----------+---------+---------+------------+-------------------------------|
-| east087 | -1.0968 |     -5.76 |       1 |      -3.23 | 300 | 101 |     0.624 |      55 |       0 |          1 | spec135-crop-ha.fits          |
-| east040 | -0.6264 |   -10.476 |       1 |       -2.9 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec119-crop-ha.fits          |
-| east015 |  -0.372 |    -9.612 |       1 |      -2.84 | 300 | 101 |     0.626 |      55 |       0 |          1 | spec116-crop-ha.fits          |
-| west005 |  -0.168 |     -9.72 |       1 |      -2.79 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec112-crop-ha.fits          |
-| west027 |  0.0432 |    19.404 |       2 |       2.44 | 300 | 101 |     0.351 |     130 |       0 |          1 | spec112-2crop-ha-binning.fits |
-| west053 |  0.3048 |   -10.116 |       1 |      -2.97 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec122-crop-ha.fits          |
-| west084 |  0.6168 |    -9.612 |       1 |      -3.04 | 300 | 101 |     0.624 |      55 |       0 |          1 | spec125-crop-ha.fits          |
-| west122 |  0.9936 |    -8.784 |       1 |      -3.17 | 300 | 101 |     0.623 |      55 |       0 |          1 | spec130-crop-ha.fits          |
+| #       |      RA |     Dec | dataset | helio corr |  NX |  NY | ypixscale | jcenter | ufiddle | fluxfiddle | "True File"                   |
+|---------+---------+---------+---------+------------+-----+-----+-----------+---------+---------+------------+-------------------------------|
+| east087 | -1.0968 |   -5.76 |       1 |      -3.23 | 300 | 101 |     0.624 |      55 |       0 |          1 | spec135-crop-ha.fits          |
+| east040 | -0.6264 | -10.476 |       1 |       -2.9 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec119-crop-ha.fits          |
+| east015 |  -0.372 |  -9.612 |       1 |      -2.84 | 300 | 101 |     0.626 |      55 |       0 |          1 | spec116-crop-ha.fits          |
+| west005 |  -0.168 |   -9.72 |       1 |      -2.79 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec112-crop-ha.fits          |
+| west027 |  0.0432 |  19.404 |       2 |       2.44 | 300 | 101 |     0.351 |     130 |       0 |          1 | spec112-2crop-ha-binning.fits |
+| west053 |  0.3048 | -10.116 |       1 |      -2.97 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec122-crop-ha.fits          |
+| west084 |  0.6168 |  -9.612 |       1 |      -3.04 | 300 | 101 |     0.624 |      55 |       0 |          1 | spec125-crop-ha.fits          |
+| west122 |  0.9936 |  -8.784 |       1 |      -3.17 | 300 | 101 |     0.623 |      55 |       0 |          1 | spec130-crop-ha.fits          |
