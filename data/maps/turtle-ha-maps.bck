@@ -1,0 +1,1382 @@
+global ds9
+set vv 8.0
+# this is a check for to ensure a match between the
+# current ds9 version matches the prefs version
+switch -- [string compare $vv [lindex $ds9(version) 0]] {
+  -1 {
+    if {[tk_messageBox -type yesno -icon question -message [msgcat::mc {DS9 has detected an older backup file, do you wish to continue?}]] == {no}} {
+      return
+    }
+  }
+  0 {}
+  1 {
+    tk_messageBox -type ok -icon warning -message [msgcat::mc {DS9 has detected a newer version of a backup file and therefore will not process this file.}]
+    return
+  }
+}
+proc BackupFindFile {varname} {
+  upvar $varname var
+
+  set id [string first "\[" $var(file,name)]
+  if {$id > 0} {
+    set fn [string range $var(file,name) 0 [expr $id-1]]
+    set ext [string range $var(file,name) $id end]
+  } else {
+    set fn $var(file,name)
+    set ext {}
+  }
+
+  if {![file exists $fn]} {
+    Error "[msgcat::mc {Unable to load}] $fn"
+    global fitsfbox
+    set fn [OpenFileDialog fitsfbox]
+    if {$fn == {}} {
+      Error [msgcat::mc {An error has occurred during restore}]
+      return 0
+    }
+    if {![file exists $fn]} {
+      Error [msgcat::mc {An error has occurred during restore}]
+      return 0
+    }
+    set var(file,name) "$fn$ext"
+  }
+
+  return 1
+}
+panner compass 1
+colorbar configure -size 20
+colorbar configure -ticks 11
+colorbar configure -numerics 1
+colorbar configure -space 0
+colorbar configure -orientation 0
+colorbar configure -font helvetica
+colorbar configure -fontsize 9
+colorbar configure -fontweight normal
+colorbar configure -fontslant roman
+colorbar colorbar 1 0.5 1 1
+colorbar tag "{}"
+colorbarrgb configure -size 20
+colorbarrgb configure -ticks 11
+colorbarrgb configure -numerics 1
+colorbarrgb configure -space 0
+colorbarrgb configure -orientation 0
+colorbarrgb configure -font helvetica
+colorbarrgb configure -fontsize 9
+colorbarrgb configure -fontweight normal
+colorbarrgb configure -fontslant roman
+colorbarrgb colorbar rgb 0.5 0.5 0.5 1 1 1 0
+colorbarrgb tag "{}"
+CreateNameNumberFrame Frame75 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-110-100-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame75 magnifier graphics 1
+Frame75 magnifier cursor 1
+Frame75 magnifier zoom 4
+Frame75 magnifier color #ff8000
+Frame75 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame75 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame75 precision 8 7 4 3 8 7 5 3 8
+Frame75 bg color #808080
+Frame75 nan color #804020
+Frame75 cube axes 123
+Frame75 rgb channel red
+Frame75 rgb view 1 1 1
+Frame75 rgb system image
+Frame75 bin factor to 1 1
+Frame75 bin depth 1
+Frame75 bin filter {""}
+Frame75 bin buffer size 1024
+Frame75 bin about 0 0
+Frame75 bin function sum
+Frame75 colorscale log
+Frame75 colorscale log 300
+Frame75 datasec 1
+Frame75 clip user 0 1.5
+Frame75 clip mode user
+Frame75 clip scope local
+Frame75 clip minmax mode scan
+Frame75 clip minmax sample 25
+Frame75 clip zscale contrast 0.25
+Frame75 clip zscale sample 600
+Frame75 clip zscale line 120
+Frame75 block to 1 1
+Frame75 wcs wcs fk5 sexagesimal
+Frame75 pan preserve 1
+Frame75 pan to physical 259.25405 255.28496
+Frame75 zoom to 1.2 1.2
+Frame75 rotate to 0
+Frame75 orient none
+Frame75 wcs align 0
+Frame75 3d view 0 0
+Frame75 3d scale 1
+Frame75 3d method mip
+Frame75 3d highlite 1
+Frame75 3d border 1
+Frame75 3d background none
+Frame75 3d view point 0 0 0 0 0
+Frame75 crosshair physical 0.5 0.5
+Frame75 marker centroid radius 10
+Frame75 marker centroid iteration 30
+Frame75 mask color red
+Frame75 mask mark 1
+Frame75 mask transparency 0
+Frame75 contour load {"./turtle-ha-maps.bck.dir/Frame75/aux.ctr"}
+CreateNameNumberFrame Frame31 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/imslit-ha/imslit-median.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame31 magnifier graphics 1
+Frame31 magnifier cursor 1
+Frame31 magnifier zoom 4
+Frame31 magnifier color #ff8000
+Frame31 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame31 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame31 precision 8 7 4 3 8 7 5 3 8
+Frame31 bg color #808080
+Frame31 nan color #804020
+Frame31 cube axes 123
+Frame31 rgb channel red
+Frame31 rgb view 1 1 1
+Frame31 rgb system image
+Frame31 bin factor to 1 1
+Frame31 bin depth 1
+Frame31 bin filter {""}
+Frame31 bin buffer size 1024
+Frame31 bin about 0 0
+Frame31 bin function sum
+Frame31 colorscale log
+Frame31 colorscale log 300
+Frame31 datasec 1
+Frame31 clip user 0 1.5
+Frame31 clip mode user
+Frame31 clip scope local
+Frame31 clip minmax mode scan
+Frame31 clip minmax sample 25
+Frame31 clip zscale contrast 0.25
+Frame31 clip zscale sample 600
+Frame31 clip zscale line 120
+Frame31 block to 1 1
+Frame31 wcs wcs fk5 sexagesimal
+Frame31 pan preserve 0
+Frame31 pan to physical 259.25405 255.28496
+Frame31 zoom to 1.2 1.2
+Frame31 rotate to 0
+Frame31 orient none
+Frame31 wcs align 0
+Frame31 3d view 0 0
+Frame31 3d scale 1
+Frame31 3d method mip
+Frame31 3d highlite 1
+Frame31 3d border 1
+Frame31 3d background none
+Frame31 3d view point 0 0 0 0 0
+Frame31 marker load ds9 {"./turtle-ha-maps.bck.dir/Frame31/ds9.reg"}
+Frame31 crosshair physical 257 257
+Frame31 marker centroid radius 10
+Frame31 marker centroid iteration 30
+Frame31 mask color red
+Frame31 mask mark 1
+Frame31 mask transparency 0
+Frame31 contour create red 1 0 block 5 1 log 10000 user global 0 11.59 {"0.01 0.03 0.1 0.3 1 3 6 10"}
+CreateNameNumberFrame Frame34 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/imslit-oiii/imslit-median.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame34 magnifier graphics 1
+Frame34 magnifier cursor 1
+Frame34 magnifier zoom 4
+Frame34 magnifier color #ff8000
+Frame34 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame34 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame34 precision 8 7 4 3 8 7 5 3 8
+Frame34 bg color #808080
+Frame34 nan color #804020
+Frame34 cube axes 123
+Frame34 rgb channel red
+Frame34 rgb view 1 1 1
+Frame34 rgb system image
+Frame34 bin factor to 1 1
+Frame34 bin depth 1
+Frame34 bin filter {""}
+Frame34 bin buffer size 1024
+Frame34 bin about 0 0
+Frame34 bin function sum
+Frame34 colorscale log
+Frame34 colorscale log 300
+Frame34 datasec 1
+Frame34 clip user 0 1.5
+Frame34 clip mode user
+Frame34 clip scope local
+Frame34 clip minmax mode scan
+Frame34 clip minmax sample 25
+Frame34 clip zscale contrast 0.25
+Frame34 clip zscale sample 600
+Frame34 clip zscale line 120
+Frame34 block to 1 1
+Frame34 wcs wcs fk5 sexagesimal
+Frame34 pan preserve 0
+Frame34 pan to physical 259.25405 255.28496
+Frame34 zoom to 1.2 1.2
+Frame34 rotate to 0
+Frame34 orient none
+Frame34 wcs align 0
+Frame34 3d view 0 0
+Frame34 3d scale 1
+Frame34 3d method mip
+Frame34 3d highlite 1
+Frame34 3d border 1
+Frame34 3d background none
+Frame34 3d view point 0 0 0 0 0
+Frame34 crosshair physical 257 257
+Frame34 marker centroid radius 10
+Frame34 marker centroid iteration 30
+Frame34 mask color red
+Frame34 mask mark 1
+Frame34 mask transparency 0
+CreateNameNumberFrame Frame58 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-allvels-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame58 magnifier graphics 1
+Frame58 magnifier cursor 1
+Frame58 magnifier zoom 4
+Frame58 magnifier color #ff8000
+Frame58 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame58 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame58 precision 8 7 4 3 8 7 5 3 8
+Frame58 bg color #808080
+Frame58 nan color #804020
+Frame58 cube axes 123
+Frame58 rgb channel red
+Frame58 rgb view 1 1 1
+Frame58 rgb system image
+Frame58 bin factor to 1 1
+Frame58 bin depth 1
+Frame58 bin filter {""}
+Frame58 bin buffer size 1024
+Frame58 bin about 0 0
+Frame58 bin function sum
+Frame58 colorscale log
+Frame58 colorscale log 300
+Frame58 datasec 1
+Frame58 clip user 0 1.5
+Frame58 clip mode user
+Frame58 clip scope local
+Frame58 clip minmax mode scan
+Frame58 clip minmax sample 25
+Frame58 clip zscale contrast 0.25
+Frame58 clip zscale sample 600
+Frame58 clip zscale line 120
+Frame58 block to 1 1
+Frame58 wcs wcs fk5 sexagesimal
+Frame58 pan preserve 1
+Frame58 pan to physical 259.25405 255.28496
+Frame58 zoom to 1.2 1.2
+Frame58 rotate to 0
+Frame58 orient none
+Frame58 wcs align 0
+Frame58 3d view 0 0
+Frame58 3d scale 1
+Frame58 3d method mip
+Frame58 3d highlite 1
+Frame58 3d border 1
+Frame58 3d background none
+Frame58 3d view point 0 0 0 0 0
+Frame58 crosshair physical 0.5 0.5
+Frame58 marker centroid radius 10
+Frame58 marker centroid iteration 30
+Frame58 mask color red
+Frame58 mask mark 1
+Frame58 mask transparency 0
+CreateNameNumberFrame Frame74 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-100-090-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame74 magnifier graphics 1
+Frame74 magnifier cursor 1
+Frame74 magnifier zoom 4
+Frame74 magnifier color #ff8000
+Frame74 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame74 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame74 precision 8 7 4 3 8 7 5 3 8
+Frame74 bg color #808080
+Frame74 nan color #804020
+Frame74 cube axes 123
+Frame74 rgb channel red
+Frame74 rgb view 1 1 1
+Frame74 rgb system image
+Frame74 bin factor to 1 1
+Frame74 bin depth 1
+Frame74 bin filter {""}
+Frame74 bin buffer size 1024
+Frame74 bin about 0 0
+Frame74 bin function sum
+Frame74 colorscale log
+Frame74 colorscale log 300
+Frame74 datasec 1
+Frame74 clip user 0 1.5
+Frame74 clip mode user
+Frame74 clip scope local
+Frame74 clip minmax mode scan
+Frame74 clip minmax sample 25
+Frame74 clip zscale contrast 0.25
+Frame74 clip zscale sample 600
+Frame74 clip zscale line 120
+Frame74 block to 1 1
+Frame74 wcs wcs fk5 sexagesimal
+Frame74 pan preserve 1
+Frame74 pan to physical 259.25405 255.28496
+Frame74 zoom to 1.2 1.2
+Frame74 rotate to 0
+Frame74 orient none
+Frame74 wcs align 0
+Frame74 3d view 0 0
+Frame74 3d scale 1
+Frame74 3d method mip
+Frame74 3d highlite 1
+Frame74 3d border 1
+Frame74 3d background none
+Frame74 3d view point 0 0 0 0 0
+Frame74 crosshair physical 0.5 0.5
+Frame74 marker centroid radius 10
+Frame74 marker centroid iteration 30
+Frame74 mask color red
+Frame74 mask mark 1
+Frame74 mask transparency 0
+Frame74 contour load {"./turtle-ha-maps.bck.dir/Frame74/aux.ctr"}
+CreateNameNumberFrame Frame59 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-nii-allvels-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame59 magnifier graphics 1
+Frame59 magnifier cursor 1
+Frame59 magnifier zoom 4
+Frame59 magnifier color #ff8000
+Frame59 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame59 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame59 precision 8 7 4 3 8 7 5 3 8
+Frame59 bg color #808080
+Frame59 nan color #804020
+Frame59 cube axes 123
+Frame59 rgb channel red
+Frame59 rgb view 1 1 1
+Frame59 rgb system image
+Frame59 bin factor to 1 1
+Frame59 bin depth 1
+Frame59 bin filter {""}
+Frame59 bin buffer size 1024
+Frame59 bin about 0 0
+Frame59 bin function sum
+Frame59 colorscale log
+Frame59 colorscale log 300
+Frame59 datasec 1
+Frame59 clip user 0 1.5
+Frame59 clip mode user
+Frame59 clip scope local
+Frame59 clip minmax mode scan
+Frame59 clip minmax sample 25
+Frame59 clip zscale contrast 0.25
+Frame59 clip zscale sample 600
+Frame59 clip zscale line 120
+Frame59 block to 1 1
+Frame59 wcs wcs fk5 sexagesimal
+Frame59 pan preserve 1
+Frame59 pan to physical 259.25405 255.28496
+Frame59 zoom to 1.2 1.2
+Frame59 rotate to 0
+Frame59 orient none
+Frame59 wcs align 0
+Frame59 3d view 0 0
+Frame59 3d scale 1
+Frame59 3d method mip
+Frame59 3d highlite 1
+Frame59 3d border 1
+Frame59 3d background none
+Frame59 3d view point 0 0 0 0 0
+Frame59 crosshair physical 0.5 0.5
+Frame59 marker centroid radius 10
+Frame59 marker centroid iteration 30
+Frame59 mask color red
+Frame59 mask mark 1
+Frame59 mask transparency 0
+CreateNameNumberFrame Frame60 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-090-080-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame60 magnifier graphics 1
+Frame60 magnifier cursor 1
+Frame60 magnifier zoom 4
+Frame60 magnifier color #ff8000
+Frame60 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame60 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame60 precision 8 7 4 3 8 7 5 3 8
+Frame60 bg color #808080
+Frame60 nan color #804020
+Frame60 cube axes 123
+Frame60 rgb channel red
+Frame60 rgb view 1 1 1
+Frame60 rgb system image
+Frame60 bin factor to 1 1
+Frame60 bin depth 1
+Frame60 bin filter {""}
+Frame60 bin buffer size 1024
+Frame60 bin about 0 0
+Frame60 bin function sum
+Frame60 colorscale log
+Frame60 colorscale log 300
+Frame60 datasec 1
+Frame60 clip user 0 1.5
+Frame60 clip mode user
+Frame60 clip scope local
+Frame60 clip minmax mode scan
+Frame60 clip minmax sample 25
+Frame60 clip zscale contrast 0.25
+Frame60 clip zscale sample 600
+Frame60 clip zscale line 120
+Frame60 block to 1 1
+Frame60 wcs wcs fk5 sexagesimal
+Frame60 pan preserve 1
+Frame60 pan to physical 259.25405 255.28496
+Frame60 zoom to 1.2 1.2
+Frame60 rotate to 0
+Frame60 orient none
+Frame60 wcs align 0
+Frame60 3d view 0 0
+Frame60 3d scale 1
+Frame60 3d method mip
+Frame60 3d highlite 1
+Frame60 3d border 1
+Frame60 3d background none
+Frame60 3d view point 0 0 0 0 0
+Frame60 crosshair physical 0.5 0.5
+Frame60 marker centroid radius 10
+Frame60 marker centroid iteration 30
+Frame60 mask color red
+Frame60 mask mark 1
+Frame60 mask transparency 0
+Frame60 contour load {"./turtle-ha-maps.bck.dir/Frame60/aux.ctr"}
+CreateNameNumberFrame Frame61 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-080-070-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame61 magnifier graphics 1
+Frame61 magnifier cursor 1
+Frame61 magnifier zoom 4
+Frame61 magnifier color #ff8000
+Frame61 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame61 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame61 precision 8 7 4 3 8 7 5 3 8
+Frame61 bg color #808080
+Frame61 nan color #804020
+Frame61 cube axes 123
+Frame61 rgb channel red
+Frame61 rgb view 1 1 1
+Frame61 rgb system image
+Frame61 bin factor to 1 1
+Frame61 bin depth 1
+Frame61 bin filter {""}
+Frame61 bin buffer size 1024
+Frame61 bin about 0 0
+Frame61 bin function sum
+Frame61 colorscale log
+Frame61 colorscale log 300
+Frame61 datasec 1
+Frame61 clip user 0 1.5
+Frame61 clip mode user
+Frame61 clip scope local
+Frame61 clip minmax mode scan
+Frame61 clip minmax sample 25
+Frame61 clip zscale contrast 0.25
+Frame61 clip zscale sample 600
+Frame61 clip zscale line 120
+Frame61 block to 1 1
+Frame61 wcs wcs fk5 sexagesimal
+Frame61 pan preserve 1
+Frame61 pan to physical 259.25405 255.28496
+Frame61 zoom to 1.2 1.2
+Frame61 rotate to 0
+Frame61 orient none
+Frame61 wcs align 0
+Frame61 3d view 0 0
+Frame61 3d scale 1
+Frame61 3d method mip
+Frame61 3d highlite 1
+Frame61 3d border 1
+Frame61 3d background none
+Frame61 3d view point 0 0 0 0 0
+Frame61 crosshair physical 0.5 0.5
+Frame61 marker centroid radius 10
+Frame61 marker centroid iteration 30
+Frame61 mask color red
+Frame61 mask mark 1
+Frame61 mask transparency 0
+Frame61 contour load {"./turtle-ha-maps.bck.dir/Frame61/aux.ctr"}
+CreateNameNumberFrame Frame62 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-070-060-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame62 magnifier graphics 1
+Frame62 magnifier cursor 1
+Frame62 magnifier zoom 4
+Frame62 magnifier color #ff8000
+Frame62 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame62 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame62 precision 8 7 4 3 8 7 5 3 8
+Frame62 bg color #808080
+Frame62 nan color #804020
+Frame62 cube axes 123
+Frame62 rgb channel red
+Frame62 rgb view 1 1 1
+Frame62 rgb system image
+Frame62 bin factor to 1 1
+Frame62 bin depth 1
+Frame62 bin filter {""}
+Frame62 bin buffer size 1024
+Frame62 bin about 0 0
+Frame62 bin function sum
+Frame62 colorscale log
+Frame62 colorscale log 300
+Frame62 datasec 1
+Frame62 clip user 0 1.5
+Frame62 clip mode user
+Frame62 clip scope local
+Frame62 clip minmax mode scan
+Frame62 clip minmax sample 25
+Frame62 clip zscale contrast 0.25
+Frame62 clip zscale sample 600
+Frame62 clip zscale line 120
+Frame62 block to 1 1
+Frame62 wcs wcs fk5 sexagesimal
+Frame62 pan preserve 1
+Frame62 pan to physical 259.25405 255.28496
+Frame62 zoom to 1.2 1.2
+Frame62 rotate to 0
+Frame62 orient none
+Frame62 wcs align 0
+Frame62 3d view 0 0
+Frame62 3d scale 1
+Frame62 3d method mip
+Frame62 3d highlite 1
+Frame62 3d border 1
+Frame62 3d background none
+Frame62 3d view point 0 0 0 0 0
+Frame62 crosshair physical 0.5 0.5
+Frame62 marker centroid radius 10
+Frame62 marker centroid iteration 30
+Frame62 mask color red
+Frame62 mask mark 1
+Frame62 mask transparency 0
+Frame62 contour load {"./turtle-ha-maps.bck.dir/Frame62/aux.ctr"}
+CreateNameNumberFrame Frame63 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-060-050-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame63 magnifier graphics 1
+Frame63 magnifier cursor 1
+Frame63 magnifier zoom 4
+Frame63 magnifier color #ff8000
+Frame63 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame63 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame63 precision 8 7 4 3 8 7 5 3 8
+Frame63 bg color #808080
+Frame63 nan color #804020
+Frame63 cube axes 123
+Frame63 rgb channel red
+Frame63 rgb view 1 1 1
+Frame63 rgb system image
+Frame63 bin factor to 1 1
+Frame63 bin depth 1
+Frame63 bin filter {""}
+Frame63 bin buffer size 1024
+Frame63 bin about 0 0
+Frame63 bin function sum
+Frame63 colorscale log
+Frame63 colorscale log 300
+Frame63 datasec 1
+Frame63 clip user 0 1.5
+Frame63 clip mode user
+Frame63 clip scope local
+Frame63 clip minmax mode scan
+Frame63 clip minmax sample 25
+Frame63 clip zscale contrast 0.25
+Frame63 clip zscale sample 600
+Frame63 clip zscale line 120
+Frame63 block to 1 1
+Frame63 wcs wcs fk5 sexagesimal
+Frame63 pan preserve 1
+Frame63 pan to physical 259.25405 255.28496
+Frame63 zoom to 1.2 1.2
+Frame63 rotate to 0
+Frame63 orient none
+Frame63 wcs align 0
+Frame63 3d view 0 0
+Frame63 3d scale 1
+Frame63 3d method mip
+Frame63 3d highlite 1
+Frame63 3d border 1
+Frame63 3d background none
+Frame63 3d view point 0 0 0 0 0
+Frame63 crosshair physical 0.5 0.5
+Frame63 marker centroid radius 10
+Frame63 marker centroid iteration 30
+Frame63 mask color red
+Frame63 mask mark 1
+Frame63 mask transparency 0
+Frame63 contour load {"./turtle-ha-maps.bck.dir/Frame63/aux.ctr"}
+CreateNameNumberFrame Frame64 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-050-040-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame64 magnifier graphics 1
+Frame64 magnifier cursor 1
+Frame64 magnifier zoom 4
+Frame64 magnifier color #ff8000
+Frame64 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame64 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame64 precision 8 7 4 3 8 7 5 3 8
+Frame64 bg color #808080
+Frame64 nan color #804020
+Frame64 cube axes 123
+Frame64 rgb channel red
+Frame64 rgb view 1 1 1
+Frame64 rgb system image
+Frame64 bin factor to 1 1
+Frame64 bin depth 1
+Frame64 bin filter {""}
+Frame64 bin buffer size 1024
+Frame64 bin about 0 0
+Frame64 bin function sum
+Frame64 colorscale log
+Frame64 colorscale log 300
+Frame64 datasec 1
+Frame64 clip user 0 1.5
+Frame64 clip mode user
+Frame64 clip scope local
+Frame64 clip minmax mode scan
+Frame64 clip minmax sample 25
+Frame64 clip zscale contrast 0.25
+Frame64 clip zscale sample 600
+Frame64 clip zscale line 120
+Frame64 block to 1 1
+Frame64 wcs wcs fk5 sexagesimal
+Frame64 pan preserve 1
+Frame64 pan to physical 259.25405 255.28496
+Frame64 zoom to 1.2 1.2
+Frame64 rotate to 0
+Frame64 orient none
+Frame64 wcs align 0
+Frame64 3d view 0 0
+Frame64 3d scale 1
+Frame64 3d method mip
+Frame64 3d highlite 1
+Frame64 3d border 1
+Frame64 3d background none
+Frame64 3d view point 0 0 0 0 0
+Frame64 crosshair physical 0.5 0.5
+Frame64 marker centroid radius 10
+Frame64 marker centroid iteration 30
+Frame64 mask color red
+Frame64 mask mark 1
+Frame64 mask transparency 0
+Frame64 contour load {"./turtle-ha-maps.bck.dir/Frame64/aux.ctr"}
+CreateNameNumberFrame Frame65 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-040-030-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame65 magnifier graphics 1
+Frame65 magnifier cursor 1
+Frame65 magnifier zoom 4
+Frame65 magnifier color #ff8000
+Frame65 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame65 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame65 precision 8 7 4 3 8 7 5 3 8
+Frame65 bg color #808080
+Frame65 nan color #804020
+Frame65 cube axes 123
+Frame65 rgb channel red
+Frame65 rgb view 1 1 1
+Frame65 rgb system image
+Frame65 bin factor to 1 1
+Frame65 bin depth 1
+Frame65 bin filter {""}
+Frame65 bin buffer size 1024
+Frame65 bin about 0 0
+Frame65 bin function sum
+Frame65 colorscale log
+Frame65 colorscale log 300
+Frame65 datasec 1
+Frame65 clip user 0 1.5
+Frame65 clip mode user
+Frame65 clip scope local
+Frame65 clip minmax mode scan
+Frame65 clip minmax sample 25
+Frame65 clip zscale contrast 0.25
+Frame65 clip zscale sample 600
+Frame65 clip zscale line 120
+Frame65 block to 1 1
+Frame65 wcs wcs fk5 sexagesimal
+Frame65 pan preserve 1
+Frame65 pan to physical 259.25405 255.28496
+Frame65 zoom to 1.2 1.2
+Frame65 rotate to 0
+Frame65 orient none
+Frame65 wcs align 0
+Frame65 3d view 0 0
+Frame65 3d scale 1
+Frame65 3d method mip
+Frame65 3d highlite 1
+Frame65 3d border 1
+Frame65 3d background none
+Frame65 3d view point 0 0 0 0 0
+Frame65 crosshair physical 0.5 0.5
+Frame65 marker centroid radius 10
+Frame65 marker centroid iteration 30
+Frame65 mask color red
+Frame65 mask mark 1
+Frame65 mask transparency 0
+Frame65 contour load {"./turtle-ha-maps.bck.dir/Frame65/aux.ctr"}
+CreateNameNumberFrame Frame66 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-030-020-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame66 magnifier graphics 1
+Frame66 magnifier cursor 1
+Frame66 magnifier zoom 4
+Frame66 magnifier color #ff8000
+Frame66 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame66 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame66 precision 8 7 4 3 8 7 5 3 8
+Frame66 bg color #808080
+Frame66 nan color #804020
+Frame66 cube axes 123
+Frame66 rgb channel red
+Frame66 rgb view 1 1 1
+Frame66 rgb system image
+Frame66 bin factor to 1 1
+Frame66 bin depth 1
+Frame66 bin filter {""}
+Frame66 bin buffer size 1024
+Frame66 bin about 0 0
+Frame66 bin function sum
+Frame66 colorscale log
+Frame66 colorscale log 300
+Frame66 datasec 1
+Frame66 clip user 0 1.5
+Frame66 clip mode user
+Frame66 clip scope local
+Frame66 clip minmax mode scan
+Frame66 clip minmax sample 25
+Frame66 clip zscale contrast 0.25
+Frame66 clip zscale sample 600
+Frame66 clip zscale line 120
+Frame66 block to 1 1
+Frame66 wcs wcs fk5 sexagesimal
+Frame66 pan preserve 1
+Frame66 pan to physical 259.25405 255.28496
+Frame66 zoom to 1.2 1.2
+Frame66 rotate to 0
+Frame66 orient none
+Frame66 wcs align 0
+Frame66 3d view 0 0
+Frame66 3d scale 1
+Frame66 3d method mip
+Frame66 3d highlite 1
+Frame66 3d border 1
+Frame66 3d background none
+Frame66 3d view point 0 0 0 0 0
+Frame66 crosshair physical 0.5 0.5
+Frame66 marker centroid radius 10
+Frame66 marker centroid iteration 30
+Frame66 mask color red
+Frame66 mask mark 1
+Frame66 mask transparency 0
+Frame66 contour load {"./turtle-ha-maps.bck.dir/Frame66/aux.ctr"}
+CreateNameNumberFrame Frame67 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-020-010-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame67 magnifier graphics 1
+Frame67 magnifier cursor 1
+Frame67 magnifier zoom 4
+Frame67 magnifier color #ff8000
+Frame67 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame67 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame67 precision 8 7 4 3 8 7 5 3 8
+Frame67 bg color #808080
+Frame67 nan color #804020
+Frame67 cube axes 123
+Frame67 rgb channel red
+Frame67 rgb view 1 1 1
+Frame67 rgb system image
+Frame67 bin factor to 1 1
+Frame67 bin depth 1
+Frame67 bin filter {""}
+Frame67 bin buffer size 1024
+Frame67 bin about 0 0
+Frame67 bin function sum
+Frame67 colorscale log
+Frame67 colorscale log 300
+Frame67 datasec 1
+Frame67 clip user 0 1.5
+Frame67 clip mode user
+Frame67 clip scope local
+Frame67 clip minmax mode scan
+Frame67 clip minmax sample 25
+Frame67 clip zscale contrast 0.25
+Frame67 clip zscale sample 600
+Frame67 clip zscale line 120
+Frame67 block to 1 1
+Frame67 wcs wcs fk5 sexagesimal
+Frame67 pan preserve 1
+Frame67 pan to physical 259.25405 255.28496
+Frame67 zoom to 1.2 1.2
+Frame67 rotate to 0
+Frame67 orient none
+Frame67 wcs align 0
+Frame67 3d view 0 0
+Frame67 3d scale 1
+Frame67 3d method mip
+Frame67 3d highlite 1
+Frame67 3d border 1
+Frame67 3d background none
+Frame67 3d view point 0 0 0 0 0
+Frame67 crosshair physical 0.5 0.5
+Frame67 marker centroid radius 10
+Frame67 marker centroid iteration 30
+Frame67 mask color red
+Frame67 mask mark 1
+Frame67 mask transparency 0
+Frame67 contour load {"./turtle-ha-maps.bck.dir/Frame67/aux.ctr"}
+CreateNameNumberFrame Frame68 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha-010+000-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame68 magnifier graphics 1
+Frame68 magnifier cursor 1
+Frame68 magnifier zoom 4
+Frame68 magnifier color #ff8000
+Frame68 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame68 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame68 precision 8 7 4 3 8 7 5 3 8
+Frame68 bg color #808080
+Frame68 nan color #804020
+Frame68 cube axes 123
+Frame68 rgb channel red
+Frame68 rgb view 1 1 1
+Frame68 rgb system image
+Frame68 bin factor to 1 1
+Frame68 bin depth 1
+Frame68 bin filter {""}
+Frame68 bin buffer size 1024
+Frame68 bin about 0 0
+Frame68 bin function sum
+Frame68 colorscale log
+Frame68 colorscale log 300
+Frame68 datasec 1
+Frame68 clip user 0 1.5
+Frame68 clip mode user
+Frame68 clip scope local
+Frame68 clip minmax mode scan
+Frame68 clip minmax sample 25
+Frame68 clip zscale contrast 0.25
+Frame68 clip zscale sample 600
+Frame68 clip zscale line 120
+Frame68 block to 1 1
+Frame68 wcs wcs fk5 sexagesimal
+Frame68 pan preserve 1
+Frame68 pan to physical 259.25405 255.28496
+Frame68 zoom to 1.2 1.2
+Frame68 rotate to 0
+Frame68 orient none
+Frame68 wcs align 0
+Frame68 3d view 0 0
+Frame68 3d scale 1
+Frame68 3d method mip
+Frame68 3d highlite 1
+Frame68 3d border 1
+Frame68 3d background none
+Frame68 3d view point 0 0 0 0 0
+Frame68 crosshair physical 0.5 0.5
+Frame68 marker centroid radius 10
+Frame68 marker centroid iteration 30
+Frame68 mask color red
+Frame68 mask mark 1
+Frame68 mask transparency 0
+Frame68 contour load {"./turtle-ha-maps.bck.dir/Frame68/aux.ctr"}
+CreateNameNumberFrame Frame69 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha+000+010-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame69 magnifier graphics 1
+Frame69 magnifier cursor 1
+Frame69 magnifier zoom 4
+Frame69 magnifier color #ff8000
+Frame69 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame69 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame69 precision 8 7 4 3 8 7 5 3 8
+Frame69 bg color #808080
+Frame69 nan color #804020
+Frame69 cube axes 123
+Frame69 rgb channel red
+Frame69 rgb view 1 1 1
+Frame69 rgb system image
+Frame69 bin factor to 1 1
+Frame69 bin depth 1
+Frame69 bin filter {""}
+Frame69 bin buffer size 1024
+Frame69 bin about 0 0
+Frame69 bin function sum
+Frame69 colorscale log
+Frame69 colorscale log 300
+Frame69 datasec 1
+Frame69 clip user 0 1.5
+Frame69 clip mode user
+Frame69 clip scope local
+Frame69 clip minmax mode scan
+Frame69 clip minmax sample 25
+Frame69 clip zscale contrast 0.25
+Frame69 clip zscale sample 600
+Frame69 clip zscale line 120
+Frame69 block to 1 1
+Frame69 wcs wcs fk5 sexagesimal
+Frame69 pan preserve 1
+Frame69 pan to physical 259.25405 255.28496
+Frame69 zoom to 1.2 1.2
+Frame69 rotate to 0
+Frame69 orient none
+Frame69 wcs align 0
+Frame69 3d view 0 0
+Frame69 3d scale 1
+Frame69 3d method mip
+Frame69 3d highlite 1
+Frame69 3d border 1
+Frame69 3d background none
+Frame69 3d view point 0 0 0 0 0
+Frame69 crosshair physical 0.5 0.5
+Frame69 marker centroid radius 10
+Frame69 marker centroid iteration 30
+Frame69 mask color red
+Frame69 mask mark 1
+Frame69 mask transparency 0
+Frame69 contour load {"./turtle-ha-maps.bck.dir/Frame69/aux.ctr"}
+CreateNameNumberFrame Frame70 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha+010+020-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame70 magnifier graphics 1
+Frame70 magnifier cursor 1
+Frame70 magnifier zoom 4
+Frame70 magnifier color #ff8000
+Frame70 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame70 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame70 precision 8 7 4 3 8 7 5 3 8
+Frame70 bg color #808080
+Frame70 nan color #804020
+Frame70 cube axes 123
+Frame70 rgb channel red
+Frame70 rgb view 1 1 1
+Frame70 rgb system image
+Frame70 bin factor to 1 1
+Frame70 bin depth 1
+Frame70 bin filter {""}
+Frame70 bin buffer size 1024
+Frame70 bin about 0 0
+Frame70 bin function sum
+Frame70 colorscale log
+Frame70 colorscale log 300
+Frame70 datasec 1
+Frame70 clip user 0 1.5
+Frame70 clip mode user
+Frame70 clip scope local
+Frame70 clip minmax mode scan
+Frame70 clip minmax sample 25
+Frame70 clip zscale contrast 0.25
+Frame70 clip zscale sample 600
+Frame70 clip zscale line 120
+Frame70 block to 1 1
+Frame70 wcs wcs fk5 sexagesimal
+Frame70 pan preserve 1
+Frame70 pan to physical 259.25405 255.28496
+Frame70 zoom to 1.2 1.2
+Frame70 rotate to 0
+Frame70 orient none
+Frame70 wcs align 0
+Frame70 3d view 0 0
+Frame70 3d scale 1
+Frame70 3d method mip
+Frame70 3d highlite 1
+Frame70 3d border 1
+Frame70 3d background none
+Frame70 3d view point 0 0 0 0 0
+Frame70 crosshair physical 0.5 0.5
+Frame70 marker centroid radius 10
+Frame70 marker centroid iteration 30
+Frame70 mask color red
+Frame70 mask mark 1
+Frame70 mask transparency 0
+Frame70 contour load {"./turtle-ha-maps.bck.dir/Frame70/aux.ctr"}
+CreateNameNumberFrame Frame71 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha+020+030-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame71 magnifier graphics 1
+Frame71 magnifier cursor 1
+Frame71 magnifier zoom 4
+Frame71 magnifier color #ff8000
+Frame71 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame71 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame71 precision 8 7 4 3 8 7 5 3 8
+Frame71 bg color #808080
+Frame71 nan color #804020
+Frame71 cube axes 123
+Frame71 rgb channel red
+Frame71 rgb view 1 1 1
+Frame71 rgb system image
+Frame71 bin factor to 1 1
+Frame71 bin depth 1
+Frame71 bin filter {""}
+Frame71 bin buffer size 1024
+Frame71 bin about 0 0
+Frame71 bin function sum
+Frame71 colorscale log
+Frame71 colorscale log 300
+Frame71 datasec 1
+Frame71 clip user 0 1.5
+Frame71 clip mode user
+Frame71 clip scope local
+Frame71 clip minmax mode scan
+Frame71 clip minmax sample 25
+Frame71 clip zscale contrast 0.25
+Frame71 clip zscale sample 600
+Frame71 clip zscale line 120
+Frame71 block to 1 1
+Frame71 wcs wcs fk5 sexagesimal
+Frame71 pan preserve 1
+Frame71 pan to physical 259.25405 255.28496
+Frame71 zoom to 1.2 1.2
+Frame71 rotate to 0
+Frame71 orient none
+Frame71 wcs align 0
+Frame71 3d view 0 0
+Frame71 3d scale 1
+Frame71 3d method mip
+Frame71 3d highlite 1
+Frame71 3d border 1
+Frame71 3d background none
+Frame71 3d view point 0 0 0 0 0
+Frame71 crosshair physical 0.5 0.5
+Frame71 marker centroid radius 10
+Frame71 marker centroid iteration 30
+Frame71 mask color red
+Frame71 mask mark 1
+Frame71 mask transparency 0
+Frame71 contour load {"./turtle-ha-maps.bck.dir/Frame71/aux.ctr"}
+CreateNameNumberFrame Frame73 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/maps/turtle-slits-ha+030+040-multibin.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame73 magnifier graphics 1
+Frame73 magnifier cursor 1
+Frame73 magnifier zoom 4
+Frame73 magnifier color #ff8000
+Frame73 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame73 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame73 precision 8 7 4 3 8 7 5 3 8
+Frame73 bg color #808080
+Frame73 nan color #804020
+Frame73 cube axes 123
+Frame73 rgb channel red
+Frame73 rgb view 1 1 1
+Frame73 rgb system image
+Frame73 bin factor to 1 1
+Frame73 bin depth 1
+Frame73 bin filter {""}
+Frame73 bin buffer size 1024
+Frame73 bin about 0 0
+Frame73 bin function sum
+Frame73 colorscale log
+Frame73 colorscale log 300
+Frame73 datasec 1
+Frame73 clip user 0 1.5
+Frame73 clip mode user
+Frame73 clip scope local
+Frame73 clip minmax mode scan
+Frame73 clip minmax sample 25
+Frame73 clip zscale contrast 0.25
+Frame73 clip zscale sample 600
+Frame73 clip zscale line 120
+Frame73 block to 1 1
+Frame73 wcs wcs fk5 sexagesimal
+Frame73 pan preserve 1
+Frame73 pan to physical 259.25405 255.28496
+Frame73 zoom to 1.2 1.2
+Frame73 rotate to 0
+Frame73 orient none
+Frame73 wcs align 0
+Frame73 3d view 0 0
+Frame73 3d scale 1
+Frame73 3d method mip
+Frame73 3d highlite 1
+Frame73 3d border 1
+Frame73 3d background none
+Frame73 3d view point 0 0 0 0 0
+Frame73 crosshair physical 0.5 0.5
+Frame73 marker centroid radius 10
+Frame73 marker centroid iteration 30
+Frame73 mask color red
+Frame73 mask mark 1
+Frame73 mask transparency 0
+Frame73 contour load {"./turtle-ha-maps.bck.dir/Frame73/aux.ctr"}
+global pds9
+array set pds9 { nan,msg #332244 dialog native text,font courier samp 1 prec,linear 8 font,msg Helvetica iraf 1 prec,len,arcsec 3 threads 12 font,weight normal automarker 1 bg,msg Black language locale text,font,weight normal dialog,all 0 nan #804020 prec,angle 8 font,slant roman confirm 1 prec,deg 7 backup 0 language,dir {} font helvetica language,name {} bg #808080 prec,len,deg 7 xpa 1 prec,dms 3 text,font,msg Courier theme native tcl 0 prec,len,arcmin 5 prec,len,linear 8 dialog,center 0 prec,hms 4 font,size 13 text,font,slant roman text,font,size 11 }
+global current
+array set current { colorbar colorbar orient none zoom {1.2 1.2} mode region ext {} display tile cursor {} align 0 rotate 0 rgb red frame Frame75 }
+global pcurrent
+array set pcurrent { orient none zoom { 1 1 } mode none display single align 0 rotate 0 }
+global view
+array set view { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 info,wcsu 0 info,wcse 0 info,bunit 0 info,lowhigh 0 magnifier 1 info,frame 1 info,image 1 info,wcsv 0 info,wcsf 0 info,wcsw 0 info,wcsg 0 info 1 colorbar 1 info,physical 1 info,wcsx 0 info,wcsh 0 info,wcs 1 info,keyword 0 info,wcsy 0 info,wcsi 0 info,keyvalue {} info,wcsz 0 info,wcsj 0 buttons 1 info,object 1 info,wcsk 0 info,amplifier 0 info,wcsl 0 info,filename 1 info,detector 0 info,wcsm 0 info,minmax 0 info,wcsn 0 info,wcso 0 panner 1 info,wcsp 0 info,wcsq 0 info,wcsa 0 layout horizontal info,wcsr 0 info,wcsb 0 graph,vert 0 }
+global pview
+array set pview { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 info,wcsu 0 info,wcse 0 info,bunit 0 info,lowhigh 0 magnifier 1 info,wcsf 0 info,wcsv 0 info,frame 1 info,image 1 colorbar 1 info 1 info,wcsg 0 info,wcsw 0 info,keyword 0 info,wcs 1 info,wcsh 0 info,wcsx 0 info,physical 1 info,keyvalue {} info,wcsi 0 info,wcsy 0 info,object 1 buttons 1 info,wcsj 0 info,wcsz 0 info,wcsk 0 info,filename 1 info,wcsl 0 info,amplifier 0 info,minmax 0 info,wcsm 0 info,detector 0 info,wcsn 0 panner 1 info,wcso 0 info,wcsp 0 layout horizontal info,wcsa 0 info,wcsq 0 graph,vert 0 info,wcsb 0 info,wcsr 0 }
+global canvas
+array set canvas { gap 4 width 1165 gap,bottom 14 height 599 }
+global phttp
+array set phttp { auth,passwd {} proxy,host {} auth,user {} auth 0 proxy 0 proxy,port {} }
+global pbuttons
+array set pbuttons { color,he 1 frame,lock,frame,physical 0 view,lowhigh 0 frame,single 1 analysis,bout 1 major,color 1 view,wcs 0 bin,in 1 view,buttons 1 help,release 1 file,open 1 edit,crosshair 1 view,panner 1 frame,lock,scale 0 help,story 0 help,new 0 frame,match,color 0 scale,params 0 view,amplifier 0 region,dissolve 0 major,zoom 1 frame,newrgb 1 major,file 1 bin,512x 0 file,console 0 frame,lock,cube,none 0 bin,8192x 0 edit,prefs 0 frame,match,smooth 0 bin,2048x 0 zoom,i2 1 edit,colorbar 1 zoom,i4 1 scale,minmax 1 scale,asinh 1 color,numerics 0 view,horizontal 0 major,wcs 1 zoom,i8 0 view,colorbar 1 color,sls 0 frame,match,crop,wcs 0 frame,clear 1 bin,1 1 bin,2 1 frame,new3d 1 zoom,16 0 analysis,b16 0 edit,rotate 1 file,page 1 bin,4 1 zoom,none 0 region,list 1 file,pspage 0 frame,lock,crop,none 0 frame,lock,frame,detector 0 bin,8 1 scale,zscale 1 region,centroid 0 region,autocentroid 0 frame,size 0 zoom,270 0 scale,pow 1 frame,match,crop,image 0 scale,90 0 wcs,fk4 1 zoom,32 0 analysis,b32 0 wcs,fk5 1 frame,blink 1 color,cool 1 frame,match,frame,amplifier 0 bin,average 0 bin,128x 0 frame,lock,crosshair,image 0 color,staircase 0 view,image 0 frame,reset 0 scale,95 0 file,save 1 scale,96 0 scale,97 0 major,scale 1 scale,98 0 region,showtext 0 edit,region 1 file,exit 1 scale,99 0 frame,first 1 frame,lock,crop,physical 0 help,ref 1 color,grey 1 frame,lock,crop,amplifier 0 frame,lock,scalelimits 0 frame,lock,crosshair,none 0 view,filename 0 view,magnifier 1 file,backup 0 frame,match,scalelimits 0 region,vector 0 frame,lock,crosshair,wcs 0 color,vert 0 color,green 0 file,header 1 edit,crop 1 edit,cut 0 scale,local 0 frame,lock,crop,image 0 frame,match,scale 0 region,all 1 scale,user 0 file,samp,image 0 color,params 0 zoom,in 1 analysis,bin 1 frame,movelast 0 edit,pointer 1 region,deleteall 0 color,standard 0 frame,match,frame,physical 0 help,faq 0 scale,global 0 frame,lock,frame,image 0 region,load 1 analysis,smooth 1 frame,match,frame,image 0 region,savetemplate 0 region,loadtemplate 0 scale,925 0 color,rainbow 1 zoom,params 0 frame,refresh 0 zoom,i16 0 zoom,90 0 region,delete 1 edit,copy 0 region,annulus 0 frame,lock,crosshair,amplifier 0 bin,fit 1 region,ruler 0 region,circle 0 frame,match,crosshair,amplifier 0 color,a 1 view,physical 0 color,b 1 frame,match,cube,image 0 frame,lock,crop,detector 0 scale,sqrt 1 zoom,i32 0 major,view 1 frame,match,cube,wcs 0 view,vertical 0 region,point 0 region,group 0 frame,lock,axes 0 frame,movenext 1 frame,match,crosshair,physical 0 bin,128 0 file,print 1 frame,lock,crop,wcs 0 frame,delete 1 frame,lock,frame,none 0 frame,match,crop,physical 0 color,red 0 frame,movefirst 0 region,none 1 region,polygon 0 bin,params 0 frame,last 0 scale,zmax 0 edit,catalog 1 frame,tile 1 major,help 1 region,compass 0 edit,paste 0 frame,match,crosshair,wcs 0 help,about 1 region,back 1 scale,datasec 0 file,samp,table 0 frame,match,frame,detector 0 scale,squared 1 frame,lock,cube,image 0 help,desk 1 region,ellipse 0 frame,cube 0 view,graphvert 1 edit,none 1 major,edit 1 color,blue 0 frame,lock,crosshair,physical 0 file,psprint 0 wcs,ecliptic 1 color,horz 0 region,save 1 region,newgroup 0 color,aips0 1 wcs,galactic 1 region,front 1 frame,match,axes 0 zoom,0 0 zoom,1 1 frame,moveprev 1 zoom,2 1 scale,995 0 frame,match,frame,wcs 0 scale,hist 1 analysis,contours 1 zoom,4 1 color,reset 0 color,numspace 0 region,show 0 view,minmax 0 view,detector 0 frame,new 1 frame,match,crop,amplifier 0 zoom,8 0 zoom,center 0 region,ellipseannulus 0 zoom,fit 1 major,bin 1 analysis,grid 1 frame,next 0 edit,pan 1 view,info 1 frame,match,crosshair,detector 0 frame,lock,frame,amplifier 0 bin,1024x 0 analysis,bfit 1 file,xpa,info 0 bin,out 1 view,object 0 frame,lock,smooth 0 frame,match,crop,detector 0 color,invert 0 region,create 0 region,info 1 frame,match,crosshair,image 0 scale,sinh 1 color,bb 1 file,tcl 0 wcs,sexagesimal 1 region,panda 0 region,boxannulus 0 wcs,degrees 1 major,analysis 1 region,box 0 wcs,icrs 1 view,frame 0 region,segment 0 frame,lock,color 0 bin,16 1 frame,lock,bin 0 frame,3d 0 major,frame 1 file,restore 0 frame,lock,crosshair,detector 0 frame,match,bin 0 color,color 0 help,ack 1 color,i8 1 frame,lock,cube,wcs 0 frame,prev 1 color,heat 1 edit,zoom 1 region,invert 0 view,bunit 0 edit,examine 1 bin,32 1 analysis,b1 1 frame,deleteall 0 analysis,b2 1 region,text 0 region,projection 0 zoom,crop 0 help,keyboard 1 analysis,b4 1 scale,log 1 frame,lock,frame,wcs 0 bin,4096x 0 analysis,b8 0 zoom,align 0 scale,linear 1 edit,undo 0 major,region 1 zoom,x 0 frame,rgb 0 bin,256 0 zoom,y 0 zoom,xy 0 zoom,180 0 color,hsv 0 view,graphhorz 1 region,line 0 color,numvalue 0 region,epanda 0 zoom,out 1 bin,sum 0 bin,256x 0 help,user 1 file,movie 0 region,bpanda 0 bin,64 1 }
+global ppanner
+array set ppanner { compass 1 }
+global pmagnifier
+array set pmagnifier { region 1 zoom 4 color,msg White cursor 1 color #ff8000 }
+global colorbar
+array set colorbar { invert 1 lock 0 size 20 font,weight normal space 0 tag red font,slant roman map grey numerics 1 font helvetica orientation horizontal ticks 11 font,size 9 tag,msg Red }
+global saveimage
+array set saveimage { tiff,compress none error {This function is not currently supported for this port.} jpeg,quality 75 }
+global debug
+array set debug { tcl,xpa 0 tcl,samp 0 tksao,rgb 0 tksao,block 0 tcl,ftp 0 tcl,marker 0 tksao,crop 0 tksao,compress 0 tksao,mosaic 0 tksao,wcs 0 tksao,parser 0 tcl,idletasks 0 tcl,info 0 tcl,restore 0 tcl,events 0 tcl,grid 0 tksao,gz 0 tcl,cat 0 tcl,image 0 tcl,update 0 tksao,perf 0 tcl,sia 0 iis 0 tcl,layout 0 tcl,hv 0 tksao,bin 0 tcl,http 0 }
+global ps
+array set ps { scale 100 orient portrait height 11 size letter resolution 150 filename,txt ds9.txt dest printer level 2 width 8.5 filename ds9.ps cmd lp color rgb }
+global pps
+array set pps { scale 100 orient portrait height 11 size letter resolution 150 filename,txt ds9.txt dest printer level 2 width 8.5 filename ds9.ps cmd lp color rgb }
+global rgb
+array set rgb { lock,block 0 blue 1 lock,wcs 0 frame Frame75 red 1 lock,slice 0 lock,axes 0 lock,scalelimits 0 green 1 lock,crop 0 lock,colorbar 0 system image lock,scale 0 lock,bin 0 lock,smooth 0 }
+global threed
+array set threed { scale 1 lock 0 method mip highlite,color cyan border,color blue compass,color green az 0 highlite 1 border 1 compass 0 background none el 0 border,color,msg Blue highlite,color,msg Cyan }
+global blink
+array set blink { interval 500 }
+global pblink
+array set pblink { interval 500 }
+global tile
+array set tile { grid,col 5 grid,dir x mode grid grid,gap 4 grid,row 3 grid,mode manual }
+global ptile
+array set ptile { grid,col 10 mode grid grid,dir x grid,row 10 grid,gap 4 grid,mode automatic }
+global crosshair
+array set crosshair { skyformat sexagesimal system wcs lock none sky fk5 }
+global cube
+array set cube { axes 123 system image lock none lock,axes 0 frame Frame75 sky fk5 }
+global bin
+array set bin { wheel,factor 1.2 wheel 0 buffersize 1024 depth 1 lock 0 function sum factor {1 1} }
+global pbin
+array set pbin { wheel,factor 1.2 wheel 0 lock 0 depth 1 buffersize 1024 function sum factor { 1 1 } }
+global panzoom
+array set panzoom { wheel,factor 1.2 skyformat sexagesimal preserve 1 mode click wheel 1 system wcs lock image sky fk5 }
+global ppanzoom
+array set ppanzoom { wheel,factor 1.2 preserve 0 wheel 1 mode click }
+global crop
+array set crop { skyformat sexagesimal rcoord wcs dformat degrees system wcs lock none dcoord wcs sky fk5 }
+global scale
+array set scale { lock 0 type log scope local log 300 min 0 bins 512 xaxis full mode user datasec 1 max 1.5 yaxis log lock,limits 0 }
+global pscale
+array set pscale { datasec 1 mode minmax scope global log 1000 type linear }
+global minmax
+array set minmax { mode scan sample 25 }
+global pminmax
+array set pminmax { mode scan sample 25 }
+global zscale
+array set zscale { line 120 sample 600 contrast .25 }
+global pzscale
+array set pzscale { line 120 contrast .25 sample 600 }
+global marker
+array set marker { panda,ang2 360 shape projection show 1 bpanda,ang1 0 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 tag {} load,format ds9 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 centroid,iteration 30 epanda,angnum 4 plot2d 0 font,size 10 move 1 rotate 1 fixed 0 skyformat sexagesimal load,system physical ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 epanda,radius1 40 plot3d 0 epanda,radius2 20 panda,annuli 1 panda,outer 30 epanda,radius3 60 segment,length 20 source 1 epsilon 3 strip 0 bpanda,radius1 80 epanda,annuli 1 bpanda,radius2 40 bpanda,radius3 120 color green stats 0 sky fk5 annulus,outer 30 format ds9 font,weight normal load,sky fk5 polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 boxannulus,radius1 80 projection,thick 0 dashlist {8 3} boxannulus,radius2 40 polygon,height 20 system wcs box,radius1 80 boxannulus,radius3 120 box,radius2 40 annulus,annuli 1 point,size 11 compass,radius 40 copy {} epanda,ang1 0 include 1 copy,system wcs epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 load current bpanda,annuli 1 ellipse,radius1 40 ellipse,radius2 20 panda,inner 15 preserve 1 maxdialog 48 ellipseannulus,annuli 1 panda,ang1 0 }
+global pmarker
+array set pmarker { panda,ang2 360 bpanda,ang1 0 shape circle show 1 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 epanda,angnum 4 centroid,iteration 30 plot2d 0 font,size 10 rotate 1 move 1 fixed 0 ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 plot3d 0 epanda,radius1 40 panda,outer 30 panda,annuli 1 epanda,radius2 20 epanda,radius3 60 segment,length 20 source 1 epsilon 3 bpanda,radius1 80 bpanda,radius2 40 epanda,annuli 1 bpanda,radius3 120 stats 0 color green format ds9 annulus,outer 30 font,weight normal polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 projection,thick 0 boxannulus,radius1 80 dashlist {8 3} polygon,height 20 boxannulus,radius2 40 boxannulus,radius3 120 box,radius1 80 box,radius2 40 point,size 11 annulus,annuli 1 compass,radius 40 epanda,ang1 0 include 1 epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 bpanda,annuli 1 ellipse,radius1 40 preserve 0 panda,inner 15 ellipse,radius2 20 panda,ang1 0 ellipseannulus,annuli 1 }
+global centroid
+array set centroid {  }
+global wcs
+array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame75 sky fk5 }
+global pwcs
+array set pwcs { skyformat sexagesimal load,sock {} load,fn {} system wcs sky fk5 }
+global graph
+array set graph { vert,thick 1 horz,method average horz,log false horz,grid 1 vert,method average horz,thick 1 vert,log false vert,grid 1 }
+global pgraph
+array set pgraph { horz,method average vert,thick 1 horz,grid 1 horz,log false horz,thick 1 vert,method average vert,grid 1 vert,log false }
+global pcoord
+array set pcoord { wcss 0 wcsc 0 wcst 0 wcsd 0 wcsu 0 wcse 0 wcsv 0 wcsf 0 image 1 wcsw 0 wcsg 0 wcsx 0 wcsh 0 physical 0 wcs 1 wcsy 0 wcsi 0 wcsz 0 wcsj 0 wcsk 0 wcsl 0 filename 0 amplifier 0 wcsm 0 detector 0 wcsn 0 wcso 0 wcsp 0 value 1 wcsq 0 wcsa 0 wcsr 0 wcsb 0 }
+global pexamine
+array set pexamine { zoom 4 mode new }
+global pixel
+array set pixel { size 5 }
+global mask
+array set mask { transparency 0 mark 1 color red }
+global pmask
+array set pmask { transparency 0 color red mark 1 }
+global contour
+array set contour { init,scale 0 numlevel 5 scale log method block init,scope 0 scope local view 0 copy Frame31 width 1 dash 0 color,msg Green init,limits 0 smooth 1 log 300 min 0 init,mode 0 mode user max 1.5 color red }
+global pcontour
+array set pcontour { numlevel 5 dash 0 width 1 method block color,msg Green smooth 4 color green view 0 }
+global grid
+array set grid { grid,color blue grid,style 0 view 0 axes,origin lll numlab,type interior border 1 tick,width 1 numlab,color green numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 10 grid,gapunit1 degrees border,style 0 grid,gapunit2 degrees grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 0 tick,color white textlab,def1 1 tick,style 0 textlab,def2 1 axes 1 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 1 numlab,size 10 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {} }
+global pgrid
+array set pgrid { view 0 }
+global block
+array set block { lock 0 factor {1 1} }
+global pblock
+array set pblock { lock 0 factor { 1 1 } }
+global smooth
+array set smooth { radius 3 sigma 1.5 radius,minor 3 lock 0 sigma,minor 1.5 function gaussian angle 0 view 0 }
+global psmooth
+array set psmooth { radius 3 lock 0 radius,minor 3 sigma 1.5 function gaussian sigma,minor 1.5 view 0 angle 0 }
+global pnres
+array set pnres { server simbad-cds }
+global sao
+array set sao { width 15 mode new height 15 save 0 rformat arcmin sky fk5 }
+global eso
+array set eso { width 15 mode new height 15 survey DSS1 save 0 rformat arcmin sky fk5 }
+global stsci
+array set stsci { width 15 mode new height 15 survey all save 0 rformat arcmin sky fk5 }
+global twomass
+array set twomass { width 15 mode new height 15 survey j save 0 rformat arcmin sky fk5 }
+global nvss
+array set nvss { width 15 mode new height 15 save 0 rformat arcmin sky fk5 }
+global vlss
+array set vlss { width 15 mode new height 15 save 0 rformat arcmin sky fk5 }
+global skyview
+array set skyview { width 300 mode new width,pixels 300 height 300 survey dss height,pixels 300 save 0 rformat arcsec sky fk5 }
+global cat
+array set cat { id 0 sym,font,msg {} }
+global pcat
+array set pcat { sym,units physical sym,font,weight normal vot 1 sym,width 1 loc 500 sym,color,msg Green sym,font,msg Helvetica server cds sym,font,slant roman sym,font,size 10 sym,font,weight, {} sym,color green sym,font helvetica sym,dash 0 sym,shape {circle point} }
+global vla
+array set vla { width 15 mode new height 15 survey first save 0 rformat arcmin sky fk5 }
+global pvo
+array set pvo { method mime hv 1 delay 15 server http://cxc.harvard.edu/chandraed/list.txt }
+global pap
+array set pap { legend,position right axis,x,flip 0 show 1 textlabSlant roman quadratic 0 numlabWeight normal graph,title,size 12 axis,title,weight normal quadratic,dash no error,cap 0 legend,title,family helvetica textlabWeight normal legend,title Legend axis,x,log 0 legend,font,slant roman axis,font,family,msg Helvetica graph,y,grid 1 quadratic,color black error 1 axis,y,min {} axis,title,family,msg Helvetica axis,y,max {} discrete,color red axis,font,family helvetica shape,color,msg Red step,color black legend 0 legend,font,family helvetica graph,title,family,msg Helvetica legend,title,weight normal discrete 0 graph,x,log 0 axis,y,grid 1 shape,color red titleSize 12 bar 0 error,color red graph,y,flip 0 linear,color black graph,title,family helvetica axis,font,slant roman color black step,dash no bar,relief raised titleFont helvetica legend,font,size 9 titleWeight normal fill,color black linear 1 shape,symbol none legend,title,size 10 axis,font,weight normal discrete,fill 1 graph,title,slant roman legend,font,weight normal textlabSize 9 axis,y,auto 1 axis,y,format {} fill 0 graph,x,grid 1 dash 0 numlabSlant roman axis,y,flip 0 axis,title,slant roman quadratic,width 1 smooth linear textlabFont helvetica legend,title,slant roman titleSlant roman step 0 graph,title,weight normal discrete,symbol circle axis,x,format {} linear,dash no step,width 1 axis,y,title {} axis,y,log 0 axis,x,min {} numlabSize 9 axis,title,size 9 axis,x,grid 1 axis,x,max {} graph,x,flip 0 numlabFont helvetica error,width 1 linear,width 1 error,color,msg Red bar,color black width 1 graph,title {} axis,title,family helvetica color,msg Black shape,fill 1 graph,y,log 0 bar,mode normal axis,x,auto 1 axis,x,title {} axis,font,size 9 }
+global panalysis
+array set panalysis { user2 {} autoload 1 user3 {} log 0 user4 {} user {} }
+global active
+array set active { Frame34 0 Frame58 0 Frame60 1 Frame59 0 Frame61 1 Frame62 1 Frame63 1 Frame1 1 Frame64 1 Frame2 1 Frame65 1 Frame3 1 Frame66 1 Frame4 1 Frame67 1 Frame5 1 Frame68 1 Frame6 1 Frame70 1 Frame69 1 Frame7 1 Frame71 1 Frame8 1 Frame9 1 Frame73 1 Frame74 1 Frame75 1 Frame10 1 Frame11 1 Frame12 1 Frame13 1 Frame14 1 Frame15 1 Frame16 1 Frame17 1 Frame18 1 Frame20 1 Frame19 1 Frame21 1 Frame22 1 Frame23 1 Frame24 1 Frame25 1 Frame26 1 Frame27 1 Frame28 1 Frame30 1 Frame29 1 Frame31 0 }

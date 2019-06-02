@@ -987,14 +987,22 @@ CLOSED: [2019-05-31 Fri 13:43]
   sys.path.append('/Users/will/Dropbox/OrionWest')
   from helio_utils import helio_topo_from_header, vels2waves
 
-  if len(sys.argv) == 3:
+
+  try:
       line_id = sys.argv[1]
+  except IndexError:
+      print('Usage: {} LINE_ID [VRANGE [OUTPUT_FOLDER]]'.format(sys.argv[0]))
+
+  try:
       vrange = sys.argv[2]
-  elif len(sys.argv) == 2:
-      line_id = sys.argv[1]
+  except IndexError:
       vrange = None
-  else:
-      print('Usage: {} LINE_ID [VRANGE]'.format(sys.argv[0]))
+
+  try:
+      outdir = sys.argv[3]
+  except IndexError:
+      outdir = "maps"
+    
 
   def waves2pixels(waves, w):
       n = len(waves)
@@ -1117,7 +1125,7 @@ CLOSED: [2019-05-31 Fri 13:43]
       fits.ImageHDU(header=w.to_header(), data=outimage, name='slits'),
       fits.ImageHDU(header=w.to_header(), data=outweights, name='weight'),
       fits.ImageHDU(header=w.to_header(), data=outimage/outweights, name='scaled'),
-      ]).writeto('data/maps/turtle-slits-{}.fits'.format(label), overwrite=True)
+      ]).writeto(f'data/{outdir}/turtle-slits-{label}.fits', overwrite=True)
 #+END_SRC
 
 
@@ -1134,7 +1142,29 @@ CLOSED: [2019-05-31 Fri 13:43]
   done
 #+END_SRC
 
-**** Look at some of the maps
+Extras to widen the range
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-extras.sh :eval no
+  ranges='+040+050 -100-090 -110-100'
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py ha $vrange
+      python scripts/turtle-spectral-map.py nii $vrange
+  done
+#+END_SRC
+
+And wider channels of 20 km/s
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-20.sh :eval no
+  ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
+  # blueranges='-030-010 -050-030 -070-050'
+  # farblueranges='-090-070 -110-090 -130-110'
+  # for vrange in $redranges $blueranges $farblueranges; do
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py ha $vrange maps20
+      python scripts/turtle-spectral-map.py nii $vrange maps20
+  done
+#+END_SRC
+
+
+*** Look at some of the maps
 Central velocities in Ha
 #+BEGIN_SRC sh :dir ../data/maps :results silent
 xpaset -p ds9 rgb red
@@ -1215,6 +1245,493 @@ xpaset -p ds9 rgb blue
 xpaset -p ds9 fits $PWD/turtle-slits-nii-070-060.fits[3]
 #+END_SRC
 
+
+** Multibinning
+#+BEGIN_SRC sh :results verbatim :dir ../data/maps
+  mdir=/Users/will/Dropbox/OrionWest
+  ranges='+030+040 +020+030 +010+020 +000+010 -010+000 -020-010 -030-020 -040-030 -050-040 -060-050 -070-060 -080-070 -090-080'
+  for vrange in $ranges -allvels; do
+      python $mdir/multibin-map.py turtle-slits-ha$vrange.fits
+      python $mdir/multibin-map.py turtle-slits-nii$vrange.fits
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-slits-ha+030+040-bin001.fits
+Saving turtle-slits-ha+030+040-bin002.fits
+Saving turtle-slits-ha+030+040-bin004.fits
+Saving turtle-slits-ha+030+040-bin008.fits
+Saving turtle-slits-ha+030+040-bin016.fits
+Saving turtle-slits-ha+030+040-bin032.fits
+Saving turtle-slits-ha+030+040-bin064.fits
+Saving turtle-slits-nii+030+040-bin001.fits
+Saving turtle-slits-nii+030+040-bin002.fits
+Saving turtle-slits-nii+030+040-bin004.fits
+Saving turtle-slits-nii+030+040-bin008.fits
+Saving turtle-slits-nii+030+040-bin016.fits
+Saving turtle-slits-nii+030+040-bin032.fits
+Saving turtle-slits-nii+030+040-bin064.fits
+Saving turtle-slits-ha+020+030-bin001.fits
+Saving turtle-slits-ha+020+030-bin002.fits
+Saving turtle-slits-ha+020+030-bin004.fits
+Saving turtle-slits-ha+020+030-bin008.fits
+Saving turtle-slits-ha+020+030-bin016.fits
+Saving turtle-slits-ha+020+030-bin032.fits
+Saving turtle-slits-ha+020+030-bin064.fits
+Saving turtle-slits-nii+020+030-bin001.fits
+Saving turtle-slits-nii+020+030-bin002.fits
+Saving turtle-slits-nii+020+030-bin004.fits
+Saving turtle-slits-nii+020+030-bin008.fits
+Saving turtle-slits-nii+020+030-bin016.fits
+Saving turtle-slits-nii+020+030-bin032.fits
+Saving turtle-slits-nii+020+030-bin064.fits
+Saving turtle-slits-ha+010+020-bin001.fits
+Saving turtle-slits-ha+010+020-bin002.fits
+Saving turtle-slits-ha+010+020-bin004.fits
+Saving turtle-slits-ha+010+020-bin008.fits
+Saving turtle-slits-ha+010+020-bin016.fits
+Saving turtle-slits-ha+010+020-bin032.fits
+Saving turtle-slits-ha+010+020-bin064.fits
+Saving turtle-slits-nii+010+020-bin001.fits
+Saving turtle-slits-nii+010+020-bin002.fits
+Saving turtle-slits-nii+010+020-bin004.fits
+Saving turtle-slits-nii+010+020-bin008.fits
+Saving turtle-slits-nii+010+020-bin016.fits
+Saving turtle-slits-nii+010+020-bin032.fits
+Saving turtle-slits-nii+010+020-bin064.fits
+Saving turtle-slits-ha+000+010-bin001.fits
+Saving turtle-slits-ha+000+010-bin002.fits
+Saving turtle-slits-ha+000+010-bin004.fits
+Saving turtle-slits-ha+000+010-bin008.fits
+Saving turtle-slits-ha+000+010-bin016.fits
+Saving turtle-slits-ha+000+010-bin032.fits
+Saving turtle-slits-ha+000+010-bin064.fits
+Saving turtle-slits-nii+000+010-bin001.fits
+Saving turtle-slits-nii+000+010-bin002.fits
+Saving turtle-slits-nii+000+010-bin004.fits
+Saving turtle-slits-nii+000+010-bin008.fits
+Saving turtle-slits-nii+000+010-bin016.fits
+Saving turtle-slits-nii+000+010-bin032.fits
+Saving turtle-slits-nii+000+010-bin064.fits
+Saving turtle-slits-ha-010+000-bin001.fits
+Saving turtle-slits-ha-010+000-bin002.fits
+Saving turtle-slits-ha-010+000-bin004.fits
+Saving turtle-slits-ha-010+000-bin008.fits
+Saving turtle-slits-ha-010+000-bin016.fits
+Saving turtle-slits-ha-010+000-bin032.fits
+Saving turtle-slits-ha-010+000-bin064.fits
+Saving turtle-slits-nii-010+000-bin001.fits
+Saving turtle-slits-nii-010+000-bin002.fits
+Saving turtle-slits-nii-010+000-bin004.fits
+Saving turtle-slits-nii-010+000-bin008.fits
+Saving turtle-slits-nii-010+000-bin016.fits
+Saving turtle-slits-nii-010+000-bin032.fits
+Saving turtle-slits-nii-010+000-bin064.fits
+Saving turtle-slits-ha-020-010-bin001.fits
+Saving turtle-slits-ha-020-010-bin002.fits
+Saving turtle-slits-ha-020-010-bin004.fits
+Saving turtle-slits-ha-020-010-bin008.fits
+Saving turtle-slits-ha-020-010-bin016.fits
+Saving turtle-slits-ha-020-010-bin032.fits
+Saving turtle-slits-ha-020-010-bin064.fits
+Saving turtle-slits-nii-020-010-bin001.fits
+Saving turtle-slits-nii-020-010-bin002.fits
+Saving turtle-slits-nii-020-010-bin004.fits
+Saving turtle-slits-nii-020-010-bin008.fits
+Saving turtle-slits-nii-020-010-bin016.fits
+Saving turtle-slits-nii-020-010-bin032.fits
+Saving turtle-slits-nii-020-010-bin064.fits
+Saving turtle-slits-ha-030-020-bin001.fits
+Saving turtle-slits-ha-030-020-bin002.fits
+Saving turtle-slits-ha-030-020-bin004.fits
+Saving turtle-slits-ha-030-020-bin008.fits
+Saving turtle-slits-ha-030-020-bin016.fits
+Saving turtle-slits-ha-030-020-bin032.fits
+Saving turtle-slits-ha-030-020-bin064.fits
+Saving turtle-slits-nii-030-020-bin001.fits
+Saving turtle-slits-nii-030-020-bin002.fits
+Saving turtle-slits-nii-030-020-bin004.fits
+Saving turtle-slits-nii-030-020-bin008.fits
+Saving turtle-slits-nii-030-020-bin016.fits
+Saving turtle-slits-nii-030-020-bin032.fits
+Saving turtle-slits-nii-030-020-bin064.fits
+Saving turtle-slits-ha-040-030-bin001.fits
+Saving turtle-slits-ha-040-030-bin002.fits
+Saving turtle-slits-ha-040-030-bin004.fits
+Saving turtle-slits-ha-040-030-bin008.fits
+Saving turtle-slits-ha-040-030-bin016.fits
+Saving turtle-slits-ha-040-030-bin032.fits
+Saving turtle-slits-ha-040-030-bin064.fits
+Saving turtle-slits-nii-040-030-bin001.fits
+Saving turtle-slits-nii-040-030-bin002.fits
+Saving turtle-slits-nii-040-030-bin004.fits
+Saving turtle-slits-nii-040-030-bin008.fits
+Saving turtle-slits-nii-040-030-bin016.fits
+Saving turtle-slits-nii-040-030-bin032.fits
+Saving turtle-slits-nii-040-030-bin064.fits
+Saving turtle-slits-ha-050-040-bin001.fits
+Saving turtle-slits-ha-050-040-bin002.fits
+Saving turtle-slits-ha-050-040-bin004.fits
+Saving turtle-slits-ha-050-040-bin008.fits
+Saving turtle-slits-ha-050-040-bin016.fits
+Saving turtle-slits-ha-050-040-bin032.fits
+Saving turtle-slits-ha-050-040-bin064.fits
+Saving turtle-slits-nii-050-040-bin001.fits
+Saving turtle-slits-nii-050-040-bin002.fits
+Saving turtle-slits-nii-050-040-bin004.fits
+Saving turtle-slits-nii-050-040-bin008.fits
+Saving turtle-slits-nii-050-040-bin016.fits
+Saving turtle-slits-nii-050-040-bin032.fits
+Saving turtle-slits-nii-050-040-bin064.fits
+Saving turtle-slits-ha-060-050-bin001.fits
+Saving turtle-slits-ha-060-050-bin002.fits
+Saving turtle-slits-ha-060-050-bin004.fits
+Saving turtle-slits-ha-060-050-bin008.fits
+Saving turtle-slits-ha-060-050-bin016.fits
+Saving turtle-slits-ha-060-050-bin032.fits
+Saving turtle-slits-ha-060-050-bin064.fits
+Saving turtle-slits-nii-060-050-bin001.fits
+Saving turtle-slits-nii-060-050-bin002.fits
+Saving turtle-slits-nii-060-050-bin004.fits
+Saving turtle-slits-nii-060-050-bin008.fits
+Saving turtle-slits-nii-060-050-bin016.fits
+Saving turtle-slits-nii-060-050-bin032.fits
+Saving turtle-slits-nii-060-050-bin064.fits
+Saving turtle-slits-ha-070-060-bin001.fits
+Saving turtle-slits-ha-070-060-bin002.fits
+Saving turtle-slits-ha-070-060-bin004.fits
+Saving turtle-slits-ha-070-060-bin008.fits
+Saving turtle-slits-ha-070-060-bin016.fits
+Saving turtle-slits-ha-070-060-bin032.fits
+Saving turtle-slits-ha-070-060-bin064.fits
+Saving turtle-slits-nii-070-060-bin001.fits
+Saving turtle-slits-nii-070-060-bin002.fits
+Saving turtle-slits-nii-070-060-bin004.fits
+Saving turtle-slits-nii-070-060-bin008.fits
+Saving turtle-slits-nii-070-060-bin016.fits
+Saving turtle-slits-nii-070-060-bin032.fits
+Saving turtle-slits-nii-070-060-bin064.fits
+Saving turtle-slits-ha-080-070-bin001.fits
+Saving turtle-slits-ha-080-070-bin002.fits
+Saving turtle-slits-ha-080-070-bin004.fits
+Saving turtle-slits-ha-080-070-bin008.fits
+Saving turtle-slits-ha-080-070-bin016.fits
+Saving turtle-slits-ha-080-070-bin032.fits
+Saving turtle-slits-ha-080-070-bin064.fits
+Saving turtle-slits-nii-080-070-bin001.fits
+Saving turtle-slits-nii-080-070-bin002.fits
+Saving turtle-slits-nii-080-070-bin004.fits
+Saving turtle-slits-nii-080-070-bin008.fits
+Saving turtle-slits-nii-080-070-bin016.fits
+Saving turtle-slits-nii-080-070-bin032.fits
+Saving turtle-slits-nii-080-070-bin064.fits
+Saving turtle-slits-ha-090-080-bin001.fits
+Saving turtle-slits-ha-090-080-bin002.fits
+Saving turtle-slits-ha-090-080-bin004.fits
+Saving turtle-slits-ha-090-080-bin008.fits
+Saving turtle-slits-ha-090-080-bin016.fits
+Saving turtle-slits-ha-090-080-bin032.fits
+Saving turtle-slits-ha-090-080-bin064.fits
+Saving turtle-slits-nii-090-080-bin001.fits
+Saving turtle-slits-nii-090-080-bin002.fits
+Saving turtle-slits-nii-090-080-bin004.fits
+Saving turtle-slits-nii-090-080-bin008.fits
+Saving turtle-slits-nii-090-080-bin016.fits
+Saving turtle-slits-nii-090-080-bin032.fits
+Saving turtle-slits-nii-090-080-bin064.fits
+Saving turtle-slits-ha-allvels-bin001.fits
+Saving turtle-slits-ha-allvels-bin002.fits
+Saving turtle-slits-ha-allvels-bin004.fits
+Saving turtle-slits-ha-allvels-bin008.fits
+Saving turtle-slits-ha-allvels-bin016.fits
+Saving turtle-slits-ha-allvels-bin032.fits
+Saving turtle-slits-ha-allvels-bin064.fits
+Saving turtle-slits-nii-allvels-bin001.fits
+Saving turtle-slits-nii-allvels-bin002.fits
+Saving turtle-slits-nii-allvels-bin004.fits
+Saving turtle-slits-nii-allvels-bin008.fits
+Saving turtle-slits-nii-allvels-bin016.fits
+Saving turtle-slits-nii-allvels-bin032.fits
+Saving turtle-slits-nii-allvels-bin064.fits
+#+end_example
+
+#+BEGIN_SRC sh :results verbatim :dir ../data/maps
+  mdir=/Users/will/Dropbox/OrionWest
+  ranges='+040+050 -100-090 -110-100'
+  for vrange in $ranges; do
+      python $mdir/multibin-map.py turtle-slits-ha$vrange.fits
+      python $mdir/multibin-map.py turtle-slits-nii$vrange.fits
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-slits-ha+040+050-bin001.fits
+Saving turtle-slits-ha+040+050-bin002.fits
+Saving turtle-slits-ha+040+050-bin004.fits
+Saving turtle-slits-ha+040+050-bin008.fits
+Saving turtle-slits-ha+040+050-bin016.fits
+Saving turtle-slits-ha+040+050-bin032.fits
+Saving turtle-slits-ha+040+050-bin064.fits
+Saving turtle-slits-nii+040+050-bin001.fits
+Saving turtle-slits-nii+040+050-bin002.fits
+Saving turtle-slits-nii+040+050-bin004.fits
+Saving turtle-slits-nii+040+050-bin008.fits
+Saving turtle-slits-nii+040+050-bin016.fits
+Saving turtle-slits-nii+040+050-bin032.fits
+Saving turtle-slits-nii+040+050-bin064.fits
+Saving turtle-slits-ha-100-090-bin001.fits
+Saving turtle-slits-ha-100-090-bin002.fits
+Saving turtle-slits-ha-100-090-bin004.fits
+Saving turtle-slits-ha-100-090-bin008.fits
+Saving turtle-slits-ha-100-090-bin016.fits
+Saving turtle-slits-ha-100-090-bin032.fits
+Saving turtle-slits-ha-100-090-bin064.fits
+Saving turtle-slits-nii-100-090-bin001.fits
+Saving turtle-slits-nii-100-090-bin002.fits
+Saving turtle-slits-nii-100-090-bin004.fits
+Saving turtle-slits-nii-100-090-bin008.fits
+Saving turtle-slits-nii-100-090-bin016.fits
+Saving turtle-slits-nii-100-090-bin032.fits
+Saving turtle-slits-nii-100-090-bin064.fits
+Saving turtle-slits-ha-110-100-bin001.fits
+Saving turtle-slits-ha-110-100-bin002.fits
+Saving turtle-slits-ha-110-100-bin004.fits
+Saving turtle-slits-ha-110-100-bin008.fits
+Saving turtle-slits-ha-110-100-bin016.fits
+Saving turtle-slits-ha-110-100-bin032.fits
+Saving turtle-slits-ha-110-100-bin064.fits
+Saving turtle-slits-nii-110-100-bin001.fits
+Saving turtle-slits-nii-110-100-bin002.fits
+Saving turtle-slits-nii-110-100-bin004.fits
+Saving turtle-slits-nii-110-100-bin008.fits
+Saving turtle-slits-nii-110-100-bin016.fits
+Saving turtle-slits-nii-110-100-bin032.fits
+Saving turtle-slits-nii-110-100-bin064.fits
+Saving turtle-slits-ha-allvels-bin001.fits
+Saving turtle-slits-ha-allvels-bin002.fits
+Saving turtle-slits-ha-allvels-bin004.fits
+Saving turtle-slits-ha-allvels-bin008.fits
+Saving turtle-slits-ha-allvels-bin016.fits
+Saving turtle-slits-ha-allvels-bin032.fits
+Saving turtle-slits-ha-allvels-bin064.fits
+Saving turtle-slits-nii-allvels-bin001.fits
+Saving turtle-slits-nii-allvels-bin002.fits
+Saving turtle-slits-nii-allvels-bin004.fits
+Saving turtle-slits-nii-allvels-bin008.fits
+Saving turtle-slits-nii-allvels-bin016.fits
+Saving turtle-slits-nii-allvels-bin032.fits
+Saving turtle-slits-nii-allvels-bin064.fits
+#+end_example
+
+#+BEGIN_SRC sh :results verbatim :dir ../data/maps20
+  mdir=/Users/will/Dropbox/OrionWest
+  ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
+  for vrange in $ranges; do
+      python $mdir/multibin-map.py turtle-slits-ha$vrange.fits
+      python $mdir/multibin-map.py turtle-slits-nii$vrange.fits
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-slits-ha+020+040-bin001.fits
+Saving turtle-slits-ha+020+040-bin002.fits
+Saving turtle-slits-ha+020+040-bin004.fits
+Saving turtle-slits-ha+020+040-bin008.fits
+Saving turtle-slits-ha+020+040-bin016.fits
+Saving turtle-slits-ha+020+040-bin032.fits
+Saving turtle-slits-ha+020+040-bin064.fits
+Saving turtle-slits-nii+020+040-bin001.fits
+Saving turtle-slits-nii+020+040-bin002.fits
+Saving turtle-slits-nii+020+040-bin004.fits
+Saving turtle-slits-nii+020+040-bin008.fits
+Saving turtle-slits-nii+020+040-bin016.fits
+Saving turtle-slits-nii+020+040-bin032.fits
+Saving turtle-slits-nii+020+040-bin064.fits
+Saving turtle-slits-ha+000+020-bin001.fits
+Saving turtle-slits-ha+000+020-bin002.fits
+Saving turtle-slits-ha+000+020-bin004.fits
+Saving turtle-slits-ha+000+020-bin008.fits
+Saving turtle-slits-ha+000+020-bin016.fits
+Saving turtle-slits-ha+000+020-bin032.fits
+Saving turtle-slits-ha+000+020-bin064.fits
+Saving turtle-slits-nii+000+020-bin001.fits
+Saving turtle-slits-nii+000+020-bin002.fits
+Saving turtle-slits-nii+000+020-bin004.fits
+Saving turtle-slits-nii+000+020-bin008.fits
+Saving turtle-slits-nii+000+020-bin016.fits
+Saving turtle-slits-nii+000+020-bin032.fits
+Saving turtle-slits-nii+000+020-bin064.fits
+Saving turtle-slits-ha-020+000-bin001.fits
+Saving turtle-slits-ha-020+000-bin002.fits
+Saving turtle-slits-ha-020+000-bin004.fits
+Saving turtle-slits-ha-020+000-bin008.fits
+Saving turtle-slits-ha-020+000-bin016.fits
+Saving turtle-slits-ha-020+000-bin032.fits
+Saving turtle-slits-ha-020+000-bin064.fits
+Saving turtle-slits-nii-020+000-bin001.fits
+Saving turtle-slits-nii-020+000-bin002.fits
+Saving turtle-slits-nii-020+000-bin004.fits
+Saving turtle-slits-nii-020+000-bin008.fits
+Saving turtle-slits-nii-020+000-bin016.fits
+Saving turtle-slits-nii-020+000-bin032.fits
+Saving turtle-slits-nii-020+000-bin064.fits
+Saving turtle-slits-ha-040-020-bin001.fits
+Saving turtle-slits-ha-040-020-bin002.fits
+Saving turtle-slits-ha-040-020-bin004.fits
+Saving turtle-slits-ha-040-020-bin008.fits
+Saving turtle-slits-ha-040-020-bin016.fits
+Saving turtle-slits-ha-040-020-bin032.fits
+Saving turtle-slits-ha-040-020-bin064.fits
+Saving turtle-slits-nii-040-020-bin001.fits
+Saving turtle-slits-nii-040-020-bin002.fits
+Saving turtle-slits-nii-040-020-bin004.fits
+Saving turtle-slits-nii-040-020-bin008.fits
+Saving turtle-slits-nii-040-020-bin016.fits
+Saving turtle-slits-nii-040-020-bin032.fits
+Saving turtle-slits-nii-040-020-bin064.fits
+Saving turtle-slits-ha-060-040-bin001.fits
+Saving turtle-slits-ha-060-040-bin002.fits
+Saving turtle-slits-ha-060-040-bin004.fits
+Saving turtle-slits-ha-060-040-bin008.fits
+Saving turtle-slits-ha-060-040-bin016.fits
+Saving turtle-slits-ha-060-040-bin032.fits
+Saving turtle-slits-ha-060-040-bin064.fits
+Saving turtle-slits-nii-060-040-bin001.fits
+Saving turtle-slits-nii-060-040-bin002.fits
+Saving turtle-slits-nii-060-040-bin004.fits
+Saving turtle-slits-nii-060-040-bin008.fits
+Saving turtle-slits-nii-060-040-bin016.fits
+Saving turtle-slits-nii-060-040-bin032.fits
+Saving turtle-slits-nii-060-040-bin064.fits
+Saving turtle-slits-ha-080-060-bin001.fits
+Saving turtle-slits-ha-080-060-bin002.fits
+Saving turtle-slits-ha-080-060-bin004.fits
+Saving turtle-slits-ha-080-060-bin008.fits
+Saving turtle-slits-ha-080-060-bin016.fits
+Saving turtle-slits-ha-080-060-bin032.fits
+Saving turtle-slits-ha-080-060-bin064.fits
+Saving turtle-slits-nii-080-060-bin001.fits
+Saving turtle-slits-nii-080-060-bin002.fits
+Saving turtle-slits-nii-080-060-bin004.fits
+Saving turtle-slits-nii-080-060-bin008.fits
+Saving turtle-slits-nii-080-060-bin016.fits
+Saving turtle-slits-nii-080-060-bin032.fits
+Saving turtle-slits-nii-080-060-bin064.fits
+Saving turtle-slits-ha-100-080-bin001.fits
+Saving turtle-slits-ha-100-080-bin002.fits
+Saving turtle-slits-ha-100-080-bin004.fits
+Saving turtle-slits-ha-100-080-bin008.fits
+Saving turtle-slits-ha-100-080-bin016.fits
+Saving turtle-slits-ha-100-080-bin032.fits
+Saving turtle-slits-ha-100-080-bin064.fits
+Saving turtle-slits-nii-100-080-bin001.fits
+Saving turtle-slits-nii-100-080-bin002.fits
+Saving turtle-slits-nii-100-080-bin004.fits
+Saving turtle-slits-nii-100-080-bin008.fits
+Saving turtle-slits-nii-100-080-bin016.fits
+Saving turtle-slits-nii-100-080-bin032.fits
+Saving turtle-slits-nii-100-080-bin064.fits
+#+end_example
+
+*** Combine multibin maps
+
+#+BEGIN_SRC python :tangle ../scripts/turtle-multibin-combine.py
+  import sys
+  from astropy.io import fits
+  import numpy as np
+  sys.path.append('/Users/will/Work/RubinWFC3/Tsquared')
+  from rebin_utils import oversample
+  from skimage.morphology import square
+  from skimage.filters.rank import modal
+
+
+  def minify(a, n):
+      return a[::n, ::n]
+
+
+  ELEMENT = square(3)
+  def cleanup_mask(mask, n):
+      """Eliminate small islands in the mask"""
+      m = minify(mask, n).astype(np.uint8)
+      m = m & modal(m, ELEMENT)
+      return oversample(m, n).astype(bool)
+
+      
+  try: 
+      prefix, minw_scale = sys.argv[1], float(sys.argv[2])
+  except:
+      print('Usage:', sys.argv[0], 'FITSFILE_PREFIX MINIMUM_WEIGHT [COARSE_WEIGHT]')
+      sys.exit()
+
+  try:
+      minw_coarse = float(sys.argv[3])
+  except IndexError:
+      minw_coarse = None
+
+  nlist = [1, 2, 4, 8, 16, 32, 64]
+  minweights = [0.5, 1.0, 2.0, 4.0, 8.0, 8.0, 8.0]
+  if minw_coarse is not None:
+      minweights[-1] = minw_coarse
+  outim = np.zeros((512, 512))
+  for n, minw in reversed(list(zip(nlist, minweights))):
+      fn = '{}-bin{:03d}.fits'.format(prefix, n)
+      hdulist = fits.open(fn)
+      im = hdulist['scaled'].data
+      hdr = hdulist['scaled'].header
+      w = hdulist['weight'].data
+      # m = cleanup_mask(w*im >= minw*minw_scale, n)
+      m = np.isfinite(w) & (w > 0.0) & np.isfinite(im) & (im > 0.0)
+      outim[m] = im[m]
+  fits.PrimaryHDU(header=hdr, data=outim).writeto(prefix + '-multibin.fits', overwrite=True)
+#+END_SRC
+
+#+BEGIN_SRC sh :results silent :dir ..
+ranges='+030+040 +020+030 +010+020 +000+010 -010+000 -020-010 -030-020 -040-030 -050-040 -060-050 -070-060 -080-070 -090-080'
+for vrange in $ranges -allvels; do
+    python scripts/turtle-multibin-combine.py data/maps/turtle-slits-ha$vrange 0.0001 0.0
+    python scripts/turtle-multibin-combine.py data/maps/turtle-slits-nii$vrange 0.0001 0.0
+done
+#+END_SRC
+
+
+And the extra ones
+#+BEGIN_SRC sh :results silent :dir ..
+ranges='+040+050 -100-090 -110-100'
+for vrange in $ranges; do
+    python scripts/turtle-multibin-combine.py data/maps/turtle-slits-ha$vrange 0.0001 0.0
+    python scripts/turtle-multibin-combine.py data/maps/turtle-slits-nii$vrange 0.0001 0.0
+done
+#+END_SRC
+
+#+BEGIN_SRC sh :results silent :dir ..
+ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
+for vrange in $ranges; do
+    python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-ha$vrange 0.0001 0.0
+    python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-nii$vrange 0.0001 0.0
+done
+#+END_SRC
+
+*** Load PV images into ds9
+
+
+After doing "copy" on the contours we want, we can put them on each frame as follows:
+#+begin_src sh :results silent
+  xpaset -p ds9 contour paste wcs red 1
+  xpaset -p ds9 frame next
+#+end_src
+
+The ds9 save files are:
++ [[file:~/Dropbox/Teresa-Turtle/data/maps/turtle-ha-maps.bck]]
++ [[file:~/Dropbox/Teresa-Turtle/data/maps/turtle-nii-maps.bck]]
+
+Figures are in
++ [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot%20turtle-ha-maps.png]]
++ [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot%20turtle-nii-maps.png]]
+
+
 ** Utility functions
 :PROPERTIES:
 :header-args: :tangle ../scripts/turtle_utils.py
@@ -1223,7 +1740,6 @@ xpaset -p ds9 fits $PWD/turtle-slits-nii-070-060.fits[3]
 
 + Mainly copied from the Owl Nebula's [[id:D65007F8-669F-441C-9FD5-3AEF8BEA4705][Utility functions]]
 + Do ~C-u C-u C-c C-v C-t~ to tangle all blocks into the module ~turtle_utils.py~ in the [[file:../scripts/]] folder
-
 
 *** Imports
 #+BEGIN_SRC python
