@@ -184,22 +184,24 @@ def extract_full_profile_from_pv(spec_hdu, wavaxis, bandwidth, linedict):
 
     # im should have wavelength as last axis (python convention)
     assert(nwav == im.shape[-1])
+    full_profile = im.sum(axis=-1)
 
-    wavmask = np.ones((nwav,)).astype(bool)
-    # remove from continuum mask +/- 150 km/s around each line
-    for lineid, wav0 in linedict.items():
-        vels = 3e5*(wavs - wav0)/wav0
-        wavmask = wavmask & (np.abs(vels) > 150.0)
+    if bandwidth is not None:
+        wavmask = np.ones((nwav,)).astype(bool)
+        # remove from continuum mask +/- 150 km/s around each line
+        for lineid, wav0 in linedict.items():
+            vels = 3e5*(wavs - wav0)/wav0
+            wavmask = wavmask & (np.abs(vels) > 150.0)
 
-    # broadcast to 2 dimensions
-    imwts = np.ones_like(im)*wavmask[None, :]
-    av_cont_profile = np.average(im, weights=imwts, axis=-1)
-    # find how much extra continuum to add
-    dwav = abs(wavs[1] - wavs[0])
-    pv_bw = abs(wavs[-1] - wavs[0])
-    missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
-    # Add to the profile summed over the PV bandwidth
-    full_profile = im.sum(axis=-1) + missing_cont_profile
+        # broadcast to 2 dimensions
+        imwts = np.ones_like(im)*wavmask[None, :]
+        av_cont_profile = np.average(im, weights=imwts, axis=-1)
+        # find how much extra continuum to add
+        dwav = abs(wavs[1] - wavs[0])
+        pv_bw = abs(wavs[-1] - wavs[0])
+        missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
+        # Add to the profile summed over the PV bandwidth
+        full_profile += missing_cont_profile
     return full_profile
 
 
@@ -257,8 +259,8 @@ def extract_line_and_regularize(data, wcs, wavrest, db,
     bslice = wavs2slice([wavrest-dwbg_out/2, wavrest-dwbg_in/2], wcs, db)
     rslice = wavs2slice([wavrest+dwbg_in/2, wavrest+dwbg_out/2], wcs, db)
     # extract backgrounds on blue and red sides
-    bgblu = data[:, bslice].mean(axis=1)
-    bgred = data[:, rslice].mean(axis=1)
+    bgblu = np.nanmean(data[:, bslice], axis=1)
+    bgred = np.nanmean(data[:, rslice], axis=1)
     # take weighted average, accounting for cases where the bg region
     # does not fit in the image
     weight_blu = data[:, bslice].size
@@ -357,7 +359,7 @@ def fit_cheb(x, y, npoly=3, mask=None):
     return p(x)
 
 def make_three_plots(spec, calib, prefix,
-                     slit_points=None, niirat=None, neighbors=None, db=None, sdb=None):
+                     slit_points=None, niirat=None, neighbors=None, db=None, sdb=None, linelabel="H$\alpha$"):
     assert spec.shape == calib.shape
     fig, axes = plt.subplots(3, 1)
 
@@ -428,7 +430,7 @@ def make_three_plots(spec, calib, prefix,
     info = ""
     if db is not None:
         # Add some info to the graphs
-        info += fr"H$\alpha$ slit {db['id']:02d}" + "\n"
+        info += fr"{linelabel} slit {db['id']:02d}" + "\n"
         info += f"PV: {db['spec']}" +"\n"
         info += f"I+S: {db['imslit']}" + "\n"
         info += f"Date: {db['run']}, t = {db['t']} s" + "\n"
@@ -441,5 +443,6 @@ def make_three_plots(spec, calib, prefix,
     fig.set_size_inches(5, 8)
     fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
     fig.savefig(prefix+'.png', dpi=300)
+    plt.close(fig)
 
     return None

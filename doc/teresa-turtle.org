@@ -345,6 +345,61 @@ But with 4 it is because the plate scale is smaller
       solve-field --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.3 --scale-high 0.4 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e6 --quad-size-min 0.03 --code-tol 0.01
   done
 #+end_src
+
++ [2019-06-04 Tue 18:20] Got extra file from Tere that was missing ~spm116-2~
+  + I need to remove the bias myself
+    + Measured to be median of 856
+  + Also needed to remove cosmic rays in order for astrometry to work
+    + All sorted now
+
+
+Remove bias from file
+
+#+begin_src python :results output :dir ~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  from astropy.io import fits
+  hdulist = fits.open("spm116-2.fits")
+  hdulist.info()
+  hdu = hdulist[0]
+  hdu.data = hdu.data.astype(float) - 856
+  hdu.writeto("spm116-2_b.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: Filename: spm116-2.fits
+: No.    Name      Ver    Type      Cards   Dimensions   Format
+:   0  PRIMARY       1 PrimaryHDU      30   (1076, 1024)   int16   
+
+Remove cosmic rays 
+#+begin_src python :results output :dir ~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  from astropy.io import fits
+  from astroscrappy import detect_cosmics
+  hdulist = fits.open("spm116-2_b.fits")
+  hdulist.info()
+  hdu = hdulist[0]
+  mask, newdata = detect_cosmics(hdu.data)
+  hdu.data = newdata
+  hdu.writeto("spm116-2_bcr.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: Filename: spm116-2_b.fits
+: No.    Name      Ver    Type      Cards   Dimensions   Format
+:   0  PRIMARY       1 PrimaryHDU      30   (1076, 1024)   float64   
+
+
+
+#+name: imslit-missed
++ spm116-2_bcr
+#+header: :var files=imslit-missed
+#+begin_src sh :tangle ../scripts/solve-astrometry-imslit-varias-missed.sh :eval no
+  D=~/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas
+  for f in ${files[*]}; do
+      solve-field -v --ra 251.1230 --dec 23.7999 --radius 0.1 --scale-units arcsecperpix --scale-low 0.3 --scale-high 0.7 --dir . --new-fits '%s-wcs.fits' --no-tweak --overwrite $D/${f}.fits --odds-to-solve 1e2 --code-tol 0.03
+  done
+#+end_src
+
+This finally worked
+
 *** DONE Combining the image + slits
 CLOSED: [2019-05-28 Tue 08:57]
 + We do this separately for [O III] and Ha+[N II]
@@ -580,35 +635,31 @@ This should be run from top-level folder
 | spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |  1 |
 | spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |  1 |
 **** [O III] positions
-
++ Now including short exposures as well because some of the long ones are saturated
 #+name: pos-oiii
-| spec    | imslit     |     run |    t | wa | islit | ij |
-|---------+------------+---------+------+----+-------+----|
-| spm244  | spm242_bcr | 2004-06 | 1800 |  1 |   275 |  1 |
-| spm253  | spm251_bcr | 2004-06 | 1800 |  1 |   280 |  1 |
-| spm258  | spm256_bcr | 2004-06 | 1800 |  1 |   285 |  1 |
-| spm294  | spm293_bcr | 2004-06 | 1800 |  1 |   262 |  1 |
-| spm297  | spm296_bcr | 2004-06 | 1800 |  1 |   265 |  1 |
-| spm114  | spm115_bcr | 2011-05 |  600 |  2 | 263.5 |  1 |
-| spm0033 | spm0035o_b | 2015-08 |  900 |  2 |   485 |  2 |
-| spm0039 | spm0041o_b | 2015-08 |  900 |  2 |   482 |  2 |
-| spm0045 | spm0047o_b | 2015-08 |  900 |  2 |   479 |  2 |
-| spm0051 | spm0053o_b | 2015-08 |  900 |  2 |   476 |  2 |
-| spm0059 | spm0061o_b | 2015-08 |  900 |  2 |   475 |  2 |
-| spm0112 | spm0114o_b | 2015-08 | 1200 |  2 |   486 |  2 |
-| spm0118 | spm0120o_b | 2015-08 | 1800 |  2 | 479.5 |  2 |
-| spm0126 | spm0128o_b | 2015-08 | 1200 |  2 | 476.5 |  2 |
-| spm0175 | spm0177o_b | 2015-08 |  900 |  2 | 489.5 |  2 |
-| spm0181 | spm0183o_b | 2015-08 | 1800 |  2 |   482 |  2 |
-| spm0188 | spm0190o_b | 2015-08 | 1800 |  2 |   512 |  2 |
+| spec              | imslit       |     run |    t | wa | islit | ij |  s |
+|-------------------+--------------+---------+------+----+-------+----+----|
+| spm243-244_bcrx   | spm242_bcr   | 2004-06 |  120 |  1 |   275 |  1 |  1 |
+| spm252_bcrx       | spm251_bcr   | 2004-06 |  120 |  1 |   280 |  1 |  1 |
+| spm257_bcrx       | spm256_bcr   | 2004-06 |  120 |  1 |   285 |  1 |  1 |
+| spm244_bcrx       | spm242_bcr   | 2004-06 | 1800 |  1 |   275 |  1 |  1 |
+| spm253_bcrx       | spm251_bcr   | 2004-06 | 1800 |  1 |   280 |  1 |  1 |
+| spm258_bcrx       | spm256_bcr   | 2004-06 | 1800 |  1 |   285 |  1 |  1 |
+| spm294_bcrx_oiii  | spm293_bcr   | 2004-06 | 1800 |  1 |   262 |  1 |  1 |
+| spm297_bcrx       | spm296_bcr   | 2004-06 | 1800 |  1 |   265 |  1 |  1 |
+| spm114_bcrx_oiii  | spm116-2_bcr | 2011-05 |  600 |  2 |   532 |  2 |  1 |
+| spm0033_bcrx_oiii | spm0035o_b   | 2015-08 |  900 |  2 |   485 |  2 |  1 |
+| spm0039_bcrx_oiii | spm0041o_b   | 2015-08 |  900 |  2 |   482 |  2 |  1 |
+| spm0045o_bcrx     | spm0047o_b   | 2015-08 |  900 |  2 |   479 |  2 |  1 |
+| spm0051_bcrx_oiii | spm0053o_b   | 2015-08 |  900 |  2 |   476 |  2 |  1 |
+| spm0059_oiii      | spm0061o_b   | 2015-08 |  900 |  1 |   475 |  2 | -1 |
+| spm0112_bcrx_oiii | spm0114o_b   | 2015-08 | 1200 |  2 |   486 |  2 |  1 |
+| spm0118_bcrx_oiii | spm0120o_b   | 2015-08 | 1800 |  2 | 479.5 |  2 |  1 |
+| spm0126_bcrx_oiii | spm0128o_b   | 2015-08 | 1200 |  2 | 476.5 |  2 |  1 |
+| spm0175o_bcrx     | spm0177o_b   | 2015-08 |  900 |  2 | 489.5 |  2 |  1 |
+| spm0181_bcrx_oiii | spm0183o_b   | 2015-08 | 1800 |  2 |   482 |  2 |  1 |
+| spm0188_oiii      | spm0190o_b   | 2015-08 | 1800 |  1 |   512 |  2 | -1 |
 
-**** [O III] short exposures
-| spec       | imslit |     run |   t | wa | islit | ij |
-|------------+--------+---------+-----+----+-------+----|
-| spm243-244 | spm242 | 2004-06 | 120 |  1 |   275 |  1 |
-| spm252     | spm251 | 2004-06 | 120 |  1 |   280 |  1 |
-| spm257     | spm256 | 2004-06 | 120 |  1 |   285 |  1 |
-|            |        |         |     |    |       |    |
 **** [S II] exposure
 | spec   | imslit |     run |    t | wa | islit | ij |
 |--------+--------+---------+------+----+-------+----|
@@ -883,13 +934,213 @@ CLOSED: [2019-05-31 Fri 13:43]
     | 12 | spm224_bcrx | 63000 | 320 | 338 |
     | 13 | spm230_bcrx | 63000 | 240 | 258 |
     | 14 | spm329_bcrx | 63000 | 313 | 330 |
-  + All are from 2003 with 1800 s exposures
+    + All are from 2003 with 1800 s exposures
+  + Saturated [O III] exposures
+    + spm244, spm253
 + [ ] Try to deal better with the halo rings  
 
 
 
 
 
+
+*** Do the same for [O III]
+#+begin_src python :tangle ../scripts/compare-slit-profiles-oiii.py
+  import os
+  import sys
+  import numpy as np
+  import astropy
+  from astropy.table import Table, Row, hstack
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.wcs.utils import pixel_to_skycoord
+  from astropy import units as u
+  from astropy.coordinates import SkyCoord
+  import seaborn as sns
+  import turtle_utils
+  from turtle_utils import (
+      slit_profile,
+      extract_full_profile_from_pv,
+      extract_slit_profile_from_imslit,
+      get_orig_folder,
+      find_slit_coords,
+      subtract_sky_and_trim,
+      make_three_plots,
+      extract_line_and_regularize,
+      make_slit_wcs,
+  )
+
+  try:
+      choice = int(sys.argv[1])
+  except:
+      choice = None
+
+  restwavs = {'oiii': 5006.84,}
+
+  # Position of star
+  RA0, Dec0 = 251.122998321, 23.7998586853
+
+  saturation = 6e4
+
+
+  sns.set_palette('RdPu_d', 3)
+
+  table1 = Table.read('data/oiii-slits.tab', format="ascii.tab")
+  table2 =  Table.read('data/align-oiii.tab', format="ascii.tab")
+  # The align-ha table takes precedence if islit has been modified
+  table1.remove_column("islit")
+  # We already have spec in the ha-slits table
+  table2.remove_column("spec") 
+  table = hstack([table1, table2], join_type="exact")
+
+
+
+  # Photometric reference image
+  photom, = fits.open('data/imslit-oiii/imslit-median.fits')
+  wphot = WCS(photom.header)
+  turtle_utils.VERBOSE = 1
+  neighbors = [-2, -1, 1, 2]
+  for row in table:
+      if choice is not None and row["id"] != choice:
+          # If we asked for a single spectrum, then skip all others
+          continue
+      spec_hdu, = fits.open(get_orig_folder(row["run"]) + "/" + row["spec"] + ".fits")
+      im_hdu, = fits.open("data/imslit/" + row["imslit"] + "-wcs.fits")
+      # Mask out saturated pixels with NaN
+      spec_hdu.data[spec_hdu.data > saturation] = np.nan
+      # trim the edge or arrays since sometimes the outer pixels contain garbage
+      spec_hdu.data = subtract_sky_and_trim(spec_hdu.data, row)
+      spec_profile = extract_full_profile_from_pv(
+          spec_hdu,
+          wavaxis=row["wa"],
+          bandwidth=None,
+          linedict=restwavs)
+      imslit_profile = extract_slit_profile_from_imslit(im_hdu.data, row)
+      print(row)
+      jslit = np.arange(len(spec_profile))
+      # jslit0_spec = np.average(jslit, weights=spec_profile)
+      # jslit0_imslit = np.average(jslit, weights=imslit_profile)
+      # 
+      # 
+      if row["j0_s"] >= 0:
+          jslit0_spec = row["j0_s"]
+          jslit0_imslit = row["j0_i"]
+      else:
+          # First time around, slit alignment with image is not yet determined
+          # So just look for maxima in profiles as a first guess
+          jslit0_spec = np.nanargmax(spec_profile)
+          jslit0_imslit = np.nanargmax(imslit_profile)
+          row["shift"] = jslit0_spec - jslit0_imslit
+      print(jslit0_spec, jslit0_imslit, 'shift =', row["shift"])
+      slit_coords = find_slit_coords(row, im_hdu.header, spec_hdu.header)
+      calib_profile = slit_profile(slit_coords['RA'], slit_coords['Dec'],
+                                   photom.data, wphot)
+
+
+      # Look at neighboring slit positions
+      nb_calib_profiles = {}
+      for nb in neighbors:
+          nbrow = Table(row)[0]   # This is the trick to get a copy of the row
+          nbrow["islit"] += nb
+          nb_slit_coords = find_slit_coords(nbrow, im_hdu.header, spec_hdu.header)
+          nb_calib_profiles[nb] = slit_profile(
+              nb_slit_coords['RA'], nb_slit_coords['Dec'], photom.data, wphot)
+
+
+      # Offset in arcsec along the slit
+      slit_points = (np.arange(len(spec_profile)) - jslit0_spec)*slit_coords["ds"]
+      # Extra correction for bg from pixels > 60 arcsec from peak
+      bg_mask = np.abs(np.abs(slit_points) - 60.0) < 10.0
+      if np.any(bg_mask):
+          bg_correction = np.mean(spec_profile[bg_mask])
+      else:
+          # If the slit is not long enough, just take the pixels near the ends
+          bg_correction = (spec_profile[:5].mean() + spec_profile[-5:].mean())/2.0
+      spec_profile -= bg_correction
+
+      # Take a window about profile peak to normalize spec_profile
+      jslice0 = slice(jslit0_spec-10, jslit0_spec+10)
+      # propagate saturated pixels to the calibration profile
+      calib_profile_nan = calib_profile.copy()
+      calib_profile_nan[~np.isfinite(spec_profile)] = np.nan
+      rat0 = np.nansum(spec_profile[jslice0])/np.nansum(calib_profile_nan[jslice0])
+      print('Coarse calibration: ratio =', rat0)
+      spec_profile /= rat0
+
+
+      # Make a figure comparing the profiles
+      plt_prefix = f"figs/{row.index:03d}-calib-oiii"
+      ratio = make_three_plots(spec_profile, calib_profile, plt_prefix,
+                               slit_points=slit_points,
+                               neighbors=nb_calib_profiles,
+                               db=row, sdb=slit_coords, linelabel="[O III]")
+
+      # Write out the flux-calibrated spectra
+      spec_hdu.data -= bg_correction
+      spec_hdu.data /= rat0
+      save_prefix = f"data/pvextract-oiii/{row.index:03d}-{row['spec']}"
+      # The default header has minimal changes from the original
+      pvheader = fits.Header(spec_hdu.header, copy=True)
+
+      for lineid, wav0 in restwavs.items():
+          pvdata, contdata, wavs = extract_line_and_regularize(
+              spec_hdu.data, WCS(spec_hdu.header), wav0, row,
+              dw=4.0, dwbg_in=3.0, dwbg_out=4.0)
+          pvdata = pvdata[None, :, :]
+          contdata = contdata[None, :, :]
+
+          # Create a fancy WCS object for slit coordinates (and a simple one too)
+          wslit, wsimp = make_slit_wcs(row, slit_coords, wavs, jslit0_spec)
+          # Set the rest wavelength for this line
+          wslit.wcs.restwav = (wav0*u.Angstrom).to(u.m).value
+          pvheader.update(wsimp.to_header())
+          pvheader.update(wslit.to_header(key='A'))
+          pvheader['WEIGHT'] = rat0
+
+          pvfile = f"{save_prefix}-{lineid}.fits"
+          fits.PrimaryHDU(header=pvheader,
+                          data=pvdata).writeto(pvfile, overwrite=True)
+          fits.PrimaryHDU(header=pvheader,
+                          data=contdata).writeto(pvfile.replace(".fits",
+                                                                "-cont.fits"),
+                                                 overwrite=True)
+#+end_src
+
+#+RESULTS:
+
+First run through, try to determine j0_s, j0_i, and shift automatically
+
+#+name: align-oiii
+| id | spec              | islit | j0_s | j0_i | shift |
+|----+-------------------+-------+------+------+-------|
+| 00 | spm243-244_bcrx   |   275 |  368 |  316 |    52 |
+| 01 | spm252_bcrx       |   280 |  363 |  308 |    55 |
+| 02 | spm257_bcrx       |   285 |  329 |  271 |    58 |
+| 03 | spm244_bcrx       |   275 |  355 |  304 |    51 |
+| 04 | spm253_bcrx       |   280 |  360 |  304 |    56 |
+| 05 | spm258_bcrx       |   285 |  330 |  271 |    59 |
+| 06 | spm294_bcrx_oiii  |   262 |  133 |  238 |  -105 |
+| 07 | spm297_bcrx       |   265 |  292 |  244 |    48 |
+| 08 | spm114_bcrx_oiii  |   533 |   81 |  600 |  -519 |
+| 09 | spm0033_bcrx_oiii | 485.5 |  200 |  444 |  -244 |
+| 10 | spm0039_bcrx_oiii |   481 |  197 |  446 |  -249 |
+| 11 | spm0045o_bcrx     |   479 |  323 |  447 |  -124 |
+| 12 | spm0051_bcrx_oiii |   476 |  196 |  446 |  -250 |
+| 13 | spm0059_oiii      |   475 |  168 |  418 |  -250 |
+| 14 | spm0112_bcrx_oiii |   486 |  212 |  532 |  -320 |
+| 15 | spm0118_bcrx_oiii |   482 |  221 |  548 |  -327 |
+| 16 | spm0126_bcrx_oiii | 476.5 |  218 |  541 |  -323 |
+| 17 | spm0175o_bcrx     | 489.5 |  410 |  529 |  -119 |
+| 18 | spm0181_bcrx_oiii |   480 |  215 |  536 |  -321 |
+| 19 | spm0188_oiii      |   508 |  176 |  502 |  -326 |
+#+TBLFM: $6=$4 - $5
+
+#+call: save-slit-table(align-oiii, "align-oiii.tab")
+
+#+RESULTS:
+[[file:../data/align-oiii.tab]]
+
++ 00 - j0_i 308 \to 318 and islit 275 \to 273
 ** Test the heliocentric correction machinery
 + This is completely re-implemented using astropy.coordinates instead of pyslalib.slalib
 + These are largely similar to Teresa's values, but there are differences of up to 0.5 km/s
@@ -1002,12 +1253,18 @@ CLOSED: [2019-05-31 Fri 13:43]
       outdir = sys.argv[3]
   except IndexError:
       outdir = "maps"
-    
+
 
   def waves2pixels(waves, w):
       n = len(waves)
       pixels, _, _ = w.all_world2pix(waves, [RA0]*n, [Dec0]*n, 0)
       return pixels.astype(int)
+
+  datadir_dict = {
+      # special cases
+      "oiii": "data/pvextract-oiii",
+  }
+  datadir = datadir_dict.get(line_id, "data/pvextract")
 
   # First set up WCS for the output image
   #
@@ -1028,10 +1285,10 @@ CLOSED: [2019-05-31 Fri 13:43]
   outweights = np.zeros((NY, NX))
 
   # Use a slightly wider slit than is strictly accurate 
-  slit_width = 2.0                
+  slit_width = 1.0                
   slit_pix_width = slit_width/pixel_scale
 
-  speclist = glob.glob(f'data/pvextract/*-{line_id}.fits')
+  speclist = glob.glob(f'{datadir}/*-{line_id}.fits')
 
   # Window widths for line and BG
   dwline = 7.0*u.Angstrom
@@ -1164,6 +1421,19 @@ And wider channels of 20 km/s
 #+END_SRC
 
 
+And [O III]
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-oiii-20.sh :eval no
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
+  # blueranges='-030-010 -050-030 -070-050'
+  # farblueranges='-090-070 -110-090 -130-110'
+  # for vrange in $redranges $blueranges $farblueranges; do
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py oiii $vrange maps-oiii-20
+  done
+#+END_SRC
+
+
+
 *** Look at some of the maps
 Central velocities in Ha
 #+BEGIN_SRC sh :dir ../data/maps :results silent
@@ -1244,6 +1514,41 @@ xpaset -p ds9 fits $PWD/turtle-slits-nii-060-050.fits[3]
 xpaset -p ds9 rgb blue
 xpaset -p ds9 fits $PWD/turtle-slits-nii-070-060.fits[3]
 #+END_SRC
+
+
+Central velocities in [O III] - 20 km/s channels
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-020+000.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-040-020.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-060-040.fits[3]
+#+END_SRC
+
+Blue velocities in [O III] - 20 km/s channels
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-080-060.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-100-080.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-120-100.fits[3]
+#+END_SRC
+
+Red velocities in [O III] - 20 km/s channels
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+040+060.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+020+040.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+000+020.fits[3]
+#+END_SRC
+
 
 
 ** Multibinning
@@ -1636,6 +1941,81 @@ Saving turtle-slits-nii-100-080-bin032.fits
 Saving turtle-slits-nii-100-080-bin064.fits
 #+end_example
 
+#+BEGIN_SRC sh :results verbatim :dir ../data/maps-oiii-20
+  mdir=/Users/will/Dropbox/OrionWest
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
+  for vrange in $ranges; do
+      python $mdir/multibin-map.py turtle-slits-oiii$vrange.fits
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-slits-oiii+040+060-bin001.fits
+Saving turtle-slits-oiii+040+060-bin002.fits
+Saving turtle-slits-oiii+040+060-bin004.fits
+Saving turtle-slits-oiii+040+060-bin008.fits
+Saving turtle-slits-oiii+040+060-bin016.fits
+Saving turtle-slits-oiii+040+060-bin032.fits
+Saving turtle-slits-oiii+040+060-bin064.fits
+Saving turtle-slits-oiii+020+040-bin001.fits
+Saving turtle-slits-oiii+020+040-bin002.fits
+Saving turtle-slits-oiii+020+040-bin004.fits
+Saving turtle-slits-oiii+020+040-bin008.fits
+Saving turtle-slits-oiii+020+040-bin016.fits
+Saving turtle-slits-oiii+020+040-bin032.fits
+Saving turtle-slits-oiii+020+040-bin064.fits
+Saving turtle-slits-oiii+000+020-bin001.fits
+Saving turtle-slits-oiii+000+020-bin002.fits
+Saving turtle-slits-oiii+000+020-bin004.fits
+Saving turtle-slits-oiii+000+020-bin008.fits
+Saving turtle-slits-oiii+000+020-bin016.fits
+Saving turtle-slits-oiii+000+020-bin032.fits
+Saving turtle-slits-oiii+000+020-bin064.fits
+Saving turtle-slits-oiii-020+000-bin001.fits
+Saving turtle-slits-oiii-020+000-bin002.fits
+Saving turtle-slits-oiii-020+000-bin004.fits
+Saving turtle-slits-oiii-020+000-bin008.fits
+Saving turtle-slits-oiii-020+000-bin016.fits
+Saving turtle-slits-oiii-020+000-bin032.fits
+Saving turtle-slits-oiii-020+000-bin064.fits
+Saving turtle-slits-oiii-040-020-bin001.fits
+Saving turtle-slits-oiii-040-020-bin002.fits
+Saving turtle-slits-oiii-040-020-bin004.fits
+Saving turtle-slits-oiii-040-020-bin008.fits
+Saving turtle-slits-oiii-040-020-bin016.fits
+Saving turtle-slits-oiii-040-020-bin032.fits
+Saving turtle-slits-oiii-040-020-bin064.fits
+Saving turtle-slits-oiii-060-040-bin001.fits
+Saving turtle-slits-oiii-060-040-bin002.fits
+Saving turtle-slits-oiii-060-040-bin004.fits
+Saving turtle-slits-oiii-060-040-bin008.fits
+Saving turtle-slits-oiii-060-040-bin016.fits
+Saving turtle-slits-oiii-060-040-bin032.fits
+Saving turtle-slits-oiii-060-040-bin064.fits
+Saving turtle-slits-oiii-080-060-bin001.fits
+Saving turtle-slits-oiii-080-060-bin002.fits
+Saving turtle-slits-oiii-080-060-bin004.fits
+Saving turtle-slits-oiii-080-060-bin008.fits
+Saving turtle-slits-oiii-080-060-bin016.fits
+Saving turtle-slits-oiii-080-060-bin032.fits
+Saving turtle-slits-oiii-080-060-bin064.fits
+Saving turtle-slits-oiii-100-080-bin001.fits
+Saving turtle-slits-oiii-100-080-bin002.fits
+Saving turtle-slits-oiii-100-080-bin004.fits
+Saving turtle-slits-oiii-100-080-bin008.fits
+Saving turtle-slits-oiii-100-080-bin016.fits
+Saving turtle-slits-oiii-100-080-bin032.fits
+Saving turtle-slits-oiii-100-080-bin064.fits
+Saving turtle-slits-oiii-120-100-bin001.fits
+Saving turtle-slits-oiii-120-100-bin002.fits
+Saving turtle-slits-oiii-120-100-bin004.fits
+Saving turtle-slits-oiii-120-100-bin008.fits
+Saving turtle-slits-oiii-120-100-bin016.fits
+Saving turtle-slits-oiii-120-100-bin032.fits
+Saving turtle-slits-oiii-120-100-bin064.fits
+#+end_example
+
 *** Combine multibin maps
 
 #+BEGIN_SRC python :tangle ../scripts/turtle-multibin-combine.py
@@ -1714,13 +2094,52 @@ for vrange in $ranges; do
 done
 #+END_SRC
 
+#+BEGIN_SRC sh :results silent :dir ..
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
+for vrange in $ranges; do
+    python scripts/turtle-multibin-combine.py data/maps-oiii-20/turtle-slits-oiii$vrange 0.0001 0.0
+done
+#+END_SRC
+
 *** Load PV images into ds9
+
+Central velocities in [O III] - 20 km/s channels
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-020+000-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-040-020-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-060-040-multibin.fits
+#+END_SRC
+
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-080-060-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-100-080-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-120-100-multibin.fits
+#+END_SRC
+
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+040+060-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+020+040-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+000+020-multibin.fits
+#+END_SRC
 
 
 After doing "copy" on the contours we want, we can put them on each frame as follows:
 #+begin_src sh :results silent
-  xpaset -p ds9 contour paste wcs red 1
-  xpaset -p ds9 frame next
+  DS9=velmaps
+  xpaset -p $DS9 contour paste wcs red 1
+  xpaset -p $DS9 frame next
 #+end_src
 
 The ds9 save files are:
@@ -1730,6 +2149,50 @@ The ds9 save files are:
 Figures are in
 + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot%20turtle-ha-maps.png]]
 + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot%20turtle-nii-maps.png]]
+
+
+*** Load up PV images of [O III] results
+
+Use a dedicated DS9 instance
+#+begin_src sh :results silent
+  open -n -a SAOImageDS9 --args -title velmaps
+#+end_src
+
++ This gets 9 isovel images with 20 km/s width
+  + It labels each with the v range
+  + And adds the contours of the median image
+#+begin_src sh :results silent :dir ../data/maps-oiii-20 
+  DS9=velmaps
+  ranges='-120-100 -100-080 -080-060 -060-040 -040-020 -020+000 +000+020 +020+040 +040+060'
+  for vrange in $ranges; do
+      xpaset -p $DS9 frame new
+      xpaset -p $DS9 contour no
+      xpaset -p $DS9 fits $PWD/turtle-slits-oiii${vrange}-multibin.fits
+      xpaset -p $DS9 contour paste wcs red 1
+      echo "fk5; text 16:44:28.9973 +23:47:38.458 # color=black text={$vrange}" | xpaset $DS9 regions
+  done
+#+end_src
+
+#+begin_src sh :results silent :dir ../data/maps-oiii-20 
+  DS9=velmaps
+  xpaset -p $DS9 frame new
+  xpaset -p $DS9 contour no
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-040-020.fits[1]
+  xpaset -p $DS9 contour paste wcs red 1
+#+end_src
+
+
+**** Get an HST image for comparison
+Teresa has some that are suitable, but we want to rescale it to make it more easily compared with our own images (divide by 15 for [O III] should put it on same scale as our median image)
+#+begin_src python :results silent :dir ../data
+  from astropy.io import fits
+
+  hdu = fits.open("/Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/astrodrizzled/oiii-ene2008-original.fits")["SCI"]
+
+  hdu.data /= 15.0
+
+  hdu.writeto("hst-oiii-ene2008-rescaled.fits", overwrite=True)
+#+end_src
 
 
 ** Utility functions
@@ -1973,22 +2436,24 @@ We assume that we are running in the top-level project folder file:../
 
       # im should have wavelength as last axis (python convention)
       assert(nwav == im.shape[-1])
+      full_profile = im.sum(axis=-1)
 
-      wavmask = np.ones((nwav,)).astype(bool)
-      # remove from continuum mask +/- 150 km/s around each line
-      for lineid, wav0 in linedict.items():
-          vels = 3e5*(wavs - wav0)/wav0
-          wavmask = wavmask & (np.abs(vels) > 150.0)
+      if bandwidth is not None:
+          wavmask = np.ones((nwav,)).astype(bool)
+          # remove from continuum mask +/- 150 km/s around each line
+          for lineid, wav0 in linedict.items():
+              vels = 3e5*(wavs - wav0)/wav0
+              wavmask = wavmask & (np.abs(vels) > 150.0)
 
-      # broadcast to 2 dimensions
-      imwts = np.ones_like(im)*wavmask[None, :]
-      av_cont_profile = np.average(im, weights=imwts, axis=-1)
-      # find how much extra continuum to add
-      dwav = abs(wavs[1] - wavs[0])
-      pv_bw = abs(wavs[-1] - wavs[0])
-      missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
-      # Add to the profile summed over the PV bandwidth
-      full_profile = im.sum(axis=-1) + missing_cont_profile
+          # broadcast to 2 dimensions
+          imwts = np.ones_like(im)*wavmask[None, :]
+          av_cont_profile = np.average(im, weights=imwts, axis=-1)
+          # find how much extra continuum to add
+          dwav = abs(wavs[1] - wavs[0])
+          pv_bw = abs(wavs[-1] - wavs[0])
+          missing_cont_profile = av_cont_profile*(bandwidth - pv_bw)/dwav
+          # Add to the profile summed over the PV bandwidth
+          full_profile += missing_cont_profile
       return full_profile
 
 
@@ -2053,8 +2518,8 @@ We assume that we are running in the top-level project folder file:../
       bslice = wavs2slice([wavrest-dwbg_out/2, wavrest-dwbg_in/2], wcs, db)
       rslice = wavs2slice([wavrest+dwbg_in/2, wavrest+dwbg_out/2], wcs, db)
       # extract backgrounds on blue and red sides
-      bgblu = data[:, bslice].mean(axis=1)
-      bgred = data[:, rslice].mean(axis=1)
+      bgblu = np.nanmean(data[:, bslice], axis=1)
+      bgred = np.nanmean(data[:, rslice], axis=1)
       # take weighted average, accounting for cases where the bg region
       # does not fit in the image
       weight_blu = data[:, bslice].size
@@ -2166,7 +2631,7 @@ We assume that we are running in the top-level project folder file:../
 *** Plot utilities
 #+begin_src python
   def make_three_plots(spec, calib, prefix,
-                       slit_points=None, niirat=None, neighbors=None, db=None, sdb=None):
+                       slit_points=None, niirat=None, neighbors=None, db=None, sdb=None, linelabel="H$\alpha$"):
       assert spec.shape == calib.shape
       fig, axes = plt.subplots(3, 1)
 
@@ -2237,7 +2702,7 @@ We assume that we are running in the top-level project folder file:../
       info = ""
       if db is not None:
           # Add some info to the graphs
-          info += fr"H$\alpha$ slit {db['id']:02d}" + "\n"
+          info += fr"{linelabel} slit {db['id']:02d}" + "\n"
           info += f"PV: {db['spec']}" +"\n"
           info += f"I+S: {db['imslit']}" + "\n"
           info += f"Date: {db['run']}, t = {db['t']} s" + "\n"
@@ -2250,6 +2715,7 @@ We assume that we are running in the top-level project folder file:../
       fig.set_size_inches(5, 8)
       fig.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
       fig.savefig(prefix+'.png', dpi=300)
+      plt.close(fig)
 
       return None
 
