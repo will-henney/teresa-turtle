@@ -975,7 +975,7 @@ CLOSED: [2019-05-31 Fri 13:43]
   except:
       choice = None
 
-  restwavs = {'oiii': 5006.84,}
+  restwavs = {}
 
   # Position of star
   RA0, Dec0 = 251.122998321, 23.7998586853
@@ -1214,7 +1214,108 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 | 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |  20.46 |
 | 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |  20.53 |
 | 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |  20.64 |
+** Write PV spectra with velocities and slit offsets
++ This is based on [[id:510C5A10-37E2-4C7B-9BB7-D63D01022A2D][Write PV spectra with WCS in arcsec relative to star]] from the Owl project
++ But it is more complicated since we have different PAs for the slits
+  1. Find separation from star of all points
+  2. Take minimum of these as reference point
+  3. Slit axis is then separation from reference point
+  4. Also record slit PA and slit offset (separation of reference point from star) and offset PA (perp to slit PA)
++ We want the slit axis to increase in direction ...
+  + to N for nearly vertical slits
+  + to E for nearly horizontal slits
 
+#+BEGIN_SRC python :tangle ../scripts/turtle-pv-relative.py
+  import glob
+  import sys
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.wcs.utils import pixel_to_skycoord, skycoord_to_pixel
+  import astropy.units as u
+  from astropy.coordinates import SkyCoord
+  sys.path.append('/Users/will/Dropbox/OrionWest')
+  from helio_utils import waves2vels
+
+  # Center on central star of NGC 6210
+  RA0, Dec0 = 251.122998321, 23.7998586853
+  c0 = SkyCoord(RA0, Dec0, unit="deg")
+
+  wav0_dict = {
+      'oiii': 5006.84,
+      'ha': 6562.79,
+      'nii': 6583.45,
+      'nii_s': 6548.05,
+  }
+  try:
+      lineid = sys.argv[1]
+  except:
+      sys.exit(f"Usage: {sys.argv[0]} {{{'|'.join(wav0_dict)}}}")
+
+  datadir = "pvextract-oiii" if lineid == "oiii" else "pvextract"
+
+  speclist = glob.glob(f'data/{datadir}/*-{lineid}.fits')
+  # Rest wavelength in meters
+  wav0 = 1e-10*wav0_dict[lineid]
+
+
+  for fn in speclist:
+      print('Processing', fn)
+      spechdu, = fits.open(fn)
+      wspec = WCS(spechdu.header, key='A')
+
+      # Eliminate degenerate 3rd dimension from data array and trim off bad bits
+      spec2d = spechdu.data[0]
+
+      # Convert to heliocentric velocity
+      [[wav1, _, _], [wav2, _, _]] = wspec.all_pix2world([[0, 0, 0], [1, 0, 0]], 0)
+      [v1, v2] = waves2vels(np.array([wav1, wav2]), wav0, spechdu.header, usewcs="A")
+
+
+      # sequence of pixels along the slit spatial axis
+      ipixels = np.arange(wspec.array_shape[1])
+      # sky coordinate that corresponds to each pixel
+      coords = pixel_to_skycoord(ipixels, 0, wcs=wspec)
+      # separation of each pixel from star
+      radii = c0.separation(coords).to(u.arcsec).value
+      # reference pixel has minimum separation from star
+      iref = radii.argmin()
+      cref = coords[iref]
+      # slit offset is minimum of radii
+      offset = radii.min()
+      # but sign depends on PA
+      pa_offset = c0.position_angle(cref)
+      if np.sin(pa_offset) < 0.0:
+          offset *= -1.0
+
+      # separation from reference pixel gives coordinate along slit
+      s = cref.separation(coords).to(u.arcsec).value
+      # inter-pixel separation
+      ds = np.abs(np.diff(s)).mean()
+      # PA of slit
+      pa = cref.position_angle(coords[-1])
+      if np.cos(pa) < 0.0:
+          # Make sure positive offset is to N
+          ds *= -1.0
+          # And flip slit PA to compensate
+          pa += np.pi*u.rad
+
+      wnew = WCS(naxis=2)
+      wnew.wcs.ctype = ['VHEL', 'LINEAR']
+      wnew.wcs.crpix = [1, iref+1]
+      wnew.wcs.cunit = ['km/s', 'arcsec']
+      wnew.wcs.crval = [v1.to('km/s').value, 0.0]
+      wnew.wcs.cdelt = [(v2 - v1).to('km/s').value, ds]
+
+      newsuffix = f"-PA{int(pa.to(u.deg).value)%360:03d}-sep{int(offset):+04d}"    
+      newhdr = wnew.to_header()
+      newhdr["PA"] = pa.to(u.deg).value, "Position angle of slit, degrees"
+      newhdr["OFFSET"] = offset, "Perpendicular offset of slit from star, arcsec"
+      new_fn = fn.replace(f'data/{datadir}/', 'data/PVoffset/')
+      new_fn = new_fn.replace('.fits', newsuffix + '.fits')
+      fits.PrimaryHDU(data=spec2d, header=newhdr).writeto(new_fn, overwrite=True)
+
+#+END_SRC
 
 
 ** Finally make the spectral maps
@@ -1254,6 +1355,7 @@ First run through, try to determine j0_s, j0_i, and shift automatically
   except IndexError:
       outdir = "maps"
 
+  print("(line_id, vrange, outdir) = ", line_id, vrange, outdir)
 
   def waves2pixels(waves, w):
       n = len(waves)
@@ -1377,12 +1479,14 @@ First run through, try to determine j0_s, j0_i, and shift automatically
   else:
       label = line_id + vrange
 
+  outfile = f'data/{outdir}/turtle-slits-{label}.fits'
+  print("Writing to", outfile)
   fits.HDUList([
       fits.PrimaryHDU(),
       fits.ImageHDU(header=w.to_header(), data=outimage, name='slits'),
       fits.ImageHDU(header=w.to_header(), data=outweights, name='weight'),
       fits.ImageHDU(header=w.to_header(), data=outimage/outweights, name='scaled'),
-      ]).writeto(f'data/{outdir}/turtle-slits-{label}.fits', overwrite=True)
+      ]).writeto(outfile, overwrite=True)
 #+END_SRC
 
 
@@ -1410,10 +1514,7 @@ Extras to widen the range
 
 And wider channels of 20 km/s
 #+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-20.sh :eval no
-  ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
-  # blueranges='-030-010 -050-030 -070-050'
-  # farblueranges='-090-070 -110-090 -130-110'
-  # for vrange in $redranges $blueranges $farblueranges; do
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
   for vrange in $ranges; do
       python scripts/turtle-spectral-map.py ha $vrange maps20
       python scripts/turtle-spectral-map.py nii $vrange maps20
@@ -1832,7 +1933,7 @@ Saving turtle-slits-nii-allvels-bin064.fits
 
 #+BEGIN_SRC sh :results verbatim :dir ../data/maps20
   mdir=/Users/will/Dropbox/OrionWest
-  ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
   for vrange in $ranges; do
       python $mdir/multibin-map.py turtle-slits-ha$vrange.fits
       python $mdir/multibin-map.py turtle-slits-nii$vrange.fits
@@ -1841,6 +1942,20 @@ Saving turtle-slits-nii-allvels-bin064.fits
 
 #+RESULTS:
 #+begin_example
+Saving turtle-slits-ha+040+060-bin001.fits
+Saving turtle-slits-ha+040+060-bin002.fits
+Saving turtle-slits-ha+040+060-bin004.fits
+Saving turtle-slits-ha+040+060-bin008.fits
+Saving turtle-slits-ha+040+060-bin016.fits
+Saving turtle-slits-ha+040+060-bin032.fits
+Saving turtle-slits-ha+040+060-bin064.fits
+Saving turtle-slits-nii+040+060-bin001.fits
+Saving turtle-slits-nii+040+060-bin002.fits
+Saving turtle-slits-nii+040+060-bin004.fits
+Saving turtle-slits-nii+040+060-bin008.fits
+Saving turtle-slits-nii+040+060-bin016.fits
+Saving turtle-slits-nii+040+060-bin032.fits
+Saving turtle-slits-nii+040+060-bin064.fits
 Saving turtle-slits-ha+020+040-bin001.fits
 Saving turtle-slits-ha+020+040-bin002.fits
 Saving turtle-slits-ha+020+040-bin004.fits
@@ -1939,6 +2054,20 @@ Saving turtle-slits-nii-100-080-bin008.fits
 Saving turtle-slits-nii-100-080-bin016.fits
 Saving turtle-slits-nii-100-080-bin032.fits
 Saving turtle-slits-nii-100-080-bin064.fits
+Saving turtle-slits-ha-120-100-bin001.fits
+Saving turtle-slits-ha-120-100-bin002.fits
+Saving turtle-slits-ha-120-100-bin004.fits
+Saving turtle-slits-ha-120-100-bin008.fits
+Saving turtle-slits-ha-120-100-bin016.fits
+Saving turtle-slits-ha-120-100-bin032.fits
+Saving turtle-slits-ha-120-100-bin064.fits
+Saving turtle-slits-nii-120-100-bin001.fits
+Saving turtle-slits-nii-120-100-bin002.fits
+Saving turtle-slits-nii-120-100-bin004.fits
+Saving turtle-slits-nii-120-100-bin008.fits
+Saving turtle-slits-nii-120-100-bin016.fits
+Saving turtle-slits-nii-120-100-bin032.fits
+Saving turtle-slits-nii-120-100-bin064.fits
 #+end_example
 
 #+BEGIN_SRC sh :results verbatim :dir ../data/maps-oiii-20
@@ -2087,18 +2216,18 @@ done
 #+END_SRC
 
 #+BEGIN_SRC sh :results silent :dir ..
-ranges='+020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080'
-for vrange in $ranges; do
-    python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-ha$vrange 0.0001 0.0
-    python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-nii$vrange 0.0001 0.0
-done
+  ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
+  for vrange in $ranges; do
+      python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-ha$vrange 0.0001 0.0
+      python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-nii$vrange 0.0001 0.0
+  done
 #+END_SRC
 
 #+BEGIN_SRC sh :results silent :dir ..
   ranges='+040+060 +020+040 +000+020 -020+000 -040-020 -060-040 -080-060 -100-080 -120-100'
-for vrange in $ranges; do
-    python scripts/turtle-multibin-combine.py data/maps-oiii-20/turtle-slits-oiii$vrange 0.0001 0.0
-done
+  for vrange in $ranges; do
+      python scripts/turtle-multibin-combine.py data/maps-oiii-20/turtle-slits-oiii$vrange 0.0001 0.0
+  done
 #+END_SRC
 
 *** Load PV images into ds9
@@ -2173,6 +2302,8 @@ Use a dedicated DS9 instance
   done
 #+end_src
 
+
+Position of slits
 #+begin_src sh :results silent :dir ../data/maps-oiii-20 
   DS9=velmaps
   xpaset -p $DS9 frame new
@@ -2182,7 +2313,7 @@ Use a dedicated DS9 instance
 #+end_src
 
 
-**** Get an HST image for comparison
+*** HST images for comparison
 Teresa has some that are suitable, but we want to rescale it to make it more easily compared with our own images (divide by 15 for [O III] should put it on same scale as our median image)
 #+begin_src python :results silent :dir ../data
   from astropy.io import fits
@@ -2192,6 +2323,184 @@ Teresa has some that are suitable, but we want to rescale it to make it more eas
   hdu.data /= 15.0
 
   hdu.writeto("hst-oiii-ene2008-rescaled.fits", overwrite=True)
+#+end_src
+
+
+One for [N II] too. 
+#+begin_src python :results silent :dir ../data
+  from astropy.io import fits
+
+  hdu = fits.open("/Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/astrodrizzled/MAST_2014-10-09T1938/MAST_2014-10-09T1938/HST/2001336009/hst_11122_10_wfpc2_f658n_wf.fits")["SCI"]
+
+  hdu.data /= 20.01
+
+  hdu.writeto("hst-nii-11122_10-rescaled.fits", overwrite=True)
+#+end_src
+
+For Ha we use the ones in the top-level directory.  Only two, so take min to avoid CRs
+
+#+begin_src python :results silent :dir ../data
+  import numpy as np
+  from astropy.io import fits
+  ids = ["am", "bm"]
+  hdus = [fits.open(
+      f"/Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b010{_}_drz.fits")["SCI"]
+          for _ in ids]
+
+
+  newdata = np.fmin(hdus[0].data, hdus[1].data)
+
+  fits.PrimaryHDU(
+      data=newdata*1.5,
+      header=hdus[0].header
+  ).writeto("hst-ha-wfc-rescaled.fits", overwrite=True)
+
+#+end_src
+
+
+#+begin_src python :return out_tab
+  import glob
+  from astropy.io import fits
+
+  file_list = glob.glob("/Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/*_drz.fits")
+
+  out_tab = [["Name", "Filter"], None]
+  for fitsfile in sorted(file_list):
+      hdu = 
+      out_tab.append([hdu.header["ROOTNAME"], hdu.header.get("FILTNAM1")])
+
+#+end_src
+
+#+RESULTS:
+| Name      | Filter |
+|-----------+--------|
+| u37b0101m | F437N  |
+| u37b0102m | F437N  |
+| u37b0103m | F437N  |
+| u37b0104m | F487N  |
+| u37b0105m | F487N  |
+| u37b0106m | F502N  |
+| u37b0107m | F502N  |
+| u37b0108m | F547M  |
+| u37b0109m | F547M  |
+| u37b010am | F656N  |
+| u37b010bm | F656N  |
+| u37b010cm | F375N  |
+| u37b010dm | F375N  |
+| u39h0701t | F658N  |
+| u39h0701t | F658N  |
+| u39h0702t | F658N  |
+| u4js0601r | F502N  |
+| u4js0602r | F502N  |
+| u4js0603r | F502N  |
+| u4js0604r | F502N  |
+| u4js0605m | F502N  |
+| u4js0606r | F502N  |
+| u4js0607r | F658N  |
+| u4js0608r | F658N  |
+| u4js0609r | F658N  |
+| u4js060ar | F658N  |
+| u4js060br | F658N  |
+| u4js060cr | F658N  |
+| u4js060dr | F555W  |
+| u4js060er | F555W  |
+| u4js060fr | F555W  |
+| u4js060gr | F555W  |
+| u4js060hr | F555W  |
+| u66b0501r | F502N  |
+| u66b0502r | F502N  |
+| u66b0503r | F502N  |
+| u66b0504r | F658N  |
+| u66b0505r | F658N  |
+| u66b0506r | F658N  |
+| u66b0507r | F555W  |
+| u66b0508r | F555W  |
+| u8s10401m | F185W  |
+| u8s10402m | F185W  |
+| u8s10403m | F547M  |
+| ua011001m | F502N  |
+| ua011002m | F502N  |
+| ua011003m | F656N  |
+| ua011004m | F656N  |
+| ua011005m | F658N  |
+| ua011006m | F658N  |
+| ua011007m | F658N  |
+
+*** The 20 km/s [N II] and H alpha channels
+
+**** H\alpha 20 km/s
+Use a dedicated DS9 instance
+#+begin_src sh :results silent
+  open -n -a SAOImageDS9 --args -title velmapsha
+#+end_src
+Median image
+#+begin_src sh :results silent :dir ../data/imslit-ha
+  DS9=velmapsha
+  xpaset -p $DS9 fits $PWD/imslit-median.fits
+#+end_src
+
+Position of slits
+#+begin_src sh :results silent :dir ../data/maps20 
+  DS9=velmapsha
+  xpaset -p $DS9 frame new
+  xpaset -p $DS9 contour no
+  xpaset -p $DS9 fits $PWD/turtle-slits-ha-040-020.fits[2]
+  # xpaset -p $DS9 contour paste wcs red 1
+#+end_src
+
+Add isovel images
+
+#+begin_src sh :results silent :dir ../data/maps20 
+  DS9=velmapsha
+  ranges='-120-100 -100-080 -080-060 -060-040 -040-020 -020+000 +000+020 +020+040 +040+060'
+  for vrange in $ranges; do
+      xpaset -p $DS9 frame new
+      xpaset -p $DS9 contour no
+      xpaset -p $DS9 fits $PWD/turtle-slits-ha${vrange}-multibin.fits
+      xpaset -p $DS9 contour paste wcs red 1
+      echo "fk5; text 16:44:28.9973 +23:47:38.458 # color=black text={$vrange}" | xpaset $DS9 regions
+  done
+#+end_src
+
+
+**** [N II] 20 km/s
+Use a dedicated DS9 instance
+#+begin_src sh :results silent
+  open -n -a SAOImageDS9 --args -title velmapsnii
+#+end_src
+
+Median image
+#+begin_src sh :results silent :dir ../data/imslit-ha
+  DS9=velmapsnii
+  xpaset -p $DS9 frame new
+  xpaset -p $DS9 fits $PWD/imslit-median.fits
+#+end_src
+
+Position of slits
+#+begin_src sh :results silent :dir ../data/maps20 
+  DS9=velmapsnii
+  xpaset -p $DS9 frame new
+  xpaset -p $DS9 contour no
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-040-020.fits[2]
+  # xpaset -p $DS9 contour paste wcs red 1
+#+end_src
+
+Add contours
+#+begin_src sh :results silent
+  DS9=velmapsnii
+  xpaset -p $DS9 contour paste wcs red 1
+#+end_src
+
+#+begin_src sh :results silent :dir ../data/maps20 
+  DS9=velmapsnii
+  ranges='-120-100 -100-080 -080-060 -060-040 -040-020 -020+000 +000+020 +020+040 +040+060'
+  for vrange in $ranges; do
+      xpaset -p $DS9 frame new
+      xpaset -p $DS9 contour no
+      xpaset -p $DS9 fits $PWD/turtle-slits-nii${vrange}-multibin.fits
+      xpaset -p $DS9 contour paste wcs red 1
+      echo "fk5; text 16:44:28.9973 +23:47:38.458 # color=black text={$vrange}" | xpaset $DS9 regions
+  done
 #+end_src
 
 
@@ -2525,7 +2834,15 @@ We assume that we are running in the top-level project folder file:../
       weight_blu = data[:, bslice].size
       weight_red = data[:, rslice].size
       print('Background weights:', weight_blu, weight_red)
-      bg = (bgblu*weight_blu + bgred*weight_red)/(weight_blu + weight_red)
+      if weight_blu and weight_red:
+          bg = (bgblu*weight_blu + bgred*weight_red)/(weight_blu + weight_red)
+      elif weight_blu:
+          bg = bgblu
+      elif weight_red:
+          bg = bgred
+      else:
+          raise ValueError("No valid red or blue BG found")
+    
 
       # pixel limits for entire window
       wslice = wavs2slice([wavrest-dw/2, wavrest+dw/2], wcs, db)

@@ -266,7 +266,15 @@ def extract_line_and_regularize(data, wcs, wavrest, db,
     weight_blu = data[:, bslice].size
     weight_red = data[:, rslice].size
     print('Background weights:', weight_blu, weight_red)
-    bg = (bgblu*weight_blu + bgred*weight_red)/(weight_blu + weight_red)
+    if weight_blu and weight_red:
+        bg = (bgblu*weight_blu + bgred*weight_red)/(weight_blu + weight_red)
+    elif weight_blu:
+        bg = bgblu
+    elif weight_red:
+        bg = bgred
+    else:
+        raise ValueError("No valid red or blue BG found")
+
 
     # pixel limits for entire window
     wslice = wavs2slice([wavrest-dw/2, wavrest+dw/2], wcs, db)
