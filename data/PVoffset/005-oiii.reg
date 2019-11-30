@@ -1,0 +1,21 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+wcs
+ellipse(-66.452197,-0.01487827,0.68728475,1.7628008,-0) # color=blue width=3
+ellipse(-20.693687,2.6592401,3.1048193,2.1176355,-0) # color=blue width=2
+ellipse(-60.528756,-3.6767595,0.64546229,2.5872788,-0) # color=blue width=2
+ellipse(-39.736724,-6.1139089,2.6272126,2.076887,-0) # color=blue
+ellipse(-25.716188,-2.4763136,0.88439295,2.6517754,-0) # color=blue width=3
+ellipse(-47.595442,4.561452,1.0491801,1.8911099,340) # color=blue
+ellipse(-82.263247,2.0275008,1.1225389,2.5715821,-0) # color=blue
+ellipse(-41.694892,0.99061454,1.0744313,1.7783529,45) # color=blue width=3
+ellipse(-67.896195,4.078241,1.9669614,1.1240008,-0) # color=blue
+ellipse(-72.385899,-3.4009294,0.92820134,1.8477914,-0) # color=blue
+ellipse(-58.916788,1.906869,1.4844343,1.0473713,-0) # color=blue width=2
+ellipse(-11.002621,-2.1330601,1.8028954,2.8743971,-0) # color=blue
+ellipse(-46.022309,-9.370967,0.95847296,4.2013467,-0) # color=blue dash=1
+ellipse(-21.77791,-11.301075,0.95847296,4.2013467,-0) # color=blue dash=1
+ellipse(-62.185242,-11.180444,0.95847296,4.2013467,-0) # color=blue dash=1
+ellipse(-26.267613,-23.364254,5.3012171,1.7887111,-0) # color=blue dash=1
+ellipse(-26.50457,9.5682226,0.83784117,3.1571919,-0) # color=blue dash=1
+ellipse(-40.634665,9.8094862,0.83784117,3.1571919,-0) # color=blue dash=1

@@ -13,6 +13,78 @@
 
 * NGC 6210
 
+
+** Proper motions
+
+*** [N II]
++ Make difference and ratio image
++ Multiply 1998 by 1.95 so that the mean brightness is the same
+#+begin_src python
+  from astropy.io import fits
+  h1 = fits.open("../propermotions/n6210n2008sm.fits")[0]
+  h2 = fits.open("../propermotions/n6210n1998sm.fits")[0]
+  h2.data *= 1.95
+  ratio = h1.data/h2.data
+  diff = h1.data - h2.data
+  h1.data = ratio
+  h1.writeto("../propermotions/ratio-2008-1998.fits", overwrite=True)
+  h1.data = diff
+  h1.writeto("../propermotions/diff-2008-1998.fits", overwrite=True)
+  h2.writeto("../propermotions/n6210n-rescaled-1998.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
+
+*** [O III]
+#+begin_src python
+  from astropy.io import fits
+  from reproject import reproject_interp
+
+  h1 = fits.open("../propermotions/oiii/oiii-ago1997-original.fits")['SCI']
+  h1.header["CRPIX1"] = 1197.87
+  h1.header["CRVAL1"] = 251.1230789
+  h1.header["CRPIX2"] = 1160.8
+  h1.header["CRVAL2"] = 23.7999977
+  h2 = fits.open("../propermotions/oiii/oiii-ene2008-original.fits")['SCI']
+  h2.header["CRPIX1"] = 1031.90
+  h2.header["CRVAL1"] = 251.1230789
+  h2.header["CRPIX2"] = 970.35
+  h2.header["CRVAL2"] = 23.7999977
+
+  newdata, _ = reproject_interp(h2, h1.header)
+  newdata /= 0.95
+  h1.writeto(
+      "../propermotions/oiii/oiii-ago1997-correct.fits",
+      overwrite=True,
+  )
+  fits.PrimaryHDU(header=h1.header, data=newdata).writeto(
+      "../propermotions/oiii/oiii-ene2008-correct.fits",
+      overwrite=True,
+  )
+#+end_src
+
+#+RESULTS:
+: None
+
+
+#+begin_src python
+  from astropy.io import fits
+  h1 = fits.open("../propermotions/oiii/oiii-ago1997-correct.fits")['SCI']
+  h2 = fits.open("../propermotions/oiii/oiii-ene2008-correct.fits")['SCI']
+
+  diff = h2.data - h1.data
+  ratio = h2.data / h1.data
+
+  h1.data = diff
+  h1.writeto("../propermotions/oiii/diff-oiii-2008-1997.fits", overwrite=True)
+  h1.data = ratio
+  h1.writeto("../propermotions/oiii/ratio-oiii-2008-1997.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
+
 ** Basic data on NGC 6210
 + Coordinates
   + (RA, Dec) = (16 44 29.5195973292, +23 47 59.491267229) sexagesimal
@@ -47,6 +119,15 @@
   5. [ ] Add WCS info to PV images
   6. [ ] Construct spectral maps (with tetrablock algorithm)
 
+
+** Return to project: Ensenada [2019-11-29 Fri]
++ What have I done, and what do I need to do?
++ /Done/
+  + Screenshots of isovel images, overlaid on contours of integrated emission
+  + [O III], [N II], Ha
+  + These were laid out by hand in ds9
++ /Todo/
+  + Reproduce the same images, but publication quality
 
 ** [2/2] Median image
 CLOSED: [2019-05-28 Tue 08:56]
@@ -752,8 +833,6 @@ CLOSED: [2019-05-31 Fri 13:43]
   # We already have spec in the ha-slits table
   table2.remove_column("spec") 
   table = hstack([table1, table2], join_type="exact")
-
-
 
   # Photometric reference image
   photom, = fits.open('data/imslit-ha/imslit-median.fits')
