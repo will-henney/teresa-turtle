@@ -21,16 +21,16 @@
 + Multiply 1998 by 1.95 so that the mean brightness is the same
 #+begin_src python
   from astropy.io import fits
-  h1 = fits.open("../propermotions/n6210n2008sm.fits")[0]
-  h2 = fits.open("../propermotions/n6210n1998sm.fits")[0]
+  h1 = fits.open("../propermotions/nii/n6210n2008sm.fits")[0]
+  h2 = fits.open("../propermotions/nii/n6210n1998sm.fits")[0]
   h2.data *= 1.95
   ratio = h1.data/h2.data
   diff = h1.data - h2.data
   h1.data = ratio
-  h1.writeto("../propermotions/ratio-2008-1998.fits", overwrite=True)
+  h1.writeto("../propermotions/nii/ratio-2008-1998.fits", overwrite=True)
   h1.data = diff
-  h1.writeto("../propermotions/diff-2008-1998.fits", overwrite=True)
-  h2.writeto("../propermotions/n6210n-rescaled-1998.fits", overwrite=True)
+  h1.writeto("../propermotions/nii/diff-2008-1998.fits", overwrite=True)
+  h2.writeto("../propermotions/nii/n6210n-rescaled-1998.fits", overwrite=True)
 #+end_src
 
 #+RESULTS:
@@ -68,6 +68,8 @@
 : None
 
 
+Find difference and ratio images
+
 #+begin_src python
   from astropy.io import fits
   h1 = fits.open("../propermotions/oiii/oiii-ago1997-correct.fits")['SCI']
@@ -84,6 +86,295 @@
 
 #+RESULTS:
 : None
+
+Do some unsharp masking
+
+
+
+*** Different techniques for proper motions
+
+**** Broad classes of methods
+1. Cross correlation methods
+2. Self-similar scaling
+   - Looking for minimum in RMS difference
+3. X-Y shifts of small areas
+   - Also look for minimum in RMS difference
+4. More complicated algorithms
+   - e.g., FLCT
+   - Fisher:2008a
+
+
+**** Trying out FLCT
+
+First for [O III]
+
+#+begin_src python :results output
+  import sys
+  sys.path.append("../../../Source/pyflct")
+  import os
+  import numpy as np
+  import pyflct
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  os.environ["PATH"] = ":".join((os.environ["PATH"], "/Users/will/.local/bin"))
+
+  h1 = fits.open("../propermotions/oiii/oiii-ago1997-correct.fits")['SCI']
+  h2 = fits.open("../propermotions/oiii/oiii-ene2008-correct.fits")['SCI']
+
+  xslice, yslice = slice(1036, 1400), slice(1040, 1320)
+  data1 = h1.data[yslice, xslice]
+  data2 = h2.data[yslice, xslice]
+
+  vx, vy, vm = pyflct.flct(data1.T, data2.T,
+                           deltat=1.0, deltas=1.0, sigma=10.0,
+                           thresh=0.1/data1.max(),
+  )
+  vx[vm==0] = np.nan
+  vy[vm==0] = np.nan
+
+  # Position of star
+  ra0, dec0 = 251.1230789, 23.7999977
+  w = WCS(h1).slice((yslice, xslice))
+  j0, i0 = w.world_to_array_index_values(ra0, dec0)
+  # Correct for any shift of star
+  vx -= vx[i0-3:i0+3, j0-3:j0+3].mean()
+  vy -= vy[i0-3:i0+3, j0-3:j0+3].mean()
+
+  newhdr = w.to_header()
+
+  fits.PrimaryHDU(header=newhdr, data=data1).writeto(
+      "../propermotions/oiii/oiii-ago1997-win.fits", overwrite=True)
+  fits.PrimaryHDU(header=newhdr, data=data2).writeto(
+      "../propermotions/oiii/oiii-ene2008-win.fits", overwrite=True)
+  fits.PrimaryHDU(header=newhdr, data=vx.T).writeto(
+      "../propermotions/oiii/oiii-velx-win.fits", overwrite=True)
+  fits.PrimaryHDU(header=newhdr, data=vy.T).writeto(
+      "../propermotions/oiii/oiii-vely-win.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+flct: Version 1.07     Copyright: 2007-2018 University of California
+flct: small endian machine; i/o will be byteswapped
+flct: infile = testin.dat
+flct: outfile = testout.dat
+flct: column major order assumed for data arrays
+flct: deltat = 1
+flct: deltas = 1
+flct: sigma = 10
+flct: threshold image value for LCT is 0.000498
+flct: bias correction not enabled
+flct: complex.h is not included
+flct: from input file, nx = 364, ny = 280
+flct: nominal sliding box size = 40
+flct: relative threshold in abs. units = 0.12458
+flct: progress  i = 0 out of 279flct: progress  i = 1 out of 279flct: progress  i = 2 out of 279flct: progress  i = 3 out of 279flct: progress  i = 4 out of 279flct: progress  i = 5 out of 279flct: progress  i = 6 out of 279flct: progress  i = 7 out of 279flct: progress  i = 8 out of 279flct: progress  i = 9 out of 279flct: progress  i = 10 out of 279flct: progress  i = 11 out of 279flct: progress  i = 12 out of 279flct: progress  i = 13 out of 279flct: progress  i = 14 out of 279flct: progress  i = 15 out of 279flct: progress  i = 16 out of 279flct: progress  i = 17 out of 279flct: progress  i = 18 out of 279flct: progress  i = 19 out of 279flct: progress  i = 20 out of 279flct: progress  i = 21 out of 279flct: progress  i = 22 out of 279flct: progress  i = 23 out of 279flct: progress  i = 24 out of 279flct: progress  i = 25 out of 279flct: progress  i = 26 out of 279flct: progress  i = 27 out of 279flct: progress  i = 28 out of 279flct: progress  i = 29 out of 279flct: progress  i = 30 out of 279flct: progress  i = 31 out of 279flct: progress  i = 32 out of 279flct: progress  i = 33 out of 279flct: progress  i = 34 out of 279flct: progress  i = 35 out of 279flct: progress  i = 36 out of 279flct: progress  i = 37 out of 279flct: progress  i = 38 out of 279flct: progress  i = 39 out of 279flct: progress  i = 40 out of 279flct: progress  i = 41 out of 279flct: progress  i = 42 out of 279flct: progress  i = 43 out of 279flct: progress  i = 44 out of 279flct: progress  i = 45 out of 279flct: progress  i = 46 out of 279flct: progress  i = 47 out of 279flct: progress  i = 48 out of 279flct: progress  i = 49 out of 279flct: progress  i = 50 out of 279flct: progress  i = 51 out of 279flct: progress  i = 52 out of 279flct: progress  i = 53 out of 279flct: progress  i = 54 out of 279flct: progress  i = 55 out of 279flct: progress  i = 56 out of 279flct: progress  i = 57 out of 279flct: progress  i = 58 out of 279flct: progress  i = 59 out of 279flct: progress  i = 60 out of 279flct: progress  i = 61 out of 279flct: progress  i = 62 out of 279flct: progress  i = 63 out of 279flct: progress  i = 64 out of 279flct: progress  i = 65 out of 279flct: progress  i = 66 out of 279flct: progress  i = 67 out of 279flct: progress  i = 68 out of 279flct: progress  i = 69 out of 279flct: progress  i = 70 out of 279flct: progress  i = 71 out of 279flct: progress  i = 72 out of 279flct: progress  i = 73 out of 279flct: progress  i = 74 out of 279flct: progress  i = 75 out of 279flct: progress  i = 76 out of 279flct: progress  i = 77 out of 279flct: progress  i = 78 out of 279flct: progress  i = 79 out of 279flct: progress  i = 80 out of 279flct: progress  i = 81 out of 279flct: progress  i = 82 out of 279flct: progress  i = 83 out of 279flct: progress  i = 84 out of 279flct: progress  i = 85 out of 279flct: progress  i = 86 out of 279flct: progress  i = 87 out of 279flct: progress  i = 88 out of 279flct: progress  i = 89 out of 279flct: progress  i = 90 out of 279flct: progress  i = 91 out of 279flct: progress  i = 92 out of 279flct: progress  i = 93 out of 279flct: progress  i = 94 out of 279flct: progress  i = 95 out of 279flct: progress  i = 96 out of 279flct: progress  i = 97 out of 279flct: progress  i = 98 out of 279flct: progress  i = 99 out of 279flct: progress  i = 100 out of 279flct: progress  i = 101 out of 279flct: progress  i = 102 out of 279flct: progress  i = 103 out of 279flct: progress  i = 104 out of 279flct: progress  i = 105 out of 279flct: progress  i = 106 out of 279flct: progress  i = 107 out of 279flct: progress  i = 108 out of 279flct: progress  i = 109 out of 279flct: progress  i = 110 out of 279flct: progress  i = 111 out of 279flct: progress  i = 112 out of 279flct: progress  i = 113 out of 279flct: progress  i = 114 out of 279flct: progress  i = 115 out of 279flct: progress  i = 116 out of 279flct: progress  i = 117 out of 279flct: progress  i = 118 out of 279flct: progress  i = 119 out of 279flct: progress  i = 120 out of 279flct: progress  i = 121 out of 279flct: progress  i = 122 out of 279flct: progress  i = 123 out of 279flct: progress  i = 124 out of 279flct: progress  i = 125 out of 279flct: progress  i = 126 out of 279flct: progress  i = 127 out of 279flct: progress  i = 128 out of 279flct: progress  i = 129 out of 279flct: progress  i = 130 out of 279flct: progress  i = 131 out of 279flct: progress  i = 132 out of 279flct: progress  i = 133 out of 279flct: progress  i = 134 out of 279flct: progress  i = 135 out of 279flct: progress  i = 136 out of 279flct: progress  i = 137 out of 279flct: progress  i = 138 out of 279flct: progress  i = 139 out of 279flct: progress  i = 140 out of 279flct: progress  i = 141 out of 279flct: progress  i = 142 out of 279flct: progress  i = 143 out of 279flct: progress  i = 144 out of 279flct: progress  i = 145 out of 279flct: progress  i = 146 out of 279flct: progress  i = 147 out of 279flct: progress  i = 148 out of 279flct: progress  i = 149 out of 279flct: progress  i = 150 out of 279flct: progress  i = 151 out of 279flct: progress  i = 152 out of 279flct: progress  i = 153 out of 279flct: progress  i = 154 out of 279flct: progress  i = 155 out of 279flct: progress  i = 156 out of 279flct: progress  i = 157 out of 279flct: progress  i = 158 out of 279flct: progress  i = 159 out of 279flct: progress  i = 160 out of 279flct: progress  i = 161 out of 279flct: progress  i = 162 out of 279flct: progress  i = 163 out of 279flct: progress  i = 164 out of 279flct: progress  i = 165 out of 279flct: progress  i = 166 out of 279flct: progress  i = 167 out of 279flct: progress  i = 168 out of 279flct: progress  i = 169 out of 279flct: progress  i = 170 out of 279flct: progress  i = 171 out of 279flct: progress  i = 172 out of 279flct: progress  i = 173 out of 279flct: progress  i = 174 out of 279flct: progress  i = 175 out of 279flct: progress  i = 176 out of 279flct: progress  i = 177 out of 279flct: progress  i = 178 out of 279flct: progress  i = 179 out of 279flct: progress  i = 180 out of 279flct: progress  i = 181 out of 279flct: progress  i = 182 out of 279flct: progress  i = 183 out of 279flct: progress  i = 184 out of 279flct: progress  i = 185 out of 279flct: progress  i = 186 out of 279flct: progress  i = 187 out of 279flct: progress  i = 188 out of 279flct: progress  i = 189 out of 279flct: progress  i = 190 out of 279flct: progress  i = 191 out of 279flct: progress  i = 192 out of 279flct: progress  i = 193 out of 279flct: progress  i = 194 out of 279flct: progress  i = 195 out of 279flct: progress  i = 196 out of 279flct: progress  i = 197 out of 279flct: progress  i = 198 out of 279flct: progress  i = 199 out of 279flct: progress  i = 200 out of 279flct: progress  i = 201 out of 279flct: progress  i = 202 out of 279flct: progress  i = 203 out of 279flct: progress  i = 204 out of 279flct: progress  i = 205 out of 279flct: progress  i = 206 out of 279flct: progress  i = 207 out of 279flct: progress  i = 208 out of 279flct: progress  i = 209 out of 279flct: progress  i = 210 out of 279flct: progress  i = 211 out of 279flct: progress  i = 212 out of 279flct: progress  i = 213 out of 279flct: progress  i = 214 out of 279flct: progress  i = 215 out of 279flct: progress  i = 216 out of 279flct: progress  i = 217 out of 279flct: progress  i = 218 out of 279flct: progress  i = 219 out of 279flct: progress  i = 220 out of 279flct: progress  i = 221 out of 279flct: progress  i = 222 out of 279flct: progress  i = 223 out of 279flct: progress  i = 224 out of 279flct: progress  i = 225 out of 279flct: progress  i = 226 out of 279flct: progress  i = 227 out of 279flct: progress  i = 228 out of 279flct: progress  i = 229 out of 279flct: progress  i = 230 out of 279flct: progress  i = 231 out of 279flct: progress  i = 232 out of 279flct: progress  i = 233 out of 279flct: progress  i = 234 out of 279flct: progress  i = 235 out of 279flct: progress  i = 236 out of 279flct: progress  i = 237 out of 279flct: progress  i = 238 out of 279flct: progress  i = 239 out of 279flct: progress  i = 240 out of 279flct: progress  i = 241 out of 279flct: progress  i = 242 out of 279flct: progress  i = 243 out of 279flct: progress  i = 244 out of 279flct: progress  i = 245 out of 279flct: progress  i = 246 out of 279flct: progress  i = 247 out of 279flct: progress  i = 248 out of 279flct: progress  i = 249 out of 279flct: progress  i = 250 out of 279flct: progress  i = 251 out of 279flct: progress  i = 252 out of 279flct: progress  i = 253 out of 279flct: progress  i = 254 out of 279flct: progress  i = 255 out of 279flct: progress  i = 256 out of 279flct: progress  i = 257 out of 279flct: progress  i = 258 out of 279flct: progress  i = 259 out of 279flct: progress  i = 260 out of 279flct: progress  i = 261 out of 279flct: progress  i = 262 out of 279flct: progress  i = 263 out of 279flct: progress  i = 264 out of 279flct: progress  i = 265 out of 279flct: progress  i = 266 out of 279flct: progress  i = 267 out of 279flct: progress  i = 268 out of 279flct: progress  i = 269 out of 279flct: progress  i = 270 out of 279flct: progress  i = 271 out of 279flct: progress  i = 272 out of 279flct: progress  i = 273 out of 279flct: progress  i = 274 out of 279flct: progress  i = 275 out of 279flct: progress  i = 276 out of 279flct: progress  i = 277 out of 279flct: progress  i = 278 out of 279flct: progress  i = 279 out of 279flct: mean value of gamma^2/sigma^2 = 0.291466
+
+flct: finished
+#+end_example
+
+
+Now for [N II]
+
+#+begin_src python :results output
+  import sys
+  sys.path.append("../../../Source/pyflct")
+  import os
+  import numpy as np
+  import pyflct
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  os.environ["PATH"] = ":".join((os.environ["PATH"], "/Users/will/.local/bin"))
+
+  h1 = fits.open("../propermotions/nii/n6210n-rescaled-1998.fits")[0]
+  h2 = fits.open("../propermotions/nii/n6210n2008sm.fits")[0]
+
+  data1 = h1.data
+  data2 = h2.data
+
+  vx, vy, vm = pyflct.flct(data1.T, data2.T,
+                           deltat=1.0, deltas=1.0, sigma=10.0,
+                           thresh=0.03/data1.max(),
+  )
+  vx[vm==0] = np.nan
+  vy[vm==0] = np.nan
+  # Position of star
+  ra0, dec0 = 251.1230789, 23.7999977
+  w = WCS(h1.header)
+  j0, i0 = w.world_to_array_index_values(ra0, dec0)
+  # Correct for any shift of star 
+  # At this point, arrays are still in (x, y) format
+  vx -= vx[i0-3:i0+3, j0-3:j0+3].mean()
+  vy -= vy[i0-3:i0+3, j0-3:j0+3].mean()
+
+  newhdr = h1.header
+
+  fits.PrimaryHDU(header=newhdr, data=vx.T).writeto(
+      "../propermotions/nii/nii-velx-win.fits", overwrite=True)
+  fits.PrimaryHDU(header=newhdr, data=vy.T).writeto(
+      "../propermotions/nii/nii-vely-win.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+flct: Version 1.07     Copyright: 2007-2018 University of California
+flct: small endian machine; i/o will be byteswapped
+flct: infile = testin.dat
+flct: outfile = testout.dat
+flct: column major order assumed for data arrays
+flct: deltat = 1
+flct: deltas = 1
+flct: sigma = 10
+flct: threshold image value for LCT is 0.005372
+flct: bias correction not enabled
+flct: complex.h is not included
+flct: from input file, nx = 310, ny = 310
+flct: nominal sliding box size = 40
+flct: relative threshold in abs. units = 0.0299977
+flct: progress  i = 0 out of 309flct: progress  i = 1 out of 309flct: progress  i = 2 out of 309flct: progress  i = 3 out of 309flct: progress  i = 4 out of 309flct: progress  i = 5 out of 309flct: progress  i = 6 out of 309flct: progress  i = 7 out of 309flct: progress  i = 8 out of 309flct: progress  i = 9 out of 309flct: progress  i = 10 out of 309flct: progress  i = 11 out of 309flct: progress  i = 12 out of 309flct: progress  i = 13 out of 309flct: progress  i = 14 out of 309flct: progress  i = 15 out of 309flct: progress  i = 16 out of 309flct: progress  i = 17 out of 309flct: progress  i = 18 out of 309flct: progress  i = 19 out of 309flct: progress  i = 20 out of 309flct: progress  i = 21 out of 309flct: progress  i = 22 out of 309flct: progress  i = 23 out of 309flct: progress  i = 24 out of 309flct: progress  i = 25 out of 309flct: progress  i = 26 out of 309flct: progress  i = 27 out of 309flct: progress  i = 28 out of 309flct: progress  i = 29 out of 309flct: progress  i = 30 out of 309flct: progress  i = 31 out of 309flct: progress  i = 32 out of 309flct: progress  i = 33 out of 309flct: progress  i = 34 out of 309flct: progress  i = 35 out of 309flct: progress  i = 36 out of 309flct: progress  i = 37 out of 309flct: progress  i = 38 out of 309flct: progress  i = 39 out of 309flct: progress  i = 40 out of 309flct: progress  i = 41 out of 309flct: progress  i = 42 out of 309flct: progress  i = 43 out of 309flct: progress  i = 44 out of 309flct: progress  i = 45 out of 309flct: progress  i = 46 out of 309flct: progress  i = 47 out of 309flct: progress  i = 48 out of 309flct: progress  i = 49 out of 309flct: progress  i = 50 out of 309flct: progress  i = 51 out of 309flct: progress  i = 52 out of 309flct: progress  i = 53 out of 309flct: progress  i = 54 out of 309flct: progress  i = 55 out of 309flct: progress  i = 56 out of 309flct: progress  i = 57 out of 309flct: progress  i = 58 out of 309flct: progress  i = 59 out of 309flct: progress  i = 60 out of 309flct: progress  i = 61 out of 309flct: progress  i = 62 out of 309flct: progress  i = 63 out of 309flct: progress  i = 64 out of 309flct: progress  i = 65 out of 309flct: progress  i = 66 out of 309flct: progress  i = 67 out of 309flct: progress  i = 68 out of 309flct: progress  i = 69 out of 309flct: progress  i = 70 out of 309flct: progress  i = 71 out of 309flct: progress  i = 72 out of 309flct: progress  i = 73 out of 309flct: progress  i = 74 out of 309flct: progress  i = 75 out of 309flct: progress  i = 76 out of 309flct: progress  i = 77 out of 309flct: progress  i = 78 out of 309flct: progress  i = 79 out of 309flct: progress  i = 80 out of 309flct: progress  i = 81 out of 309flct: progress  i = 82 out of 309flct: progress  i = 83 out of 309flct: progress  i = 84 out of 309flct: progress  i = 85 out of 309flct: progress  i = 86 out of 309flct: progress  i = 87 out of 309flct: progress  i = 88 out of 309flct: progress  i = 89 out of 309flct: progress  i = 90 out of 309flct: progress  i = 91 out of 309flct: progress  i = 92 out of 309flct: progress  i = 93 out of 309flct: progress  i = 94 out of 309flct: progress  i = 95 out of 309flct: progress  i = 96 out of 309flct: progress  i = 97 out of 309flct: progress  i = 98 out of 309flct: progress  i = 99 out of 309flct: progress  i = 100 out of 309flct: progress  i = 101 out of 309flct: progress  i = 102 out of 309flct: progress  i = 103 out of 309flct: progress  i = 104 out of 309flct: progress  i = 105 out of 309flct: progress  i = 106 out of 309flct: progress  i = 107 out of 309flct: progress  i = 108 out of 309flct: progress  i = 109 out of 309flct: progress  i = 110 out of 309flct: progress  i = 111 out of 309flct: progress  i = 112 out of 309flct: progress  i = 113 out of 309flct: progress  i = 114 out of 309flct: progress  i = 115 out of 309flct: progress  i = 116 out of 309flct: progress  i = 117 out of 309flct: progress  i = 118 out of 309flct: progress  i = 119 out of 309flct: progress  i = 120 out of 309flct: progress  i = 121 out of 309flct: progress  i = 122 out of 309flct: progress  i = 123 out of 309flct: progress  i = 124 out of 309flct: progress  i = 125 out of 309flct: progress  i = 126 out of 309flct: progress  i = 127 out of 309flct: progress  i = 128 out of 309flct: progress  i = 129 out of 309flct: progress  i = 130 out of 309flct: progress  i = 131 out of 309flct: progress  i = 132 out of 309flct: progress  i = 133 out of 309flct: progress  i = 134 out of 309flct: progress  i = 135 out of 309flct: progress  i = 136 out of 309flct: progress  i = 137 out of 309flct: progress  i = 138 out of 309flct: progress  i = 139 out of 309flct: progress  i = 140 out of 309flct: progress  i = 141 out of 309flct: progress  i = 142 out of 309flct: progress  i = 143 out of 309flct: progress  i = 144 out of 309flct: progress  i = 145 out of 309flct: progress  i = 146 out of 309flct: progress  i = 147 out of 309flct: progress  i = 148 out of 309flct: progress  i = 149 out of 309flct: progress  i = 150 out of 309flct: progress  i = 151 out of 309flct: progress  i = 152 out of 309flct: progress  i = 153 out of 309flct: progress  i = 154 out of 309flct: progress  i = 155 out of 309flct: progress  i = 156 out of 309flct: progress  i = 157 out of 309flct: progress  i = 158 out of 309flct: progress  i = 159 out of 309flct: progress  i = 160 out of 309flct: progress  i = 161 out of 309flct: progress  i = 162 out of 309flct: progress  i = 163 out of 309flct: progress  i = 164 out of 309flct: progress  i = 165 out of 309flct: progress  i = 166 out of 309flct: progress  i = 167 out of 309flct: progress  i = 168 out of 309flct: progress  i = 169 out of 309flct: progress  i = 170 out of 309flct: progress  i = 171 out of 309flct: progress  i = 172 out of 309flct: progress  i = 173 out of 309flct: progress  i = 174 out of 309flct: progress  i = 175 out of 309flct: progress  i = 176 out of 309flct: progress  i = 177 out of 309flct: progress  i = 178 out of 309flct: progress  i = 179 out of 309flct: progress  i = 180 out of 309flct: progress  i = 181 out of 309flct: progress  i = 182 out of 309flct: progress  i = 183 out of 309flct: progress  i = 184 out of 309flct: progress  i = 185 out of 309flct: progress  i = 186 out of 309flct: progress  i = 187 out of 309flct: progress  i = 188 out of 309flct: progress  i = 189 out of 309flct: progress  i = 190 out of 309flct: progress  i = 191 out of 309flct: progress  i = 192 out of 309flct: progress  i = 193 out of 309flct: progress  i = 194 out of 309flct: progress  i = 195 out of 309flct: progress  i = 196 out of 309flct: progress  i = 197 out of 309flct: progress  i = 198 out of 309flct: progress  i = 199 out of 309flct: progress  i = 200 out of 309flct: progress  i = 201 out of 309flct: progress  i = 202 out of 309flct: progress  i = 203 out of 309flct: progress  i = 204 out of 309flct: progress  i = 205 out of 309flct: progress  i = 206 out of 309flct: progress  i = 207 out of 309flct: progress  i = 208 out of 309flct: progress  i = 209 out of 309flct: progress  i = 210 out of 309flct: progress  i = 211 out of 309flct: progress  i = 212 out of 309flct: progress  i = 213 out of 309flct: progress  i = 214 out of 309flct: progress  i = 215 out of 309flct: progress  i = 216 out of 309flct: progress  i = 217 out of 309flct: progress  i = 218 out of 309flct: progress  i = 219 out of 309flct: progress  i = 220 out of 309flct: progress  i = 221 out of 309flct: progress  i = 222 out of 309flct: progress  i = 223 out of 309flct: progress  i = 224 out of 309flct: progress  i = 225 out of 309flct: progress  i = 226 out of 309flct: progress  i = 227 out of 309flct: progress  i = 228 out of 309flct: progress  i = 229 out of 309flct: progress  i = 230 out of 309flct: progress  i = 231 out of 309flct: progress  i = 232 out of 309flct: progress  i = 233 out of 309flct: progress  i = 234 out of 309flct: progress  i = 235 out of 309flct: progress  i = 236 out of 309flct: progress  i = 237 out of 309flct: progress  i = 238 out of 309flct: progress  i = 239 out of 309flct: progress  i = 240 out of 309flct: progress  i = 241 out of 309flct: progress  i = 242 out of 309flct: progress  i = 243 out of 309flct: progress  i = 244 out of 309flct: progress  i = 245 out of 309flct: progress  i = 246 out of 309flct: progress  i = 247 out of 309flct: progress  i = 248 out of 309flct: progress  i = 249 out of 309flct: progress  i = 250 out of 309flct: progress  i = 251 out of 309flct: progress  i = 252 out of 309flct: progress  i = 253 out of 309flct: progress  i = 254 out of 309flct: progress  i = 255 out of 309flct: progress  i = 256 out of 309flct: progress  i = 257 out of 309flct: progress  i = 258 out of 309flct: progress  i = 259 out of 309flct: progress  i = 260 out of 309flct: progress  i = 261 out of 309flct: progress  i = 262 out of 309flct: progress  i = 263 out of 309flct: progress  i = 264 out of 309flct: progress  i = 265 out of 309flct: progress  i = 266 out of 309flct: progress  i = 267 out of 309flct: progress  i = 268 out of 309flct: progress  i = 269 out of 309flct: progress  i = 270 out of 309flct: progress  i = 271 out of 309flct: progress  i = 272 out of 309flct: progress  i = 273 out of 309flct: progress  i = 274 out of 309flct: progress  i = 275 out of 309flct: progress  i = 276 out of 309flct: progress  i = 277 out of 309flct: progress  i = 278 out of 309flct: progress  i = 279 out of 309flct: progress  i = 280 out of 309flct: progress  i = 281 out of 309flct: progress  i = 282 out of 309flct: progress  i = 283 out of 309flct: progress  i = 284 out of 309flct: progress  i = 285 out of 309flct: progress  i = 286 out of 309flct: progress  i = 287 out of 309flct: progress  i = 288 out of 309flct: progress  i = 289 out of 309flct: progress  i = 290 out of 309flct: progress  i = 291 out of 309flct: progress  i = 292 out of 309flct: progress  i = 293 out of 309flct: progress  i = 294 out of 309flct: progress  i = 295 out of 309flct: progress  i = 296 out of 309flct: progress  i = 297 out of 309flct: progress  i = 298 out of 309flct: progress  i = 299 out of 309flct: progress  i = 300 out of 309flct: progress  i = 301 out of 309flct: progress  i = 302 out of 309flct: progress  i = 303 out of 309flct: progress  i = 304 out of 309flct: progress  i = 305 out of 309flct: progress  i = 306 out of 309flct: progress  i = 307 out of 309flct: progress  i = 308 out of 309flct: progress  i = 309 out of 309flct: mean value of gamma^2/sigma^2 = 0.195261
+
+flct: finished
+#+end_example
+
+#+begin_src python :results output
+import os
+os.environ["PATH"] = ":".join((os.environ["PATH"], "/Users/will/.local/bin"))
+os.system("echo $PATH")
+os.system("which flct")
+#+end_src
+
+#+RESULTS:
+: /Users/will/Source/google-cloud-sdk/bin:/usr/local/texlive/2017/bin/x86_64-darwin:/Users/will/anaconda/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Users/will/Source/google-cloud-sdk/bin:/usr/local/texlive/2017/bin/x86_64-darwin:/Users/will/anaconda/bin:/Users/will/.local/bin
+: /Users/will/.local/bin/flct
+
+**** Convert velocities into radial and non-radial part
+#+begin_src python
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  import numpy as np
+
+  # Position of star
+  ra0, dec0 = 251.1230789, 23.7999977
+
+  for line in "nii", "oiii":
+      hvx = fits.open(f"../propermotions/{line}/{line}-velx-win.fits")[0]
+      hvy = fits.open(f"../propermotions/{line}/{line}-vely-win.fits")[0]
+
+      Vx, Vy = hvx.data, hvy.data
+      ny, nx = hvx.data.shape
+      w = WCS(hvx.header)
+      j0, i0 = w.world_to_array_index_values(ra0, dec0)
+      X, Y = np.meshgrid(np.arange(nx) - i0, np.arange(ny) - j0)
+      R = np.hypot(X, Y)
+      rx = X/R
+      ry = Y/R
+      V = np.hypot(Vx, Vy)
+      Vr = Vx*rx + Vy*ry
+      Vth = -Vx*ry + Vy*rx
+      theta = np.degrees(np.arccos(Vr/V))
+
+      fits.PrimaryHDU(header=hvx.header, data=Vr).writeto(
+          f"../propermotions/{line}/{line}-Vr-win.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=V).writeto(
+          f"../propermotions/{line}/{line}-V-win.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=Vth).writeto(
+          f"../propermotions/{line}/{line}-Vth-win.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=theta).writeto(
+          f"../propermotions/{line}/{line}-theta-win.fits", overwrite=True,
+      )
+#+end_src
+
+#+RESULTS:
+: None
+
+
+
+**** Figures of the PM velocity field
+
+[O III]
+#+begin_src python :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.io import fits
+
+  figfile = "../figs/oiii-propermotions.pdf"
+
+  im = fits.open("../propermotions/oiii/oiii-ago1997-win.fits")[0].data
+  vx = fits.open("../propermotions/oiii/oiii-velx-win.fits")[0].data
+  vy = fits.open("../propermotions/oiii/oiii-vely-win.fits")[0].data
+  vx[abs(vx) > 1.0] = np.nan
+  vy += 0.1
+  vy[abs(vy) > 1.0] = np.nan
+  ny, nx = im.shape
+  X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
+
+
+  fig, ax = plt.subplots()
+  im[im < 0.0] = 0.0
+  ax.imshow(np.sqrt(im), vmin=0.0, vmax=None, origin="lower", cmap="viridis")
+  step = slice(None, None, 5), slice(None, None, 5)
+  # A faint version for the faint emission
+  vx[im < 0.5] = np.nan
+  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.4)
+  # A bright version for the bright emission
+  vx[im < 3.0] = np.nan
+  Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+            units="xy", scale=0.08, width=0.7, minshaft=2.0, color="w", alpha=1.0)
+  ax.quiverkey(Q, 0.1, 0.1, 1.0,
+               "10 mas / yr", labelcolor="w",
+               fontproperties=dict(size=5))
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:../figs/oiii-propermotions.pdf]]
+
+[N II]
+#+begin_src python :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.io import fits
+
+  figfile = "../figs/nii-propermotions.pdf"
+
+  im = fits.open("../propermotions/nii/n6210n2008sm.fits")[0].data
+  vx = fits.open("../propermotions/nii/nii-velx-win.fits")[0].data
+  vy = fits.open("../propermotions/nii/nii-vely-win.fits")[0].data
+  vx[abs(vx) > 1.0] = np.nan
+  vy -= 0.1
+  vy[abs(vy) > 1.0] = np.nan
+  ny, nx = im.shape
+  X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
+
+
+  fig, ax = plt.subplots()
+  im[im < 0.0] = 0.0
+  ax.imshow(np.sqrt(im), vmin=0.0, vmax=None, origin="lower", cmap="viridis")
+  step = slice(None, None, 5), slice(None, None, 5)
+  # A faint version for the faint emission
+  vx[im < 0.02] = np.nan
+  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.4)
+  # A bright version for the bright emission
+  vx[im < 0.1] = np.nan
+  Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+                units="xy", scale=0.08, width=0.7, minshaft=2.0, color="w", alpha=1.0)
+  ax.quiverkey(Q, 0.1, 0.1, 1.0,
+               "10 mas / yr", labelcolor="w",
+               fontproperties=dict(size=5))
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:../figs/nii-propermotions.pdf]]
 
 ** Basic data on NGC 6210
 + Coordinates
