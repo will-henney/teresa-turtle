@@ -106,6 +106,15 @@ Do some unsharp masking
 
 **** Trying out FLCT
 
++ I do adjustments to the y velocity in order to improve the consistency between the two lines
++ First move so tha region around star has zero velocity
++ Then further adjustments by hand in order to improve the consistency between the two lines and make things more symmetric
+  + Add 0.1 pixel/cadence to [O III]
+  + Subtract 0.1 pixel/cadence to [N II]
++ So the systematic uncertainty of about +/- 0.15 pix is probably the dominant error
+
+
+
 First for [O III]
 
 #+begin_src python :results output
@@ -122,7 +131,7 @@ First for [O III]
   h1 = fits.open("../propermotions/oiii/oiii-ago1997-correct.fits")['SCI']
   h2 = fits.open("../propermotions/oiii/oiii-ene2008-correct.fits")['SCI']
 
-  xslice, yslice = slice(1036, 1400), slice(1040, 1320)
+  xslice, yslice = slice(970, 1430), slice(880, 1440)
   data1 = h1.data[yslice, xslice]
   data2 = h2.data[yslice, xslice]
 
@@ -140,6 +149,8 @@ First for [O III]
   # Correct for any shift of star
   vx -= vx[i0-3:i0+3, j0-3:j0+3].mean()
   vy -= vy[i0-3:i0+3, j0-3:j0+3].mean()
+  # And a final by-hand shift to make things be more symmetric
+  vy += 0.2
 
   newhdr = w.to_header()
 
@@ -166,10 +177,10 @@ flct: sigma = 10
 flct: threshold image value for LCT is 0.000498
 flct: bias correction not enabled
 flct: complex.h is not included
-flct: from input file, nx = 364, ny = 280
+flct: from input file, nx = 460, ny = 560
 flct: nominal sliding box size = 40
 flct: relative threshold in abs. units = 0.12458
-flct: progress  i = 0 out of 279flct: progress  i = 1 out of 279flct: progress  i = 2 out of 279flct: progress  i = 3 out of 279flct: progress  i = 4 out of 279flct: progress  i = 5 out of 279flct: progress  i = 6 out of 279flct: progress  i = 7 out of 279flct: progress  i = 8 out of 279flct: progress  i = 9 out of 279flct: progress  i = 10 out of 279flct: progress  i = 11 out of 279flct: progress  i = 12 out of 279flct: progress  i = 13 out of 279flct: progress  i = 14 out of 279flct: progress  i = 15 out of 279flct: progress  i = 16 out of 279flct: progress  i = 17 out of 279flct: progress  i = 18 out of 279flct: progress  i = 19 out of 279flct: progress  i = 20 out of 279flct: progress  i = 21 out of 279flct: progress  i = 22 out of 279flct: progress  i = 23 out of 279flct: progress  i = 24 out of 279flct: progress  i = 25 out of 279flct: progress  i = 26 out of 279flct: progress  i = 27 out of 279flct: progress  i = 28 out of 279flct: progress  i = 29 out of 279flct: progress  i = 30 out of 279flct: progress  i = 31 out of 279flct: progress  i = 32 out of 279flct: progress  i = 33 out of 279flct: progress  i = 34 out of 279flct: progress  i = 35 out of 279flct: progress  i = 36 out of 279flct: progress  i = 37 out of 279flct: progress  i = 38 out of 279flct: progress  i = 39 out of 279flct: progress  i = 40 out of 279flct: progress  i = 41 out of 279flct: progress  i = 42 out of 279flct: progress  i = 43 out of 279flct: progress  i = 44 out of 279flct: progress  i = 45 out of 279flct: progress  i = 46 out of 279flct: progress  i = 47 out of 279flct: progress  i = 48 out of 279flct: progress  i = 49 out of 279flct: progress  i = 50 out of 279flct: progress  i = 51 out of 279flct: progress  i = 52 out of 279flct: progress  i = 53 out of 279flct: progress  i = 54 out of 279flct: progress  i = 55 out of 279flct: progress  i = 56 out of 279flct: progress  i = 57 out of 279flct: progress  i = 58 out of 279flct: progress  i = 59 out of 279flct: progress  i = 60 out of 279flct: progress  i = 61 out of 279flct: progress  i = 62 out of 279flct: progress  i = 63 out of 279flct: progress  i = 64 out of 279flct: progress  i = 65 out of 279flct: progress  i = 66 out of 279flct: progress  i = 67 out of 279flct: progress  i = 68 out of 279flct: progress  i = 69 out of 279flct: progress  i = 70 out of 279flct: progress  i = 71 out of 279flct: progress  i = 72 out of 279flct: progress  i = 73 out of 279flct: progress  i = 74 out of 279flct: progress  i = 75 out of 279flct: progress  i = 76 out of 279flct: progress  i = 77 out of 279flct: progress  i = 78 out of 279flct: progress  i = 79 out of 279flct: progress  i = 80 out of 279flct: progress  i = 81 out of 279flct: progress  i = 82 out of 279flct: progress  i = 83 out of 279flct: progress  i = 84 out of 279flct: progress  i = 85 out of 279flct: progress  i = 86 out of 279flct: progress  i = 87 out of 279flct: progress  i = 88 out of 279flct: progress  i = 89 out of 279flct: progress  i = 90 out of 279flct: progress  i = 91 out of 279flct: progress  i = 92 out of 279flct: progress  i = 93 out of 279flct: progress  i = 94 out of 279flct: progress  i = 95 out of 279flct: progress  i = 96 out of 279flct: progress  i = 97 out of 279flct: progress  i = 98 out of 279flct: progress  i = 99 out of 279flct: progress  i = 100 out of 279flct: progress  i = 101 out of 279flct: progress  i = 102 out of 279flct: progress  i = 103 out of 279flct: progress  i = 104 out of 279flct: progress  i = 105 out of 279flct: progress  i = 106 out of 279flct: progress  i = 107 out of 279flct: progress  i = 108 out of 279flct: progress  i = 109 out of 279flct: progress  i = 110 out of 279flct: progress  i = 111 out of 279flct: progress  i = 112 out of 279flct: progress  i = 113 out of 279flct: progress  i = 114 out of 279flct: progress  i = 115 out of 279flct: progress  i = 116 out of 279flct: progress  i = 117 out of 279flct: progress  i = 118 out of 279flct: progress  i = 119 out of 279flct: progress  i = 120 out of 279flct: progress  i = 121 out of 279flct: progress  i = 122 out of 279flct: progress  i = 123 out of 279flct: progress  i = 124 out of 279flct: progress  i = 125 out of 279flct: progress  i = 126 out of 279flct: progress  i = 127 out of 279flct: progress  i = 128 out of 279flct: progress  i = 129 out of 279flct: progress  i = 130 out of 279flct: progress  i = 131 out of 279flct: progress  i = 132 out of 279flct: progress  i = 133 out of 279flct: progress  i = 134 out of 279flct: progress  i = 135 out of 279flct: progress  i = 136 out of 279flct: progress  i = 137 out of 279flct: progress  i = 138 out of 279flct: progress  i = 139 out of 279flct: progress  i = 140 out of 279flct: progress  i = 141 out of 279flct: progress  i = 142 out of 279flct: progress  i = 143 out of 279flct: progress  i = 144 out of 279flct: progress  i = 145 out of 279flct: progress  i = 146 out of 279flct: progress  i = 147 out of 279flct: progress  i = 148 out of 279flct: progress  i = 149 out of 279flct: progress  i = 150 out of 279flct: progress  i = 151 out of 279flct: progress  i = 152 out of 279flct: progress  i = 153 out of 279flct: progress  i = 154 out of 279flct: progress  i = 155 out of 279flct: progress  i = 156 out of 279flct: progress  i = 157 out of 279flct: progress  i = 158 out of 279flct: progress  i = 159 out of 279flct: progress  i = 160 out of 279flct: progress  i = 161 out of 279flct: progress  i = 162 out of 279flct: progress  i = 163 out of 279flct: progress  i = 164 out of 279flct: progress  i = 165 out of 279flct: progress  i = 166 out of 279flct: progress  i = 167 out of 279flct: progress  i = 168 out of 279flct: progress  i = 169 out of 279flct: progress  i = 170 out of 279flct: progress  i = 171 out of 279flct: progress  i = 172 out of 279flct: progress  i = 173 out of 279flct: progress  i = 174 out of 279flct: progress  i = 175 out of 279flct: progress  i = 176 out of 279flct: progress  i = 177 out of 279flct: progress  i = 178 out of 279flct: progress  i = 179 out of 279flct: progress  i = 180 out of 279flct: progress  i = 181 out of 279flct: progress  i = 182 out of 279flct: progress  i = 183 out of 279flct: progress  i = 184 out of 279flct: progress  i = 185 out of 279flct: progress  i = 186 out of 279flct: progress  i = 187 out of 279flct: progress  i = 188 out of 279flct: progress  i = 189 out of 279flct: progress  i = 190 out of 279flct: progress  i = 191 out of 279flct: progress  i = 192 out of 279flct: progress  i = 193 out of 279flct: progress  i = 194 out of 279flct: progress  i = 195 out of 279flct: progress  i = 196 out of 279flct: progress  i = 197 out of 279flct: progress  i = 198 out of 279flct: progress  i = 199 out of 279flct: progress  i = 200 out of 279flct: progress  i = 201 out of 279flct: progress  i = 202 out of 279flct: progress  i = 203 out of 279flct: progress  i = 204 out of 279flct: progress  i = 205 out of 279flct: progress  i = 206 out of 279flct: progress  i = 207 out of 279flct: progress  i = 208 out of 279flct: progress  i = 209 out of 279flct: progress  i = 210 out of 279flct: progress  i = 211 out of 279flct: progress  i = 212 out of 279flct: progress  i = 213 out of 279flct: progress  i = 214 out of 279flct: progress  i = 215 out of 279flct: progress  i = 216 out of 279flct: progress  i = 217 out of 279flct: progress  i = 218 out of 279flct: progress  i = 219 out of 279flct: progress  i = 220 out of 279flct: progress  i = 221 out of 279flct: progress  i = 222 out of 279flct: progress  i = 223 out of 279flct: progress  i = 224 out of 279flct: progress  i = 225 out of 279flct: progress  i = 226 out of 279flct: progress  i = 227 out of 279flct: progress  i = 228 out of 279flct: progress  i = 229 out of 279flct: progress  i = 230 out of 279flct: progress  i = 231 out of 279flct: progress  i = 232 out of 279flct: progress  i = 233 out of 279flct: progress  i = 234 out of 279flct: progress  i = 235 out of 279flct: progress  i = 236 out of 279flct: progress  i = 237 out of 279flct: progress  i = 238 out of 279flct: progress  i = 239 out of 279flct: progress  i = 240 out of 279flct: progress  i = 241 out of 279flct: progress  i = 242 out of 279flct: progress  i = 243 out of 279flct: progress  i = 244 out of 279flct: progress  i = 245 out of 279flct: progress  i = 246 out of 279flct: progress  i = 247 out of 279flct: progress  i = 248 out of 279flct: progress  i = 249 out of 279flct: progress  i = 250 out of 279flct: progress  i = 251 out of 279flct: progress  i = 252 out of 279flct: progress  i = 253 out of 279flct: progress  i = 254 out of 279flct: progress  i = 255 out of 279flct: progress  i = 256 out of 279flct: progress  i = 257 out of 279flct: progress  i = 258 out of 279flct: progress  i = 259 out of 279flct: progress  i = 260 out of 279flct: progress  i = 261 out of 279flct: progress  i = 262 out of 279flct: progress  i = 263 out of 279flct: progress  i = 264 out of 279flct: progress  i = 265 out of 279flct: progress  i = 266 out of 279flct: progress  i = 267 out of 279flct: progress  i = 268 out of 279flct: progress  i = 269 out of 279flct: progress  i = 270 out of 279flct: progress  i = 271 out of 279flct: progress  i = 272 out of 279flct: progress  i = 273 out of 279flct: progress  i = 274 out of 279flct: progress  i = 275 out of 279flct: progress  i = 276 out of 279flct: progress  i = 277 out of 279flct: progress  i = 278 out of 279flct: progress  i = 279 out of 279flct: mean value of gamma^2/sigma^2 = 0.291466
+flct: progress  i = 0 out of 559flct: progress  i = 1 out of 559flct: progress  i = 2 out of 559flct: progress  i = 3 out of 559flct: progress  i = 4 out of 559flct: progress  i = 5 out of 559flct: progress  i = 6 out of 559flct: progress  i = 7 out of 559flct: progress  i = 8 out of 559flct: progress  i = 9 out of 559flct: progress  i = 10 out of 559flct: progress  i = 11 out of 559flct: progress  i = 12 out of 559flct: progress  i = 13 out of 559flct: progress  i = 14 out of 559flct: progress  i = 15 out of 559flct: progress  i = 16 out of 559flct: progress  i = 17 out of 559flct: progress  i = 18 out of 559flct: progress  i = 19 out of 559flct: progress  i = 20 out of 559flct: progress  i = 21 out of 559flct: progress  i = 22 out of 559flct: progress  i = 23 out of 559flct: progress  i = 24 out of 559flct: progress  i = 25 out of 559flct: progress  i = 26 out of 559flct: progress  i = 27 out of 559flct: progress  i = 28 out of 559flct: progress  i = 29 out of 559flct: progress  i = 30 out of 559flct: progress  i = 31 out of 559flct: progress  i = 32 out of 559flct: progress  i = 33 out of 559flct: progress  i = 34 out of 559flct: progress  i = 35 out of 559flct: progress  i = 36 out of 559flct: progress  i = 37 out of 559flct: progress  i = 38 out of 559flct: progress  i = 39 out of 559flct: progress  i = 40 out of 559flct: progress  i = 41 out of 559flct: progress  i = 42 out of 559flct: progress  i = 43 out of 559flct: progress  i = 44 out of 559flct: progress  i = 45 out of 559flct: progress  i = 46 out of 559flct: progress  i = 47 out of 559flct: progress  i = 48 out of 559flct: progress  i = 49 out of 559flct: progress  i = 50 out of 559flct: progress  i = 51 out of 559flct: progress  i = 52 out of 559flct: progress  i = 53 out of 559flct: progress  i = 54 out of 559flct: progress  i = 55 out of 559flct: progress  i = 56 out of 559flct: progress  i = 57 out of 559flct: progress  i = 58 out of 559flct: progress  i = 59 out of 559flct: progress  i = 60 out of 559flct: progress  i = 61 out of 559flct: progress  i = 62 out of 559flct: progress  i = 63 out of 559flct: progress  i = 64 out of 559flct: progress  i = 65 out of 559flct: progress  i = 66 out of 559flct: progress  i = 67 out of 559flct: progress  i = 68 out of 559flct: progress  i = 69 out of 559flct: progress  i = 70 out of 559flct: progress  i = 71 out of 559flct: progress  i = 72 out of 559flct: progress  i = 73 out of 559flct: progress  i = 74 out of 559flct: progress  i = 75 out of 559flct: progress  i = 76 out of 559flct: progress  i = 77 out of 559flct: progress  i = 78 out of 559flct: progress  i = 79 out of 559flct: progress  i = 80 out of 559flct: progress  i = 81 out of 559flct: progress  i = 82 out of 559flct: progress  i = 83 out of 559flct: progress  i = 84 out of 559flct: progress  i = 85 out of 559flct: progress  i = 86 out of 559flct: progress  i = 87 out of 559flct: progress  i = 88 out of 559flct: progress  i = 89 out of 559flct: progress  i = 90 out of 559flct: progress  i = 91 out of 559flct: progress  i = 92 out of 559flct: progress  i = 93 out of 559flct: progress  i = 94 out of 559flct: progress  i = 95 out of 559flct: progress  i = 96 out of 559flct: progress  i = 97 out of 559flct: progress  i = 98 out of 559flct: progress  i = 99 out of 559flct: progress  i = 100 out of 559flct: progress  i = 101 out of 559flct: progress  i = 102 out of 559flct: progress  i = 103 out of 559flct: progress  i = 104 out of 559flct: progress  i = 105 out of 559flct: progress  i = 106 out of 559flct: progress  i = 107 out of 559flct: progress  i = 108 out of 559flct: progress  i = 109 out of 559flct: progress  i = 110 out of 559flct: progress  i = 111 out of 559flct: progress  i = 112 out of 559flct: progress  i = 113 out of 559flct: progress  i = 114 out of 559flct: progress  i = 115 out of 559flct: progress  i = 116 out of 559flct: progress  i = 117 out of 559flct: progress  i = 118 out of 559flct: progress  i = 119 out of 559flct: progress  i = 120 out of 559flct: progress  i = 121 out of 559flct: progress  i = 122 out of 559flct: progress  i = 123 out of 559flct: progress  i = 124 out of 559flct: progress  i = 125 out of 559flct: progress  i = 126 out of 559flct: progress  i = 127 out of 559flct: progress  i = 128 out of 559flct: progress  i = 129 out of 559flct: progress  i = 130 out of 559flct: progress  i = 131 out of 559flct: progress  i = 132 out of 559flct: progress  i = 133 out of 559flct: progress  i = 134 out of 559flct: progress  i = 135 out of 559flct: progress  i = 136 out of 559flct: progress  i = 137 out of 559flct: progress  i = 138 out of 559flct: progress  i = 139 out of 559flct: progress  i = 140 out of 559flct: progress  i = 141 out of 559flct: progress  i = 142 out of 559flct: progress  i = 143 out of 559flct: progress  i = 144 out of 559flct: progress  i = 145 out of 559flct: progress  i = 146 out of 559flct: progress  i = 147 out of 559flct: progress  i = 148 out of 559flct: progress  i = 149 out of 559flct: progress  i = 150 out of 559flct: progress  i = 151 out of 559flct: progress  i = 152 out of 559flct: progress  i = 153 out of 559flct: progress  i = 154 out of 559flct: progress  i = 155 out of 559flct: progress  i = 156 out of 559flct: progress  i = 157 out of 559flct: progress  i = 158 out of 559flct: progress  i = 159 out of 559flct: progress  i = 160 out of 559flct: progress  i = 161 out of 559flct: progress  i = 162 out of 559flct: progress  i = 163 out of 559flct: progress  i = 164 out of 559flct: progress  i = 165 out of 559flct: progress  i = 166 out of 559flct: progress  i = 167 out of 559flct: progress  i = 168 out of 559flct: progress  i = 169 out of 559flct: progress  i = 170 out of 559flct: progress  i = 171 out of 559flct: progress  i = 172 out of 559flct: progress  i = 173 out of 559flct: progress  i = 174 out of 559flct: progress  i = 175 out of 559flct: progress  i = 176 out of 559flct: progress  i = 177 out of 559flct: progress  i = 178 out of 559flct: progress  i = 179 out of 559flct: progress  i = 180 out of 559flct: progress  i = 181 out of 559flct: progress  i = 182 out of 559flct: progress  i = 183 out of 559flct: progress  i = 184 out of 559flct: progress  i = 185 out of 559flct: progress  i = 186 out of 559flct: progress  i = 187 out of 559flct: progress  i = 188 out of 559flct: progress  i = 189 out of 559flct: progress  i = 190 out of 559flct: progress  i = 191 out of 559flct: progress  i = 192 out of 559flct: progress  i = 193 out of 559flct: progress  i = 194 out of 559flct: progress  i = 195 out of 559flct: progress  i = 196 out of 559flct: progress  i = 197 out of 559flct: progress  i = 198 out of 559flct: progress  i = 199 out of 559flct: progress  i = 200 out of 559flct: progress  i = 201 out of 559flct: progress  i = 202 out of 559flct: progress  i = 203 out of 559flct: progress  i = 204 out of 559flct: progress  i = 205 out of 559flct: progress  i = 206 out of 559flct: progress  i = 207 out of 559flct: progress  i = 208 out of 559flct: progress  i = 209 out of 559flct: progress  i = 210 out of 559flct: progress  i = 211 out of 559flct: progress  i = 212 out of 559flct: progress  i = 213 out of 559flct: progress  i = 214 out of 559flct: progress  i = 215 out of 559flct: progress  i = 216 out of 559flct: progress  i = 217 out of 559flct: progress  i = 218 out of 559flct: progress  i = 219 out of 559flct: progress  i = 220 out of 559flct: progress  i = 221 out of 559flct: progress  i = 222 out of 559flct: progress  i = 223 out of 559flct: progress  i = 224 out of 559flct: progress  i = 225 out of 559flct: progress  i = 226 out of 559flct: progress  i = 227 out of 559flct: progress  i = 228 out of 559flct: progress  i = 229 out of 559flct: progress  i = 230 out of 559flct: progress  i = 231 out of 559flct: progress  i = 232 out of 559flct: progress  i = 233 out of 559flct: progress  i = 234 out of 559flct: progress  i = 235 out of 559flct: progress  i = 236 out of 559flct: progress  i = 237 out of 559flct: progress  i = 238 out of 559flct: progress  i = 239 out of 559flct: progress  i = 240 out of 559flct: progress  i = 241 out of 559flct: progress  i = 242 out of 559flct: progress  i = 243 out of 559flct: progress  i = 244 out of 559flct: progress  i = 245 out of 559flct: progress  i = 246 out of 559flct: progress  i = 247 out of 559flct: progress  i = 248 out of 559flct: progress  i = 249 out of 559flct: progress  i = 250 out of 559flct: progress  i = 251 out of 559flct: progress  i = 252 out of 559flct: progress  i = 253 out of 559flct: progress  i = 254 out of 559flct: progress  i = 255 out of 559flct: progress  i = 256 out of 559flct: progress  i = 257 out of 559flct: progress  i = 258 out of 559flct: progress  i = 259 out of 559flct: progress  i = 260 out of 559flct: progress  i = 261 out of 559flct: progress  i = 262 out of 559flct: progress  i = 263 out of 559flct: progress  i = 264 out of 559flct: progress  i = 265 out of 559flct: progress  i = 266 out of 559flct: progress  i = 267 out of 559flct: progress  i = 268 out of 559flct: progress  i = 269 out of 559flct: progress  i = 270 out of 559flct: progress  i = 271 out of 559flct: progress  i = 272 out of 559flct: progress  i = 273 out of 559flct: progress  i = 274 out of 559flct: progress  i = 275 out of 559flct: progress  i = 276 out of 559flct: progress  i = 277 out of 559flct: progress  i = 278 out of 559flct: progress  i = 279 out of 559flct: progress  i = 280 out of 559flct: progress  i = 281 out of 559flct: progress  i = 282 out of 559flct: progress  i = 283 out of 559flct: progress  i = 284 out of 559flct: progress  i = 285 out of 559flct: progress  i = 286 out of 559flct: progress  i = 287 out of 559flct: progress  i = 288 out of 559flct: progress  i = 289 out of 559flct: progress  i = 290 out of 559flct: progress  i = 291 out of 559flct: progress  i = 292 out of 559flct: progress  i = 293 out of 559flct: progress  i = 294 out of 559flct: progress  i = 295 out of 559flct: progress  i = 296 out of 559flct: progress  i = 297 out of 559flct: progress  i = 298 out of 559flct: progress  i = 299 out of 559flct: progress  i = 300 out of 559flct: progress  i = 301 out of 559flct: progress  i = 302 out of 559flct: progress  i = 303 out of 559flct: progress  i = 304 out of 559flct: progress  i = 305 out of 559flct: progress  i = 306 out of 559flct: progress  i = 307 out of 559flct: progress  i = 308 out of 559flct: progress  i = 309 out of 559flct: progress  i = 310 out of 559flct: progress  i = 311 out of 559flct: progress  i = 312 out of 559flct: progress  i = 313 out of 559flct: progress  i = 314 out of 559flct: progress  i = 315 out of 559flct: progress  i = 316 out of 559flct: progress  i = 317 out of 559flct: progress  i = 318 out of 559flct: progress  i = 319 out of 559flct: progress  i = 320 out of 559flct: progress  i = 321 out of 559flct: progress  i = 322 out of 559flct: progress  i = 323 out of 559flct: progress  i = 324 out of 559flct: progress  i = 325 out of 559flct: progress  i = 326 out of 559flct: progress  i = 327 out of 559flct: progress  i = 328 out of 559flct: progress  i = 329 out of 559flct: progress  i = 330 out of 559flct: progress  i = 331 out of 559flct: progress  i = 332 out of 559flct: progress  i = 333 out of 559flct: progress  i = 334 out of 559flct: progress  i = 335 out of 559flct: progress  i = 336 out of 559flct: progress  i = 337 out of 559flct: progress  i = 338 out of 559flct: progress  i = 339 out of 559flct: progress  i = 340 out of 559flct: progress  i = 341 out of 559flct: progress  i = 342 out of 559flct: progress  i = 343 out of 559flct: progress  i = 344 out of 559flct: progress  i = 345 out of 559flct: progress  i = 346 out of 559flct: progress  i = 347 out of 559flct: progress  i = 348 out of 559flct: progress  i = 349 out of 559flct: progress  i = 350 out of 559flct: progress  i = 351 out of 559flct: progress  i = 352 out of 559flct: progress  i = 353 out of 559flct: progress  i = 354 out of 559flct: progress  i = 355 out of 559flct: progress  i = 356 out of 559flct: progress  i = 357 out of 559flct: progress  i = 358 out of 559flct: progress  i = 359 out of 559flct: progress  i = 360 out of 559flct: progress  i = 361 out of 559flct: progress  i = 362 out of 559flct: progress  i = 363 out of 559flct: progress  i = 364 out of 559flct: progress  i = 365 out of 559flct: progress  i = 366 out of 559flct: progress  i = 367 out of 559flct: progress  i = 368 out of 559flct: progress  i = 369 out of 559flct: progress  i = 370 out of 559flct: progress  i = 371 out of 559flct: progress  i = 372 out of 559flct: progress  i = 373 out of 559flct: progress  i = 374 out of 559flct: progress  i = 375 out of 559flct: progress  i = 376 out of 559flct: progress  i = 377 out of 559flct: progress  i = 378 out of 559flct: progress  i = 379 out of 559flct: progress  i = 380 out of 559flct: progress  i = 381 out of 559flct: progress  i = 382 out of 559flct: progress  i = 383 out of 559flct: progress  i = 384 out of 559flct: progress  i = 385 out of 559flct: progress  i = 386 out of 559flct: progress  i = 387 out of 559flct: progress  i = 388 out of 559flct: progress  i = 389 out of 559flct: progress  i = 390 out of 559flct: progress  i = 391 out of 559flct: progress  i = 392 out of 559flct: progress  i = 393 out of 559flct: progress  i = 394 out of 559flct: progress  i = 395 out of 559flct: progress  i = 396 out of 559flct: progress  i = 397 out of 559flct: progress  i = 398 out of 559flct: progress  i = 399 out of 559flct: progress  i = 400 out of 559flct: progress  i = 401 out of 559flct: progress  i = 402 out of 559flct: progress  i = 403 out of 559flct: progress  i = 404 out of 559flct: progress  i = 405 out of 559flct: progress  i = 406 out of 559flct: progress  i = 407 out of 559flct: progress  i = 408 out of 559flct: progress  i = 409 out of 559flct: progress  i = 410 out of 559flct: progress  i = 411 out of 559flct: progress  i = 412 out of 559flct: progress  i = 413 out of 559flct: progress  i = 414 out of 559flct: progress  i = 415 out of 559flct: progress  i = 416 out of 559flct: progress  i = 417 out of 559flct: progress  i = 418 out of 559flct: progress  i = 419 out of 559flct: progress  i = 420 out of 559flct: progress  i = 421 out of 559flct: progress  i = 422 out of 559flct: progress  i = 423 out of 559flct: progress  i = 424 out of 559flct: progress  i = 425 out of 559flct: progress  i = 426 out of 559flct: progress  i = 427 out of 559flct: progress  i = 428 out of 559flct: progress  i = 429 out of 559flct: progress  i = 430 out of 559flct: progress  i = 431 out of 559flct: progress  i = 432 out of 559flct: progress  i = 433 out of 559flct: progress  i = 434 out of 559flct: progress  i = 435 out of 559flct: progress  i = 436 out of 559flct: progress  i = 437 out of 559flct: progress  i = 438 out of 559flct: progress  i = 439 out of 559flct: progress  i = 440 out of 559flct: progress  i = 441 out of 559flct: progress  i = 442 out of 559flct: progress  i = 443 out of 559flct: progress  i = 444 out of 559flct: progress  i = 445 out of 559flct: progress  i = 446 out of 559flct: progress  i = 447 out of 559flct: progress  i = 448 out of 559flct: progress  i = 449 out of 559flct: progress  i = 450 out of 559flct: progress  i = 451 out of 559flct: progress  i = 452 out of 559flct: progress  i = 453 out of 559flct: progress  i = 454 out of 559flct: progress  i = 455 out of 559flct: progress  i = 456 out of 559flct: progress  i = 457 out of 559flct: progress  i = 458 out of 559flct: progress  i = 459 out of 559flct: progress  i = 460 out of 559flct: progress  i = 461 out of 559flct: progress  i = 462 out of 559flct: progress  i = 463 out of 559flct: progress  i = 464 out of 559flct: progress  i = 465 out of 559flct: progress  i = 466 out of 559flct: progress  i = 467 out of 559flct: progress  i = 468 out of 559flct: progress  i = 469 out of 559flct: progress  i = 470 out of 559flct: progress  i = 471 out of 559flct: progress  i = 472 out of 559flct: progress  i = 473 out of 559flct: progress  i = 474 out of 559flct: progress  i = 475 out of 559flct: progress  i = 476 out of 559flct: progress  i = 477 out of 559flct: progress  i = 478 out of 559flct: progress  i = 479 out of 559flct: progress  i = 480 out of 559flct: progress  i = 481 out of 559flct: progress  i = 482 out of 559flct: progress  i = 483 out of 559flct: progress  i = 484 out of 559flct: progress  i = 485 out of 559flct: progress  i = 486 out of 559flct: progress  i = 487 out of 559flct: progress  i = 488 out of 559flct: progress  i = 489 out of 559flct: progress  i = 490 out of 559flct: progress  i = 491 out of 559flct: progress  i = 492 out of 559flct: progress  i = 493 out of 559flct: progress  i = 494 out of 559flct: progress  i = 495 out of 559flct: progress  i = 496 out of 559flct: progress  i = 497 out of 559flct: progress  i = 498 out of 559flct: progress  i = 499 out of 559flct: progress  i = 500 out of 559flct: progress  i = 501 out of 559flct: progress  i = 502 out of 559flct: progress  i = 503 out of 559flct: progress  i = 504 out of 559flct: progress  i = 505 out of 559flct: progress  i = 506 out of 559flct: progress  i = 507 out of 559flct: progress  i = 508 out of 559flct: progress  i = 509 out of 559flct: progress  i = 510 out of 559flct: progress  i = 511 out of 559flct: progress  i = 512 out of 559flct: progress  i = 513 out of 559flct: progress  i = 514 out of 559flct: progress  i = 515 out of 559flct: progress  i = 516 out of 559flct: progress  i = 517 out of 559flct: progress  i = 518 out of 559flct: progress  i = 519 out of 559flct: progress  i = 520 out of 559flct: progress  i = 521 out of 559flct: progress  i = 522 out of 559flct: progress  i = 523 out of 559flct: progress  i = 524 out of 559flct: progress  i = 525 out of 559flct: progress  i = 526 out of 559flct: progress  i = 527 out of 559flct: progress  i = 528 out of 559flct: progress  i = 529 out of 559flct: progress  i = 530 out of 559flct: progress  i = 531 out of 559flct: progress  i = 532 out of 559flct: progress  i = 533 out of 559flct: progress  i = 534 out of 559flct: progress  i = 535 out of 559flct: progress  i = 536 out of 559flct: progress  i = 537 out of 559flct: progress  i = 538 out of 559flct: progress  i = 539 out of 559flct: progress  i = 540 out of 559flct: progress  i = 541 out of 559flct: progress  i = 542 out of 559flct: progress  i = 543 out of 559flct: progress  i = 544 out of 559flct: progress  i = 545 out of 559flct: progress  i = 546 out of 559flct: progress  i = 547 out of 559flct: progress  i = 548 out of 559flct: progress  i = 549 out of 559flct: progress  i = 550 out of 559flct: progress  i = 551 out of 559flct: progress  i = 552 out of 559flct: progress  i = 553 out of 559flct: progress  i = 554 out of 559flct: progress  i = 555 out of 559flct: progress  i = 556 out of 559flct: progress  i = 557 out of 559flct: progress  i = 558 out of 559flct: progress  i = 559 out of 559flct: mean value of gamma^2/sigma^2 = 0.251837
 
 flct: finished
 #+end_example
@@ -208,6 +219,8 @@ Now for [N II]
   # At this point, arrays are still in (x, y) format
   vx -= vx[i0-3:i0+3, j0-3:j0+3].mean()
   vy -= vy[i0-3:i0+3, j0-3:j0+3].mean()
+  # And a final by-hand shift to make things be more symmetric
+  vy -= 0.1
 
   newhdr = h1.header
 
@@ -294,6 +307,29 @@ os.system("which flct")
 
 
 
+
+**** Conversion to physical velocities
++ Assume D = 2 kpc
++ Then 10 mas/yr = 10 0.001 2000 1.49597870691e13 / 1.0e5 3.15576e7 = 95 km/s
++ We get velocities of order 5 to 6 mas/yr in the main shell along the major axis
+  + So about 50 km/s
++ Compare with results of Schonberner:2018a, Table 2
+  + They use a magnification method and get M = 1.0085 between the two epochs for [O III] and M = 1.0090 for [N II]
+  + This is from reducing the residuals in the main shell
+  + They also get 1.0055 for the [N II] knots
+  + This agrees with our results that the [N II]-bright material is slower
+  + They give dt = 10.45 years for [O III] and 11.55 for [N II]
+    + That agrees with us for [O III], but not for [N II] where the file names say 1998 and 2008
+    + [ ] Check dates in original file
+  + Radius of shell is 67 pixels to SE and 72 pixels to NNW
+    + So scale of 1.0085 is 0.0085 67 = 0.57 pixels
+    + We get 0.64 +/- 0.05 for the SE shell, so more or less consistent
+    + And 0.44 +/- 0.04 for the NNW shell, as opposed to their value of 0.0085 72 = 0.61
+    + Comparing averages:
+      + 0.5 (0.57 + 0.61) = 0.59
+      + 0.5 (0.64 + 0.44) = 0.54
+    + So that is better, and suggests we could maybe do a further adjustment to Vy
+
 **** Figures of the PM velocity field
 
 [O III]
@@ -302,24 +338,29 @@ os.system("which flct")
   from matplotlib import pyplot as plt
   import seaborn as sns
   from astropy.io import fits
+  from astropy.wcs import WCS
 
   figfile = "../figs/oiii-propermotions.pdf"
 
-  im = fits.open("../propermotions/oiii/oiii-ago1997-win.fits")[0].data
+  hdu = fits.open("../propermotions/oiii/oiii-ago1997-win.fits")[0]
+  w = WCS(hdu)
+  im = hdu.data
   vx = fits.open("../propermotions/oiii/oiii-velx-win.fits")[0].data
   vy = fits.open("../propermotions/oiii/oiii-vely-win.fits")[0].data
-  vx[abs(vx) > 1.0] = np.nan
-  vy += 0.1
-  vy[abs(vy) > 1.0] = np.nan
+  vx[abs(vx) > 3.0] = np.nan
+  vy[abs(vy) > 3.0] = np.nan
   ny, nx = im.shape
   X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
 
-
-  fig, ax = plt.subplots()
-  im[im < 0.0] = 0.0
-  ax.imshow(np.sqrt(im), vmin=0.0, vmax=None, origin="lower", cmap="viridis")
-  step = slice(None, None, 5), slice(None, None, 5)
+  fig, ax = plt.subplots(subplot_kw=dict(projection=w))
+  im[im < 0.0] = 1e-6
+  ax.imshow(np.log10(im), vmin=-2.0, vmax=None, origin="lower", cmap="viridis")
   # A faint version for the faint emission
+  step = slice(None, None, 10), slice(None, None, 10)
+  vx[im < 0.08] = np.nan
+  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.2)
+  step = slice(None, None, 5), slice(None, None, 5)
   vx[im < 0.5] = np.nan
   ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
             units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.4)
@@ -330,6 +371,7 @@ os.system("which flct")
   ax.quiverkey(Q, 0.1, 0.1, 1.0,
                "10 mas / yr", labelcolor="w",
                fontproperties=dict(size=5))
+  ax.text(0.05, 0.95, "[O III] proper motions", color="w", transform=ax.transAxes)
   fig.savefig(figfile)
 #+end_src
 
@@ -342,20 +384,22 @@ os.system("which flct")
   from matplotlib import pyplot as plt
   import seaborn as sns
   from astropy.io import fits
+  from astropy.wcs import WCS
 
   figfile = "../figs/nii-propermotions.pdf"
 
-  im = fits.open("../propermotions/nii/n6210n2008sm.fits")[0].data
+  hdu = fits.open("../propermotions/nii/n6210n2008sm.fits")[0]
+  w = WCS(hdu)
+  im = hdu.data
   vx = fits.open("../propermotions/nii/nii-velx-win.fits")[0].data
   vy = fits.open("../propermotions/nii/nii-vely-win.fits")[0].data
   vx[abs(vx) > 1.0] = np.nan
-  vy -= 0.1
   vy[abs(vy) > 1.0] = np.nan
   ny, nx = im.shape
   X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
 
 
-  fig, ax = plt.subplots()
+  fig, ax = plt.subplots(subplot_kw=dict(projection=w))
   im[im < 0.0] = 0.0
   ax.imshow(np.sqrt(im), vmin=0.0, vmax=None, origin="lower", cmap="viridis")
   step = slice(None, None, 5), slice(None, None, 5)
@@ -370,6 +414,7 @@ os.system("which flct")
   ax.quiverkey(Q, 0.1, 0.1, 1.0,
                "10 mas / yr", labelcolor="w",
                fontproperties=dict(size=5))
+  ax.text(0.05, 0.95, "[N II] proper motions", color="w", transform=ax.transAxes)
   fig.savefig(figfile)
 #+end_src
 
@@ -419,6 +464,8 @@ os.system("which flct")
   + These were laid out by hand in ds9
 + /Todo/
   + Reproduce the same images, but publication quality
+  + Try removing the horizontal slits, to see if it makes any difference
+  + Calculate moment maps
 
 ** [2/2] Median image
 CLOSED: [2019-05-28 Tue 08:56]
@@ -974,68 +1021,70 @@ This should be run from top-level folder
   - spm0172o_b is clearly at an angle to the image axis (of 0.5 deg)
 
 #+name: pos-ha
-| spec          | imslit      |     run |    t | wa | islit | ij |  s |
-|---------------+-------------+---------+------+----+-------+----+----|
-| obj1003_bcrx  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |  1 |
-| obj1007_bcrx  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |  1 |
-| obj1010_bcrx  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |  1 |
-| obj1015_bcrx  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 |
-| obj1018_bcrx  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 |
-| spm112_bcrx   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |  1 |
-| spm116_bcrx   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |  1 |
-| spm119_bcrx   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |  1 |
-| spm122_bcrx   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |  1 |
-| spm125_bcrx   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |  1 |
-| spm130_bcrx   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |  1 |
-| spm135_bcrx   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |  1 |
-| spm224_bcrx   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 |
-| spm230_bcrx   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 |
-| spm329_bcrx   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |  1 |
-| spm112-2_bcrx | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |  1 |
-| spm018-bcrx   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 | -1 |
-| spm020-bcrx   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 | -1 |
-| spm023-bcrx   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 | -1 |
-| spm0031o_bcrx | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |  1 |
-| spm0037o_bcrx | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |  1 |
-| spm0043o_bcrx | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |  1 |
-| spm0049o_bcrx | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |  1 |
-| spm0057o_bcrx | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |  1 |
-| spm0110o_bcrx | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |  1 |
-| spm0116o_bcrx | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |  1 |
-| spm0124o_bcrx | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |  1 |
-| spm0173o_bcrx | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |  1 |
-| spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |  1 |
-| spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |  1 |
+| spec          | imslit      |     run |    t | wa | islit | ij |  s | id |
+|---------------+-------------+---------+------+----+-------+----+----+----|
+| obj1003_bcrx  | obj1002_bcr | 1998-06 |   60 |  1 |   390 |  1 |  1 | o  |
+| obj1007_bcrx  | obj1006_bcr | 1998-06 |  300 |  1 |   388 |  1 |  1 | n  |
+| obj1010_bcrx  | obj1009_bcr | 1998-06 | 1200 |  1 |   388 |  1 |  1 | m  |
+| obj1015_bcrx  | obj1012_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 | p  |
+| obj1018_bcrx  | obj1017_bcr | 1998-06 | 1200 |  1 | 390.5 |  1 |  1 | q  |
+| spm112_bcrx   | spm110_u    | 2003-06 | 1800 |  1 |   257 |  1 |  1 | f  |
+| spm116_bcrx   | spm115_bcr  | 2003-06 | 1800 |  1 |   263 |  1 |  1 | e  |
+| spm119_bcrx   | spm118_bcr  | 2003-06 | 1800 |  1 |   265 |  1 |  1 | d  |
+| spm122_bcrx   | spm121_bcr  | 2003-06 | 1800 |  1 |   267 |  1 |  1 | h  |
+| spm125_bcrx   | spm124_bcr  | 2003-06 | 1800 |  1 | 269.5 |  1 |  1 | i  |
+| spm130_bcrx   | spm127_bcr  | 2003-06 | 1800 |  1 | 272.5 |  1 |  1 | k  |
+| spm135_bcrx   | spm134_bcr  | 2003-06 | 1800 |  1 | 277.5 |  1 |  1 | b  |
+| spm224_bcrx   | spm223_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 | t  |
+| spm230_bcrx   | spm229_bcr  | 2003-10 | 1800 |  1 | 294.5 |  1 |  1 | v  |
+| spm329_bcrx   | spm328_bcr  | 2003-10 | 1800 |  1 |   273 |  1 |  1 | w  |
+| spm112-2_bcrx | spm111_cr   | 2011-05 | 1800 |  2 |   531 |  2 |  1 | g  |
+| spm018-bcrx   | spm017_b    | 2013-07 | 1800 |  1 |   505 |  2 | -1 | c  |
+| spm020-bcrx   | spm019_b    | 2013-07 | 1800 |  1 |   483 |  2 | -1 | i  |
+| spm023-bcrx   | spm021_b    | 2013-07 | 1800 |  1 |   496 |  2 | -1 | j  |
+| spm0031o_bcrx | spm0030o_b  | 2015-08 |  900 |  2 |   485 |  2 |  1 | c  |
+| spm0037o_bcrx | spm0036o_b  | 2015-08 |  900 |  2 |   484 |  2 |  1 | d  |
+| spm0043o_bcrx | spm0042o_b  | 2015-08 |  900 |  2 |   481 |  2 |  1 | e  |
+| spm0049o_bcrx | spm0048o_b  | 2015-08 |  900 |  2 |   480 |  2 |  1 | f  |
+| spm0057o_bcrx | spm0056o_b  | 2015-08 |  900 |  2 |   476 |  2 |  1 | g  |
+| spm0110o_bcrx | spm0109o_b  | 2015-08 | 1200 |  2 | 490.5 |  2 |  1 | b  |
+| spm0116o_bcrx | spm0115o_b  | 2015-08 | 1800 |  2 | 485.5 |  2 |  1 | a  |
+| spm0124o_bcrx | spm0123o_b  | 2015-08 | 1200 |  2 |   478 |  2 |  1 | i  |
+| spm0173o_bcrx | spm0172o_b  | 2015-08 |  900 |  2 |   493 |  2 |  1 | h  |
+| spm0179o_bcrx | spm0178o_b  | 2015-08 | 1800 |  2 | 489.5 |  2 |  1 | j  |
+| spm0186o_bcrx | spm0185o_b  | 2015-08 | 1800 |  2 | 515.5 |  2 |  1 | k  |
 **** [O III] positions
 + Now including short exposures as well because some of the long ones are saturated
 #+name: pos-oiii
-| spec              | imslit       |     run |    t | wa | islit | ij |  s |
-|-------------------+--------------+---------+------+----+-------+----+----|
-| spm243-244_bcrx   | spm242_bcr   | 2004-06 |  120 |  1 |   275 |  1 |  1 |
-| spm252_bcrx       | spm251_bcr   | 2004-06 |  120 |  1 |   280 |  1 |  1 |
-| spm257_bcrx       | spm256_bcr   | 2004-06 |  120 |  1 |   285 |  1 |  1 |
-| spm244_bcrx       | spm242_bcr   | 2004-06 | 1800 |  1 |   275 |  1 |  1 |
-| spm253_bcrx       | spm251_bcr   | 2004-06 | 1800 |  1 |   280 |  1 |  1 |
-| spm258_bcrx       | spm256_bcr   | 2004-06 | 1800 |  1 |   285 |  1 |  1 |
-| spm294_bcrx_oiii  | spm293_bcr   | 2004-06 | 1800 |  1 |   262 |  1 |  1 |
-| spm297_bcrx       | spm296_bcr   | 2004-06 | 1800 |  1 |   265 |  1 |  1 |
-| spm114_bcrx_oiii  | spm116-2_bcr | 2011-05 |  600 |  2 |   532 |  2 |  1 |
-| spm0033_bcrx_oiii | spm0035o_b   | 2015-08 |  900 |  2 |   485 |  2 |  1 |
-| spm0039_bcrx_oiii | spm0041o_b   | 2015-08 |  900 |  2 |   482 |  2 |  1 |
-| spm0045o_bcrx     | spm0047o_b   | 2015-08 |  900 |  2 |   479 |  2 |  1 |
-| spm0051_bcrx_oiii | spm0053o_b   | 2015-08 |  900 |  2 |   476 |  2 |  1 |
-| spm0059_oiii      | spm0061o_b   | 2015-08 |  900 |  1 |   475 |  2 | -1 |
-| spm0112_bcrx_oiii | spm0114o_b   | 2015-08 | 1200 |  2 |   486 |  2 |  1 |
-| spm0118_bcrx_oiii | spm0120o_b   | 2015-08 | 1800 |  2 | 479.5 |  2 |  1 |
-| spm0126_bcrx_oiii | spm0128o_b   | 2015-08 | 1200 |  2 | 476.5 |  2 |  1 |
-| spm0175o_bcrx     | spm0177o_b   | 2015-08 |  900 |  2 | 489.5 |  2 |  1 |
-| spm0181_bcrx_oiii | spm0183o_b   | 2015-08 | 1800 |  2 |   482 |  2 |  1 |
-| spm0188_oiii      | spm0190o_b   | 2015-08 | 1800 |  1 |   512 |  2 | -1 |
+| spec              | imslit       |     run |    t | wa | islit | ij |  s | id |
+|-------------------+--------------+---------+------+----+-------+----+----+----|
+| spm243-244_bcrx   | spm242_bcr   | 2004-06 |  120 |  1 |   275 |  1 |  1 | r* |
+| spm252_bcrx       | spm251_bcr   | 2004-06 |  120 |  1 |   280 |  1 |  1 | s* |
+| spm257_bcrx       | spm256_bcr   | 2004-06 |  120 |  1 |   285 |  1 |  1 | u* |
+| spm244_bcrx       | spm242_bcr   | 2004-06 | 1800 |  1 |   275 |  1 |  1 | r  |
+| spm253_bcrx       | spm251_bcr   | 2004-06 | 1800 |  1 |   280 |  1 |  1 | s  |
+| spm258_bcrx       | spm256_bcr   | 2004-06 | 1800 |  1 |   285 |  1 |  1 | u  |
+| spm294_bcrx_oiii  | spm293_bcr   | 2004-06 | 1800 |  1 |   262 |  1 |  1 | a  |
+| spm297_bcrx       | spm296_bcr   | 2004-06 | 1800 |  1 |   265 |  1 |  1 | l  |
+| spm114_bcrx_oiii  | spm116-2_bcr | 2011-05 |  600 |  2 |   532 |  2 |  1 | g  |
+| spm0033_bcrx_oiii | spm0035o_b   | 2015-08 |  900 |  2 |   485 |  2 |  1 | c  |
+| spm0039_bcrx_oiii | spm0041o_b   | 2015-08 |  900 |  2 |   482 |  2 |  1 | d  |
+| spm0045o_bcrx     | spm0047o_b   | 2015-08 |  900 |  2 |   479 |  2 |  1 | e  |
+| spm0051_bcrx_oiii | spm0053o_b   | 2015-08 |  900 |  2 |   476 |  2 |  1 | f  |
+| spm0059_oiii      | spm0061o_b   | 2015-08 |  900 |  1 |   475 |  2 | -1 | g  |
+| spm0112_bcrx_oiii | spm0114o_b   | 2015-08 | 1200 |  2 |   486 |  2 |  1 | b  |
+| spm0118_bcrx_oiii | spm0120o_b   | 2015-08 | 1800 |  2 | 479.5 |  2 |  1 | a  |
+| spm0126_bcrx_oiii | spm0128o_b   | 2015-08 | 1200 |  2 | 476.5 |  2 |  1 | i  |
+| spm0175o_bcrx     | spm0177o_b   | 2015-08 |  900 |  2 | 489.5 |  2 |  1 | h  |
+| spm0181_bcrx_oiii | spm0183o_b   | 2015-08 | 1800 |  2 |   482 |  2 |  1 | j  |
+| spm0188_oiii      | spm0190o_b   | 2015-08 | 1800 |  1 |   512 |  2 | -1 | k  |
+
 
 **** [S II] exposure
-| spec   | imslit |     run |    t | wa | islit | ij |
-|--------+--------+---------+------+----+-------+----|
-| spm408 | spm407 | 2004-06 | 1800 |  1 |   269 |  1 |
+| spec   | imslit |     run |    t | wa | islit | ij | ID |
+|--------+--------+---------+------+----+-------+----+---|
+| spm408 | spm407 | 2004-06 | 1800 |  1 |   269 |  1 | s |
+
 **** Write tables to files for later use
 
 First the H\alpha slits
@@ -1908,22 +1957,24 @@ And [O III]
 *** Look at some of the maps
 Central velocities in Ha
 #+BEGIN_SRC sh :dir ../data/maps :results silent
-xpaset -p ds9 rgb red
-xpaset -p ds9 fits $PWD/turtle-slits-ha-030-020.fits[3]
-xpaset -p ds9 rgb green
-xpaset -p ds9 fits $PWD/turtle-slits-ha-040-030.fits[3]
-xpaset -p ds9 rgb blue
-xpaset -p ds9 fits $PWD/turtle-slits-ha-050-040.fits[3]
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-ha-030-020.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-ha-040-030.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-ha-050-040.fits[3]
 #+END_SRC
 
 Central velocities in [N II]
 #+BEGIN_SRC sh :dir ../data/maps :results silent
-xpaset -p ds9 rgb red
-xpaset -p ds9 fits $PWD/turtle-slits-nii-030-020.fits[3]
-xpaset -p ds9 rgb green
-xpaset -p ds9 fits $PWD/turtle-slits-nii-040-030.fits[3]
-xpaset -p ds9 rgb blue
-xpaset -p ds9 fits $PWD/turtle-slits-nii-050-040.fits[3]
+  DS9=velmaps
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-030-020.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-040-030.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-050-040.fits[3]
 #+END_SRC
 
 Near red velocities in Ha
@@ -2019,6 +2070,157 @@ Red velocities in [O III] - 20 km/s channels
   xpaset -p $DS9 rgb blue
   xpaset -p $DS9 fits $PWD/turtle-slits-oiii+000+020.fits[3]
 #+END_SRC
+
++ Note that it is sometimes necessary to circumvent the XPA nameserver if it has stopped working
+  + Instead of using the title of the DS9 instance, you can get its number from menu item File->XPA->Information
+  + Use the value of XPA_METHOD
+
+Central velocities in [N II] - 20 km/s channels
+#+BEGIN_SRC sh :dir ../data/maps20 :results silent
+  DS9=7f000001:49265
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-020+000.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-040-020.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-060-040.fits[3]
+#+END_SRC
+
+
+
+
+** Calculate moment maps [2019-12-02 Mon]
++ Best to use the 10 km/s channels for optimum precision
+
+#+begin_src python :tangle ../scripts/moments-from-channels.py
+  import sys
+  import numpy as np
+  from astropy.io import fits
+
+  try:
+      lineid = sys.argv[1]
+  except:
+      sys.exit(f"Usage {sys.argv[0]} LINEID")
+
+
+  prefix = f"../data/maps/turtle-slits-{lineid}"
+  vels = np.arange(-75.0, +15.0, 10.0)
+  nv = len(vels)
+
+  # make a cube from the stack of isovel images
+  imstack = []
+  for vel in vels:
+      vstring = f"{int(vel-5.0):+04d}{int(vel+5.0):+04d}"
+      filename = f"{prefix}{vstring}.fits"
+      hdu = fits.open(filename)["SCALED"]
+      imstack.append(hdu.data)
+
+  imcube = np.stack(imstack, axis=0)
+  vcube = vels[:, None, None]*np.ones_like(imcube)
+  vmean = np.average(vcube, weights=imcube, axis=0)
+  sigsq = np.average((vcube - vmean)**2, weights=imcube, axis=0)
+  sigma = np.sqrt(sigsq)
+
+  fits.PrimaryHDU(header=hdu.header, data=vmean).writeto(
+      f"{prefix}-vmean.fits", overwrite=True,
+  )
+  fits.PrimaryHDU(header=hdu.header, data=sigma).writeto(
+      f"{prefix}-sigma.fits", overwrite=True,
+  )
+#+end_src
+
+#+RESULTS:
+: None
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels.py nii
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels.py ha
+#+end_src
+
+#+RESULTS:
+
+Repeat, but using the 20 km/s channels
+
+#+begin_src python :tangle ../scripts/moments-from-channels20.py
+  import sys
+  import numpy as np
+  from astropy.io import fits
+
+  try:
+      lineid = sys.argv[1]
+      try:
+          suffix = sys.argv[2]
+      except:
+          suffix = ""
+  except:
+      sys.exit(f"Usage {sys.argv[0]} LINEID [SUFFIX]")
+
+  mapdir = "maps-oiii-20" if lineid == "oiii" else "maps20"
+
+  prefix = f"../data/{mapdir}/turtle-slits-{lineid}"
+  vels = np.arange(-90.0, +50.0, 20.0)
+  nv = len(vels)
+
+  # make a cube from the stack of isovel images
+  imstack = []
+  for vel in vels:
+      vstring = f"{int(vel-10.0):+04d}{int(vel+10.0):+04d}"
+      filename = f"{prefix}{vstring}{suffix}.fits"
+      hdu = fits.open(filename)["SCALED"]
+      imstack.append(hdu.data)
+
+  imcube = np.stack(imstack, axis=0)
+  vcube = vels[:, None, None]*np.ones_like(imcube)
+  vmean = np.sum(vcube*imcube, axis=0)/np.sum(imcube, axis=0)
+  # vmean = np.average(vcube, weights=imcube, axis=0)
+  sigsq = np.sum((vcube - vmean)**2*imcube, axis=0)/np.sum(imcube, axis=0)
+  # sigsq = np.average((vcube - vmean)**2, weights=imcube, axis=0)
+  sigma = np.sqrt(sigsq)
+
+  fits.PrimaryHDU(header=hdu.header, data=vmean).writeto(
+      f"{prefix}-vmean{suffix}.fits", overwrite=True,
+  )
+  fits.PrimaryHDU(header=hdu.header, data=sigma).writeto(
+      f"{prefix}-sigma{suffix}.fits", overwrite=True,
+  )
+#+end_src
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py ha
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py nii
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py oiii
+#+end_src
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py oiii -multibin
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py ha -multibin
+#+end_src
+
+#+begin_src sh :results verbatim
+python ../scripts/moments-from-channels20.py nii -multibin
+#+end_src
+
+#+RESULTS:
 
 
 
@@ -2600,11 +2802,11 @@ done
   done
 #+END_SRC
 
-*** Load PV images into ds9
+*** Load channel images into ds9
 
 Central velocities in [O III] - 20 km/s channels
 #+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
-  DS9=velmaps
+  DS9=7f000001:50215
   xpaset -p $DS9 rgb red
   xpaset -p $DS9 fits $PWD/turtle-slits-oiii-020+000-multibin.fits
   xpaset -p $DS9 rgb green
@@ -2614,7 +2816,7 @@ Central velocities in [O III] - 20 km/s channels
 #+END_SRC
 
 #+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
-  DS9=velmaps
+  DS9=7f000001:50215
   xpaset -p $DS9 rgb red
   xpaset -p $DS9 fits $PWD/turtle-slits-oiii-080-060-multibin.fits
   xpaset -p $DS9 rgb green
@@ -2624,7 +2826,7 @@ Central velocities in [O III] - 20 km/s channels
 #+END_SRC
 
 #+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
-  DS9=velmaps
+  DS9=7f000001:50215
   xpaset -p $DS9 rgb red
   xpaset -p $DS9 fits $PWD/turtle-slits-oiii+040+060-multibin.fits
   xpaset -p $DS9 rgb green
@@ -2650,7 +2852,7 @@ Figures are in
 + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot%20turtle-nii-maps.png]]
 
 
-*** Load up PV images of [O III] results
+*** Load up channel images of [O III] results
 
 Use a dedicated DS9 instance
 #+begin_src sh :results silent
