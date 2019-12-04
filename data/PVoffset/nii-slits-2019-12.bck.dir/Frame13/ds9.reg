@@ -4,4 +4,4 @@ physical
 ellipse(59.371762,324.09511,6.0800278,8.1067037,0)
 ellipse(66.465127,342.33519,5.0666898,6.0800278,0)
 ellipse(73.558493,337.2685,6.0800278,8.1067037,0)
-# text(77.241698,404.62982) textrotate=0 color=blue font="helvetica 16 bold roman" text={c}
+# text(77.241698,404.62982) textrotate=0 color=red font="helvetica 16 bold roman" text={c'}

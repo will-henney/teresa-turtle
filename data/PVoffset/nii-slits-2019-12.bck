@@ -68,7 +68,7 @@ colorbarrgb colorbar rgb 0.5 0.5 0.5 1 1 1 0
 colorbarrgb tag "{}"
 CreateNameNumberFrame Frame8 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/012-spm224_bcrx-nii-PA339-sep+000.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/012-spm224_bcrx-nii-PA339-sep+000.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -95,10 +95,10 @@ Frame8 bin filter {""}
 Frame8 bin buffer size 1024
 Frame8 bin about 0 0
 Frame8 bin function sum
-Frame8 colorscale log
+Frame8 colorscale sqrt
 Frame8 colorscale log 3000
 Frame8 datasec 1
-Frame8 clip user 0 0.013
+Frame8 clip user 0 0.01
 Frame8 clip mode user
 Frame8 clip scope global
 Frame8 clip minmax mode scan
@@ -109,8 +109,8 @@ Frame8 clip zscale line 120
 Frame8 block to 1 1
 Frame8 wcs wcs fk5 sexagesimal
 Frame8 pan preserve 0
-Frame8 pan to physical 43.79544 321.64425
-Frame8 zoom to 0.836489 0.836489
+Frame8 pan to physical 43.79544 321.64426
+Frame8 zoom to 1.20488 1.20488
 Frame8 rotate to 0
 Frame8 orient none
 Frame8 wcs align 1
@@ -133,7 +133,7 @@ Frame8 mask range 0 0
 Frame8 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame24 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/013-spm230_bcrx-nii-PA292-sep+000.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/013-spm230_bcrx-nii-PA292-sep+000.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -160,10 +160,10 @@ Frame24 bin filter {""}
 Frame24 bin buffer size 1024
 Frame24 bin about 0 0
 Frame24 bin function sum
-Frame24 colorscale log
+Frame24 colorscale sqrt
 Frame24 colorscale log 3000
 Frame24 datasec 1
-Frame24 clip user 0 0.013
+Frame24 clip user 0 0.01
 Frame24 clip mode user
 Frame24 clip scope global
 Frame24 clip minmax mode scan
@@ -175,7 +175,7 @@ Frame24 block to 1 1
 Frame24 wcs wcs fk5 sexagesimal
 Frame24 pan preserve 0
 Frame24 pan to physical 44.357329 240.69616
-Frame24 zoom to 0.840268 0.840268
+Frame24 zoom to 1.21027 1.21027
 Frame24 rotate to 0
 Frame24 orient none
 Frame24 wcs align 1
@@ -198,7 +198,7 @@ Frame24 mask range 0 0
 Frame24 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame7 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/000-obj1003_bcrx-nii-PA272-sep+000.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/000-obj1003_bcrx-nii-PA272-sep+000.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -225,10 +225,10 @@ Frame7 bin filter {""}
 Frame7 bin buffer size 1024
 Frame7 bin about 0 0
 Frame7 bin function sum
-Frame7 colorscale log
+Frame7 colorscale sqrt
 Frame7 colorscale log 3000
 Frame7 datasec 1
-Frame7 clip user 0 0.013
+Frame7 clip user 0 0.01
 Frame7 clip mode user
 Frame7 clip scope global
 Frame7 clip minmax mode scan
@@ -240,7 +240,7 @@ Frame7 block to 1 1
 Frame7 wcs wcs fk5 sexagesimal
 Frame7 pan preserve 0
 Frame7 pan to physical 43.006334 343.29076
-Frame7 zoom to 0.843413 0.843413
+Frame7 zoom to 1.21482 1.21482
 Frame7 rotate to 0
 Frame7 orient none
 Frame7 wcs align 1
@@ -264,7 +264,7 @@ Frame7 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 
 Frame7 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame25 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/014-spm329_bcrx-nii-PA077-sep+002.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/014-spm329_bcrx-nii-PA077-sep+002.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -291,10 +291,10 @@ Frame25 bin filter {""}
 Frame25 bin buffer size 1024
 Frame25 bin about 0 0
 Frame25 bin function sum
-Frame25 colorscale log
+Frame25 colorscale sqrt
 Frame25 colorscale log 3000
 Frame25 datasec 1
-Frame25 clip user 0 0.013
+Frame25 clip user 0 0.01
 Frame25 clip mode user
 Frame25 clip scope global
 Frame25 clip minmax mode scan
@@ -306,7 +306,7 @@ Frame25 block to 1 1
 Frame25 wcs wcs fk5 sexagesimal
 Frame25 pan preserve 0
 Frame25 pan to physical 43.741091 316.67992
-Frame25 zoom to 0.83821 0.83821
+Frame25 zoom to 1.20731 1.20731
 Frame25 rotate to 0
 Frame25 orient none
 Frame25 wcs align 1
@@ -329,7 +329,7 @@ Frame25 mask range 0 0
 Frame25 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame19 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/001-obj1007_bcrx-nii-PA272-sep+010.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/001-obj1007_bcrx-nii-PA272-sep+010.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -356,10 +356,10 @@ Frame19 bin filter {""}
 Frame19 bin buffer size 1024
 Frame19 bin about 0 0
 Frame19 bin function sum
-Frame19 colorscale log
+Frame19 colorscale sqrt
 Frame19 colorscale log 3000
 Frame19 datasec 1
-Frame19 clip user 0 0.013
+Frame19 clip user 0 0.01
 Frame19 clip mode user
 Frame19 clip scope global
 Frame19 clip minmax mode scan
@@ -370,8 +370,8 @@ Frame19 clip zscale line 120
 Frame19 block to 1 1
 Frame19 wcs wcs fk5 sexagesimal
 Frame19 pan preserve 0
-Frame19 pan to physical 43.082087 345.30411
-Frame19 zoom to 0.843045 0.843045
+Frame19 pan to physical 43.082087 345.3041
+Frame19 zoom to 1.21432 1.21432
 Frame19 rotate to 0
 Frame19 orient none
 Frame19 wcs align 1
@@ -393,7 +393,7 @@ Frame19 mask mark nonzero
 Frame19 mask range 0 0
 CreateNameNumberFrame Frame10 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/016-spm018-bcrx-nii-PA000-sep+013.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/016-spm018-bcrx-nii-PA000-sep+013.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -420,10 +420,10 @@ Frame10 bin filter {""}
 Frame10 bin buffer size 1024
 Frame10 bin about 0 0
 Frame10 bin function sum
-Frame10 colorscale log
+Frame10 colorscale sqrt
 Frame10 colorscale log 3000
 Frame10 datasec 1
-Frame10 clip user 0 0.013
+Frame10 clip user 0 0.01
 Frame10 clip mode user
 Frame10 clip scope global
 Frame10 clip minmax mode scan
@@ -435,7 +435,7 @@ Frame10 block to 1 1
 Frame10 wcs wcs fk5 sexagesimal
 Frame10 pan preserve 0
 Frame10 pan to physical 74.982043 506.75665
-Frame10 zoom to 0.47625 0.47625
+Frame10 zoom to 0.686042 0.686042
 Frame10 rotate to 0
 Frame10 orient none
 Frame10 wcs align 1
@@ -457,7 +457,7 @@ Frame10 mask mark nonzero
 Frame10 mask range 0 0
 CreateNameNumberFrame Frame3 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/007-spm119_bcrx-nii-PA359-sep+008.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/007-spm119_bcrx-nii-PA359-sep+008.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -484,10 +484,10 @@ Frame3 bin filter {""}
 Frame3 bin buffer size 1024
 Frame3 bin about 0 0
 Frame3 bin function sum
-Frame3 colorscale log
+Frame3 colorscale sqrt
 Frame3 colorscale log 3000
 Frame3 datasec 1
-Frame3 clip user 0 0.013
+Frame3 clip user 0 0.01
 Frame3 clip mode user
 Frame3 clip scope global
 Frame3 clip minmax mode scan
@@ -499,7 +499,7 @@ Frame3 block to 1 1
 Frame3 wcs wcs fk5 sexagesimal
 Frame3 pan preserve 0
 Frame3 pan to physical 40.89509 313.67698
-Frame3 zoom to 0.839273 0.839273
+Frame3 zoom to 1.20886 1.20886
 Frame3 rotate to 0
 Frame3 orient none
 Frame3 wcs align 1
@@ -521,7 +521,7 @@ Frame3 mask mark nonzero
 Frame3 mask range 0 0
 CreateNameNumberFrame Frame18 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/024-spm0110o_bcrx-nii-PA002-sep+007.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/024-spm0110o_bcrx-nii-PA002-sep+007.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -548,10 +548,10 @@ Frame18 bin filter {""}
 Frame18 bin buffer size 1024
 Frame18 bin about 0 0
 Frame18 bin function sum
-Frame18 colorscale log
+Frame18 colorscale sqrt
 Frame18 colorscale log 3000
 Frame18 datasec 1
-Frame18 clip user 0 0.013
+Frame18 clip user 0 0.01
 Frame18 clip mode user
 Frame18 clip scope global
 Frame18 clip minmax mode scan
@@ -562,8 +562,8 @@ Frame18 clip zscale line 120
 Frame18 block to 1 1
 Frame18 wcs wcs fk5 sexagesimal
 Frame18 pan preserve 0
-Frame18 pan to physical 78.021462 425.2438
-Frame18 zoom to 0.476738 0.476738
+Frame18 pan to physical 78.021462 425.24379
+Frame18 zoom to 0.686753 0.686753
 Frame18 rotate to 0
 Frame18 orient none
 Frame18 wcs align 1
@@ -585,7 +585,7 @@ Frame18 mask mark nonzero
 Frame18 mask range 0 0
 CreateNameNumberFrame Frame13 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/019-spm0031o_bcrx-nii-PA002-sep+004.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/019-spm0031o_bcrx-nii-PA002-sep+004.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -612,10 +612,10 @@ Frame13 bin filter {""}
 Frame13 bin buffer size 1024
 Frame13 bin about 0 0
 Frame13 bin function sum
-Frame13 colorscale log
+Frame13 colorscale sqrt
 Frame13 colorscale log 3000
 Frame13 datasec 1
-Frame13 clip user 0 0.013
+Frame13 clip user 0 0.01
 Frame13 clip mode user
 Frame13 clip scope global
 Frame13 clip minmax mode scan
@@ -627,7 +627,7 @@ Frame13 block to 1 1
 Frame13 wcs wcs fk5 sexagesimal
 Frame13 pan preserve 0
 Frame13 pan to physical 77.777653 343.25378
-Frame13 zoom to 0.476191 0.476191
+Frame13 zoom to 0.685963 0.685963
 Frame13 rotate to 0
 Frame13 orient none
 Frame13 wcs align 1
@@ -649,7 +649,7 @@ Frame13 mask mark nonzero
 Frame13 mask range 0 0
 CreateNameNumberFrame Frame2 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/006-spm116_bcrx-nii-PA359-sep+004.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/006-spm116_bcrx-nii-PA359-sep+004.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -676,10 +676,10 @@ Frame2 bin filter {""}
 Frame2 bin buffer size 1024
 Frame2 bin about 0 0
 Frame2 bin function sum
-Frame2 colorscale log
+Frame2 colorscale sqrt
 Frame2 colorscale log 3000
 Frame2 datasec 1
-Frame2 clip user 0 0.013
+Frame2 clip user 0 0.01
 Frame2 clip mode user
 Frame2 clip scope global
 Frame2 clip minmax mode scan
@@ -691,7 +691,7 @@ Frame2 block to 1 1
 Frame2 wcs wcs fk5 sexagesimal
 Frame2 pan preserve 0
 Frame2 pan to physical 41.650476 309.68199
-Frame2 zoom to 0.839434 0.839434
+Frame2 zoom to 1.20909 1.20909
 Frame2 rotate to 0
 Frame2 orient none
 Frame2 wcs align 1
@@ -714,7 +714,7 @@ Frame2 mask range 0 0
 Frame2 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame1 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/005-spm112_bcrx-nii-PA359-sep+002.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/005-spm112_bcrx-nii-PA359-sep+002.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -741,10 +741,10 @@ Frame1 bin filter {""}
 Frame1 bin buffer size 1024
 Frame1 bin about 0 0
 Frame1 bin function sum
-Frame1 colorscale log
+Frame1 colorscale sqrt
 Frame1 colorscale log 3000
 Frame1 datasec 1
-Frame1 clip user 0 0.013
+Frame1 clip user 0 0.01
 Frame1 clip mode user
 Frame1 clip scope global
 Frame1 clip minmax mode scan
@@ -756,7 +756,7 @@ Frame1 block to 1 1
 Frame1 wcs wcs fk5 sexagesimal
 Frame1 pan preserve 0
 Frame1 pan to physical 41.452073 307.68058
-Frame1 zoom to 0.839284 0.839284
+Frame1 zoom to 1.20887 1.20887
 Frame1 rotate to 0
 Frame1 orient none
 Frame1 wcs align 1
@@ -779,7 +779,7 @@ Frame1 mask range 0 0
 Frame1 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame14 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/020-spm0037o_bcrx-nii-PA002-sep+001.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/020-spm0037o_bcrx-nii-PA002-sep+001.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -806,10 +806,10 @@ Frame14 bin filter {""}
 Frame14 bin buffer size 1024
 Frame14 bin about 0 0
 Frame14 bin function sum
-Frame14 colorscale log
+Frame14 colorscale sqrt
 Frame14 colorscale log 3000
 Frame14 datasec 1
-Frame14 clip user 0 0.013
+Frame14 clip user 0 0.01
 Frame14 clip mode user
 Frame14 clip scope global
 Frame14 clip minmax mode scan
@@ -821,7 +821,7 @@ Frame14 block to 1 1
 Frame14 wcs wcs fk5 sexagesimal
 Frame14 pan preserve 0
 Frame14 pan to physical 78.246941 342.23918
-Frame14 zoom to 0.476402 0.476402
+Frame14 zoom to 0.686261 0.686261
 Frame14 rotate to 0
 Frame14 orient none
 Frame14 wcs align 1
@@ -844,7 +844,7 @@ Frame14 mask range 0 0
 Frame14 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame15 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/021-spm0043o_bcrx-nii-PA002-sep+000.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/021-spm0043o_bcrx-nii-PA002-sep+000.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -871,10 +871,10 @@ Frame15 bin filter {""}
 Frame15 bin buffer size 1024
 Frame15 bin about 0 0
 Frame15 bin function sum
-Frame15 colorscale log
+Frame15 colorscale sqrt
 Frame15 colorscale log 3000
 Frame15 datasec 1
-Frame15 clip user 0 0.013
+Frame15 clip user 0 0.01
 Frame15 clip mode user
 Frame15 clip scope global
 Frame15 clip minmax mode scan
@@ -886,7 +886,7 @@ Frame15 block to 1 1
 Frame15 wcs wcs fk5 sexagesimal
 Frame15 pan preserve 0
 Frame15 pan to physical 78.724783 341.25293
-Frame15 zoom to 0.475504 0.475504
+Frame15 zoom to 0.684962 0.684962
 Frame15 rotate to 0
 Frame15 orient none
 Frame15 wcs align 1
@@ -910,7 +910,7 @@ Frame15 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02
 Frame15 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame9 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/015-spm112-2_bcrx-nii-PA001-sep-001.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/015-spm112-2_bcrx-nii-PA001-sep-001.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -937,10 +937,10 @@ Frame9 bin filter {""}
 Frame9 bin buffer size 1024
 Frame9 bin about 0 0
 Frame9 bin function sum
-Frame9 colorscale log
+Frame9 colorscale sqrt
 Frame9 colorscale log 3000
 Frame9 datasec 1
-Frame9 clip user 0 0.013
+Frame9 clip user 0 0.01
 Frame9 clip mode user
 Frame9 clip scope global
 Frame9 clip minmax mode scan
@@ -952,7 +952,7 @@ Frame9 block to 1 1
 Frame9 wcs wcs fk5 sexagesimal
 Frame9 pan preserve 0
 Frame9 pan to physical 69.638817 526.2297
-Frame9 zoom to 0.477268 0.477268
+Frame9 zoom to 0.687516 0.687516
 Frame9 rotate to 0
 Frame9 orient none
 Frame9 wcs align 1
@@ -973,74 +973,9 @@ Frame9 mask color red
 Frame9 mask mark nonzero
 Frame9 mask range 0 0
 Frame9 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06"}
-CreateNameNumberFrame Frame4 base
-global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/008-spm122_bcrx-nii-PA359-sep-004.fits load,layer {} file,type fits load,type mmapincr]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame4 magnifier graphics 1
-Frame4 magnifier cursor 1
-Frame4 magnifier zoom 4
-Frame4 magnifier color #ff8000
-Frame4 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 1
-Frame4 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame4 precision 8 7 4 3 8 7 5 3 8
-Frame4 bg color #808080
-Frame4 nan color #804020
-Frame4 cube axes 123
-Frame4 rgb channel red
-Frame4 rgb view 1 1 1
-Frame4 rgb system image
-Frame4 bin factor to 1 1
-Frame4 bin depth 1
-Frame4 bin filter {""}
-Frame4 bin buffer size 1024
-Frame4 bin about 0 0
-Frame4 bin function sum
-Frame4 colorscale log
-Frame4 colorscale log 3000
-Frame4 datasec 1
-Frame4 clip user 0 0.013
-Frame4 clip mode user
-Frame4 clip scope global
-Frame4 clip minmax mode scan
-Frame4 clip minmax sample 25
-Frame4 clip zscale contrast 0.25
-Frame4 clip zscale sample 600
-Frame4 clip zscale line 120
-Frame4 block to 1 1
-Frame4 wcs wcs fk5 sexagesimal
-Frame4 pan preserve 0
-Frame4 pan to physical 40.863898 312.68046
-Frame4 zoom to 0.839459 0.839459
-Frame4 rotate to 0
-Frame4 orient none
-Frame4 wcs align 1
-Frame4 3d view 0 0
-Frame4 3d scale 1
-Frame4 3d method mip
-Frame4 3d highlite 1
-Frame4 3d border 1
-Frame4 3d background none
-Frame4 3d view point 0 0 0 0 0
-Frame4 marker load ds9 {"./nii-slits-2019-12.bck.dir/Frame4/ds9.reg"}
-Frame4 crosshair physical 51 257
-Frame4 marker centroid radius 10
-Frame4 marker centroid iteration 30
-Frame4 mask transparency 0
-Frame4 mask system wcs
-Frame4 mask color red
-Frame4 mask mark nonzero
-Frame4 mask range 0 0
-Frame4 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame16 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/022-spm0049o_bcrx-nii-PA002-sep-004.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/022-spm0049o_bcrx-nii-PA002-sep-004.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1067,10 +1002,10 @@ Frame16 bin filter {""}
 Frame16 bin buffer size 1024
 Frame16 bin about 0 0
 Frame16 bin function sum
-Frame16 colorscale log
+Frame16 colorscale sqrt
 Frame16 colorscale log 3000
 Frame16 datasec 1
-Frame16 clip user 0 0.013
+Frame16 clip user 0 0.01
 Frame16 clip mode user
 Frame16 clip scope global
 Frame16 clip minmax mode scan
@@ -1081,8 +1016,8 @@ Frame16 clip zscale line 120
 Frame16 block to 1 1
 Frame16 wcs wcs fk5 sexagesimal
 Frame16 pan preserve 0
-Frame16 pan to physical 78.334127 340.24704
-Frame16 zoom to 0.474941 0.474941
+Frame16 pan to physical 78.334127 340.24703
+Frame16 zoom to 0.68414 0.68414
 Frame16 rotate to 0
 Frame16 orient none
 Frame16 wcs align 1
@@ -1103,9 +1038,74 @@ Frame16 mask color red
 Frame16 mask mark nonzero
 Frame16 mask range 0 0
 Frame16 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
+CreateNameNumberFrame Frame4 base
+global loadParam
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/008-spm122_bcrx-nii-PA359-sep-004.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame4 magnifier graphics 1
+Frame4 magnifier cursor 1
+Frame4 magnifier zoom 4
+Frame4 magnifier color #ff8000
+Frame4 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 1
+Frame4 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame4 precision 8 7 4 3 8 7 5 3 8
+Frame4 bg color #808080
+Frame4 nan color #804020
+Frame4 cube axes 123
+Frame4 rgb channel red
+Frame4 rgb view 1 1 1
+Frame4 rgb system image
+Frame4 bin factor to 1 1
+Frame4 bin depth 1
+Frame4 bin filter {""}
+Frame4 bin buffer size 1024
+Frame4 bin about 0 0
+Frame4 bin function sum
+Frame4 colorscale sqrt
+Frame4 colorscale log 3000
+Frame4 datasec 1
+Frame4 clip user 0 0.01
+Frame4 clip mode user
+Frame4 clip scope global
+Frame4 clip minmax mode scan
+Frame4 clip minmax sample 25
+Frame4 clip zscale contrast 0.25
+Frame4 clip zscale sample 600
+Frame4 clip zscale line 120
+Frame4 block to 1 1
+Frame4 wcs wcs fk5 sexagesimal
+Frame4 pan preserve 0
+Frame4 pan to physical 40.863898 312.68046
+Frame4 zoom to 1.20913 1.20913
+Frame4 rotate to 0
+Frame4 orient none
+Frame4 wcs align 1
+Frame4 3d view 0 0
+Frame4 3d scale 1
+Frame4 3d method mip
+Frame4 3d highlite 1
+Frame4 3d border 1
+Frame4 3d background none
+Frame4 3d view point 0 0 0 0 0
+Frame4 marker load ds9 {"./nii-slits-2019-12.bck.dir/Frame4/ds9.reg"}
+Frame4 crosshair physical 51 257
+Frame4 marker centroid radius 10
+Frame4 marker centroid iteration 30
+Frame4 mask transparency 0
+Frame4 mask system wcs
+Frame4 mask color red
+Frame4 mask mark nonzero
+Frame4 mask range 0 0
+Frame4 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame12 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/018-spm023-bcrx-nii-PA000-sep-006.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/018-spm023-bcrx-nii-PA000-sep-006.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1132,10 +1132,10 @@ Frame12 bin filter {""}
 Frame12 bin buffer size 1024
 Frame12 bin about 0 0
 Frame12 bin function sum
-Frame12 colorscale log
+Frame12 colorscale sqrt
 Frame12 colorscale log 3000
 Frame12 datasec 1
-Frame12 clip user 0 0.013
+Frame12 clip user 0 0.01
 Frame12 clip mode user
 Frame12 clip scope global
 Frame12 clip minmax mode scan
@@ -1147,7 +1147,7 @@ Frame12 block to 1 1
 Frame12 wcs wcs fk5 sexagesimal
 Frame12 pan preserve 0
 Frame12 pan to physical 75.029196 518.75776
-Frame12 zoom to 0.476273 0.476273
+Frame12 zoom to 0.686075 0.686075
 Frame12 rotate to 0
 Frame12 orient none
 Frame12 wcs align 1
@@ -1170,7 +1170,7 @@ Frame12 mask range 0 0
 Frame12 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame17 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/023-spm0057o_bcrx-nii-PA002-sep-006.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/023-spm0057o_bcrx-nii-PA002-sep-006.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1197,10 +1197,10 @@ Frame17 bin filter {""}
 Frame17 bin buffer size 1024
 Frame17 bin about 0 0
 Frame17 bin function sum
-Frame17 colorscale log
+Frame17 colorscale sqrt
 Frame17 colorscale log 3000
 Frame17 datasec 1
-Frame17 clip user 0 0.013
+Frame17 clip user 0 0.01
 Frame17 clip mode user
 Frame17 clip scope global
 Frame17 clip minmax mode scan
@@ -1212,7 +1212,7 @@ Frame17 block to 1 1
 Frame17 wcs wcs fk5 sexagesimal
 Frame17 pan preserve 0
 Frame17 pan to physical 78.023009 344.23043
-Frame17 zoom to 0.477801 0.477801
+Frame17 zoom to 0.688293 0.688293
 Frame17 rotate to 0
 Frame17 orient none
 Frame17 wcs align 1
@@ -1235,7 +1235,7 @@ Frame17 mask range 0 0
 Frame17 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame11 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/017-spm020-bcrx-nii-PA000-sep-007.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/017-spm020-bcrx-nii-PA000-sep-007.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1262,10 +1262,10 @@ Frame11 bin filter {""}
 Frame11 bin buffer size 1024
 Frame11 bin about 0 0
 Frame11 bin function sum
-Frame11 colorscale log
+Frame11 colorscale sqrt
 Frame11 colorscale log 3000
 Frame11 datasec 1
-Frame11 clip user 0 0.013
+Frame11 clip user 0 0.01
 Frame11 clip mode user
 Frame11 clip scope global
 Frame11 clip minmax mode scan
@@ -1277,7 +1277,7 @@ Frame11 block to 1 1
 Frame11 wcs wcs fk5 sexagesimal
 Frame11 pan preserve 0
 Frame11 pan to physical 75.006423 517.75214
-Frame11 zoom to 0.476154 0.476154
+Frame11 zoom to 0.685906 0.685906
 Frame11 rotate to 0
 Frame11 orient none
 Frame11 wcs align 1
@@ -1300,7 +1300,7 @@ Frame11 mask range 0 0
 Frame11 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame21 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/027-spm0173o_bcrx-nii-PA002-sep-007.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/027-spm0173o_bcrx-nii-PA002-sep-007.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1327,10 +1327,10 @@ Frame21 bin filter {""}
 Frame21 bin buffer size 1024
 Frame21 bin about 0 0
 Frame21 bin function sum
-Frame21 colorscale log
+Frame21 colorscale sqrt
 Frame21 colorscale log 3000
 Frame21 datasec 1
-Frame21 clip user 0 0.013
+Frame21 clip user 0 0.01
 Frame21 clip mode user
 Frame21 clip scope global
 Frame21 clip minmax mode scan
@@ -1342,7 +1342,7 @@ Frame21 block to 1 1
 Frame21 wcs wcs fk5 sexagesimal
 Frame21 pan preserve 0
 Frame21 pan to physical 78.303828 425.23638
-Frame21 zoom to 0.476049 0.476049
+Frame21 zoom to 0.685746 0.685746
 Frame21 rotate to 0
 Frame21 orient none
 Frame21 wcs align 1
@@ -1365,7 +1365,7 @@ Frame21 mask range 0 0
 Frame21 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame5 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/009-spm125_bcrx-nii-PA359-sep-009.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/009-spm125_bcrx-nii-PA359-sep-009.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1392,10 +1392,10 @@ Frame5 bin filter {""}
 Frame5 bin buffer size 1024
 Frame5 bin about 0 0
 Frame5 bin function sum
-Frame5 colorscale log
+Frame5 colorscale sqrt
 Frame5 colorscale log 3000
 Frame5 datasec 1
-Frame5 clip user 0 0.013
+Frame5 clip user 0 0.01
 Frame5 clip mode user
 Frame5 clip scope global
 Frame5 clip minmax mode scan
@@ -1407,7 +1407,7 @@ Frame5 block to 1 1
 Frame5 wcs wcs fk5 sexagesimal
 Frame5 pan preserve 0
 Frame5 pan to physical 41.294281 313.67401
-Frame5 zoom to 0.838333 0.838333
+Frame5 zoom to 1.2075 1.2075
 Frame5 rotate to 0
 Frame5 orient none
 Frame5 wcs align 1
@@ -1430,7 +1430,7 @@ Frame5 mask range 0 0
 Frame5 contour create yellow 1 0 block 6 1 sqrt 3000 user global 0 0.013 {"0.02 0.04 0.06 0.08 0.1"}
 CreateNameNumberFrame Frame20 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/026-spm0124o_bcrx-nii-PA002-sep-010.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/026-spm0124o_bcrx-nii-PA002-sep-010.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1457,10 +1457,10 @@ Frame20 bin filter {""}
 Frame20 bin buffer size 1024
 Frame20 bin about 0 0
 Frame20 bin function sum
-Frame20 colorscale log
+Frame20 colorscale sqrt
 Frame20 colorscale log 3000
 Frame20 datasec 1
-Frame20 clip user 0 0.013
+Frame20 clip user 0 0.01
 Frame20 clip mode user
 Frame20 clip scope global
 Frame20 clip minmax mode scan
@@ -1472,7 +1472,7 @@ Frame20 block to 1 1
 Frame20 wcs wcs fk5 sexagesimal
 Frame20 pan preserve 0
 Frame20 pan to physical 77.999677 422.23124
-Frame20 zoom to 0.47733 0.47733
+Frame20 zoom to 0.687607 0.687607
 Frame20 rotate to 0
 Frame20 orient none
 Frame20 wcs align 1
@@ -1494,7 +1494,7 @@ Frame20 mask mark nonzero
 Frame20 mask range 0 0
 CreateNameNumberFrame Frame22 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/028-spm0179o_bcrx-nii-PA002-sep-013.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/028-spm0179o_bcrx-nii-PA002-sep-013.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1521,10 +1521,10 @@ Frame22 bin filter {""}
 Frame22 bin buffer size 1024
 Frame22 bin about 0 0
 Frame22 bin function sum
-Frame22 colorscale log
+Frame22 colorscale sqrt
 Frame22 colorscale log 3000
 Frame22 datasec 1
-Frame22 clip user 0 0.013
+Frame22 clip user 0 0.01
 Frame22 clip mode user
 Frame22 clip scope global
 Frame22 clip minmax mode scan
@@ -1535,8 +1535,8 @@ Frame22 clip zscale line 120
 Frame22 block to 1 1
 Frame22 wcs wcs fk5 sexagesimal
 Frame22 pan preserve 0
-Frame22 pan to physical 77.995569 426.24812
-Frame22 zoom to 0.476435 0.476435
+Frame22 pan to physical 77.995569 426.24811
+Frame22 zoom to 0.686316 0.686316
 Frame22 rotate to 0
 Frame22 orient none
 Frame22 wcs align 1
@@ -1558,7 +1558,7 @@ Frame22 mask mark nonzero
 Frame22 mask range 0 0
 CreateNameNumberFrame Frame23 base
 global loadParam
-array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/029-spm0186o_bcrx-nii-PA002-sep-018.fits load,layer {} file,type fits load,type mmapincr]
+array set loadParam [list load,layer {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/029-spm0186o_bcrx-nii-PA002-sep-018.fits file,mode {} load,type mmapincr file,type fits]
 if [BackupFindFile loadParam] {
   ProcessLoad
 }
@@ -1585,10 +1585,10 @@ Frame23 bin filter {""}
 Frame23 bin buffer size 1024
 Frame23 bin about 0 0
 Frame23 bin function sum
-Frame23 colorscale log
+Frame23 colorscale sqrt
 Frame23 colorscale log 3000
 Frame23 datasec 1
-Frame23 clip user 0 0.013
+Frame23 clip user 0 0.01
 Frame23 clip mode user
 Frame23 clip scope global
 Frame23 clip minmax mode scan
@@ -1599,8 +1599,8 @@ Frame23 clip zscale line 120
 Frame23 block to 1 1
 Frame23 wcs wcs fk5 sexagesimal
 Frame23 pan preserve 0
-Frame23 pan to physical 78.947657 419.24048
-Frame23 zoom to 0.473997 0.473997
+Frame23 pan to physical 78.947657 419.24047
+Frame23 zoom to 0.682761 0.682761
 Frame23 rotate to 0
 Frame23 orient none
 Frame23 wcs align 1
@@ -1623,7 +1623,7 @@ Frame23 mask range 0 0
 global pds9
 array set pds9 { nan,msg #332244 dialog native text,font courier samp 1 prec,linear 8 font,msg Helvetica iraf 1 prec,len,arcsec 3 threads 12 font,weight normal automarker 1 bg,msg Black language locale text,font,weight normal dialog,all 0 nan #804020 prec,angle 8 font,slant roman confirm 1 prec,deg 7 backup 0 language,dir {} font helvetica language,name {} bg #808080 prec,len,deg 7 xpa 1 prec,dms 3 text,font,msg Courier theme native tcl 0 prec,len,arcmin 5 prec,len,linear 8 dialog,center 0 prec,hms 4 font,size 13 text,font,slant roman text,font,size 11 }
 global current
-array set current { colorbar colorbar orient none zoom {0.476738 0.476738} mode region ext {} display tile cursor {} align 1 rotate 0 rgb red frame Frame18 }
+array set current { colorbar colorbar orient none zoom {0.687607 0.687607} mode region ext {} display tile cursor {} align 1 rotate 0 rgb red frame Frame20 }
 global pcurrent
 array set pcurrent { orient none zoom { 1 1 } mode none display single align 0 rotate 0 }
 global view
@@ -1631,7 +1631,7 @@ array set view { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 in
 global pview
 array set pview { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 info,wcsu 0 info,wcse 0 info,bunit 0 info,lowhigh 0 magnifier 1 info,wcsf 0 info,wcsv 0 info,frame 1 info,image 1 colorbar 1 info 1 info,wcsg 0 info,wcsw 0 info,keyword 0 info,wcs 1 info,wcsh 0 info,wcsx 0 info,physical 1 info,keyvalue {} info,wcsi 0 info,wcsy 0 info,object 1 buttons 1 info,wcsj 0 info,wcsz 0 info,wcsk 0 info,filename 1 info,wcsl 0 info,amplifier 0 info,minmax 0 info,wcsm 0 info,detector 0 info,wcsn 0 panner 1 info,wcso 0 info,wcsp 0 layout horizontal info,wcsa 0 info,wcsq 0 graph,vert 0 info,wcsb 0 info,wcsr 0 }
 global canvas
-array set canvas { gap 4 width 1440 gap,bottom 14 height 160 }
+array set canvas { gap 4 width 1440 gap,bottom 14 height 152 }
 global phttp
 array set phttp { auth,passwd {} proxy,host {} auth,user {} auth 0 proxy 0 proxy,port {} }
 global pbuttons
@@ -1677,7 +1677,7 @@ array set ppanzoom { wheel,factor 1.2 preserve 0 wheel 1 mode click }
 global crop
 array set crop { skyformat degrees rcoord wcs dformat degrees system wcs lock none dcoord wcs sky fk5 }
 global scale
-array set scale { lock 0 type log scope global log 3000 min 0 bins 512 xaxis full mode user datasec 1 max 0.013 yaxis log lock,limits 1 }
+array set scale { lock 0 type sqrt scope global log 3000 min 0 bins 512 xaxis full mode user datasec 1 max 0.01 yaxis log lock,limits 1 }
 global pscale
 array set pscale { datasec 1 mode minmax scope global log 1000 type linear }
 global minmax
@@ -1695,7 +1695,7 @@ array set pmarker { panda,ang2 360 bpanda,ang1 0 shape circle show 1 bpanda,ang2
 global centroid
 array set centroid {  }
 global wcs
-array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame18 sky fk5 }
+array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame20 sky fk5 }
 global pwcs
 array set pwcs { skyformat sexagesimal load,sock {} load,fn {} system wcs sky fk5 }
 global graph
@@ -1713,7 +1713,7 @@ array set mask { high 0 system wcs low 0 transparency 0 mark nonzero color red }
 global pmask
 array set pmask { high 0 system physical transparency 0 low 0 color red mark 1 }
 global contour
-array set contour { init,scale 0 numlevel 6 scale log method block init,scope 0 scope global view 0 copy {} width 1 dash 0 color,msg Green init,limits 0 smooth 1 log 3000 min 0 init,mode 0 mode user max 0.013 color yellow }
+array set contour { init,scale 0 numlevel 6 scale sqrt method block init,scope 0 scope global view 0 copy {} width 1 dash 0 color,msg Green init,limits 0 smooth 1 log 3000 min 0 init,mode 0 mode user max 0.01 color yellow }
 global pcontour
 array set pcontour { numlevel 5 dash 0 width 1 method block color,msg Green smooth 4 color green view 0 }
 global grid
@@ -1753,7 +1753,7 @@ array set vla { width 15 mode new height 15 survey first save 0 rformat arcmin s
 global pvo
 array set pvo { method mime hv 1 delay 15 server http://cxc.harvard.edu/chandraed/list.txt }
 global pap
-array set pap { axis,x,flip 0 legend,position right layout,strip,scale 50 graph,axis,x,max {} graph,axis,y,format {} textlabSlant roman quadratic 0 numlabWeight normal graph,title,size 12 axis,title,weight normal graph,ds,bar,relief raised error,cap 0 quadratic,dash no graph,ds,fill,color black legend,title,family helvetica textlabWeight normal graph,axis,x,format {} legend,title Legend graph,ds,shape,color red layout,axis,x,grid 0 graph,ds,error,color red layout grid axis,x,log 0 legend,font,slant roman axis,font,family,msg Helvetica graph,y,grid 1 quadratic,color black axis,y,min {} graph,ds,error 1 axis,y,max {} axis,title,family,msg Helvetica discrete,color red axis,font,family helvetica legend 0 shape,color,msg Red step,color black legend,font,family helvetica graph,title,family,msg Helvetica layout,axis,x,log 0 legend,title,weight normal layout,axis,x,flip 0 graph,axis,y,grid 1 discrete 0 axis,y,grid 1 graph,x,log 0 graph,ds,shape,symbol none titleSize 12 bar 0 graph,axis,x,log 0 graph,y,flip 0 linear,color black graph,title,family helvetica axis,font,slant roman graph,axis,y,title {} bar,relief raised step,dash no graph,ds,fill 0 graph,ds,color black graph,axis,y,min {} titleFont helvetica graph,ds,dash 0 legend,font,size 9 titleWeight normal graph,axis,y,max {} linear 1 legend,title,size 10 axis,font,weight normal graph,ds,shape,fill 1 graph,legend 0 graph,axis,y,auto 1 discrete,fill 1 graph,title,slant roman legend,font,weight normal axis,y,format {} axis,y,auto 1 graph,bg white textlabSize 9 graph,ds,error,width 1 graph,axis,y,flip 0 graph,x,grid 1 background white axis,y,flip 0 numlabSlant roman layout,axis,x,title {} axis,title,slant roman quadratic,width 1 textlabFont helvetica graph,ds,error,cap 0 legend,title,slant roman titleSlant roman step 0 graph,title,weight normal discrete,symbol circle graph,axis,x,title {} axis,x,format {} linear,dash no graph,format 1 axis,y,log 0 axis,y,title {} step,width 1 axis,x,min {} graph,axis,x,grid 1 numlabSize 9 axis,title,size 9 axis,x,max {} axis,x,grid 1 graph,ds,smooth linear graph,x,flip 0 numlabFont helvetica linear,width 1 error,color,msg Red bar,color black graph,title {} graph,ds,width 1 axis,title,family helvetica color,msg Black graph,ds,show 1 layout,axis,x,min 0 graph,legend,title Legend graph,axis,x,auto 1 graph,y,log 0 layout,axis,x,max 0 axis,x,auto 1 bar,mode normal graph,legend,position right graph,axis,x,flip 0 graph,axis,y,log 0 axis,x,title {} axis,font,size 9 graph,axis,x,min {} }
+array set pap { axis,x,flip 0 legend,position right layout,strip,scale 50 show 1 graph,axis,x,max {} graph,axis,y,format {} textlabSlant roman quadratic 0 numlabWeight normal graph,title,size 12 axis,title,weight normal graph,ds,bar,relief raised error,cap 0 quadratic,dash no graph,ds,fill,color black legend,title,family helvetica textlabWeight normal graph,axis,x,format {} legend,title Legend graph,ds,shape,color red layout,axis,x,grid 0 graph,ds,error,color red layout grid axis,x,log 0 legend,font,slant roman axis,font,family,msg Helvetica graph,y,grid 1 quadratic,color black axis,y,min {} error 1 graph,ds,error 1 axis,y,max {} axis,title,family,msg Helvetica discrete,color red axis,font,family helvetica legend 0 shape,color,msg Red step,color black legend,font,family helvetica graph,title,family,msg Helvetica layout,axis,x,log 0 legend,title,weight normal layout,axis,x,flip 0 graph,axis,y,grid 1 discrete 0 shape,color red axis,y,grid 1 graph,x,log 0 graph,ds,shape,symbol none error,color red titleSize 12 bar 0 graph,axis,x,log 0 graph,y,flip 0 linear,color black graph,title,family helvetica axis,font,slant roman graph,axis,y,title {} color black bar,relief raised step,dash no graph,ds,fill 0 graph,ds,color black graph,axis,y,min {} titleFont helvetica graph,ds,dash 0 legend,font,size 9 fill,color black titleWeight normal graph,axis,y,max {} shape,symbol none linear 1 legend,title,size 10 axis,font,weight normal graph,ds,shape,fill 1 graph,legend 0 graph,axis,y,auto 1 discrete,fill 1 graph,title,slant roman legend,font,weight normal fill 0 axis,y,format {} axis,y,auto 1 graph,bg white textlabSize 9 graph,ds,error,width 1 graph,axis,y,flip 0 dash 0 graph,x,grid 1 background white axis,y,flip 0 numlabSlant roman layout,axis,x,title {} axis,title,slant roman smooth linear quadratic,width 1 textlabFont helvetica graph,ds,error,cap 0 legend,title,slant roman titleSlant roman step 0 graph,title,weight normal discrete,symbol circle graph,axis,x,title {} axis,x,format {} linear,dash no graph,format 1 axis,y,log 0 axis,y,title {} step,width 1 axis,x,min {} graph,axis,x,grid 1 numlabSize 9 axis,title,size 9 axis,x,max {} axis,x,grid 1 graph,ds,smooth linear graph,x,flip 0 error,width 1 numlabFont helvetica linear,width 1 width 1 error,color,msg Red bar,color black graph,title {} graph,ds,width 1 axis,title,family helvetica color,msg Black graph,ds,show 1 layout,axis,x,min 0 graph,legend,title Legend shape,fill 1 graph,axis,x,auto 1 graph,y,log 0 layout,axis,x,max 0 axis,x,auto 1 bar,mode normal graph,legend,position right graph,axis,x,flip 0 graph,axis,y,log 0 axis,x,title {} axis,font,size 9 graph,axis,x,min {} }
 global panalysis
 array set panalysis { user2 {} autoload 1 user3 {} log 0 user4 {} user {} }
 global active

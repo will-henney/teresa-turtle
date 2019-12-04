@@ -1082,8 +1082,8 @@ This should be run from top-level folder
 
 **** [S II] exposure
 | spec   | imslit |     run |    t | wa | islit | ij | ID |
-|--------+--------+---------+------+----+-------+----+---|
-| spm408 | spm407 | 2004-06 | 1800 |  1 |   269 |  1 | s |
+|--------+--------+---------+------+----+-------+----+----|
+| spm408 | spm407 | 2004-06 | 1800 |  1 |   269 |  1 | s  |
 
 **** Write tables to files for later use
 
@@ -2088,6 +2088,111 @@ Central velocities in [N II] - 20 km/s channels
 
 
 
+
+
+** Problematic slits
++ spm119 - I have it at ~sep = +008~ but it looks like it is between +007 and +004
++ 
+
+** Discrete features in the spectra
+
+*** [N II] 
++ Central region - bright complexes of knots (mainly 2015 spectra)
+  + These are what I used to call blobs (after their appearance in the PV diagrams, but complex is better, since they clearly break into many knots in the HST images)
+  + NE Blue Complex
+    | slit |          |  x |    y |   y1 |  y2 |   V |     S |
+    |------+----------+----+------+------+-----+-----+-------|
+    | c'   | spm0031  | +4 | +3.3 | -0.3 | 6.5 | -92 | 0.008 |
+    | d'   | spm0037  | +1 | +3.3 | -0.9 |   7 | -85 | 0.030 |
+    | e'   | spm0043  |  0 | +2.5 | -0.3 |   6 | -85 | 0.011 |
+    | g    | spm112-2 | -1 | +2.8 | -0.3 | 6.5 | -80 | 0.004 |
+  + N Red Complex
+    | slit |          |   x |   y |   y1 |  y2 |   V |      S |
+    |------+----------+-----+-----+------+-----+-----+--------|
+    | c'   | spm0031  |  +4 |   4 | -0.2 | 7.7 | -20 | 0.0007 |
+    | d'   | spm0037  |  +1 |   4 |  1.0 | 7.7 | -20 |  0.018 |
+    | e'   | spm0043  |   0 | 2.8 |  0.3 | 6.5 | -13 |  0.068 |
+    | g    | spm112-2 |  -1 | 3.4 | -0.2 |   5 | -15 |  0.068 |
+    | f'   | spm0049  |  -4 | 2.2 | -0.2 | 4.7 | -16 |  0.048 |
+    | g'   | spm0057  |  -6 | 2.2 | -0.3 | 4.0 | -16 |  0.036 |
+    | h'   | spm0173  |  -7 | 1.6 | -0.2 | 2.8 | -20 |  0.015 |
+    | i'   | spm0124  | -10 | 2.0 | -0.3 |   4 | -20 |  0.004 |
+  + SE Blue Complex (includes K-SE)
+    | slit |          |   x |    y |   y1 |   y2 |   V |     S |
+    |------+----------+-----+------+------+------+-----+-------|
+    | c'   | spm0031  |  +4 |   -3 | -5.1 | -1.9 | -78 | 0.004 |
+    | f    | spm112   |  +2 | -3.9 |   -5 | -2.5 | -71 | 0.020 |
+    | d'   | spm0037  |  +1 | -2.5 | -4.3 | -0.8 | -69 | 0.013 |
+  + SW Faint Blue Complex
+    | slit |          |     x |    y |   y1 |   y2 |   V |      S |
+    |------+----------+-------+------+------+------+-----+--------|
+    | g    | spm112-2 | -1.49 | -3.5 | -4.8 | -1.4 | -66 | 0.0008 |
+    | h    | spm122   | -4.92 | -4.8 | -6.5 |   -3 | -66 | 0.0018 |
+    | f'   | spm0049  | -4.65 | -3.9 | -6.1 | -2.2 | -64 | 0.0015 |
+    | i    | spm023   | -6.22 | -4.4 | -7.3 | -2.7 | -66 | 0.0005 |
+  + SW Red Complex 
+    | slit |          |     x |    y |   y1 |   y2 |    V |      S |
+    |------+----------+-------+------+------+------+------+--------|
+    | g    | spm112-2 | -1.49 | -0.5 | -2.7 |  0.7 | -6.6 |  0.014 |
+    | f'   | spm0049  | -4.65 | -1.4 | -4.4 |  0.0 | -3.6 |  0.017 |
+    | h    | spm122   | -4.92 | -3.1 | -6.1 | -1.4 | -0.7 |  0.053 |
+    | g'   | spm0057  | -6.73 | -2.7 | -5.2 | -0.5 | -0.2 |  0.023 |
+    | h'   | spm0173  | -7.93 | -2.9 | -5.0 | -0.8 | +1.5 |  0.026 |
+    | i'   | spm0124  |   -10 | -3.4 | -6.0 | -1.4 | -2.2 | 0.0013 |
++ I have now identified these on the isovel images
+  + The NE Blue Complex (V=-45) shows up in the -100-080 channel
+  + The SE Blue Complex (V=-30) in the -080-060 channel
+  + The SW Faint Blue Complex (V=-26) is barely visible
+  + The N Red Complex (V=+25) in the -020+000 channel
+  + The SW Red Complex (V=+39) in the +000+020 channel
+**** Make RGB images to show the [N II] knot complexes
+#+begin_src sh :results silent
+  open -n -a SAOImageDS9 --args -title rgbmaps
+#+end_src
+
+First the blue-shifted complexes
+#+BEGIN_SRC sh :dir ../data/maps20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb 
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-060-040.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-080-060.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-100-080.fits[3]
+#+END_SRC
+
+Second the red-shifted complexes
+#+BEGIN_SRC sh :dir ../data/maps20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii+000+020.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-020+000.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-nii-040-020.fits[3]
+#+END_SRC
+
+    
++ Made an image of these
+  + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot-turtle-nii-knot-complexes.png]]
+**** Proper motions and 3D position/velocities of the knot complexes
++ Assume 10 mas/yr = 95 km/s
+ | Complex       | V_r | V_t | tan(i) |    inc |      V | R_proj |      R |
+ |---------------+-----+-----+--------+--------+--------+--------+--------|
+ | NE Blue       | -45 |  43 | -0.956 |   -44. |    62. |      5 |    7.2 |
+ | SE Blue       | -30 |  47 | -1.567 |   -57. |    56. |      5 |    6.0 |
+ | SW Faint Blue | -26 |   ? | #ERROR | #ERROR | #ERROR |      6 | #ERROR |
+ | N Red         | +25 |   9 |  0.360 |    20. |    27. |      4 |   11.7 |
+ | SW Red        | +39 |  22 |  0.564 |    29. |    45. |      7 |   14.4 |
+ | N Jet         | +23 |  62 |  2.696 |    70. |    66. |     15 |   16.0 |
+ #+TBLFM: $4=$3/$2;f3::$5=arctan($4);f0::$6=hypot($2, $3);f0::$8=$-1/sin(abs($5));f1
+
++ So, the red N jet is moving closest to plane of sky (i = 70)
++ Followed by SE Blue complex (K-SE) at i = -57 (really i = 123)
++ Then NE Blue complex at -45 (135)
++ I have now done a sketch of all this, which shows the red complexes as farther out and slower. 
 
 ** Calculate moment maps [2019-12-02 Mon]
 + Best to use the 10 km/s channels for optimum precision
