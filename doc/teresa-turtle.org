@@ -2139,6 +2139,12 @@ Central velocities in [N II] - 20 km/s channels
     | g'   | spm0057  | -6.73 | -2.7 | -5.2 | -0.5 | -0.2 |  0.023 |
     | h'   | spm0173  | -7.93 | -2.9 | -5.0 | -0.8 | +1.5 |  0.026 |
     | i'   | spm0124  |   -10 | -3.4 | -6.0 | -1.4 | -2.2 | 0.0013 |
+  + K-NW
+    | slit |         |     x |   y |  y1 |  y2 |   V |      S |
+    |------+---------+-------+-----+-----+-----+-----+--------|
+    | g'   | spm0057 | -6.73 | 5.5 | 4.7 | 6.7 | -23 |  0.005 |
+    | h'   | spm0173 | -7.93 | 5.2 | 4.1 | 6.4 | -21 | 0.0015 |
+    Note that this knot has a slight hook to the N that moves to the blue (V=-36 at y = 6)
 + I have now identified these on the isovel images
   + The NE Blue Complex (V=-45) shows up in the -100-080 channel
   + The SE Blue Complex (V=-30) in the -080-060 channel
@@ -2177,17 +2183,67 @@ Second the red-shifted complexes
     
 + Made an image of these
   + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot-turtle-nii-knot-complexes.png]]
+
+**** Do Equivalent RGB images of oiii
+First the blue-shifted complexes
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb 
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-060-040.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-080-060.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-100-080.fits[3]
+#+END_SRC
+
+Second the red-shifted complexes
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+000+020.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-020+000.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-040-020.fits[3]
+#+END_SRC
+
+And repeat for multibin
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb 
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-060-040-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-080-060-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-100-080-multibin.fits
+#+END_SRC
+
+#+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
+  DS9=7f000001:51364
+  xpaset -p $DS9 rgb
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii+000+020-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-020+000-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-oiii-040-020-multibin.fits
+#+END_SRC
+
 **** Proper motions and 3D position/velocities of the knot complexes
 + Assume 10 mas/yr = 95 km/s
- | Complex       | V_r | V_t | tan(i) |    inc |      V | R_proj |      R |
- |---------------+-----+-----+--------+--------+--------+--------+--------|
- | NE Blue       | -45 |  43 | -0.956 |   -44. |    62. |      5 |    7.2 |
- | SE Blue       | -30 |  47 | -1.567 |   -57. |    56. |      5 |    6.0 |
- | SW Faint Blue | -26 |   ? | #ERROR | #ERROR | #ERROR |      6 | #ERROR |
- | N Red         | +25 |   9 |  0.360 |    20. |    27. |      4 |   11.7 |
- | SW Red        | +39 |  22 |  0.564 |    29. |    45. |      7 |   14.4 |
- | N Jet         | +23 |  62 |  2.696 |    70. |    66. |     15 |   16.0 |
- #+TBLFM: $4=$3/$2;f3::$5=arctan($4);f0::$6=hypot($2, $3);f0::$8=$-1/sin(abs($5));f1
+ | Complex       | V_r | V_t       | tan(i)           | inc         | V            | R_proj | R               |
+ |---------------+-----+-----------+------------------+-------------+--------------+--------+-----------------|
+ | NE Blue       | -45 | 43 +/- 9  | -0.956 +/- 0.200 | -44. +/- 6. | 62. +/- 6.   |      5 | 7.2 +/- 0.8     |
+ | SE Blue       | -30 | 47 +/- 9  | -1.567 +/- 0.300 | -57. +/- 5. | 56. +/- 8.   |      5 | 6.0 +/- 0.3     |
+ | SW Faint Blue | -26 | ?         | #ERROR           | #ERROR      | #ERROR       |      6 | #ERROR          |
+ | N Red         | +25 | [1 .. 10] | [0.040 .. 0.400] | [2. .. 22.] | [25. .. 27.] |      4 | [10.7 .. 114.6] |
+ | SW Red        | +39 | 22 +/- 9  | 0.564 +/- 0.231  | 29. +/- 10. | 45. +/- 4.   |      7 | 14.4 +/- 4.5    |
+ | K-NW          | +18 | 12 +/- 9  | 0.667 +/- 0.500  | 34. +/- 20. | 22. +/- 5.   |      9 | 16.1 +/- 8.3    |
+ | N Jet         | +23 | 62 +/- 9  | 2.696 +/- 0.391  | 70. +/- 3.  | 66. +/- 8.   |     15 | 16.0 +/- 0.3    |
+ #+TBLFM: $4=$3/$2;f3::$5=arctan($4);f0::$6=sqrt($2**2 + $3**2);f0::$8=$-1/sin(abs($5));f1
 
 + So, the red N jet is moving closest to plane of sky (i = 70)
 + Followed by SE Blue complex (K-SE) at i = -57 (really i = 123)

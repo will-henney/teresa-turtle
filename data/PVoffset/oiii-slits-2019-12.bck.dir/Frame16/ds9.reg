@@ -2,3 +2,6 @@
 global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
 physical
 # text(36.003308,306.84567) textrotate=0 color=red font="helvetica 20 bold roman" text={j}
+line(40.272687,232.84237,39.24462,268.82472) # line=0 0 color=cyan
+line(39.60695,120.68598,40.463673,203.57557) # line=0 0 color=cyan
+ellipse(44.897966,215.90772,5.9494632,10.907349,0) # color=cyan

@@ -1,4 +1,12 @@
 # Region file format: DS9 version 4.1
 global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
 physical
-# text(36.789704,307.97054) textrotate=0 color=red font="helvetica 20 bold roman" text={i}
+# text(70.48311,201.04013) textrotate=0 color=red font="helvetica 20 bold roman" text={i}
+ellipse(48.488319,208.48333,4.1401179,5.8228535,-0) # color=red width=2
+ellipse(53.720705,220.32341,3.5309291,5.1619661,-0) # color=red width=2
+ellipse(46.47715,168.06797,8.0900417,7.1274859,0) # color=cyan width=3
+line(39.95079,196.47503,37.471881,117.96465) # line=0 0 color=cyan
+line(40.055698,274.9663,39.030346,233.95219) # line=0 0 color=cyan
+ellipse(46.85335,218.95513,3.777245,7.5544899,0) # color=cyan
+ellipse(38.612088,210.37048,3.777245,7.5544899,0) # color=cyan
+ellipse(45.13642,208.99694,3.433859,4.8074027,0) # color=cyan
