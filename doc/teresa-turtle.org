@@ -2096,6 +2096,99 @@ Central velocities in [N II] - 20 km/s channels
 
 ** Discrete features in the spectra
 
+*** [O III]
++ This is much more difficult than [O III]
+
+**** Peanut shell
++ Vertical slits C, D, E, F
++ Nearly vertical slits R, S
++ Best spatial separation from other components: N part of slits E, F, R, and S
+
+
+***** Slit C
++ This is nearly at the E edge of the shell
+  + x = +5.18
++ The velocity ellipse is small
+  + Central velocity is Vhel = -43 +/- 10 km/s
+  + Position -1.2 +/- 2.2 arcsec using center of components
+    + But total y extension is [-4.3, 2.9] in total: -0.7 +/- 3.6
+  + Blue side and N side are brighter
++ Velocity components
+  |    x |    y |   V |          |
+  |------+------+-----+----------|
+  | 5.18 | -3.4 | -41 | S edge   |
+  | 5.18 | +1.0 | -44 | N edge   |
+  | 5.18 | -1.7 | -33 | Max Red  |
+  | 5.18 | -1.7 | -53 | Max Blue |
+***** Slit D
++ x = +2.27
++ Brightest component is N Red, which is at the systemic velocity
++ Actual shell part is 50% fainter
++ Taking Max Red and N Blue as V extremes
+  + V = -46.5 +/- 18.5 km/s
++ On the blue side, there is a blueward gradient of 8 km/s from S to N
++ Total y extension is [-5.3, 4.6] = -0.35 +/- 4.95
++ There is also a component associated with the N Red Complex (identical V and position to [N II])
++ Velocity components
+  |    x |    y |   V |               |
+  |------+------+-----+---------------|
+  | 2.27 |  0.2 | -65 | N Blue        |
+  | 2.27 | -2.0 | -62 | Center Blue   |
+  | 2.27 | -4.2 | -57 | S Blue        |
+  |------+------+-----+---------------|
+  | 2.27 |  1.8 | -40 | N Red         |
+  | 2.27 | -2.2 | -28 | Max Red       |
+  |------+------+-----+---------------|
+  | 2.27 |  2.8 | -24 | N Red Complex |
+***** Slit E
++ x = -1.2
++ Again, brightest component is N Red, at +9 km/s wrt systemic
++ Blue side of shell is 3x fainter
++ Taking center position
+  + y = [-1.5, 1.2]
+  + V = -43.5 +/- 21.5 km/s
++ The N side also has constant velocity splitting
+  + y = [1.0, 5.7]
+  + V = -45 +/- 14 km/s
++ Total y extension [-4.7, 7.6] = +1.45 +/- 6.15
++ Velocity components
+  |    x |    y |   V |               |
+  |------+------+-----+---------------|
+  | -1.2 |  3.6 | -59 | N Blue        |
+  | -1.2 | -0.3 | -65 | Center Blue   |
+  | -1.2 | -2.9 | -50 | S Blue        |
+  |------+------+-----+---------------|
+  | -1.2 |  7.1 | -36 | N edge        |
+  | -1.2 |  2.5 | -31 | N Red         |
+  | -1.2 | -0.6 | -22 | Center Red    |
+  | -1.2 | -3.4 | -30 | S Red         |
+  |------+------+-----+---------------|
+  | -1.2 |  2.2 | -16 | N Red complex |
+
+***** Slit F
++ x = -3.6
++ In this one, I didn't separate the shell from the N Red Complex
+  + So V of Center Red might be too red
++ Center Red and N Red are brightest
+  + Blue side of shell is 40% of this brightness
++ N side of shell
+  + y = [0.3, 5.6]
+  + V = -44 +/- 13 km/s
++ S side of shell
+  + y = [-3.8, 0.5]
+  + V = -35.5 +/- 10.5 km/s
++ Velocity components
+  |    x |    y |   V |            |
+  |------+------+-----+------------|
+  | -3.6 |  2.6 | -57 | N Blue     |
+  | -3.6 | -1.4 | -46 | S Blue     |
+  |------+------+-----+------------|
+  | -3.6 |  2.7 | -31 | N Red      |
+  | -3.6 |  0.9 | -21 | Center Red |
+  | -3.6 | -2.4 | -25 | S Red      |
+
+**** Intermediate shell
+
 *** [N II] 
 + Central region - bright complexes of knots (mainly 2015 spectra)
   + These are what I used to call blobs (after their appearance in the PV diagrams, but complex is better, since they clearly break into many knots in the HST images)
