@@ -2102,9 +2102,15 @@ Central velocities in [N II] - 20 km/s channels
 **** Peanut shell
 + Vertical slits C, D, E, F
 + Nearly vertical slits R, S
+  + Note that slit R is close to the major axis of the shell
+  + And passes close to the star
 + Best spatial separation from other components: N part of slits E, F, R, and S
 
 
+***** Peanut shell proper motions
++ Clear bipolar signature in the motions
++ Major axis is NNW-SSE, PA = 350
++ I am adding the proper motions for selected components in the per-slit tables below
 ***** Slit C
 + This is nearly at the E edge of the shell
   + x = +5.18
@@ -2113,6 +2119,8 @@ Central velocities in [N II] - 20 km/s channels
   + Position -1.2 +/- 2.2 arcsec using center of components
     + But total y extension is [-4.3, 2.9] in total: -0.7 +/- 3.6
   + Blue side and N side are brighter
++ Proper motion
+  + V_t radial component is about 0.5 => 47 km/s
 + Velocity components
   |    x |    y |   V |          |
   |------+------+-----+----------|
@@ -2123,23 +2131,42 @@ Central velocities in [N II] - 20 km/s channels
 ***** Slit D
 + x = +2.27
 + Brightest component is N Red, which is at the systemic velocity
-+ Actual shell part is 50% fainter
-+ Taking Max Red and N Blue as V extremes
-  + V = -46.5 +/- 18.5 km/s
-+ On the blue side, there is a blueward gradient of 8 km/s from S to N
-+ Total y extension is [-5.3, 4.6] = -0.35 +/- 4.95
+  + This is possible not the peanut shell, but is an outer structure that may be part of the intermediate shell
+  + Need to check position more carefully though
++ Shell part is 0.5 x brightness of N Red component
+  + Same brightness for red and blue halves
++ N Side of shell
+  + /Note/ - we should maybe not include this since N Red component is suspect
+  + y = [-1, 3.5]
+  + V = -52.5 +/- 12.5
++ Center of shell
+  + y = -2.1
+  + V = -45 +/- 17
++ S Side of shell
+  + y = [-5, -2]
+  + V = -42.5 +/- 14.5
++ The shell shows a general blueward gradient of 5-10 km/s from S to N
+  + The lower value is if we discount the N Red component as unrelated to shell
+  + This may be a symptom of the fact the vertical slits are at an angle to the shell major axis
++ Total y extension is [-5.3, 4.6] = -0.35 +/- 4.95 for the main shell components
+  + But there is a fainter extension down to S Edge as far as y = -6.5
+  + S Edge is 0.25 x brightness of main shell
 + There is also a component associated with the N Red Complex (identical V and position to [N II])
++ Proper motion of lower rim of shell corresponds to S Edge: 0.6 => 57 km/s
++ Proper motions in N are low: 0.23 => 22 km/s
++ Proper motions in S slightly higher: 0.29 => 27 km/s 
 + Velocity components
-  |    x |    y |   V |               |
-  |------+------+-----+---------------|
-  | 2.27 |  0.2 | -65 | N Blue        |
-  | 2.27 | -2.0 | -62 | Center Blue   |
-  | 2.27 | -4.2 | -57 | S Blue        |
-  |------+------+-----+---------------|
-  | 2.27 |  1.8 | -40 | N Red         |
-  | 2.27 | -2.2 | -28 | Max Red       |
-  |------+------+-----+---------------|
-  | 2.27 |  2.8 | -24 | N Red Complex |
+  |    x |    y |   V |               | V_t |
+  |------+------+-----+---------------+-----|
+  | 2.27 |  0.2 | -65 | N Blue        |  22 |
+  | 2.27 | -2.0 | -62 | Center Blue   |     |
+  | 2.27 | -4.2 | -57 | S Blue        |     |
+  |------+------+-----+---------------+-----|
+  | 2.27 |  1.8 | -40 | N Red         |     |
+  | 2.27 | -2.2 | -28 | Center Red    |     |
+  | 2.27 | -5.7 | -41 | S Edge        |  57 |
+  |------+------+-----+---------------+-----|
+  | 2.27 |  2.8 | -24 | N Red Complex |     |
 ***** Slit E
 + x = -1.2
 + Again, brightest component is N Red, at +9 km/s wrt systemic
@@ -2151,41 +2178,49 @@ Central velocities in [N II] - 20 km/s channels
   + y = [1.0, 5.7]
   + V = -45 +/- 14 km/s
 + Total y extension [-4.7, 7.6] = +1.45 +/- 6.15
++ Proper motion at N Edge is 0.6 => 57 km/s
++ Proper motion at S end of shell is 0.2 => 20 km/s
 + Velocity components
-  |    x |    y |   V |               |
-  |------+------+-----+---------------|
-  | -1.2 |  3.6 | -59 | N Blue        |
-  | -1.2 | -0.3 | -65 | Center Blue   |
-  | -1.2 | -2.9 | -50 | S Blue        |
-  |------+------+-----+---------------|
-  | -1.2 |  7.1 | -36 | N edge        |
-  | -1.2 |  2.5 | -31 | N Red         |
-  | -1.2 | -0.6 | -22 | Center Red    |
-  | -1.2 | -3.4 | -30 | S Red         |
-  |------+------+-----+---------------|
-  | -1.2 |  2.2 | -16 | N Red complex |
+  |    x |    y |   V |               | V_t |
+  |------+------+-----+---------------+-----|
+  | -1.2 |  3.6 | -59 | N Blue        |     |
+  | -1.2 | -0.3 | -65 | Center Blue   |     |
+  | -1.2 | -2.9 | -50 | S Blue        |     |
+  |------+------+-----+---------------+-----|
+  | -1.2 |  7.1 | -36 | N edge        |  57 |
+  | -1.2 |  2.5 | -31 | N Red         |     |
+  | -1.2 | -0.6 | -22 | Center Red    |     |
+  | -1.2 | -3.4 | -30 | S Red         |  20 |
+  |------+------+-----+---------------+-----|
+  | -1.2 |  2.2 | -16 | N Red complex |     |
 
 ***** Slit F
 + x = -3.6
-+ In this one, I didn't separate the shell from the N Red Complex
-  + So V of Center Red might be too red
 + Center Red and N Red are brightest
   + Blue side of shell is 40% of this brightness
 + N side of shell
   + y = [0.3, 5.6]
   + V = -44 +/- 13 km/s
++ Center of shell
+  + y ~= 0.5
+  + V = -40.5 +/- 15.5
 + S side of shell
   + y = [-3.8, 0.5]
   + V = -35.5 +/- 10.5 km/s
++ As before there is also a N Red Complex component, similar to [N II]
++ Proper motions at N edge are low: 0.27 => 26 km/s
 + Velocity components
-  |    x |    y |   V |            |
-  |------+------+-----+------------|
-  | -3.6 |  2.6 | -57 | N Blue     |
-  | -3.6 | -1.4 | -46 | S Blue     |
-  |------+------+-----+------------|
-  | -3.6 |  2.7 | -31 | N Red      |
-  | -3.6 |  0.9 | -21 | Center Red |
-  | -3.6 | -2.4 | -25 | S Red      |
+  |    x |    y |   V |               |
+  |------+------+-----+---------------|
+  | -3.6 |  3.0 | -57 | N Blue        |
+  | -3.6 |  0.4 | -56 | Center Blue   |
+  | -3.6 | -1.6 | -47 | S Blue        |
+  |------+------+-----+---------------|
+  | -3.6 |  3.6 | -33 | N Red         |
+  | -3.6 |  0.7 | -25 | Center Red    |
+  | -3.6 | -2.3 | -23 | S Red         |
+  |------+------+-----+---------------|
+  | -3.6 |  2.1 | -16 | N Red complex |
 
 **** Intermediate shell
 
