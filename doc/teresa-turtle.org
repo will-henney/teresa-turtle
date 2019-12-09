@@ -2107,6 +2107,15 @@ Central velocities in [N II] - 20 km/s channels
 + Best spatial separation from other components: N part of slits E, F, R, and S
 
 
+***** Peanut shell conclusions
++ See [[file:Turtle%20peanut%20shell.pdf]]
++ There are two shells
+  + Peanut A - PA = -20, close to plane of sky
+    + Axis along projected major axis of peanut
+  + Peanut B - PA = +70, at a largeish angle to POS
+    + Axis along projected minor axis of peanut
+    + Axis seems to coincide with [N II] knot complexes NE Blue \to SW Red axis
+      
 ***** Peanut shell proper motions
 + Clear bipolar signature in the motions
 + Major axis is NNW-SSE, PA = 350
@@ -2222,7 +2231,39 @@ Central velocities in [N II] - 20 km/s channels
   |------+------+-----+---------------|
   | -3.6 |  2.1 | -16 | N Red complex |
 
+
+**** Lobes
++ Diagonal slit U
+
 **** Intermediate shell
++ [X] Vertical Slit F
+  + y = -5 and below
+    + There is an unrelated blue component due to Complex SE Blue at -63
+    + All else should be the IS
+    + Strongest component is at -42
+    + Weaker component at -29
+    + So Vc +/- dV is -35.5 +/- 6.5
+  + y = +6 and above
+    + Two similar strength components at -34 and -51
+    + => Vc +/- dV = -42.5 +/- 8.5
++ [ ] Vertical Slits G, H
+  + y = -8.5 \to -6
+  + Regions to N of y = -6 are dominated by the knot complex SW Red, which is 16 times brighter than intermediate shell
++ [ ] Vertical Slits I, J
+  + y = -6 \to +1
+  + Intermediate shell dominates 
++ [ ] Diagonal slit U
+
+
+**** The Tongue
++ This is inside the intermediate shell
++ It is co-extensive with [N II] complexes, but may not be exactly the same
++ Its relationship to the intermediate shell, which surrounds it, is unclear
++ Diagonal slit U
+  + This shows three components at -60, -37, and -10 km/s of similar but slightly increasing brightness
+  + The -10 km/s component (s = +1 \to +6) is probably the [O III] equivalent of the SW Red Complex
+  + The -60 km/s component (s = -1 \to +1) may be the [O III] equivalent of the SW Faint Blue complex
+    + If that is true, then we can associate some particular knots with that complex, which means that we can get proper motions
 
 *** [N II] 
 + Central region - bright complexes of knots (mainly 2015 spectra)
@@ -2277,6 +2318,7 @@ Central velocities in [N II] - 20 km/s channels
   + The NE Blue Complex (V=-45) shows up in the -100-080 channel
   + The SE Blue Complex (V=-30) in the -080-060 channel
   + The SW Faint Blue Complex (V=-26) is barely visible
+    + 
   + The N Red Complex (V=+25) in the -020+000 channel
   + The SW Red Complex (V=+39) in the +000+020 channel
 **** Make RGB images to show the [N II] knot complexes
@@ -2362,21 +2404,32 @@ And repeat for multibin
 
 **** Proper motions and 3D position/velocities of the knot complexes
 + Assume 10 mas/yr = 95 km/s
- | Complex       | V_r | V_t       | tan(i)           | inc         | V            | R_proj | R               |
- |---------------+-----+-----------+------------------+-------------+--------------+--------+-----------------|
- | NE Blue       | -45 | 43 +/- 9  | -0.956 +/- 0.200 | -44. +/- 6. | 62. +/- 6.   |      5 | 7.2 +/- 0.8     |
- | SE Blue       | -30 | 47 +/- 9  | -1.567 +/- 0.300 | -57. +/- 5. | 56. +/- 8.   |      5 | 6.0 +/- 0.3     |
- | SW Faint Blue | -26 | ?         | #ERROR           | #ERROR      | #ERROR       |      6 | #ERROR          |
- | N Red         | +25 | [1 .. 10] | [0.040 .. 0.400] | [2. .. 22.] | [25. .. 27.] |      4 | [10.7 .. 114.6] |
- | SW Red        | +39 | 22 +/- 9  | 0.564 +/- 0.231  | 29. +/- 10. | 45. +/- 4.   |      7 | 14.4 +/- 4.5    |
- | K-NW          | +18 | 12 +/- 9  | 0.667 +/- 0.500  | 34. +/- 20. | 22. +/- 5.   |      9 | 16.1 +/- 8.3    |
- | N Jet         | +23 | 62 +/- 9  | 2.696 +/- 0.391  | 70. +/- 3.  | 66. +/- 8.   |     15 | 16.0 +/- 0.3    |
+ | Complex       | V_r | V_t       | tan(i)           | inc          | V            | R_proj | R               |
+ |---------------+-----+-----------+------------------+--------------+--------------+--------+-----------------|
+ | NE Blue       | -45 | 43 +/- 9  | -0.956 +/- 0.200 | -44. +/- 6.  | 62. +/- 6.   |      5 | 7.2 +/- 0.8     |
+ | SE Blue       | -30 | 47 +/- 9  | -1.567 +/- 0.300 | -57. +/- 5.  | 56. +/- 8.   |      5 | 6.0 +/- 0.3     |
+ | SW Faint Blue | -26 | 24 +/- 9  | -0.923 +/- 0.346 | -43. +/- 11. | 35. +/- 6.   |      6 | 8.8 +/- 1.8     |
+ | N Red         | +25 | [1 .. 10] | [0.040 .. 0.400] | [2. .. 22.]  | [25. .. 27.] |      4 | [10.7 .. 114.6] |
+ | SW Red        | +39 | 22 +/- 9  | 0.564 +/- 0.231  | 29. +/- 10.  | 45. +/- 4.   |      7 | 14.4 +/- 4.5    |
+ | K-NW          | +18 | 12 +/- 9  | 0.667 +/- 0.500  | 34. +/- 20.  | 22. +/- 5.   |      9 | 16.1 +/- 8.3    |
+ | N Jet         | +23 | 62 +/- 9  | 2.696 +/- 0.391  | 70. +/- 3.   | 66. +/- 8.   |     15 | 16.0 +/- 0.3    |
  #+TBLFM: $4=$3/$2;f3::$5=arctan($4);f0::$6=sqrt($2**2 + $3**2);f0::$8=$-1/sin(abs($5));f1
 
 + So, the red N jet is moving closest to plane of sky (i = 70)
 + Followed by SE Blue complex (K-SE) at i = -57 (really i = 123)
 + Then NE Blue complex at -45 (135)
-+ I have now done a sketch of all this, which shows the red complexes as farther out and slower. 
++ I have now done a sketch of all this, which shows the red complexes as farther out and slower.
++ Repeat but "correcting" the radial velocities by factor of 1.2 for the gas/pattern speed distinction
+ | Complex       | V_r | V_t       | tan(i)           | inc          | V            | R_proj | R               |
+ |---------------+-----+-----------+------------------+--------------+--------------+--------+-----------------|
+ | NE Blue       | -45 | 43 +/- 9  | -0.796 +/- 0.167 | -39. +/- 6.  | 69. +/- 6.   |      5 | 7.9 +/- 1.0     |
+ | SE Blue       | -30 | 47 +/- 9  | -1.306 +/- 0.250 | -53. +/- 5.  | 59. +/- 7.   |      5 | 6.3 +/- 0.4     |
+ | SW Faint Blue | -26 | 24 +/- 9  | -0.769 +/- 0.288 | -38. +/- 10. | 39. +/- 5.   |      6 | 9.7 +/- 2.2     |
+ | N Red         | +25 | [1 .. 10] | [0.033 .. 0.333] | [2. .. 18.]  | [30. .. 32.] |      4 | [12.9 .. 114.6] |
+ | SW Red        | +39 | 22 +/- 9  | 0.470 +/- 0.192  | 25. +/- 9.   | 52. +/- 4.   |      7 | 16.6 +/- 5.6    |
+ | K-NW          | +18 | 12 +/- 9  | 0.556 +/- 0.417  | 29. +/- 18.  | 25. +/- 4.   |      9 | 18.6 +/- 10.5   |
+ | N Jet         | +23 | 62 +/- 9  | 2.246 +/- 0.326  | 66. +/- 3.   | 68. +/- 8.   |     15 | 16.4 +/- 0.4    |
+ #+TBLFM: $4=$3/1.2 $2;f3::$5=arctan($4);f0::$6=sqrt((1.2 $2)**2 + $3**2);f0::$8=$-1/sin(abs($5));f1
 
 ** Calculate moment maps [2019-12-02 Mon]
 + Best to use the 10 km/s channels for optimum precision
