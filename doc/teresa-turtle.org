@@ -2236,16 +2236,57 @@ Central velocities in [N II] - 20 km/s channels
 + Diagonal slit U
 
 **** Intermediate shell
++ Sector-by-sector
+  + NNE (PA 30) 
+    
+***** Individual slit measurements for the intermediate shell
++ [X] Vertical Slit B
+  + y = -3 \to +2
+  + Outer IS or maybe even leakage beyond
+  + Main component at -50 km/s
+  + Weaker component at -36 km/s
+  + Even weaker component at -67 km/s
+  + First two give Vc +/- dV = -43 +/- 7 km/s
++ [X] Vertical Slit C
+  + y = +6 and above
+    + This is the IS proper (edge is at +8)
+    + Strongest component at -38 km/s
+    + Weaker component at -58 km/s
+    + Even weaker at -76, but that is related to NE Blue knot complex
+    + So from first two: Vc +/- dV = -48 +/- 10 km/s
+  + y = +3 \to +6
+    + This is the counter-tongue (*need a better name*)
+    + Strong components at -55 and -33
+      + These give Vc +/- dV = -44 +/- 11 km/s
+    + Weaker blended component at -63
+    + And well-separated weak component at -79 (associated with NE Blue knot complex)
++ [X] Vertical Slit D
+  + y = +6 \to +8
+    + Strong single peak at -42
+  + y = +7 \to +10
+    + Two components at -36 and -45 => -40.5 +/- 4.5
+  + Also weak broad emission that is impossible to chracaterize
++ [X] Vertical Slit E
+  + y = -6 and below
+  + Has -46, -31, and -15 km/s components
+    + In decreasing order of brightness
+    + -38.5 +/- 7.5 from first two
+  + Very similar to S portion of slit F
 + [X] Vertical Slit F
-  + y = -5 and below
+  + y = -5 and below (but see [[id:A508B5CC-964C-49DE-A064-D710FC8AF5F8][The Tongue]])
     + There is an unrelated blue component due to Complex SE Blue at -63
     + All else should be the IS
     + Strongest component is at -42
     + Weaker component at -29
     + So Vc +/- dV is -35.5 +/- 6.5
+    + But there is an even weaker component at -11 (3 x weaker than -42 km/s)
+      + Using the outer two would give -26.5 +/- 15.5
+      + /does this makes more sense?/
+      + Problem is that the -11 may be related to the SW Red knot complex
+      + Whereas there  is no [N II] emission associated with the -42 and -29 components
   + y = +6 and above
-    + Two similar strength components at -34 and -51
-    + => Vc +/- dV = -42.5 +/- 8.5
+    + Two similar strength components at -32 and -51
+    + => Vc +/- dV = -41.5 +/- 9.5
 + [ ] Vertical Slits G, H
   + y = -8.5 \to -6
   + Regions to N of y = -6 are dominated by the knot complex SW Red, which is 16 times brighter than intermediate shell
@@ -2256,6 +2297,9 @@ Central velocities in [N II] - 20 km/s channels
 
 
 **** The Tongue
+:PROPERTIES:
+:ID:       A508B5CC-964C-49DE-A064-D710FC8AF5F8
+:END:
 + This is inside the intermediate shell
 + It is co-extensive with [N II] complexes, but may not be exactly the same
 + Its relationship to the intermediate shell, which surrounds it, is unclear
@@ -2263,7 +2307,12 @@ Central velocities in [N II] - 20 km/s channels
   + This shows three components at -60, -37, and -10 km/s of similar but slightly increasing brightness
   + The -10 km/s component (s = +1 \to +6) is probably the [O III] equivalent of the SW Red Complex
   + The -60 km/s component (s = -1 \to +1) may be the [O III] equivalent of the SW Faint Blue complex
-    + If that is true, then we can associate some particular knots with that complex, which means that we can get proper motions
+    + [X] If that is true, then we can associate some particular knots with that complex, which means that we can get proper motions - /Done/ [2019-12-09 Mon]
+  + This leaves the -37 km/s component (s = 0 \to +4 with weaker extension out to +7, which may or may not be the same thing)
+    + This seems to be the central bit of the tongue on the images
++ Vertical Slit F
+  + Same components can be seen around y = -5
+  + There is a -39 km/s component that moves to -42 km/s at y = -8, which is the edge of the intermediate shell
 
 *** [N II] 
 + Central region - bright complexes of knots (mainly 2015 spectra)
@@ -2430,6 +2479,9 @@ And repeat for multibin
  | K-NW          | +18 | 12 +/- 9  | 0.556 +/- 0.417  | 29. +/- 18.  | 25. +/- 4.   |      9 | 18.6 +/- 10.5   |
  | N Jet         | +23 | 62 +/- 9  | 2.246 +/- 0.326  | 66. +/- 3.   | 68. +/- 8.   |     15 | 16.4 +/- 0.4    |
  #+TBLFM: $4=$3/1.2 $2;f3::$5=arctan($4);f0::$6=sqrt((1.2 $2)**2 + $3**2);f0::$8=$-1/sin(abs($5));f1
++ [ ] I should divide up the side-view picture into a W and E half
+  + and rotate it so that N-S is up-down and blue-red is left-right
+  + The N Red complex would appear on both halves
 
 ** Calculate moment maps [2019-12-02 Mon]
 + Best to use the 10 km/s channels for optimum precision
