@@ -2235,10 +2235,64 @@ Central velocities in [N II] - 20 km/s channels
 **** Lobes
 + Diagonal slit U
 
+**** The miscellaneous components
+:PROPERTIES:
+:ID:       A508B5CC-964C-49DE-A064-D710FC8AF5F8
+:END:
++ This is inside the intermediate shell
+  + Formerly known as the tongue
++ It is largely co-extensive with [N II] complexes (in projection), but has different kinematics
++ Its relationship to the intermediate shell, which surrounds it, is unclear
++ Diagonal slit U
+  + This shows three components at -60, -37, and -10 km/s of similar but slightly increasing brightness
+  + The -10 km/s component (s = +1 \to +6) is probably the [O III] equivalent of the SW Red Complex
+  + The -60 km/s component (s = -1 \to +1) may be the [O III] equivalent of the SW Faint Blue complex
+    + [X] If that is true, then we can associate some particular knots with that complex, which means that we can get proper motions - /Done/ [2019-12-09 Mon]
+  + This leaves the -37 km/s component (s = 0 \to +4 with weaker extension out to +7, which may or may not be the same thing)
+    + This seems to be the central bit of the tongue on the images
+    + Peaks at s = +2
++ Vertical Slit F
+  + Same components can be seen around y = -5
+  + There is a -39 km/s component that moves to -42 km/s at y = -8, which is the edge of the intermediate shell
++ Vertical slit G
+  + At y = -3 \to 2 there is a component that moves gradually in velocity
+  + From -46 km/s at y = +1
+    + It is about 0.25 of total brightness here, with the rest from N Red complex
+  + To -41 km/s at y = -2 (and weaker)
+  + To -36 km/s at y = -3 (where it crosses U at s = +4) now 0.5x brightness at y=+1
+    + *This means that slit U is 2x too bright*
+    + It is about 0.5 of total brightness here, with rest from SW Red
+  + This is distinct from the -24 km/s (N Red complex) and -10 km/s (SW Red complex)
+  + It is also seen in [N II], albeit very weak
++ Vertical Slit C
+  + This is on the other side (NE) of the intermediate shell
+  + At y > 0, we should be outside the peanut shell
+  + Peaking at around y = 1 is a bright component at -44 km/s but I think this is the peanut shell (endcap of peanut B, or flank of peanut A?) that is brought into slit by seeing or the position being not quite right maybe
+  + But then there are "horns" heading further north
+    + At y = +3 there are components at -51, -33 km/s
+    + Giving -42 +/- 9 km/s
+    + This is similar to the peanut shell to the S in the same slit, but it can't have anything to do with that
+
 **** Intermediate shell
 + Sector-by-sector
-  + NNE (PA 30) 
-    
+  | Slit |      x |    y |   PA |    R |     V |  dV |
+  |------+--------+------+------+------+-------+-----|
+  | F    |  -3.58 |   +7 | 333. |  7.9 | -41.5 | 9.5 |
+  | D    |   2.27 |   +7 |  18. |  7.4 |   -42 |   0 |
+  | D    |   2.27 | +8.5 |  15. |  8.8 | -40.5 | 4.5 |
+  | C    |   5.18 |   +7 |  37. |  8.7 |   -48 |  10 |
+  | B    |   9.52 |    0 |  90. |  9.5 |   -43 |   7 |
+  |------+--------+------+------+------+-------+-----|
+  | E    |  -1.16 |   -7 | 189. |  7.1 | -38.5 | 7.5 |
+  | U    |   -2.5 |   -6 | 203. |  6.5 | -36.5 | 7.5 |
+  | F    |  -3.58 |   -7 | 207. |  7.9 | -35.5 | 6.5 |
+  | G    |  -6.82 | -7.5 | 222. | 10.1 |   -34 |   7 |
+  | H    |  -7.29 | -7.5 | 224. | 10.5 | -33.5 | 5.5 |
+  | I    | -10.59 | -2.5 | 257. | 10.9 |   -31 |  11 |
+  | J    | -11.59 | -2.5 | 258. | 11.9 |   -28 |   0 |
+  #+TBLFM: $4=arctan2($2, $3) % 360;f0::$5=hypot($2, $3);f1
++ Geometry is summarised in [[file:Turtle%20intermediate%20shell.pdf]]
+
 ***** Individual slit measurements for the intermediate shell
 + [X] Vertical Slit B
   + y = -3 \to +2
@@ -2287,32 +2341,24 @@ Central velocities in [N II] - 20 km/s channels
   + y = +6 and above
     + Two similar strength components at -32 and -51
     + => Vc +/- dV = -41.5 +/- 9.5
-+ [ ] Vertical Slits G, H
++ [X] Vertical Slits G, H
   + y = -8.5 \to -6
   + Regions to N of y = -6 are dominated by the knot complex SW Red, which is 16 times brighter than intermediate shell
-+ [ ] Vertical Slits I, J
+  + G: Components at -41 and -27 km/s
+    + -34 +/- 7 km/s
+  + H: Components at -39 and -28 km/s
+    + -33.5 +/- 5.5
++ [X] Vertical Slits I, J
   + y = -6 \to +1
-  + Intermediate shell dominates 
-+ [ ] Diagonal slit U
-
-
-**** The Tongue
-:PROPERTIES:
-:ID:       A508B5CC-964C-49DE-A064-D710FC8AF5F8
-:END:
-+ This is inside the intermediate shell
-+ It is co-extensive with [N II] complexes, but may not be exactly the same
-+ Its relationship to the intermediate shell, which surrounds it, is unclear
-+ Diagonal slit U
-  + This shows three components at -60, -37, and -10 km/s of similar but slightly increasing brightness
-  + The -10 km/s component (s = +1 \to +6) is probably the [O III] equivalent of the SW Red Complex
-  + The -60 km/s component (s = -1 \to +1) may be the [O III] equivalent of the SW Faint Blue complex
-    + [X] If that is true, then we can associate some particular knots with that complex, which means that we can get proper motions - /Done/ [2019-12-09 Mon]
-  + This leaves the -37 km/s component (s = 0 \to +4 with weaker extension out to +7, which may or may not be the same thing)
-    + This seems to be the central bit of the tongue on the images
-+ Vertical Slit F
-  + Same components can be seen around y = -5
-  + There is a -39 km/s component that moves to -42 km/s at y = -8, which is the edge of the intermediate shell
+  + Intermediate shell dominates
+  + I: Components at -42, -20 km/s
+    + -31 +/- 11
+    + Another component at -6 km/s (y = -3), but that is likely related to SW Red complex
+  + J: Component at -28 km/s only
++ [X] Diagonal slit U
+  + s = -6 \to -1
+    + Two components: -44 (stronger) and -29 km/s
+    + Vc +/- dV = -36.5 +/- 7.5 km/s
 
 *** [N II] 
 + Central region - bright complexes of knots (mainly 2015 spectra)
