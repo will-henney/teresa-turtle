@@ -2233,7 +2233,24 @@ Central velocities in [N II] - 20 km/s channels
 
 
 **** Lobes
+
+
+***** Individual slit measurements for lobes
 + Diagonal slit U
+  + s = +10 \to +19 is western lobe
+    + Principal component at -28, -32, -36 km/s for s = 11, 12.5, 17
+    + Secondary component (0.3 x brightness) at -54 km/s 
+  + s = -7 \to -16 is crossing S Lobe
+    + Complicated profiles
+    + Principal component is -46 km/s and is narrow, which carries on down from IS and dominates from s = -9 \to -14
+    + Secondary broad component at -28 km/s at -9, shifting to -30 km/s at s = -12
+    + Then a component at -63 km/s from s = -12 to -17
+    + Then the -40 km/s component for s < -15 (halo)
++ Vertical slit A
+  + y = -2 \to -13 crosses the E lobe
+    + At y = -2 a weak component at V = -58 km/s appears
+    + This gets dominated by a brighter less blue component: V = -48 at y = -6
+    + Which fades again, leaving the V  = 58 km/s component at y = -11
 
 **** The miscellaneous components
 :PROPERTIES:
