@@ -2234,10 +2234,45 @@ Central velocities in [N II] - 20 km/s channels
 
 **** Lobes
 
+| Lobe       | Slit |    x |     y | +/- ds |   V |  W | Note           |   PA |
+|------------+------+------+-------+--------+-----+----+----------------+------|
+| Halo SE    | U    |   16 |   -19 |      5 | -40 | 15 |                | 140. |
+| W lobe     | U    |  -16 |     3 |      5 | -32 |    | grad +/- 4     | 281. |
+| W lobe     | U    |  -16 |     3 |      5 | -54 |    | weaker         | 281. |
+| S lobe     | U    |  7.9 | -11.8 |    2.5 | -46 | 10 | narrow, bright | 146. |
+| S lobe     | U    |  7.9 | -11.8 |        | -30 | 30 | grad +/- 2     | 146. |
+| S lobe     | U    |  9.3 | -14.1 |      3 | -63 | 25 |                | 147. |
+| Halo NW    | U    |  -27 |    11 |      7 | -40 | 35 |                | 292. |
+| Halo SE    | A    | 16.1 |   -19 |      5 | -40 | 13 |                | 140. |
+| Halo NE    | A    | 16.1 |   +23 |     17 | -40 | 25 |                |  35. |
+| E lobe     | A    | 16.1 |    -4 |      2 | -58 |    | weaker         | 104. |
+| E lobe     | A    | 16.1 |    -5 |      3 | -48 |    | bright         | 107. |
+| E lobe     | A    | 16.1 |   -12 |      1 | -58 |    | weakest        | 127. |
+| Halo NE    | B    | 10.6 |    16 |      8 | -40 | 26 |                |  34. |
+| IS/E lobe  | B    | 10.6 |    -5 |      2 | -55 | 40 |                | 115. |
+| IS/E lobe  | B    | 10.6 |    -5 |      2 | -44 | 40 |                | 115. |
+| E lobe     | B    | 10.6 |    -7 |      4 | -28 | 40 | weak           | 123. |
+| E lobe     | B    | 10.6 |    -9 |      2 | -48 | 40 |                | 130. |
+| E lobe     | B    | 10.6 |    -9 |      2 | -40 | 40 |                | 130. |
+| S lobe     | B    | 10.6 | -14.5 |    2.5 | -37 | 23 |                | 144. |
+| S lobe     | B    | 10.6 | -14.5 |    2.5 | -72 | 30 |                | 144. |
+| S lobe cap | B    | 10.6 |   -21 |      2 | -50 | 40 |                | 153. |
+| Halo N     | C    |  6.1 |  15.5 |    8.5 | -40 | 40 |                |  21. |
+| S lobe     | C    |  6.1 |    -7 |      3 | -66 | 20 |                | 139. |
+| S lobe     | C    |  6.1 |   -11 |      6 | -47 | 20 | strongest      | 151. |
+| S lobe     | C    |  6.1 |  -8.5 |    4.5 | -27 | 26 |                | 144. |
+| S lobe     | C    |  6.1 | -13.5 |    2.5 | -76 |    |                | 156. |
+| S lobe cap | C    |  6.1 | -22.5 |    1.5 | -48 | 45 |                | 165. |
+| S lobe cap | C    |  6.1 | -21.5 |    2.5 | -15 | 26 |                | 164. |
+#+TBLFM: $9=arctan2($3, $4) % 360;f0
+
+
 
 ***** Individual slit measurements for lobes
 + Diagonal slit U
-  + s = -27 \to +37 is halo
+  + s = -18 \to -28 halo SE
+    + V = -40 very narrow (W = 8 km/s)
+  + s = +21 \to +45 Halo NW
   + s = +10 \to +19 is western lobe
     + Principal component at -28, -32, -36 km/s for s = 11, 12.5, 17
     + Secondary component (0.3 x brightness) at -54 km/s 
@@ -2245,9 +2280,13 @@ Central velocities in [N II] - 20 km/s channels
     + Complicated profiles
     + Principal component is -46 km/s and is narrow, which carries on down from IS and dominates from s = -9 \to -14
     + Secondary broad component at -28 km/s at -9, shifting to -30 km/s at s = -12
-    + Then a component at -63 km/s from s = -12 to -17
-    + Then the -40 km/s component for s < -15 (halo)
+    + Then a component at -63 km/s from s = -12 to -18
+    + Then the -40 km/s component for s = -18 \to -28 (halo SE)
 + Vertical slit A
+  + y = -14 \to -24 halo
+    + V = -40, W = 13
+  + y = +6 \to 40
+    + V = -40, W = 25
   + y = -2 \to -13 crosses the E lobe
     + At y = -2 a weak component at V = -58 km/s appears
     + This gets dominated by a brighter less blue component: V = -48 at y = -6
@@ -2263,13 +2302,13 @@ Central velocities in [N II] - 20 km/s channels
       + V = -40 stays roughly constant
     + Plus a weak red one at V = -28
   + y = -12 \to -17 is S lobe 
-    + -40 km/s and -72 km/s components
+    + -37 km/s and -72 km/s components
   + y = -19 \to -23 i S lobe end cap
-    + Broad component at V = -59 km/s
+    + Broad component at V = -50 km/s
 + Vertical Slit C
   + y = +7 \to +24 just halo at -40
   + y = -5 \to -17 S lobe
-    + Three clear components: -66, -41, -27 (narrow)
+    + Three clear components: -66, -47, -27 (narrow)
       + The -66 is only -4 \to -10
       + The -27 one is ony -4 \to -13
   + y = -11 \to -16 S lobe

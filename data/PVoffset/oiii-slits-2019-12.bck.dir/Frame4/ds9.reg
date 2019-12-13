@@ -2,4 +2,5 @@
 global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
 physical
 # text(32.519767,304.23452) color=red font="helvetica 20 bold roman" text={u}
-# projection(-0.067787913,303.73124,44.931519,303.73124,0.89139992)
+# projection(-0.79647345,371.96836,44.202834,371.96836,15.573294)
+# projection(12.654587,280.64835,12.767038,315.73309,3.9909831)

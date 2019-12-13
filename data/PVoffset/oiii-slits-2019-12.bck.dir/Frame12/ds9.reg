@@ -2,8 +2,8 @@
 global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
 physical
 # text(72.822003,229.73871) textrotate=0 color=red font="helvetica 20 bold roman" text={b}
-ellipse(33.294394,271.10757,3.797718,8.2276772,270.93424) # color=cyan width=3
+ellipse(35.794445,271.10757,3.797718,8.2276772,270.93424) # color=cyan width=3
 ellipse(26.763472,252.5072,8.9761252,3.9627702,270.2551) # color=cyan
 ellipse(35.862044,212.90751,6.318497,4.6555814,270.93424) # color=cyan width=3
 ellipse(34.150278,224.03399,6.346407,2.9440426,254.66087) # color=cyan width=3
-# projection(2.929981,263.35678,47.929288,263.35678,9.2580562)
+# projection(21.888702,266.96794,66.888009,266.96794,7.2142222)
