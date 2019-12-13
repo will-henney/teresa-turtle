@@ -2271,6 +2271,70 @@ Central velocities in [N II] - 20 km/s channels
   + y = -5 \to -17 S lobe
     + Three clear components: -66, -41, -27 (narrow)
       + The -66 is only -4 \to -10
+      + The -27 one is ony -4 \to -13
+  + y = -11 \to -16 S lobe
+    + Additional component at -76
+  + y = -21 \to -24 S lobe end cap
+    + Broad component at -48
+  + y = -19 \to -24 S lobe end cap
+    + Narrower component at -15
++ Vertical Slit D
+  + y = +9 \to +25 just halo at -39
+  + y = -9 \to -20 S lobe
+    + Narrow component at V = -48
+  + y = -9 \to -20 S lobe
+    + Blended component at V = -61
+  + y = -9 \to -20 S lobe
+    + Blended component at V = -22
+  + y = -21 \to -24 S lobe cap
+    + V = -40
+  + y = -22 \to -25 S lobe cap
+    + V = -15
++ Vertical Slit E
+  + y = +9 \to +14 N lobe
+    + V = -53
+  + y = +9 \to +19 N lobe
+    + V = -31
+  + y = -9 \to -15 S lobe edge
+    + V = -47
+  + y = -9 \to -15 S lobe edge
+    + V = -28
+  + y = -15 \to -23 Halo
+    + V = -39
++ Vertical Slit F
+  + y = +8 \to +14 N lobe
+    + V = -51
+  + y = +8 \to +16 N lobe
+    + V = -32
+  + y = +16 \to +24 N lobe cap
+    + V = -54
+    + With weaker shoulders at V = -67 and -20
+  + y = -10 \to -24 halo
+    + V = -38
+    + Width varies with position (may be indication of expansion of halo)
+      + FWHM W = 12 km/s at y = -21
+      + W = 15 km/s at y = -17
+      + W = 25 km/s at y = -15
+      + Similar up to y = -10
++ Vertical Slit G
+  + y = +16 to +23
+    + V = -65 narrow
+  + y = +19 \to +24
+    + V = -42 broad
+  + y = +13 \to +16
+    + V = -30 narrow bright
+    + V = -8 broad blended shoulder
+  + y = +8 \to +13
+    + V = -31 narrow
+  + y = +5 \to +10 NW knot
+    + V = -50 
++ Vertical Slit H
+  + y = +25 \to +35 Halo
+    + V = -40 (extremely weak)
++ Vertical Slit I
++ Vertical Slit J
++ Vertical Slit K
++ Vertical Slit L
 
 **** The miscellaneous components
 :PROPERTIES:
