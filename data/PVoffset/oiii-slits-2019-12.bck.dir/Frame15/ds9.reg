@@ -3,7 +3,7 @@ global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=
 physical
 # text(62.819581,397.71004) textrotate=0 color=red font="helvetica 20 bold roman" text={h}
 ellipse(42.353373,409.83957,4.1455318,14.078833,4.3253451) # color=blue width=2 dash=1
-ellipse(53.590922,421.32549,3.5318106,5.1632548,-0) # color=red width=2
+ellipse(53.590922,421.32549,3.5318106,5.1632548,0) # color=red width=2
 ellipse(45.689498,410.92964,3.454129,3.454129,0) # color=cyan width=2
 line(35.788071,388.81267,36.283143,405.15002) # line=0 0 color=cyan width=2
 line(43.626639,377.58197,44.12171,393.91932) # line=0 0 color=cyan width=2

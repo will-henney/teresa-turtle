@@ -2317,24 +2317,80 @@ Central velocities in [N II] - 20 km/s channels
       + W = 25 km/s at y = -15
       + Similar up to y = -10
 + Vertical Slit G
-  + y = +16 to +23
+  + y = +16 to +23 North lobe
     + V = -65 narrow
-  + y = +19 \to +24
+  + y = +19 \to +24 North lobe
     + V = -42 broad
-  + y = +13 \to +16
+  + y = +13 \to +16 Northern jet
     + V = -30 narrow bright
     + V = -8 broad blended shoulder
-  + y = +8 \to +13
-    + V = -31 narrow
+  + y = +8 \to +13 North lobe
+    + V = -30 narrow (slight gradient from -28 at y = +9 to -31 at +12)
   + y = +5 \to +10 NW knot
-    + V = -50 
+    + V = -50
+  + y = -9 \to -15 Inner Halo
+    + V = -37 broad
+      + y = -10 has W = 40 km/s
+      + y = -14 has W = 26 km/s
+  + y = -15 \to Outer Halo
+    + V = -40 narrow (W = 14 km/s)
 + Vertical Slit H
   + y = +25 \to +35 Halo
     + V = -40 (extremely weak)
+  + y = +17 \to +23 North Lobe
+    + V = -63
+  + y = +18 \to +23 North lobe
+    + V = -36 broad
+  + y = +13 \to +17 Northern jet
+    + V = -29 narrow bright
+    + V = -13 broad shoulder
+  + y = +7 \to +12 North lobe
+    + V = -30
+  + y = +5 \to +9 K-NW
+    + V = -48
+  + y = -10 \to -17 Inner Halo
+    + V = -39 broad
+  + y = -17 \to -25 Outer Halo
+    + V = -39 narrow
 + Vertical Slit I
+  + y = +23 \to +32 Very Faint Halo
+    + V = -40 narrow
+  + y = +14 \to +18 Northern jet
+    + V = -18 broad (W = 45 km/s)
+  + y = +3 \to +12 N lobe or W lobe?
+    + V = -39 broad
+  + y = +4 \to +8 Probably W lobe
+    + V = -17 blended shoulder
 + Vertical Slit J
+  + y = +20 \to +32 Halo
+    + V = -38 narrow
+  + y = +11 \to +20 N lobe edge?
+    + V = -35 weak and broadish
+  + y = +1 \to +11 West lobe
+    + V = -35 narrowish
+    + V = -57 weak blue shoulder
+    + V = -21 slightly stronger red shoulder
+  + y = -10 \to -22 Halo
+    + V = -40 narrow
 + Vertical Slit K
+  + y = +20 \to +30 Outer Halo
+    + V = -40 narrow (W = 14 km/s)
+  + y = +6 \to +18 Inner Halo
+    + V = -38 broad (W = 25 km/s)
+  + y = 0 \to +8 West Lobe
+    + V = -36 narrowish
+    + V = -54 weak blue shoulder
 + Vertical Slit L
+  + y = 0 \to +6 West lobe
+    + V = -34 km/s narrowish
+  + y = +24 \to +34 Outer halo
+    + V = -38 narrow
+  + y = +8 \to +24 Inner halo
+    + V = -33 narrow bright
+    + V = -57 faint shoulder
+  + y = -4 \to -20 Halo
+    + V = -38 narrow
+    + V = -21 shoulder
 
 **** The miscellaneous components
 :PROPERTIES:
