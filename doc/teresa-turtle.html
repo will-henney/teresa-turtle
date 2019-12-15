@@ -1,0 +1,3523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-12-13 Fri 22:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lobes</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="William Henney" />
+<style type="text/css">
+<!--/*--><![CDATA[/*><!--*/
+/* 18 Jan 2016: Modified from the stylesheet by Zhitao Gong on
+https://github.com/gongzhitaao/orgcss/
+ */
+
+body {
+    max-width: 100%;
+    margin: 1% 1%;
+    font: normal normal normal 16px/1.6em 'Open Sans', sans-serif;
+    color: #333;
+}
+
+@media all and (min-width: 95ex) {
+    body {
+        max-width: 95ex;
+        margin: 1% auto;
+    }
+
+    .creator {
+        float: right;
+    }
+}
+
+@media not all and (min-width: 110ex) {
+
+    .creator {
+        float: left;
+    }
+
+    p img {
+        width: 95%;
+    }
+}
+
+.title {
+    padding: .5em 0;
+    text-align: center;
+    color: black;
+}
+
+.subtitle {
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    text-align: center;
+}
+
+.abstract {
+    width: 80%;
+    margin: auto;
+    font-style: italic;
+}
+
+.abstract p:last-of-type:before {
+    content: "    ";
+    white-space: pre;
+}
+
+.status {
+    font-size: 90%;
+    margin: 2em auto;
+}
+
+[class^="section-number-"] {
+    margin-right: .5em;
+}
+
+#footnotes {
+    font-size: 90%;
+}
+
+.footpara {
+    display: inline;
+    margin: .2em auto;
+}
+
+.footdef {
+    margin-bottom: 1em;
+}
+
+.footdef sup {
+    padding-right: .5em;
+}
+
+a {
+    color: #527d9a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003355;
+    border-bottom: 1px dotted;
+}
+
+p img {
+    vertical-align: middle;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #A5573E;
+    line-height: 1.6em;
+    font-family: 'Droid Serif', serif;
+}
+
+h4,h5,h6 {
+    font-size: 1em;
+}
+
+table {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid;
+}
+
+table td + td, table th + th {
+    border-left: 1px solid gray;
+}
+
+table tr {
+    border-top: 1px solid lightgray;
+}
+
+td,th {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+
+code {
+    padding: 2px 5px;
+    margin: auto 1px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+    font-size: 90%;
+}
+
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+}
+
+kbd {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    margin: 0 .1em;
+    padding: .1em .6em;
+}
+
+.figure {
+    padding: 1em;
+}
+
+.figure p {
+    text-align: center;
+}
+
+.todo {
+    color: red;
+    font-family: monospace;
+}
+
+.done {
+    color: green;
+    font-family: monospace;
+}
+
+.priority {
+    color: orange;
+    font-family: monospace;
+}
+
+.tag {
+    background-color: #eee;
+    font-family: monospace;
+    font-size: 80%;
+    font-weight: normal;
+    padding: 2px;
+}
+
+.timestamp {
+    color: #bebebe;
+}
+
+.timestamp-kwd {
+    color: #5f9ea0;
+}
+
+.org-right {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#postamble p, #preamble p {
+    font-size: 90%;
+    margin: .2em;
+}
+
+p.verse {
+    margin-left: 3%;
+}
+
+pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    font-family: monospace;
+    margin: 1.2em;
+    padding: 8pt;
+}
+
+pre.src {
+    overflow: auto;
+    padding-top: 1.2em;
+    position: relative;
+    font-size: 90%;
+    color: #dcdccc;
+    background-color: #3f3f3f; 
+}
+
+pre.src:before {
+    background-color: gray;
+    border: 1px solid black;
+    display: none;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    /* top: -10px; */
+}
+
+pre.src:hover:before {
+    display: inline;
+}
+
+pre.src-sh:before {
+    content: 'sh';
+}
+pre.src-bash:before {
+    content: 'bash';
+}
+pre.src-emacs-lisp:before {
+    content: 'Emacs Lisp';
+}
+pre.src-R:before {
+    content: 'R';
+}
+pre.src-python:before {
+    content: 'Python';
+}
+pre.src-org:before {
+    content: 'Org';
+}
+pre.src-c++:before {
+    content: 'C++';
+}
+pre.src-c:before {
+    content: 'C';
+}
+pre.src-html:before {
+    content: 'HTML'
+}
+
+caption.t-above {
+    caption-side: top;
+}
+
+caption.t-bottom {
+    caption-side: bottom;
+}
+
+th.org-right {
+    text-align: center;
+}
+
+th.org-left {
+    text-align: center;
+}
+
+th.org-center {
+    text-align: center;
+}
+
+td.org-right {
+    text-align: right;
+}
+
+td.org-left {
+    text-align: left;
+}
+
+td.org-center {
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.inlinetask {
+    background: #ffffcc;
+    border: 2px solid gray;
+    margin: 10px;
+    padding: 10px;
+}
+
+#org-div-home-and-up {
+    font-size: 70%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.linenr {
+    font-size: smaller;
+}
+
+.code-highlighted {
+    background-color: #ffff00;
+}
+
+#bibliography {
+    font-size: 90%;
+}
+
+#bibliography table {
+    width: 100%;
+}
+
+/* .org-info-js_info-navigation { */
+/*     border-style: none; */
+/* } */
+/* #org-info-js_console-label { */
+/*     font-size: 10px; */
+/*     font-weight: bold; */
+/*     white-space: nowrap; */
+/* } */
+/* .org-info-js_search-highlight { */
+/*     background-color: #ffff00; */
+/*     color: #000000; */
+/*     font-weight: bold; */
+/* } */
+/*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Lobes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org74ffd75">1. Tables organized by feature</a>
+<ul>
+<li><a href="#org6d2fcb3">1.1. East lobe</a></li>
+<li><a href="#orgb60717f">1.2. Inner Halo</a></li>
+<li><a href="#orgf55770f">1.3. Outer Halo</a></li>
+<li><a href="#org436e964">1.4. Halo knots</a></li>
+<li><a href="#orgbcfdc22">1.5. Northern jet</a></li>
+<li><a href="#org2a879da">1.6. North lobe</a></li>
+<li><a href="#org218facc">1.7. South lobe</a></li>
+<li><a href="#org378beb8">1.8. W lobe</a></li>
+</ul>
+</li>
+<li><a href="#org6ad9cb1">2. Original table of all components by slit</a></li>
+<li><a href="#org593d725">3. Individual slit measurements for lobes</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org74ffd75" class="outline-2">
+<h2 id="org74ffd75"><span class="section-number-2">1</span> Tables organized by feature</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>All velocity components outside of the intermediate shell, including the lobes and halo</li>
+<li>These are the same data as in <a href="#org6ad9cb1">Original table of all components by slit</a> but split up by gross feature</li>
+<li><code>x</code>, <code>y</code> is center coordinates of each component (arcsec wrt star)</li>
+<li><code>+/- ds</code> is size along the slit (arcsec).  For all except Slit U, this is really <code>dy</code></li>
+<li><code>V</code> is central velocity (km/s)</li>
+<li><code>W</code> is estimated FWHM (km/s).  This is only crudely estimated.  For weak blended components, cannot be determined at all.</li>
+<li><code>Note</code> is mostly redundant, but in some cases it describes relative brightness of multiple components at the same position</li>
+<li><code>R</code>, <code>PA</code> are radius (on plane of sky, arcsec) and position angle (degrees E of N) of the center of each component</li>
+</ul>
+</div>
+
+<div id="outline-container-org6d2fcb3" class="outline-3">
+<h3 id="org6d2fcb3"><span class="section-number-3">1.1</span> East lobe</h3>
+<div class="outline-text-3" id="text-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">IS/E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-5</td>
+<td class="org-right">2</td>
+<td class="org-right">-55</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.5</td>
+<td class="org-right">119.</td>
+</tr>
+
+<tr>
+<td class="org-left">IS/E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-5</td>
+<td class="org-right">2</td>
+<td class="org-right">-44</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.5</td>
+<td class="org-right">119.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-4</td>
+<td class="org-right">2</td>
+<td class="org-right">-58</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weaker</td>
+<td class="org-right">15.1</td>
+<td class="org-right">105.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-5</td>
+<td class="org-right">3</td>
+<td class="org-right">-48</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">bright</td>
+<td class="org-right">15.4</td>
+<td class="org-right">109.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-12</td>
+<td class="org-right">1</td>
+<td class="org-right">-58</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weakest</td>
+<td class="org-right">18.9</td>
+<td class="org-right">129.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-7</td>
+<td class="org-right">4</td>
+<td class="org-right">-28</td>
+<td class="org-right">40</td>
+<td class="org-left">weak</td>
+<td class="org-right">11.6</td>
+<td class="org-right">127.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-9</td>
+<td class="org-right">2</td>
+<td class="org-right">-48</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.9</td>
+<td class="org-right">134.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-9</td>
+<td class="org-right">2</td>
+<td class="org-right">-40</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.9</td>
+<td class="org-right">134.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgb60717f" class="outline-3">
+<h3 id="orgb60717f"><span class="section-number-3">1.2</span> Inner Halo</h3>
+<div class="outline-text-3" id="text-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">17</td>
+<td class="org-right">8</td>
+<td class="org-right">-39</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.1</td>
+<td class="org-right">6.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">15.5</td>
+<td class="org-right">8.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16.3</td>
+<td class="org-right">18.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NE</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">16</td>
+<td class="org-right">8</td>
+<td class="org-right">-40</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">18.5</td>
+<td class="org-right">30.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NE</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">+23</td>
+<td class="org-right">17</td>
+<td class="org-right">-40</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">27.2</td>
+<td class="org-right">32.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-19</td>
+<td class="org-right">4</td>
+<td class="org-right">-39</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">19.1</td>
+<td class="org-right">185.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">-13</td>
+<td class="org-right">3</td>
+<td class="org-right">-38</td>
+<td class="org-right">25</td>
+<td class="org-left">Inner halo</td>
+<td class="org-right">13.6</td>
+<td class="org-right">197.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">-13.5</td>
+<td class="org-right">3.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">44</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">15.5</td>
+<td class="org-right">210.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-37</td>
+<td class="org-right">40</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">13.9</td>
+<td class="org-right">211.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">-12</td>
+<td class="org-right">2</td>
+<td class="org-right">-39</td>
+<td class="org-right">22</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">16.3</td>
+<td class="org-right">223.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">-7</td>
+<td class="org-right">2</td>
+<td class="org-right">-41</td>
+<td class="org-right">23</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">17.7</td>
+<td class="org-right">247.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo W</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">-7</td>
+<td class="org-right">2</td>
+<td class="org-right">-41</td>
+<td class="org-right">23</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">19.9</td>
+<td class="org-right">249.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">U</td>
+<td class="org-right">-27</td>
+<td class="org-right">11</td>
+<td class="org-right">7</td>
+<td class="org-right">-40</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">29.2</td>
+<td class="org-right">292.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">12</td>
+<td class="org-right">6</td>
+<td class="org-right">-38</td>
+<td class="org-right">25</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">20.2</td>
+<td class="org-right">306.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">16</td>
+<td class="org-right">8</td>
+<td class="org-right">-33</td>
+<td class="org-right">35</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">24.5</td>
+<td class="org-right">311.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf55770f" class="outline-3">
+<h3 id="orgf55770f"><span class="section-number-3">1.3</span> Outer Halo</h3>
+<div class="outline-text-3" id="text-1-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Halo SE</td>
+<td class="org-left">U</td>
+<td class="org-right">16</td>
+<td class="org-right">-19</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24.8</td>
+<td class="org-right">140.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SE</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-19</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">13</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24.0</td>
+<td class="org-right">142.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">-20</td>
+<td class="org-right">4</td>
+<td class="org-right">-38</td>
+<td class="org-right">15</td>
+<td class="org-left">Outer halo</td>
+<td class="org-right">20.4</td>
+<td class="org-right">191.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">-20</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">21.2</td>
+<td class="org-right">200.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">-21</td>
+<td class="org-right">4</td>
+<td class="org-right">-39</td>
+<td class="org-right">13</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">22.4</td>
+<td class="org-right">200.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">-18</td>
+<td class="org-right">4</td>
+<td class="org-right">-40</td>
+<td class="org-right">17</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">21.1</td>
+<td class="org-right">212.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">-16</td>
+<td class="org-right">6</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">19.9</td>
+<td class="org-right">217.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">-14</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">21.5</td>
+<td class="org-right">229.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">-14</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">23.3</td>
+<td class="org-right">233.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">12</td>
+<td class="org-right">4</td>
+<td class="org-right">-57</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">halo shoulder</td>
+<td class="org-right">22.1</td>
+<td class="org-right">303.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">25</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">29.8</td>
+<td class="org-right">327.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">29</td>
+<td class="org-right">5</td>
+<td class="org-right">-38</td>
+<td class="org-right">22</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">34.5</td>
+<td class="org-right">327.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">26</td>
+<td class="org-right">6</td>
+<td class="org-right">-38</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">28.6</td>
+<td class="org-right">335.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">27.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">29.7</td>
+<td class="org-right">338.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">30</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">very weak</td>
+<td class="org-right">31.0</td>
+<td class="org-right">346.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org436e964" class="outline-3">
+<h3 id="org436e964"><span class="section-number-3">1.4</span> Halo knots</h3>
+<div class="outline-text-3" id="text-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">43.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">46.5</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">62</td>
+<td class="org-right">4</td>
+<td class="org-right">-38</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">64.7</td>
+<td class="org-right">343.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">61</td>
+<td class="org-right">7</td>
+<td class="org-right">-41</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">63.1</td>
+<td class="org-right">345.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">66</td>
+<td class="org-right">4</td>
+<td class="org-right">-40</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67.1</td>
+<td class="org-right">350.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgbcfdc22" class="outline-3">
+<h3 id="orgbcfdc22"><span class="section-number-3">1.5</span> Northern jet</h3>
+<div class="outline-text-3" id="text-1-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">14.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">20</td>
+<td class="org-left">narrow</td>
+<td class="org-right">16.1</td>
+<td class="org-right">334.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">14.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-8</td>
+<td class="org-right">30</td>
+<td class="org-left">broad</td>
+<td class="org-right">16.1</td>
+<td class="org-right">334.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">15</td>
+<td class="org-right">2</td>
+<td class="org-right">-29</td>
+<td class="org-right">17</td>
+<td class="org-left">narrow bright</td>
+<td class="org-right">16.9</td>
+<td class="org-right">333.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">15</td>
+<td class="org-right">2</td>
+<td class="org-right">-13</td>
+<td class="org-right">30</td>
+<td class="org-left">broad</td>
+<td class="org-right">16.9</td>
+<td class="org-right">333.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">16</td>
+<td class="org-right">4</td>
+<td class="org-right">-18</td>
+<td class="org-right">45</td>
+<td class="org-left">broad</td>
+<td class="org-right">19.5</td>
+<td class="org-right">325.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org2a879da" class="outline-3">
+<h3 id="org2a879da"><span class="section-number-3">1.6</span> North lobe</h3>
+<div class="outline-text-3" id="text-1-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">11.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-53</td>
+<td class="org-right">50</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">11.6</td>
+<td class="org-right">353.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">14</td>
+<td class="org-right">5</td>
+<td class="org-right">-31</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.1</td>
+<td class="org-right">354.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">11</td>
+<td class="org-right">3</td>
+<td class="org-right">-51</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">11.7</td>
+<td class="org-right">340.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">12</td>
+<td class="org-right">4</td>
+<td class="org-right">-32</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.6</td>
+<td class="org-right">342.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">19.5</td>
+<td class="org-right">3.5</td>
+<td class="org-right">-65</td>
+<td class="org-right">30</td>
+<td class="org-left">narrow</td>
+<td class="org-right">20.8</td>
+<td class="org-right">340.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">21.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-42</td>
+<td class="org-right">50</td>
+<td class="org-left">broad</td>
+<td class="org-right">22.6</td>
+<td class="org-right">342.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">10.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">15</td>
+<td class="org-left">narrow, grad +/- 1</td>
+<td class="org-right">12.7</td>
+<td class="org-right">326.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">20</td>
+<td class="org-right">3</td>
+<td class="org-right">-63</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">21.4</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">20.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-36</td>
+<td class="org-right">38</td>
+<td class="org-left">broad</td>
+<td class="org-right">21.9</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">9.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.2</td>
+<td class="org-right">321.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe cap</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">20</td>
+<td class="org-right">4</td>
+<td class="org-right">-54</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">20.4</td>
+<td class="org-right">349.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe?</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">7.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">13.4</td>
+<td class="org-right">304.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe?</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">15.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-35</td>
+<td class="org-right">33</td>
+<td class="org-left">weak broad</td>
+<td class="org-right">19.5</td>
+<td class="org-right">322.</td>
+</tr>
+
+<tr>
+<td class="org-left">K-NW</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">7.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-50</td>
+<td class="org-right">22</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.3</td>
+<td class="org-right">317.</td>
+</tr>
+
+<tr>
+<td class="org-left">K-NW</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">7</td>
+<td class="org-right">2</td>
+<td class="org-right">-48</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.4</td>
+<td class="org-right">312.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org218facc" class="outline-3">
+<h3 id="org218facc"><span class="section-number-3">1.7</span> South lobe</h3>
+<div class="outline-text-3" id="text-1-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">7.9</td>
+<td class="org-right">-11.8</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-46</td>
+<td class="org-right">10</td>
+<td class="org-left">narrow, bright</td>
+<td class="org-right">14.2</td>
+<td class="org-right">146.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">7.9</td>
+<td class="org-right">-11.8</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">-30</td>
+<td class="org-right">30</td>
+<td class="org-left">grad +/- 2</td>
+<td class="org-right">14.2</td>
+<td class="org-right">146.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">9.3</td>
+<td class="org-right">-14.1</td>
+<td class="org-right">3</td>
+<td class="org-right">-63</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16.9</td>
+<td class="org-right">147.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-37</td>
+<td class="org-right">23</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.2</td>
+<td class="org-right">148.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-72</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.2</td>
+<td class="org-right">148.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-7</td>
+<td class="org-right">3</td>
+<td class="org-right">-66</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">8.5</td>
+<td class="org-right">145.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-11</td>
+<td class="org-right">6</td>
+<td class="org-right">-47</td>
+<td class="org-right">20</td>
+<td class="org-left">strongest</td>
+<td class="org-right">12.0</td>
+<td class="org-right">156.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-8.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-27</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9.8</td>
+<td class="org-right">150.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-13.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-76</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.4</td>
+<td class="org-right">160.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-48</td>
+<td class="org-right">15</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-61</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-22</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-21</td>
+<td class="org-right">2</td>
+<td class="org-right">-50</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.9</td>
+<td class="org-right">156.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-22.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-48</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23.0</td>
+<td class="org-right">168.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-21.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-15</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.1</td>
+<td class="org-right">167.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-22.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.6</td>
+<td class="org-right">175.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-23.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-15</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23.6</td>
+<td class="org-right">175.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe edge</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-47</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.1</td>
+<td class="org-right">187.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe edge</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-28</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.1</td>
+<td class="org-right">187.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-org378beb8" class="outline-3">
+<h3 id="org378beb8"><span class="section-number-3">1.8</span> W lobe</h3>
+<div class="outline-text-3" id="text-1-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">-16</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">-32</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">grad +/- 4</td>
+<td class="org-right">16.3</td>
+<td class="org-right">281.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">-16</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">-54</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weaker</td>
+<td class="org-right">16.3</td>
+<td class="org-right">281.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-35</td>
+<td class="org-right">26</td>
+<td class="org-left">narrowish</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-57</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-21</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">shoulder</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">-36</td>
+<td class="org-right">26</td>
+<td class="org-left">brightest</td>
+<td class="org-right">16.8</td>
+<td class="org-right">284.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">-54</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">16.8</td>
+<td class="org-right">284.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe?</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">6</td>
+<td class="org-right">2</td>
+<td class="org-right">-17</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">12.6</td>
+<td class="org-right">298.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org6ad9cb1" class="outline-2">
+<h2 id="org6ad9cb1"><span class="section-number-2">2</span> Original table of all components by slit</h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li>This data all comes from <a href="#org593d725">Individual slit measurements for lobes</a></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Lobe</th>
+<th scope="col" class="org-left">Slit</th>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">+/- ds</th>
+<th scope="col" class="org-right">V</th>
+<th scope="col" class="org-right">W</th>
+<th scope="col" class="org-left">Note</th>
+<th scope="col" class="org-right">R</th>
+<th scope="col" class="org-right">PA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Halo SE</td>
+<td class="org-left">U</td>
+<td class="org-right">16</td>
+<td class="org-right">-19</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24.8</td>
+<td class="org-right">140.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">-16</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">-32</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">grad +/- 4</td>
+<td class="org-right">16.3</td>
+<td class="org-right">281.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">-16</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">-54</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weaker</td>
+<td class="org-right">16.3</td>
+<td class="org-right">281.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">7.9</td>
+<td class="org-right">-11.8</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-46</td>
+<td class="org-right">10</td>
+<td class="org-left">narrow, bright</td>
+<td class="org-right">14.2</td>
+<td class="org-right">146.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">7.9</td>
+<td class="org-right">-11.8</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">-30</td>
+<td class="org-right">30</td>
+<td class="org-left">grad +/- 2</td>
+<td class="org-right">14.2</td>
+<td class="org-right">146.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">U</td>
+<td class="org-right">9.3</td>
+<td class="org-right">-14.1</td>
+<td class="org-right">3</td>
+<td class="org-right">-63</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16.9</td>
+<td class="org-right">147.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">U</td>
+<td class="org-right">-27</td>
+<td class="org-right">11</td>
+<td class="org-right">7</td>
+<td class="org-right">-40</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">29.2</td>
+<td class="org-right">292.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SE</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-19</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">13</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">24.0</td>
+<td class="org-right">142.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NE</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">+23</td>
+<td class="org-right">17</td>
+<td class="org-right">-40</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">27.2</td>
+<td class="org-right">32.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-4</td>
+<td class="org-right">2</td>
+<td class="org-right">-58</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weaker</td>
+<td class="org-right">15.1</td>
+<td class="org-right">105.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-5</td>
+<td class="org-right">3</td>
+<td class="org-right">-48</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">bright</td>
+<td class="org-right">15.4</td>
+<td class="org-right">109.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">A</td>
+<td class="org-right">14.6</td>
+<td class="org-right">-12</td>
+<td class="org-right">1</td>
+<td class="org-right">-58</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weakest</td>
+<td class="org-right">18.9</td>
+<td class="org-right">129.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NE</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">16</td>
+<td class="org-right">8</td>
+<td class="org-right">-40</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">18.5</td>
+<td class="org-right">30.</td>
+</tr>
+
+<tr>
+<td class="org-left">IS/E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-5</td>
+<td class="org-right">2</td>
+<td class="org-right">-55</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.5</td>
+<td class="org-right">119.</td>
+</tr>
+
+<tr>
+<td class="org-left">IS/E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-5</td>
+<td class="org-right">2</td>
+<td class="org-right">-44</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.5</td>
+<td class="org-right">119.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-7</td>
+<td class="org-right">4</td>
+<td class="org-right">-28</td>
+<td class="org-right">40</td>
+<td class="org-left">weak</td>
+<td class="org-right">11.6</td>
+<td class="org-right">127.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-9</td>
+<td class="org-right">2</td>
+<td class="org-right">-48</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.9</td>
+<td class="org-right">134.</td>
+</tr>
+
+<tr>
+<td class="org-left">E lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-9</td>
+<td class="org-right">2</td>
+<td class="org-right">-40</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.9</td>
+<td class="org-right">134.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-37</td>
+<td class="org-right">23</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.2</td>
+<td class="org-right">148.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-72</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.2</td>
+<td class="org-right">148.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">B</td>
+<td class="org-right">9.2</td>
+<td class="org-right">-21</td>
+<td class="org-right">2</td>
+<td class="org-right">-50</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.9</td>
+<td class="org-right">156.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">15.5</td>
+<td class="org-right">8.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">16.3</td>
+<td class="org-right">18.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-7</td>
+<td class="org-right">3</td>
+<td class="org-right">-66</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">8.5</td>
+<td class="org-right">145.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-11</td>
+<td class="org-right">6</td>
+<td class="org-right">-47</td>
+<td class="org-right">20</td>
+<td class="org-left">strongest</td>
+<td class="org-right">12.0</td>
+<td class="org-right">156.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-8.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-27</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">9.8</td>
+<td class="org-right">150.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-13.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-76</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.4</td>
+<td class="org-right">160.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-22.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-48</td>
+<td class="org-right">45</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23.0</td>
+<td class="org-right">168.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">C</td>
+<td class="org-right">4.9</td>
+<td class="org-right">-21.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-15</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.1</td>
+<td class="org-right">167.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">17</td>
+<td class="org-right">8</td>
+<td class="org-right">-39</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">17.1</td>
+<td class="org-right">6.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-48</td>
+<td class="org-right">15</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-61</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-14.5</td>
+<td class="org-right">5.5</td>
+<td class="org-right">-22</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.6</td>
+<td class="org-right">173.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-22.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">22.6</td>
+<td class="org-right">175.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe cap</td>
+<td class="org-left">D</td>
+<td class="org-right">1.9</td>
+<td class="org-right">-23.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-15</td>
+<td class="org-right">30</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">23.6</td>
+<td class="org-right">175.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">11.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-53</td>
+<td class="org-right">50</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">11.6</td>
+<td class="org-right">353.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">14</td>
+<td class="org-right">5</td>
+<td class="org-right">-31</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">14.1</td>
+<td class="org-right">354.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe edge</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-47</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.1</td>
+<td class="org-right">187.</td>
+</tr>
+
+<tr>
+<td class="org-left">S lobe edge</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-28</td>
+<td class="org-right">35</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.1</td>
+<td class="org-right">187.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">E</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">-19</td>
+<td class="org-right">4</td>
+<td class="org-right">-39</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">19.1</td>
+<td class="org-right">185.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">11</td>
+<td class="org-right">3</td>
+<td class="org-right">-51</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">11.7</td>
+<td class="org-right">340.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">12</td>
+<td class="org-right">4</td>
+<td class="org-right">-32</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.6</td>
+<td class="org-right">342.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe cap</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">20</td>
+<td class="org-right">4</td>
+<td class="org-right">-54</td>
+<td class="org-right">40</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">20.4</td>
+<td class="org-right">349.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">-13</td>
+<td class="org-right">3</td>
+<td class="org-right">-38</td>
+<td class="org-right">25</td>
+<td class="org-left">Inner halo</td>
+<td class="org-right">13.6</td>
+<td class="org-right">197.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">F</td>
+<td class="org-right">-3.9</td>
+<td class="org-right">-20</td>
+<td class="org-right">4</td>
+<td class="org-right">-38</td>
+<td class="org-right">15</td>
+<td class="org-left">Outer halo</td>
+<td class="org-right">20.4</td>
+<td class="org-right">191.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">19.5</td>
+<td class="org-right">3.5</td>
+<td class="org-right">-65</td>
+<td class="org-right">30</td>
+<td class="org-left">narrow</td>
+<td class="org-right">20.8</td>
+<td class="org-right">340.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">21.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-42</td>
+<td class="org-right">50</td>
+<td class="org-left">broad</td>
+<td class="org-right">22.6</td>
+<td class="org-right">342.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">14.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">20</td>
+<td class="org-left">narrow</td>
+<td class="org-right">16.1</td>
+<td class="org-right">334.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">14.5</td>
+<td class="org-right">1.5</td>
+<td class="org-right">-8</td>
+<td class="org-right">30</td>
+<td class="org-left">broad</td>
+<td class="org-right">16.1</td>
+<td class="org-right">334.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">10.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">15</td>
+<td class="org-left">narrow, grad +/- 1</td>
+<td class="org-right">12.7</td>
+<td class="org-right">326.</td>
+</tr>
+
+<tr>
+<td class="org-left">K-NW</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">7.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-50</td>
+<td class="org-right">22</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.3</td>
+<td class="org-right">317.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">-12</td>
+<td class="org-right">3</td>
+<td class="org-right">-37</td>
+<td class="org-right">40</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">13.9</td>
+<td class="org-right">211.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">G</td>
+<td class="org-right">-7.1</td>
+<td class="org-right">-20</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">21.2</td>
+<td class="org-right">200.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo N</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">30</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">very weak</td>
+<td class="org-right">31.0</td>
+<td class="org-right">346.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">20</td>
+<td class="org-right">3</td>
+<td class="org-right">-63</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">21.4</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">20.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-36</td>
+<td class="org-right">38</td>
+<td class="org-left">broad</td>
+<td class="org-right">21.9</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">15</td>
+<td class="org-right">2</td>
+<td class="org-right">-29</td>
+<td class="org-right">17</td>
+<td class="org-left">narrow bright</td>
+<td class="org-right">16.9</td>
+<td class="org-right">333.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">15</td>
+<td class="org-right">2</td>
+<td class="org-right">-13</td>
+<td class="org-right">30</td>
+<td class="org-left">broad</td>
+<td class="org-right">16.9</td>
+<td class="org-right">333.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">9.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-30</td>
+<td class="org-right">25</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">12.2</td>
+<td class="org-right">321.</td>
+</tr>
+
+<tr>
+<td class="org-left">K-NW</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">7</td>
+<td class="org-right">2</td>
+<td class="org-right">-48</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">10.4</td>
+<td class="org-right">312.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">-13.5</td>
+<td class="org-right">3.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">44</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">15.5</td>
+<td class="org-right">210.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo S</td>
+<td class="org-left">H</td>
+<td class="org-right">-7.7</td>
+<td class="org-right">-21</td>
+<td class="org-right">4</td>
+<td class="org-right">-39</td>
+<td class="org-right">13</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">22.4</td>
+<td class="org-right">200.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">27.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-40</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">29.7</td>
+<td class="org-right">338.</td>
+</tr>
+
+<tr>
+<td class="org-left">N jet</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">16</td>
+<td class="org-right">4</td>
+<td class="org-right">-18</td>
+<td class="org-right">45</td>
+<td class="org-left">broad</td>
+<td class="org-right">19.5</td>
+<td class="org-right">325.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe?</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">7.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">26</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">13.4</td>
+<td class="org-right">304.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe?</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">6</td>
+<td class="org-right">2</td>
+<td class="org-right">-17</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">12.6</td>
+<td class="org-right">298.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">-12</td>
+<td class="org-right">2</td>
+<td class="org-right">-39</td>
+<td class="org-right">22</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">16.3</td>
+<td class="org-right">223.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">I</td>
+<td class="org-right">-11.1</td>
+<td class="org-right">-18</td>
+<td class="org-right">4</td>
+<td class="org-right">-40</td>
+<td class="org-right">17</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">21.1</td>
+<td class="org-right">212.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">66</td>
+<td class="org-right">4</td>
+<td class="org-right">-40</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">67.1</td>
+<td class="org-right">350.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">26</td>
+<td class="org-right">6</td>
+<td class="org-right">-38</td>
+<td class="org-right">16</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">28.6</td>
+<td class="org-right">335.</td>
+</tr>
+
+<tr>
+<td class="org-left">N lobe?</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">15.5</td>
+<td class="org-right">4.5</td>
+<td class="org-right">-35</td>
+<td class="org-right">33</td>
+<td class="org-left">weak broad</td>
+<td class="org-right">19.5</td>
+<td class="org-right">322.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-35</td>
+<td class="org-right">26</td>
+<td class="org-left">narrowish</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-57</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">6</td>
+<td class="org-right">5</td>
+<td class="org-right">-21</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">shoulder</td>
+<td class="org-right">13.3</td>
+<td class="org-right">297.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">J</td>
+<td class="org-right">-11.9</td>
+<td class="org-right">-16</td>
+<td class="org-right">6</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">19.9</td>
+<td class="org-right">217.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">61</td>
+<td class="org-right">7</td>
+<td class="org-right">-41</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">63.1</td>
+<td class="org-right">345.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">43.5</td>
+<td class="org-right">2.5</td>
+<td class="org-right">-39</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">46.5</td>
+<td class="org-right">339.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">25</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">14</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">29.8</td>
+<td class="org-right">327.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">12</td>
+<td class="org-right">6</td>
+<td class="org-right">-38</td>
+<td class="org-right">25</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">20.2</td>
+<td class="org-right">306.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">-36</td>
+<td class="org-right">26</td>
+<td class="org-left">brightest</td>
+<td class="org-right">16.8</td>
+<td class="org-right">284.</td>
+</tr>
+
+<tr>
+<td class="org-left">W lobe</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">-54</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">weak shoulder</td>
+<td class="org-right">16.8</td>
+<td class="org-right">284.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">-7</td>
+<td class="org-right">2</td>
+<td class="org-right">-41</td>
+<td class="org-right">23</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">17.7</td>
+<td class="org-right">247.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">K</td>
+<td class="org-right">-16.3</td>
+<td class="org-right">-14</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">21.5</td>
+<td class="org-right">229.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo knot</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">62</td>
+<td class="org-right">4</td>
+<td class="org-right">-38</td>
+<td class="org-right">20</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">64.7</td>
+<td class="org-right">343.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">29</td>
+<td class="org-right">5</td>
+<td class="org-right">-38</td>
+<td class="org-right">22</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">34.5</td>
+<td class="org-right">327.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">16</td>
+<td class="org-right">8</td>
+<td class="org-right">-33</td>
+<td class="org-right">35</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">24.5</td>
+<td class="org-right">311.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo NW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">12</td>
+<td class="org-right">4</td>
+<td class="org-right">-57</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">halo shoulder</td>
+<td class="org-right">22.1</td>
+<td class="org-right">303.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo W</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">-7</td>
+<td class="org-right">2</td>
+<td class="org-right">-41</td>
+<td class="org-right">23</td>
+<td class="org-left">inner halo</td>
+<td class="org-right">19.9</td>
+<td class="org-right">249.</td>
+</tr>
+
+<tr>
+<td class="org-left">Halo SW</td>
+<td class="org-left">L</td>
+<td class="org-right">-18.6</td>
+<td class="org-right">-14</td>
+<td class="org-right">5</td>
+<td class="org-right">-40</td>
+<td class="org-right">15</td>
+<td class="org-left">outer halo</td>
+<td class="org-right">23.3</td>
+<td class="org-right">233.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org593d725" class="outline-2">
+<h2 id="org593d725"><span class="section-number-2">3</span> Individual slit measurements for lobes</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>Diagonal slit U
+<ul class="org-ul">
+<li>s = -18 &rarr; -28 halo SE
+<ul class="org-ul">
+<li>V = -40 very narrow (W = 8 km/s)</li>
+</ul></li>
+<li>s = +21 &rarr; +45 Halo NW</li>
+<li>s = +10 &rarr; +19 is western lobe
+<ul class="org-ul">
+<li>Principal component at -28, -32, -36 km/s for s = 11, 12.5, 17</li>
+<li>Secondary component (0.3 x brightness) at -54 km/s</li>
+</ul></li>
+<li>s = -7 &rarr; -16 is crossing S Lobe
+<ul class="org-ul">
+<li>Complicated profiles</li>
+<li>Principal component is -46 km/s and is narrow, which carries on down from IS and dominates from s = -9 &rarr; -14</li>
+<li>Secondary broad component at -28 km/s at -9, shifting to -30 km/s at s = -12</li>
+<li>Then a component at -63 km/s from s = -12 to -18</li>
+<li>Then the -40 km/s component for s = -18 &rarr; -28 (halo SE)</li>
+</ul></li>
+</ul></li>
+<li>Vertical slit A
+<ul class="org-ul">
+<li>y = -14 &rarr; -24 halo
+<ul class="org-ul">
+<li>V = -40, W = 13</li>
+</ul></li>
+<li>y = +6 &rarr; 40
+<ul class="org-ul">
+<li>V = -40, W = 25</li>
+</ul></li>
+<li>y = -2 &rarr; -13 crosses the E lobe
+<ul class="org-ul">
+<li>At y = -2 a weak component at V = -58 km/s appears</li>
+<li>This gets dominated by a brighter less blue component: V = -48 at y = -6</li>
+<li>Which fades again, leaving the V  = -58 km/s component at y = -11</li>
+</ul></li>
+</ul></li>
+<li>Vertical slit B
+<ul class="org-ul">
+<li>y &gt; 7 &rarr; 24 is halo V = -40</li>
+<li>y = -3 &rarr; -7 is a strange offshoot of the intermediate shell
+<ul class="org-ul">
+<li>Or it could be argued is part of E lobe</li>
+<li>Three components: -55, -44, and -28 (weak)</li>
+</ul></li>
+<li>y = -7 &rarr; -11 is E lobe proper
+<ul class="org-ul">
+<li>Two components: V = -48 and -40
+<ul class="org-ul">
+<li>V = -48 falls in brightness towards S</li>
+<li>V = -40 stays roughly constant</li>
+</ul></li>
+<li>Plus a weak red one at V = -28</li>
+</ul></li>
+<li>y = -12 &rarr; -17 is S lobe 
+<ul class="org-ul">
+<li>-37 km/s and -72 km/s components</li>
+</ul></li>
+<li>y = -19 &rarr; -23 i S lobe end cap
+<ul class="org-ul">
+<li>Broad component at V = -50 km/s</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit C
+<ul class="org-ul">
+<li>y = +7 &rarr; +24 just halo at -40</li>
+<li>y = -5 &rarr; -17 S lobe
+<ul class="org-ul">
+<li>Three clear components: -66, -47, -27 (narrow)
+<ul class="org-ul">
+<li>The -66 is only -4 &rarr; -10</li>
+<li>The -27 one is ony -4 &rarr; -13</li>
+</ul></li>
+</ul></li>
+<li>y = -11 &rarr; -16 S lobe
+<ul class="org-ul">
+<li>Additional component at -76</li>
+</ul></li>
+<li>y = -21 &rarr; -24 S lobe end cap
+<ul class="org-ul">
+<li>Broad component at -48</li>
+</ul></li>
+<li>y = -19 &rarr; -24 S lobe end cap
+<ul class="org-ul">
+<li>Narrower component at -15</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit D
+<ul class="org-ul">
+<li>y = +9 &rarr; +25 just halo at -39</li>
+<li>y = -9 &rarr; -20 S lobe
+<ul class="org-ul">
+<li>Narrow component at V = -48</li>
+</ul></li>
+<li>y = -9 &rarr; -20 S lobe
+<ul class="org-ul">
+<li>Blended component at V = -61</li>
+</ul></li>
+<li>y = -9 &rarr; -20 S lobe
+<ul class="org-ul">
+<li>Blended component at V = -22</li>
+</ul></li>
+<li>y = -21 &rarr; -24 S lobe cap
+<ul class="org-ul">
+<li>V = -40</li>
+</ul></li>
+<li>y = -22 &rarr; -25 S lobe cap
+<ul class="org-ul">
+<li>V = -15</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit E
+<ul class="org-ul">
+<li>y = +9 &rarr; +14 N lobe
+<ul class="org-ul">
+<li>V = -53</li>
+</ul></li>
+<li>y = +9 &rarr; +19 N lobe
+<ul class="org-ul">
+<li>V = -31</li>
+</ul></li>
+<li>y = -9 &rarr; -15 S lobe edge
+<ul class="org-ul">
+<li>V = -47</li>
+</ul></li>
+<li>y = -9 &rarr; -15 S lobe edge
+<ul class="org-ul">
+<li>V = -28</li>
+</ul></li>
+<li>y = -15 &rarr; -23 Halo
+<ul class="org-ul">
+<li>V = -39</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit F
+<ul class="org-ul">
+<li>y = +8 &rarr; +14 N lobe
+<ul class="org-ul">
+<li>V = -51</li>
+</ul></li>
+<li>y = +8 &rarr; +16 N lobe
+<ul class="org-ul">
+<li>V = -32</li>
+</ul></li>
+<li>y = +16 &rarr; +24 N lobe cap
+<ul class="org-ul">
+<li>V = -54</li>
+<li>With weaker shoulder at V = -30</li>
+</ul></li>
+<li>y = -10 &rarr; -24 halo
+<ul class="org-ul">
+<li>V = -38</li>
+<li>Width varies with position (may be indication of expansion of halo)
+<ul class="org-ul">
+<li>FWHM W = 12 km/s at y = -21</li>
+<li>W = 15 km/s at y = -17</li>
+<li>W = 25 km/s at y = -15</li>
+<li>Similar up to y = -10</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit G
+<ul class="org-ul">
+<li>y = +16 to +23 North lobe
+<ul class="org-ul">
+<li>V = -65 narrow</li>
+</ul></li>
+<li>y = +19 &rarr; +24 North lobe
+<ul class="org-ul">
+<li>V = -42 broad</li>
+</ul></li>
+<li>y = +13 &rarr; +16 Northern jet
+<ul class="org-ul">
+<li>V = -30 narrow bright</li>
+<li>V = -8 broad blended shoulder</li>
+</ul></li>
+<li>y = +8 &rarr; +13 North lobe
+<ul class="org-ul">
+<li>V = -30 narrow (slight gradient from -28 at y = +9 to -31 at +12)</li>
+</ul></li>
+<li>y = +5 &rarr; +10 NW knot
+<ul class="org-ul">
+<li>V = -50</li>
+</ul></li>
+<li>y = -9 &rarr; -15 Inner Halo
+<ul class="org-ul">
+<li>V = -37 broad
+<ul class="org-ul">
+<li>y = -10 has W = 40 km/s</li>
+<li>y = -14 has W = 26 km/s</li>
+</ul></li>
+</ul></li>
+<li>y = -15 &rarr; -25 Outer Halo
+<ul class="org-ul">
+<li>V = -40 narrow (W = 14 km/s)</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit H
+<ul class="org-ul">
+<li>y = +25 &rarr; +35 Halo
+<ul class="org-ul">
+<li>V = -40 (extremely weak)</li>
+</ul></li>
+<li>y = +17 &rarr; +23 North Lobe
+<ul class="org-ul">
+<li>V = -63</li>
+</ul></li>
+<li>y = +18 &rarr; +23 North lobe
+<ul class="org-ul">
+<li>V = -36 broad</li>
+</ul></li>
+<li>y = +13 &rarr; +17 Northern jet
+<ul class="org-ul">
+<li>V = -29 narrow bright</li>
+<li>V = -13 broad shoulder</li>
+</ul></li>
+<li>y = +7 &rarr; +12 North lobe
+<ul class="org-ul">
+<li>V = -30</li>
+</ul></li>
+<li>y = +5 &rarr; +9 K-NW
+<ul class="org-ul">
+<li>V = -48</li>
+</ul></li>
+<li>y = -10 &rarr; -17 Inner Halo
+<ul class="org-ul">
+<li>V = -39 broad</li>
+</ul></li>
+<li>y = -17 &rarr; -25 Outer Halo
+<ul class="org-ul">
+<li>V = -39 narrow</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit I
+<ul class="org-ul">
+<li>y = +23 &rarr; +32 Very Faint Halo
+<ul class="org-ul">
+<li>V = -40 narrow</li>
+</ul></li>
+<li>y = +14 &rarr; +18 Northern jet
+<ul class="org-ul">
+<li>V = -18 broad (W = 45 km/s)</li>
+</ul></li>
+<li>y = +3 &rarr; +12 N lobe or W lobe?
+<ul class="org-ul">
+<li>V = -39 broad</li>
+</ul></li>
+<li>y = +4 &rarr; +8 Probably W lobe
+<ul class="org-ul">
+<li>V = -17 blended shoulder</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit J
+<ul class="org-ul">
+<li>y = +62 &rarr; +70 Halo knot
+<ul class="org-ul">
+<li>V = -40</li>
+</ul></li>
+<li>y = +20 &rarr; +32 Halo
+<ul class="org-ul">
+<li>V = -38 narrow</li>
+</ul></li>
+<li>y = +11 &rarr; +20 N lobe edge?
+<ul class="org-ul">
+<li>V = -35 weak and broadish</li>
+</ul></li>
+<li>y = +1 &rarr; +11 West lobe
+<ul class="org-ul">
+<li>V = -35 narrowish</li>
+<li>V = -57 weak blue shoulder</li>
+<li>V = -21 slightly stronger red shoulder</li>
+</ul></li>
+<li>y = -10 &rarr; -22 Halo
+<ul class="org-ul">
+<li>V = -40 narrow</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit K
+<ul class="org-ul">
+<li>y = +54 &rarr; +68 Halo knot
+<ul class="org-ul">
+<li>V = -41</li>
+</ul></li>
+<li>y = +41 &rarr; +46 Halo knot
+<ul class="org-ul">
+<li>V = -39</li>
+</ul></li>
+<li>y = +20 &rarr; +30 Outer Halo
+<ul class="org-ul">
+<li>V = -40 narrow (W = 14 km/s)</li>
+</ul></li>
+<li>y = +6 &rarr; +18 Inner Halo
+<ul class="org-ul">
+<li>V = -38 broad (W = 25 km/s)</li>
+</ul></li>
+<li>y = 0 &rarr; +8 West Lobe
+<ul class="org-ul">
+<li>V = -36 narrowish</li>
+<li>V = -54 weak blue shoulder</li>
+</ul></li>
+<li>y = -5 &rarr; -9 Inner Halo
+<ul class="org-ul">
+<li>V = -41, W = 23</li>
+</ul></li>
+<li>y = -9 &rarr; -19
+<ul class="org-ul">
+<li>V = -40, W = 15</li>
+</ul></li>
+</ul></li>
+<li>Vertical Slit L
+<ul class="org-ul">
+<li>y = +58 &rarr; +66 Halo knot
+<ul class="org-ul">
+<li>V = -38, W = 20</li>
+</ul></li>
+<li>y = +24 &rarr; +34 Outer halo
+<ul class="org-ul">
+<li>V = -38 narrow</li>
+</ul></li>
+<li>y = +8 &rarr; +24 Inner halo
+<ul class="org-ul">
+<li>V = -33 narrow bright</li>
+<li>V = -57 faint shoulder</li>
+</ul></li>
+<li>y = 0 &rarr; +6 West lobe
+<ul class="org-ul">
+<li>V = -34 km/s narrowish</li>
+</ul></li>
+<li>y = -4 &rarr; -20 Halo
+<ul class="org-ul">
+<li>V = -38 narrow</li>
+<li>V = -21 shoulder</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: William Henney</p>
+<p class="date">Created: 2019-12-13 Fri 22:51</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
