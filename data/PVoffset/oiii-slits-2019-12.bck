@@ -110,7 +110,7 @@ Frame1 block to 1 1
 Frame1 wcs wcs fk5 sexagesimal
 Frame1 pan preserve 0
 Frame1 pan to physical 24.363628 368.80476
-Frame1 zoom to 10.6632 5.33166
+Frame1 zoom to 10.6634 5.33176
 Frame1 rotate to 0
 Frame1 orient none
 Frame1 wcs align 1
@@ -130,8 +130,8 @@ Frame1 mask system wcs
 Frame1 mask color red
 Frame1 mask mark nonzero
 Frame1 mask range 0 0
-Frame1 contour create yellow 1 0 smooth 5 1 log 10000 user global 0 1 {"0.1 0.2 0.4 0.8"}
-Frame1 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame1 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.0005 0.001 0.002 0.004 0.008 0.016 0.032 0.064 0.128 0.256 0.512 1.024"}
+Frame1 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame2 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/001-spm252_bcrx-oiii-PA341-sep-001.fits load,layer {} file,type fits load,type mmapincr]
@@ -176,7 +176,7 @@ Frame2 block to 1 1
 Frame2 wcs wcs fk5 sexagesimal
 Frame2 pan preserve 0
 Frame2 pan to physical 23.809182 362.80679
-Frame2 zoom to 10.654 5.32702
+Frame2 zoom to 10.6541 5.32712
 Frame2 rotate to 0
 Frame2 orient none
 Frame2 wcs align 1
@@ -196,8 +196,8 @@ Frame2 mask system wcs
 Frame2 mask color red
 Frame2 mask mark nonzero
 Frame2 mask range 0 0
-Frame2 contour create yellow 1 0 smooth 5 1 log 10000 user global 0 1 {"0.1 0.2 0.4 0.8"}
-Frame2 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame2 contour create magenta 1 0 smooth 5 2 log 10000 user global 0 1 {"0.0005 0.001 0.0015 0.002 0.004 0.008 0.016 0.032 0.064 0.128 0.256 0.512 1.024"}
+Frame2 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame3 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/002-spm257_bcrx-oiii-PA304-sep-005.fits load,layer {} file,type fits load,type mmapincr]
@@ -242,7 +242,7 @@ Frame3 block to 1 1
 Frame3 wcs wcs fk5 sexagesimal
 Frame3 pan preserve 0
 Frame3 pan to physical 23.673828 329.80154
-Frame3 zoom to 10.6713 5.33567
+Frame3 zoom to 10.6714 5.33578
 Frame3 rotate to 0
 Frame3 orient none
 Frame3 wcs align 1
@@ -307,7 +307,7 @@ Frame4 block to 1 1
 Frame4 wcs wcs fk5 sexagesimal
 Frame4 pan preserve 0
 Frame4 pan to physical 23.674831 330.80154
-Frame4 zoom to 10.6713 5.33567
+Frame4 zoom to 10.6714 5.33578
 Frame4 rotate to 0
 Frame4 orient none
 Frame4 wcs align 1
@@ -328,7 +328,7 @@ Frame4 mask color red
 Frame4 mask mark nonzero
 Frame4 mask range 0 0
 Frame4 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame4 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame4 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame5 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/006-spm294_bcrx_oiii-oiii-PA000-sep+020.fits load,layer {} file,type fits load,type mmapincr]
@@ -373,7 +373,7 @@ Frame5 block to 1 1
 Frame5 wcs wcs fk5 sexagesimal
 Frame5 pan preserve 0
 Frame5 pan to physical 24.522196 134.80666
-Frame5 zoom to 10.6578 5.32896
+Frame5 zoom to 10.658 5.32905
 Frame5 rotate to 0
 Frame5 orient none
 Frame5 wcs align 1
@@ -394,7 +394,7 @@ Frame5 mask color red
 Frame5 mask mark nonzero
 Frame5 mask range 0 0
 Frame5 contour create magenta 1 0 smooth 5 1 log 10000 user global 0 0.158625 {"0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame5 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame5 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame13 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/015-spm0118_bcrx_oiii-oiii-PA002-sep+014.fits load,layer {} file,type fits load,type mmapincr]
@@ -439,7 +439,7 @@ Frame13 block to 1 1
 Frame13 wcs wcs fk5 sexagesimal
 Frame13 pan preserve 0
 Frame13 pan to physical 48.054425 207.79132
-Frame13 zoom to 5.99122 2.99564
+Frame13 zoom to 5.99132 2.99569
 Frame13 rotate to 0
 Frame13 orient none
 Frame13 wcs align 1
@@ -460,7 +460,7 @@ Frame13 mask color red
 Frame13 mask mark nonzero
 Frame13 mask range 0 0
 Frame13 contour create magenta 1 0 smooth 5 1 log 10000 user global 0 0.158625 {"0.0003 0.0006 0.0009 0.0012 0.0015"}
-Frame13 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame13 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame12 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/014-spm0112_bcrx_oiii-oiii-PA002-sep+009.fits load,layer {} file,type fits load,type mmapincr]
@@ -505,7 +505,7 @@ Frame12 block to 1 1
 Frame12 wcs wcs fk5 sexagesimal
 Frame12 pan preserve 0
 Frame12 pan to physical 47.590234 207.79238
-Frame12 zoom to 5.99988 2.99996
+Frame12 zoom to 5.99997 3.00002
 Frame12 rotate to 0
 Frame12 orient none
 Frame12 wcs align 1
@@ -570,7 +570,7 @@ Frame7 block to 1 1
 Frame7 wcs wcs fk5 sexagesimal
 Frame7 pan preserve 0
 Frame7 pan to physical 48.102564 200.79449
-Frame7 zoom to 5.99837 2.99921
+Frame7 zoom to 5.99847 2.99927
 Frame7 rotate to 0
 Frame7 orient none
 Frame7 wcs align 1
@@ -635,7 +635,7 @@ Frame8 block to 1 1
 Frame8 wcs wcs fk5 sexagesimal
 Frame8 pan preserve 0
 Frame8 pan to physical 47.759862 198.78933
-Frame8 zoom to 5.99467 2.99736
+Frame8 zoom to 5.99476 2.99742
 Frame8 rotate to 0
 Frame8 orient none
 Frame8 wcs align 1
@@ -655,7 +655,8 @@ Frame8 mask system wcs
 Frame8 mask color red
 Frame8 mask mark nonzero
 Frame8 mask range 0 0
-Frame8 contour create magenta 1 0 smooth 5 1 log 10000 user global 0 1 {"0.01 0.02 0.04 0.1 0.2 0.4 0.8"}
+Frame8 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.00025 0.0005 0.001 0.002 0.004 0.008"}
+Frame8 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame9 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/011-spm0045o_bcrx-oiii-PA002-sep-001.fits load,layer {} file,type fits load,type mmapincr]
@@ -700,7 +701,7 @@ Frame9 block to 1 1
 Frame9 wcs wcs fk5 sexagesimal
 Frame9 pan preserve 0
 Frame9 pan to physical 47.546295 325.79154
-Frame9 zoom to 5.9989 2.99947
+Frame9 zoom to 5.99899 2.99953
 Frame9 rotate to 0
 Frame9 orient none
 Frame9 wcs align 1
@@ -720,8 +721,8 @@ Frame9 mask system wcs
 Frame9 mask color red
 Frame9 mask mark nonzero
 Frame9 mask range 0 0
-Frame9 contour create magenta 1 0 smooth 5 1 log 10000 user global 0 1 {"0.000625 0.00125 0.0025 0.005 0.01 0.02 0.04 0.1 0.2 0.4 0.8"}
-Frame9 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame9 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
+Frame9 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame10 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/012-spm0051_bcrx_oiii-oiii-PA002-sep-003.fits load,layer {} file,type fits load,type mmapincr]
@@ -766,7 +767,7 @@ Frame10 block to 1 1
 Frame10 wcs wcs fk5 sexagesimal
 Frame10 pan preserve 0
 Frame10 pan to physical 47.820532 198.79055
-Frame10 zoom to 5.99863 2.99934
+Frame10 zoom to 5.99872 2.9994
 Frame10 rotate to 0
 Frame10 orient none
 Frame10 wcs align 1
@@ -786,7 +787,8 @@ Frame10 mask system wcs
 Frame10 mask color red
 Frame10 mask mark nonzero
 Frame10 mask range 0 0
-Frame10 contour create magenta 1 0 smooth 5 1 log 10000 user global 0 1 {"0.00025 0.0005 0.001 0.002 0.004 0.008"}
+Frame10 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
+Frame10 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame11 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/013-spm0059_oiii-oiii-PA002-sep-006.fits load,layer {} file,type fits load,type mmapincr]
@@ -831,7 +833,7 @@ Frame11 block to 1 1
 Frame11 wcs wcs fk5 sexagesimal
 Frame11 pan preserve 0
 Frame11 pan to physical 47.730049 169.20331
-Frame11 zoom to 6.00003 3.00004
+Frame11 zoom to 6.00013 3.0001
 Frame11 rotate to 0
 Frame11 orient none
 Frame11 wcs align 1
@@ -852,7 +854,7 @@ Frame11 mask color red
 Frame11 mask mark nonzero
 Frame11 mask range 0 0
 Frame11 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame11 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame11 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame15 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/017-spm0175o_bcrx-oiii-PA002-sep-007.fits load,layer {} file,type fits load,type mmapincr]
@@ -897,7 +899,7 @@ Frame15 block to 1 1
 Frame15 wcs wcs fk5 sexagesimal
 Frame15 pan preserve 0
 Frame15 pan to physical 47.23824 409.79546
-Frame15 zoom to 6.00296 3.0015
+Frame15 zoom to 6.00305 3.00156
 Frame15 rotate to 0
 Frame15 orient none
 Frame15 wcs align 1
@@ -918,7 +920,7 @@ Frame15 mask color red
 Frame15 mask mark nonzero
 Frame15 mask range 0 0
 Frame15 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 1 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame15 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame15 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame14 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/016-spm0126_bcrx_oiii-oiii-PA002-sep-010.fits load,layer {} file,type fits load,type mmapincr]
@@ -963,7 +965,7 @@ Frame14 block to 1 1
 Frame14 wcs wcs fk5 sexagesimal
 Frame14 pan preserve 0
 Frame14 pan to physical 47.381537 208.79626
-Frame14 zoom to 6.01011 3.00508
+Frame14 zoom to 6.0102 3.00513
 Frame14 rotate to 0
 Frame14 orient none
 Frame14 wcs align 1
@@ -984,7 +986,7 @@ Frame14 mask color red
 Frame14 mask mark nonzero
 Frame14 mask range 0 0
 Frame14 contour create magenta 1 0 smooth 5 3 linear 10000 user global 0 0.158625 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame14 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame14 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame16 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/018-spm0181_bcrx_oiii-oiii-PA002-sep-011.fits load,layer {} file,type fits load,type mmapincr]
@@ -1029,7 +1031,7 @@ Frame16 block to 1 1
 Frame16 wcs wcs fk5 sexagesimal
 Frame16 pan preserve 0
 Frame16 pan to physical 47.605631 208.79332
-Frame16 zoom to 5.99419 2.99712
+Frame16 zoom to 5.99429 2.99718
 Frame16 rotate to 0
 Frame16 orient none
 Frame16 wcs align 1
@@ -1050,7 +1052,7 @@ Frame16 mask color red
 Frame16 mask mark nonzero
 Frame16 mask range 0 0
 Frame16 contour create magenta 1 0 smooth 5 3 linear 10000 user global 0 0.158625 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame16 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame16 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame17 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/019-spm0188_oiii-oiii-PA002-sep-015.fits load,layer {} file,type fits load,type mmapincr]
@@ -1095,7 +1097,7 @@ Frame17 block to 1 1
 Frame17 wcs wcs fk5 sexagesimal
 Frame17 pan preserve 0
 Frame17 pan to physical 48.361126 172.20895
-Frame17 zoom to 5.98099 2.99052
+Frame17 zoom to 5.9811 2.99058
 Frame17 rotate to 0
 Frame17 orient none
 Frame17 wcs align 1
@@ -1116,7 +1118,7 @@ Frame17 mask color red
 Frame17 mask mark nonzero
 Frame17 mask range 0 0
 Frame17 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 0.158625 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame17 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame17 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 CreateNameNumberFrame Frame6 base
 global loadParam
 array set loadParam [list file,mode {} file,name /Users/will/Dropbox/Teresa-Turtle/data/PVoffset/007-spm297_bcrx-oiii-PA000-sep-018.fits load,layer {} file,type fits load,type mmapincr]
@@ -1161,7 +1163,7 @@ Frame6 block to 1 1
 Frame6 wcs wcs fk5 sexagesimal
 Frame6 pan preserve 0
 Frame6 pan to physical 24.397494 288.80518
-Frame6 zoom to 10.662 5.33104
+Frame6 zoom to 10.6622 5.33114
 Frame6 rotate to 0
 Frame6 orient none
 Frame6 wcs align 1
@@ -1182,11 +1184,11 @@ Frame6 mask color red
 Frame6 mask mark nonzero
 Frame6 mask range 0 0
 Frame6 contour create magenta 1 0 smooth 5 3 log 10000 user global 0 0.158625 {"0.000125 0.00025 0.0005 0.001 0.002 0.004 0.008"}
-Frame6 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
+Frame6 grid create wcs fk5 sexagesimal analysis {" Grid=0, Colour(grid)=255, Width(grid)=1, Style(grid)=0, DrawAxes=0, Colour(axes)=16711680, Width(axes)=1, Style(axes)=0, Colour(ticks)=0, Width(ticks)=1, Style(ticks)=0, Border=0, Colour(border)=255, Width(border)=1, Style(border)=0, Labelling=interior, LabelUp=1, NumLab=1, Font(numlab)=2, Size(numlab)=7, Colour(numlab)=0, TextLab=0, Font(textlab)=2, Size(textlab)=9, Colour(textlab)=0, DrawTitle=0, Font(title)=2, Size(title)=12, Colour(title)=0, NumLabGap(1)=-.03, NumLabGap(2)=-.03, TextLabGap(1)=0, TextLabGap(2)=0, TitleGap=-1, Edge(1)=top, Edge(2)=left, "} {"grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {}"}
 global pds9
 array set pds9 { nan,msg #332244 dialog native text,font courier samp 1 prec,linear 8 font,msg Helvetica iraf 1 prec,len,arcsec 3 threads 12 font,weight normal automarker 1 bg,msg Black language locale text,font,weight normal dialog,all 0 nan #804020 prec,angle 8 font,slant roman confirm 1 prec,deg 7 backup 0 language,dir {} font helvetica language,name {} bg #808080 prec,len,deg 7 xpa 1 prec,dms 3 tcl 0 theme native text,font,msg Courier prec,len,arcmin 5 prec,len,linear 8 dialog,center 0 prec,hms 4 font,size 13 text,font,slant roman text,font,size 11 }
 global current
-array set current { colorbar colorbar orient none zoom {5.99837 2.99921} mode region ext {} display single cursor {} align 1 rotate 0 rgb red frame Frame7 }
+array set current { colorbar colorbar orient none zoom {5.9811 2.99058} mode region ext {} display single cursor {} align 1 rotate 0 rgb red frame Frame17 }
 global pcurrent
 array set pcurrent { orient none zoom { 1 1 } mode none display single align 0 rotate 0 }
 global view
@@ -1194,7 +1196,7 @@ array set view { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 in
 global pview
 array set pview { info,wcss 0 info,wcsc 0 info,wcst 0 info,wcsd 0 graph,horz 0 info,wcsu 0 info,wcse 0 info,bunit 0 info,lowhigh 0 magnifier 1 info,wcsf 0 info,wcsv 0 info,frame 1 info,image 1 colorbar 1 info 1 info,wcsg 0 info,wcsw 0 info,keyword 0 info,wcs 1 info,wcsh 0 info,wcsx 0 info,physical 1 info,keyvalue {} info,wcsi 0 info,wcsy 0 info,object 1 buttons 1 info,wcsj 0 info,wcsz 0 info,wcsk 0 info,filename 1 info,wcsl 0 info,amplifier 0 info,minmax 0 info,wcsm 0 info,detector 0 info,wcsn 0 panner 1 info,wcso 0 info,wcsp 0 layout horizontal info,wcsa 0 info,wcsq 0 graph,vert 0 info,wcsb 0 info,wcsr 0 }
 global canvas
-array set canvas { gap 4 width 1280 gap,bottom 14 height 591 }
+array set canvas { gap 4 width 720 gap,bottom 14 height 591 }
 global phttp
 array set phttp { auth,passwd {} proxy,host {} auth,user {} auth 0 proxy 0 proxy,port {} }
 global pbuttons
@@ -1252,13 +1254,13 @@ array set zscale { line 120 sample 600 contrast .25 }
 global pzscale
 array set pzscale { line 120 contrast .25 sample 600 }
 global marker
-array set marker { panda,ang2 360 shape projection show 1 bpanda,ang1 0 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 tag {} load,format ds9 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 centroid,iteration 30 epanda,angnum 4 plot2d 0 font,size 10 move 1 rotate 1 fixed 0 skyformat sexagesimal load,system physical ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 epanda,radius1 40 plot3d 0 epanda,radius2 20 panda,annuli 1 panda,outer 30 epanda,radius3 60 segment,length 20 source 1 epsilon 3 strip 0 bpanda,radius1 80 epanda,annuli 1 bpanda,radius2 40 bpanda,radius3 120 color green stats 0 sky fk5 annulus,outer 30 format ds9 font,weight normal load,sky fk5 polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 boxannulus,radius1 80 projection,thick 0 dashlist {8 3} boxannulus,radius2 40 polygon,height 20 system wcs box,radius1 80 boxannulus,radius3 120 box,radius2 40 annulus,annuli 1 point,size 11 compass,radius 40 copy Frame17 epanda,ang1 0 include 1 copy,system wcs epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 load current bpanda,annuli 1 ellipse,radius1 40 ellipse,radius2 20 panda,inner 15 preserve 0 maxdialog 48 ellipseannulus,annuli 1 panda,ang1 0 }
+array set marker { panda,ang2 360 shape projection show 1 bpanda,ang1 0 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 tag {} load,format ds9 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 centroid,iteration 30 epanda,angnum 4 plot2d 0 font,size 10 move 1 rotate 1 fixed 0 skyformat sexagesimal load,system physical ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 epanda,radius1 40 plot3d 0 epanda,radius2 20 panda,annuli 1 panda,outer 30 epanda,radius3 60 segment,length 20 source 1 epsilon 3 strip 0 bpanda,radius1 80 epanda,annuli 1 bpanda,radius2 40 bpanda,radius3 120 color green stats 0 sky fk5 annulus,outer 30 format ds9 font,weight normal load,sky fk5 polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 boxannulus,radius1 80 projection,thick 0 dashlist {8 3} boxannulus,radius2 40 polygon,height 20 system wcs box,radius1 80 boxannulus,radius3 120 box,radius2 40 annulus,annuli 1 point,size 11 compass,radius 40 copy Frame1 epanda,ang1 0 include 1 copy,system wcs epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 load current bpanda,annuli 1 ellipse,radius1 40 ellipse,radius2 20 panda,inner 15 preserve 0 maxdialog 48 ellipseannulus,annuli 1 panda,ang1 0 }
 global pmarker
 array set pmarker { panda,ang2 360 bpanda,ang1 0 shape circle show 1 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 epanda,angnum 4 centroid,iteration 30 plot2d 0 font,size 10 rotate 1 move 1 fixed 0 ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 plot3d 0 epanda,radius1 40 panda,outer 30 panda,annuli 1 epanda,radius2 20 epanda,radius3 60 segment,length 20 source 1 epsilon 3 bpanda,radius1 80 bpanda,radius2 40 epanda,annuli 1 bpanda,radius3 120 stats 0 color green format ds9 annulus,outer 30 font,weight normal polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 projection,thick 0 boxannulus,radius1 80 dashlist {8 3} polygon,height 20 boxannulus,radius2 40 boxannulus,radius3 120 box,radius1 80 box,radius2 40 point,size 11 annulus,annuli 1 compass,radius 40 epanda,ang1 0 include 1 epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 bpanda,annuli 1 ellipse,radius1 40 preserve 0 panda,inner 15 ellipse,radius2 20 panda,ang1 0 ellipseannulus,annuli 1 }
 global centroid
 array set centroid {  }
 global wcs
-array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame7 sky fk5 }
+array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame17 sky fk5 }
 global pwcs
 array set pwcs { skyformat sexagesimal load,sock {} load,fn {} system wcs sky fk5 }
 global graph
@@ -1276,11 +1278,11 @@ array set mask { high 0 system wcs low 0 transparency 0 mark nonzero color red }
 global pmask
 array set pmask { high 0 system physical transparency 0 low 0 color red mark 1 }
 global contour
-array set contour { init,scale 0 numlevel 5 scale log method smooth init,scope 0 scope global view 1 copy {} width 1 dash 0 color,msg Green init,limits 0 smooth 3 log 10000 min 0 init,mode 0 mode user max 1 color magenta }
+array set contour { init,scale 0 numlevel 5 scale log method smooth init,scope 0 scope global view 1 copy {} width 1 dash 0 color,msg Green init,limits 0 smooth 3 log 10000 min 0 init,mode 0 mode user max 0.158625 color magenta }
 global pcontour
 array set pcontour { numlevel 5 dash 0 width 1 method block color,msg Green smooth 4 color green view 0 }
 global grid
-array set grid { grid,color blue grid,style 0 view 0 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {} }
+array set grid { grid,color blue grid,style 0 view 1 axes,origin lll numlab,type exterior border 0 tick,width 1 numlab,color black numlab,weight normal title,text {} axes,color red numlab,slant roman axes,style 0 textlab,color black numlab 1 skyformat sexagesimal textlab,gap1 {} border,color blue textlab,slant roman textlab,gap2 {} textlab,size 9 grid,gapunit1 pixels border,style 0 grid,gapunit2 pixels grid,gapunit3 pixels title,gap {} textlab,font helvetica grid,width 1 format1 {} title 1 format2 {} sky fk5 textlab 1 title,color black axes,width 1 title,slant roman border,width 1 system wcs numlab,vertical 1 tick,color black textlab,def1 1 tick,style 0 textlab,def2 1 axes 0 type analysis grid,gap1 {} tick 1 grid,gap2 {} numlab,gap1 {} grid,gap3 {} numlab,gap2 {} grid 0 numlab,size 7 numlab,gap3 {} axes,type interior textlab,weight normal title,size 12 numlab,font helvetica title,def 1 title,font helvetica textlab,text1 {} title,weight normal textlab,text2 {} }
 global pgrid
 array set pgrid { view 0 }
 global block

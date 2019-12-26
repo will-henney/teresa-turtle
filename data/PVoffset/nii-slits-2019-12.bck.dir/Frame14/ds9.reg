@@ -4,7 +4,10 @@ physical
 ellipse(62.90152,322.51766,4.6536181,11.027502,0) # color=red width=2
 ellipse(90.888727,320.41582,4.5103171,7.7140315,0) # color=red width=2
 ellipse(69.478987,340.22399,4.65367,5.5748578,0) # color=red width=2
-ellipse(80.325055,345.29512,3.9455016,3.9455016,0) # color=red
-ellipse(85.647501,336.71514,2.4659384,8.8773783,0) # color=red
-ellipse(84.145051,318.91967,6.448766,7.4512847,0) # color=red
-# text(79.26869,393.9722) textrotate=0 color=red font="helvetica 16 bold roman" text={d'}
+# text(99.674142,339.77171) textrotate=0 color=red font="helvetica 16 bold roman" text={d'}
+ellipse(87.510744,323.14873,6.1027659,6.1332952,328.10898) # color=cyan width=3
+ellipse(85.777204,337.34396,2.6218883,5.3953207,-0) # color=cyan width=3
+ellipse(81.11659,325.81925,3.3464036,6.3188525,358.67413) # color=cyan width=3
+ellipse(74.631852,343.08735,2.7700151,3.7006565,355.30875) # color=cyan width=3
+ellipse(71.530479,330.49264,2.9496976,6.0971235,-0) # color=cyan width=3
+ellipse(72.599872,336.82399,2.6835619,4.493096,355.30875) # color=cyan width=3
