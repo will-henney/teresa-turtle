@@ -2096,8 +2096,78 @@ Central velocities in [N II] - 20 km/s channels
 
 ** Discrete features in the spectra
 
+*** Make high-pass filtered maps
++ We already have the unsharp masked image from Beto, but that has some inappropriate labels on it
++ So I could make new ones from the HST images
++ This is based on a progream in the Luis Angel bow shock project
+  + [[id:171A91D5-C0D6-4411-9DB2-C1AB76D18E61][New images of each group]]
+#+begin_src python :tangle ../scripts/smooth-image.py
+  import numpy as np
+  import argh
+  from astropy.io import fits
+  from astropy.convolution import convolve_fft, Gaussian2DKernel
+
+  def main(infile, width=16, twopass=False, threshold=1.5):
+      hdu = fits.open(infile)[0]
+      im = hdu.data
+      gauss_kernel = Gaussian2DKernel(width)
+      smoothim = convolve_fft(im, gauss_kernel)
+      sharpim = im/smoothim
+
+      if twopass:
+          mask = (sharpim > threshold) | (im == 0.0)
+          im[mask] = np.nan
+          print('Starting second pass: N(masked) =', mask.sum())
+          smoothim = convolve_fft(im, gauss_kernel, normalize_kernel=True)
+          sharpim = im/smoothim
+
+      outhdu = fits.PrimaryHDU(data=smoothim, header=hdu.header)
+      outfile = infile.replace(".fits", f"_smooth_{width}.fits")
+      outhdu.writeto(outfile, overwrite=True)
+
+      outhdu.data = sharpim
+      outhdu.writeto(outfile.replace("_smooth_", "_sharp_"), overwrite=True)
+
+  if __name__ == "__main__":
+      argh.dispatch_command(main)
+#+end_src
+
+#+begin_src sh :results verbatim :dir ../propermotions/oiii
+python ../../scripts/smooth-image.py oiii-ago1997-win.fits -w 8
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim :dir ../propermotions/nii
+python ../../scripts/smooth-image.py n6210n1998sm.fits -w 8
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_src sh :results verbatim
+python ../scripts/smooth-image.py -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+usage: smooth-image.py [-h] [-w WIDTH] [--twopass] [--threshold THRESHOLD]
+                       infile
+
+positional arguments:
+  infile                -
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -w WIDTH, --width WIDTH
+                        16
+  --twopass             False
+  --threshold THRESHOLD
+                        1.5
+#+end_example
+
 *** [O III]
-+ This is much more difficult than [O III]
++ This is much more difficult than [N II]
 
 **** Peanut shell
 + Vertical slits C, D, E, F
