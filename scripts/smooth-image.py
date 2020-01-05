@@ -3,7 +3,7 @@ import argh
 from astropy.io import fits
 from astropy.convolution import convolve_fft, Gaussian2DKernel
 
-def main(infile, width=16, twopass=False, threshold=1.5):
+def main(infile, width=16, twopass=False, threshold=1.5, vmin=0.0):
     hdu = fits.open(infile)[0]
     im = hdu.data
     gauss_kernel = Gaussian2DKernel(width)
@@ -16,6 +16,9 @@ def main(infile, width=16, twopass=False, threshold=1.5):
         print('Starting second pass: N(masked) =', mask.sum())
         smoothim = convolve_fft(im, gauss_kernel, normalize_kernel=True)
         sharpim = im/smoothim
+
+    # Mask out sharp image where smooth image is too faint
+    sharpim[smoothim < vmin] = 1.0
 
     outhdu = fits.PrimaryHDU(data=smoothim, header=hdu.header)
     outfile = infile.replace(".fits", f"_smooth_{width}.fits")

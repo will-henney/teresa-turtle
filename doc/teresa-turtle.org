@@ -2107,7 +2107,7 @@ Central velocities in [N II] - 20 km/s channels
   from astropy.io import fits
   from astropy.convolution import convolve_fft, Gaussian2DKernel
 
-  def main(infile, width=16, twopass=False, threshold=1.5):
+  def main(infile, width=16, twopass=False, threshold=1.5, vmin=0.0):
       hdu = fits.open(infile)[0]
       im = hdu.data
       gauss_kernel = Gaussian2DKernel(width)
@@ -2121,6 +2121,9 @@ Central velocities in [N II] - 20 km/s channels
           smoothim = convolve_fft(im, gauss_kernel, normalize_kernel=True)
           sharpim = im/smoothim
 
+      # Mask out sharp image where smooth image is too faint
+      sharpim[smoothim < vmin] = 1.0
+
       outhdu = fits.PrimaryHDU(data=smoothim, header=hdu.header)
       outfile = infile.replace(".fits", f"_smooth_{width}.fits")
       outhdu.writeto(outfile, overwrite=True)
@@ -2133,13 +2136,13 @@ Central velocities in [N II] - 20 km/s channels
 #+end_src
 
 #+begin_src sh :results verbatim :dir ../propermotions/oiii
-python ../../scripts/smooth-image.py oiii-ago1997-win.fits -w 8
+python ../../scripts/smooth-image.py oiii-ago1997-win.fits -w 8 -v 0.08
 #+end_src
 
 #+RESULTS:
 
 #+begin_src sh :results verbatim :dir ../propermotions/nii
-python ../../scripts/smooth-image.py n6210n1998sm.fits -w 8
+python ../../scripts/smooth-image.py n6210n1998sm.fits -w 8 
 #+end_src
 
 #+RESULTS:
@@ -2152,6 +2155,7 @@ python ../scripts/smooth-image.py -h
 #+RESULTS:
 #+begin_example
 usage: smooth-image.py [-h] [-w WIDTH] [--twopass] [--threshold THRESHOLD]
+                       [-v VMIN]
                        infile
 
 positional arguments:
@@ -2164,6 +2168,7 @@ optional arguments:
   --twopass             False
   --threshold THRESHOLD
                         1.5
+  -v VMIN, --vmin VMIN  0.0
 #+end_example
 
 *** [O III]
