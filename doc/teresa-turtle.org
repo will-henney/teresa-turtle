@@ -2337,6 +2337,7 @@ optional arguments:
   + The +3 component in between the E and S lobes is actually from the inner halo (also seen in Slit U)
   + Rest is OK except for some y ranges
   + Also, remove the upper two components, since might be IS
+    + /Partially reinstated/
 + Slit S
   + Revision of velocities in end cap - now consistent with vertical slits
 + Slit D
