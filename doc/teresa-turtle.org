@@ -2312,14 +2312,21 @@ optional arguments:
 ***** Organizing components into systems and flows
 + Nomenclature:
   + Component :: a discrete velocity component (maybe blended) over a section of a single slit (these are what are given in the Tables below)
-  + System :: a set of components in adjacent slits, with similar velocities, widths, and brightnesses
-  + Flow :: Bipolar pattern of a red/blue pair (or pairs) of systems on opposite sides of the star, which seem to be physically related
-+ I am trying to organize these using Affinity Designer
-  + [2020-01-07 Tue] First attempt
-    + This had 8 flows, each assigned a roman numeral: I \to VIII
-    + Flows I \to III are high velocity
-      + There are 3 of them
-    + Flows IV \to VIII are intermediate velocity
+  + System :: a set of components in adjacent slits, with similar velocities, widths, and brightnesses.  Where possible, these are arranged in a point-symmetric red/blue pair
+  + Flow :: Bipolar pattern of a red/blue pairs of systems on opposite sides of the star, which seem to be physically related
++ [2020-01-10 Fri 23:23] Final version
+  + This has 8 system pairs and 2 singletons, each assigned a roman numeral: I \to X from fastest to slowest
+  + Systems I \to IV are high velocity
+    + System III- has no red-shifted counterpart (no III+)
+      + Maybe I- and III- should be combined
+    + These define 3 axes, which all seem to be independent flows
+  + Flows IV \to VIII are intermediate velocity
+    + System VII+ (N jet) has no blue-shifted counterpart (no VII-)
+      + Maybe VII+ and VIII+ should be combined
+      + But note that the SE Jet knots are missed by the slits
+    + It is not clear if these represent independent flows, or are merely part of the same three flows that give the high velocity systems
++ Proper motions
+  + We only have PM for VIII- and II+ in S Lobe, and for I+/VII+ in N Lobe
 
 ****** Checking reality of components
 + [2020-01-09 Thu 10:43]
@@ -2350,6 +2357,16 @@ optional arguments:
   + Adjust velocity of bluest S lobe component
   + Extend range of blueish S lobe component
 + [2020-01-09 Thu 18:37] Finished checking all S and E lobe components (see above)
++ Slit I
+  + The N jet component was not right, since it was blended with systemic component and given too long an extension - now fixed
+  + And added a systemic component (inner halo?)
++ Slit S
+  + Adjust the lengths of the components - should be more compact
++ Slit G
+  + N jet red component was listed as too red - fixed
+  + Broad N end cap component was too blue - fixed
++ Slit J
+  + Added new N jet red component
       
 ***** Tables organized by feature
 + All velocity components outside of the intermediate shell, including the lobes and halo
@@ -2378,22 +2395,23 @@ optional arguments:
 #+TBLFM: $7=$-1 - -40;%+d
 
 ****** Inner Halo
-| Lobe    | Slit |     x |     y | +/- ds |   V |  W | Note       |    R |   PA |
-|---------+------+-------+-------+--------+-----+----+------------+------+------|
-| Halo N  | D    |   1.9 |    17 |      8 | -39 | 35 |            | 17.1 |   6. |
-| Halo N  | C    |   4.9 |  15.5 |    8.5 | -40 | 40 |            | 16.3 |  18. |
-| Halo NE | B    |   9.2 |    16 |      8 | -40 | 26 |            | 18.5 |  30. |
-| Halo NE | A    |  14.6 |   +23 |     17 | -40 | 25 |            | 27.2 |  32. |
-| Halo S  | E    |  -1.5 |   -19 |      4 | -39 | 20 |            | 19.1 | 185. |
-| Halo S  | F    |  -3.9 |   -13 |      3 | -38 | 25 | Inner halo | 13.6 | 197. |
-| Halo S  | H    |  -7.7 | -13.5 |    3.5 | -39 | 44 | inner halo | 15.5 | 210. |
-| Halo S  | G    |  -7.1 |   -12 |      3 | -37 | 40 | inner halo | 13.9 | 211. |
-| Halo SW | I    | -11.1 |   -12 |      2 | -39 | 22 | inner halo | 16.3 | 223. |
-| Halo SW | K    | -16.3 |    -7 |      2 | -41 | 23 | inner halo | 17.7 | 247. |
-| Halo W  | L    | -18.6 |    -7 |      2 | -41 | 23 | inner halo | 19.9 | 249. |
-| Halo NW | U    |   -27 |    11 |      7 | -40 | 35 |            | 29.2 | 292. |
-| Halo NW | K    | -16.3 |    12 |      6 | -38 | 25 | inner halo | 20.2 | 306. |
-| Halo NW | L    | -18.6 |    16 |      8 | -33 | 35 | inner halo | 24.5 | 311. |
+| Lobe        | Slit |     x |     y | +/- ds |   V |  W | Note          |    R |   PA |
+|-------------+------+-------+-------+--------+-----+----+---------------+------+------|
+| Halo N      | D    |   1.9 |    17 |      8 | -39 | 35 |               | 17.1 |   6. |
+| Halo N      | C    |   4.9 |  15.5 |    8.5 | -40 | 40 |               | 16.3 |  18. |
+| Halo NE     | B    |   9.2 |    16 |      8 | -40 | 26 |               | 18.5 |  30. |
+| Halo NE     | A    |  14.6 |   +23 |     17 | -40 | 25 |               | 27.2 |  32. |
+| Halo/N lobe | I    | -11.1 |    16 |      5 | -42 | 25 | weak shoulder | 19.5 | 325. |
+| Halo S      | E    |  -1.5 |   -19 |      4 | -39 | 20 |               | 19.1 | 185. |
+| Halo S      | F    |  -3.9 |   -13 |      3 | -38 | 25 | Inner halo    | 13.6 | 197. |
+| Halo S      | H    |  -7.7 | -13.5 |    3.5 | -39 | 44 | inner halo    | 15.5 | 210. |
+| Halo S      | G    |  -7.1 |   -12 |      3 | -37 | 40 | inner halo    | 13.9 | 211. |
+| Halo SW     | I    | -11.1 |   -12 |      2 | -39 | 22 | inner halo    | 16.3 | 223. |
+| Halo SW     | K    | -16.3 |    -7 |      2 | -41 | 23 | inner halo    | 17.7 | 247. |
+| Halo W      | L    | -18.6 |    -7 |      2 | -41 | 23 | inner halo    | 19.9 | 249. |
+| Halo NW     | U    |   -27 |    11 |      7 | -40 | 35 |               | 29.2 | 292. |
+| Halo NW     | K    | -16.3 |    12 |      6 | -38 | 25 | inner halo    | 20.2 | 306. |
+| Halo NW     | L    | -18.6 |    16 |      8 | -33 | 35 | inner halo    | 24.5 | 311. |
 
 ****** Outer Halo
 | Lobe    | Slit |     x |    y | +/- ds |   V |  W | Note          |    R |   PA |
@@ -2424,14 +2442,17 @@ optional arguments:
 
 
 ****** Northern jet
-| Lobe  | Slit |     x |    y | +/- ds |   V |  V' |  W | Note   |    R |   PA |
-|-------+------+-------+------+--------+-----+-----+----+--------+------+------|
-| N jet | G    |  -7.1 | 14.5 |    1.5 | -30 | +10 | 20 | narrow | 16.1 | 334. |
-| N jet | H    |  -7.7 |   15 |      2 | -29 | +11 | 17 | bright | 16.9 | 333. |
-|-------+------+-------+------+--------+-----+-----+----+--------+------+------|
-| N jet | I    | -11.1 |   16 |      4 | -18 | +22 | 45 | broad  | 19.5 | 325. |
-| N jet | H    |  -7.7 |   15 |      2 | -13 | +27 | 30 | broad  | 16.9 | 333. |
-| N jet | G    |  -7.1 | 14.5 |    1.5 |  -8 | +32 | 30 | broad  | 16.1 | 334. |
+| Lobe       | Slit |     x |    y | +/- ds |   V |  V' |  W | Note   |    R |   PA |
+|------------+------+-------+------+--------+-----+-----+----+--------+------+------|
+| N jet      | G    |  -7.1 | 14.5 |    1.5 | -30 | +10 | 20 | narrow | 16.1 | 334. |
+| N jet      | H    |  -7.7 |   15 |      2 | -29 | +11 | 17 | bright | 16.9 | 333. |
+| N lobe/jet | S    |    -7 |   17 |      3 | -27 | +13 | 23 | narrow | 17.3 | 338. |
+|------------+------+-------+------+--------+-----+-----+----+--------+------+------|
+| N lobe/jet | S    |  -6.5 |   16 |      3 | -18 | +22 | 35 |        | 17.3 | 338. |
+| N lobe/jet | J    | -11.9 | 15.5 |    2.5 | -18 | +22 | 35 |        | 19.5 | 322. |
+| N jet      | I    | -11.1 |   16 |      2 | -14 | +26 | 35 | broad  | 19.5 | 325. |
+| N jet      | H    |  -7.7 |   15 |      2 | -13 | +27 | 30 | broad  | 16.9 | 333. |
+| N jet      | G    |  -7.1 | 14.5 |    1.5 | -12 | +28 | 30 | broad  | 16.1 | 334. |
 #+TBLFM: $7=$-1 - -40;%+d
 
 ****** North lobe
@@ -2440,7 +2461,7 @@ optional arguments:
 | N lobe     | R    |  -4.2 |   21 |      4 | -68 | -28 | 23 |                | 21.4 | 349. |
 | N lobe     | G    |  -7.1 | 19.5 |    3.5 | -65 | -25 | 30 | narrow         | 20.8 | 340. |
 | N lobe     | H    |  -7.7 |   20 |      3 | -63 | -23 | 25 |                | 21.4 | 339. |
-| N lobe     | S    |  -8.8 |   16 |      4 | -60 | -20 | 50 | faint shoulder | 18.3 | 331. |
+| N lobe     | S    |    -7 |   17 |      2 | -60 | -20 | 50 | faint shoulder | 18.3 | 331. |
 | N lobe cap | F    |  -3.9 |   20 |      4 | -54 | -14 | 40 |                | 20.4 | 349. |
 |------------+------+-------+------+--------+-----+-----+----+----------------+------+------|
 | N lobe     | E    |  -1.5 | 11.5 |    2.5 | -53 | -13 | 50 |                | 11.6 | 353. |
@@ -2449,20 +2470,18 @@ optional arguments:
 | K-NW       | G    |  -7.1 |  7.5 |    2.5 | -50 | -10 | 22 |                | 10.3 | 317. |
 | K-NW       | H    |  -7.7 |    7 |      2 | -48 |  -8 | 20 |                | 10.4 | 312. |
 |------------+------+-------+------+--------+-----+-----+----+----------------+------+------|
-| N lobe     | G    |  -7.1 | 21.5 |    2.5 | -42 |  -2 | 50 | broad          | 22.6 | 342. |
 | N lobe?    | I    | -11.1 |  7.5 |    4.5 | -39 |  +1 | 26 |                | 13.4 | 304. |
-| N lobe     | H    |  -7.7 | 20.5 |    2.5 | -36 |  +4 | 38 | broad          | 21.9 | 339. |
-| N lobe?    | J    | -11.9 | 15.5 |    4.5 | -35 |  +5 | 33 | weak broad     | 19.5 | 322. |
+| N lobe?    | J    | -11.9 | 15.5 |    4.5 | -37 |  +3 | 33 | maybe halo     | 19.5 | 322. |
 |------------+------+-------+------+--------+-----+-----+----+----------------+------+------|
+| N lobe     | H    |  -7.7 | 20.5 |    2.5 | -35 |  +5 | 38 | broad          | 21.9 | 339. |
+| N lobe     | G    |  -7.1 | 20.5 |    2.5 | -34 |  +6 | 50 | broad          | 20.8 | 340. |
 | N lobe     | R    |  -3.3 | 14.5 |    4.5 | -32 |  +8 | 40 |                | 14.9 | 347. |
 | N lobe     | F    |  -3.9 |   12 |      4 | -32 |  +8 | 40 |                | 12.6 | 342. |
 | N lobe     | E    |  -1.5 |   14 |      5 | -31 |  +9 | 40 |                | 14.1 | 354. |
 | N lobe     | G    |  -7.1 | 10.5 |    2.5 | -30 | +10 | 15 | grad +/- 1     | 12.7 | 326. |
 | N lobe     | H    |  -7.7 |  9.5 |    2.5 | -30 | +10 | 25 |                | 12.2 | 321. |
 | N lobe     | S    |  -6.9 | 10.5 |      2 | -29 | +11 | 35 |                | 12.6 | 327. |
-| N lobe     | S    |  -8.8 |   16 |      4 | -27 | +13 | 23 | narrow         | 18.3 | 331. |
 |------------+------+-------+------+--------+-----+-----+----+----------------+------+------|
-| N lobe     | S    |  -8.8 |   16 |      4 | -18 | +22 | 35 |                | 18.3 | 331. |
 #+TBLFM: $7=$-1 - -40;%+d
 
 ****** South lobe
@@ -2484,9 +2503,9 @@ optional arguments:
 | S lobe edge | E    | -1.5 |   -12 |      3 | -47 |  -7 | 26 |            | 12.1 | 187. |
 | S lobe      | U    |  7.9 | -11.8 |    2.5 | -46 |  -6 | 10 | bright     | 14.2 | 146. |
 | S lobe      | S    |  0.9 | -12.3 |      3 | -44 |  -4 | 35 |            | 12.3 | 176. |
-| S lobe cap  | D    |  1.9 | -22.5 |    1.5 | -40 |  +0 | 30 |            | 22.6 | 175. |
+| S lobe cap  | D    |  1.9 |   -23 |      2 | -40 |  +0 | 30 |            | 22.6 | 175. |
 |-------------+------+------+-------+--------+-----+-----+----+------------+------+------|
-| S lobe      | R    |  1.5 | -18.5 |    3.5 | -38 |  +2 | 25 |            | 18.6 | 175. |
+| S lobe      | R    |  1.5 | -19.5 |      2 | -38 |  +2 | 25 | halo?      | 18.6 | 175. |
 | S lobe      | B    |  9.2 | -14.5 |    2.5 | -37 |  +3 | 23 |            | 17.2 | 148. |
 | S lobe      | U    |  7.9 | -13.2 |    4.5 | -28 | +12 | 30 | grad +/- 2 | 14.2 | 146. |
 | S lobe      | R    |  1.0 | -13.5 |    3.5 | -28 | +12 | 40 |            | 13.5 | 176. |
@@ -2505,7 +2524,7 @@ optional arguments:
 ****** W lobe
 | Lobe    | Slit |     x | y | +/- ds |   V |  V' |  W | Note          |    R |   PA |
 |---------+------+-------+---+--------+-----+-----+----+---------------+------+------|
-| W lobe  | J    | -11.9 | 6 |      5 | -57 | -17 |    | weak shoulder | 13.3 | 297. |
+| W lobe  | J    | -11.9 | 6 |      5 | -55 | -15 |    | weak shoulder | 13.3 | 297. |
 | W lobe  | U    |   -16 | 3 |      5 | -54 | -14 |    | weaker        | 16.3 | 281. |
 | W lobe  | K    | -16.3 | 4 |      4 | -54 | -14 |    | weak shoulder | 16.8 | 284. |
 |---------+------+-------+---+--------+-----+-----+----+---------------+------+------|
@@ -2539,12 +2558,12 @@ optional arguments:
 | N lobe      | R    |  -3.3 |  14.5 |    4.5 | -32 | 40 |                    | 14.9 | 347. |
 | S lobe      | R    |   1.0 | -13.5 |    3.5 | -28 | 40 |                    | 13.5 | 176. |
 | S lobe      | R    |   0.9 | -12.5 |    2.5 | -47 | 35 |                    | 12.5 | 176. |
-| S lobe      | R    |   1.5 | -18.5 |    3.5 | -38 | 25 |                    | 18.6 | 175. |
+| S lobe      | R    |   1.5 | -19.5 |      2 | -38 | 25 |                    | 19.6 | 176. |
 | S lobe cap  | R    |   2.5 |   -24 |      2 | -21 | 40 |                    | 24.1 | 174. |
 |-------------+------+-------+-------+--------+-----+----+--------------------+------+------|
-| N lobe      | S    |  -8.8 |    16 |      4 | -27 | 23 | narrow             | 18.3 | 331. |
-| N lobe      | S    |  -8.8 |    16 |      4 | -18 | 35 |                    | 18.3 | 331. |
-| N lobe      | S    |  -8.8 |    16 |      4 | -60 | 50 | faint shoulder     | 18.3 | 331. |
+| N lobe/jet  | S    |  -6.5 |    16 |      3 | -27 | 23 | narrow             | 17.3 | 338. |
+| N lobe/jet  | S    |  -6.5 |    16 |      3 | -18 | 35 |                    | 17.3 | 338. |
+| N lobe/jet  | S    |    -7 |    17 |      2 | -60 | 50 | faint shoulder     | 18.4 | 338. |
 | N lobe      | S    |  -6.9 |  10.5 |      2 | -29 | 35 |                    | 12.6 | 327. |
 | N lobe      | S    |  -6.9 |  10.5 |      2 | -52 | 30 |                    | 12.6 | 327. |
 | S lobe      | S    |   0.9 | -12.3 |      3 | -27 | 40 |                    | 12.3 | 176. |
@@ -2577,7 +2596,7 @@ optional arguments:
 | S lobe      | D    |   1.9 | -14.5 |    5.5 | -61 | 30 |                    | 14.6 | 173. |
 | S lobe      | D    |   1.9 | -14.5 |    5.5 | -48 | 15 |                    | 14.6 | 173. |
 | S lobe      | D    |   1.9 | -14.5 |    5.5 | -24 | 30 |                    | 14.6 | 173. |
-| S lobe cap  | D    |   1.9 | -22.5 |    1.5 | -40 | 30 |                    | 22.6 | 175. |
+| S lobe cap  | D    |   1.9 |   -23 |      2 | -40 | 30 |                    | 23.1 | 175. |
 | S lobe cap  | D    |   1.9 | -23.5 |    1.5 | -17 | 30 |                    | 23.6 | 175. |
 | N lobe      | E    |  -1.5 |  11.5 |    2.5 | -53 | 50 |                    | 11.6 | 353. |
 | N lobe      | E    |  -1.5 |    14 |      5 | -31 | 40 |                    | 14.1 | 354. |
@@ -2590,16 +2609,16 @@ optional arguments:
 | Halo S      | F    |  -3.9 |   -13 |      3 | -38 | 25 | Inner halo         | 13.6 | 197. |
 | Halo S      | F    |  -3.9 |   -20 |      4 | -38 | 15 | Outer halo         | 20.4 | 191. |
 | N lobe      | G    |  -7.1 |  19.5 |    3.5 | -65 | 30 | narrow             | 20.8 | 340. |
-| N lobe      | G    |  -7.1 |  21.5 |    2.5 | -42 | 50 | broad              | 22.6 | 342. |
+| N lobe      | G    |  -7.1 |  20.5 |    2.5 | -34 | 50 | broad              | 21.7 | 341. |
 | N jet       | G    |  -7.1 |  14.5 |    1.5 | -30 | 20 | narrow             | 16.1 | 334. |
-| N jet       | G    |  -7.1 |  14.5 |    1.5 |  -8 | 30 | broad              | 16.1 | 334. |
+| N jet       | G    |  -7.1 |  14.5 |    1.5 | -12 | 30 | broad              | 16.1 | 334. |
 | N lobe      | G    |  -7.1 |  10.5 |    2.5 | -30 | 15 | narrow, grad +/- 1 | 12.7 | 326. |
 | K-NW        | G    |  -7.1 |   7.5 |    2.5 | -50 | 22 |                    | 10.3 | 317. |
 | Halo S      | G    |  -7.1 |   -12 |      3 | -37 | 40 | inner halo         | 13.9 | 211. |
 | Halo S      | G    |  -7.1 |   -20 |      5 | -40 | 14 |                    | 21.2 | 200. |
 | Halo N      | H    |  -7.7 |    30 |      5 | -40 | 15 | very weak          | 31.0 | 346. |
 | N lobe      | H    |  -7.7 |    20 |      3 | -63 | 25 |                    | 21.4 | 339. |
-| N lobe      | H    |  -7.7 |  20.5 |    2.5 | -36 | 38 | broad              | 21.9 | 339. |
+| N lobe      | H    |  -7.7 |  20.5 |    2.5 | -35 | 38 | broad              | 21.9 | 339. |
 | N jet       | H    |  -7.7 |    15 |      2 | -29 | 17 | narrow bright      | 16.9 | 333. |
 | N jet       | H    |  -7.7 |    15 |      2 | -13 | 30 | broad              | 16.9 | 333. |
 | N lobe      | H    |  -7.7 |   9.5 |    2.5 | -30 | 25 |                    | 12.2 | 321. |
@@ -2607,16 +2626,18 @@ optional arguments:
 | Halo S      | H    |  -7.7 | -13.5 |    3.5 | -39 | 44 | inner halo         | 15.5 | 210. |
 | Halo S      | H    |  -7.7 |   -21 |      4 | -39 | 13 | outer halo         | 22.4 | 200. |
 | Halo NW     | I    | -11.1 |  27.5 |    4.5 | -40 | 20 |                    | 29.7 | 338. |
-| N jet       | I    | -11.1 |    16 |      4 | -18 | 45 | broad              | 19.5 | 325. |
+| N jet       | I    | -11.1 |    16 |      2 | -14 | 35 | broad              | 19.5 | 325. |
+| Halo/N lobe | I    | -11.1 |    16 |      5 | -42 | 25 | weak shoulder      | 19.5 | 325. |
 | N lobe?     | I    | -11.1 |   7.5 |    4.5 | -39 | 26 |                    | 13.4 | 304. |
 | W lobe?     | I    | -11.1 |     6 |      2 | -17 |    | weak shoulder      | 12.6 | 298. |
 | Halo SW     | I    | -11.1 |   -12 |      2 | -39 | 22 | inner halo         | 16.3 | 223. |
 | Halo SW     | I    | -11.1 |   -18 |      4 | -40 | 17 | outer halo         | 21.1 | 212. |
 | Halo knot   | J    | -11.9 |    66 |      4 | -40 | 20 |                    | 67.1 | 350. |
 | Halo NW     | J    | -11.9 |    26 |      6 | -38 | 16 |                    | 28.6 | 335. |
-| N lobe?     | J    | -11.9 |  15.5 |    4.5 | -35 | 33 | weak broad         | 19.5 | 322. |
-| W lobe      | J    | -11.9 |     6 |      5 | -35 | 26 | narrowish          | 13.3 | 297. |
-| W lobe      | J    | -11.9 |     6 |      5 | -57 |    | weak shoulder      | 13.3 | 297. |
+| N lobe?     | J    | -11.9 |  15.5 |    4.5 | -37 | 25 | maybe halo         | 19.5 | 322. |
+| N lobe/jet  | J    | -11.9 |  15.5 |    2.5 | -18 | 35 |                    | 19.5 | 322. |
+| W lobe      | J    | -11.9 |     6 |      5 | -35 | 26 | narrowish, halo?   | 13.3 | 297. |
+| W lobe      | J    | -11.9 |     6 |      5 | -55 |    | weak shoulder      | 13.3 | 297. |
 | W lobe      | J    | -11.9 |     6 |      5 | -21 |    | shoulder           | 13.3 | 297. |
 | Halo SW     | J    | -11.9 |   -16 |      6 | -40 | 14 |                    | 19.9 | 217. |
 | Halo knot   | K    | -16.3 |    61 |      7 | -41 | 20 |                    | 63.1 | 345. |
@@ -2667,15 +2688,15 @@ optional arguments:
     + V = -28, W = 40
   + y = -10 \to -15 South Lobe
     + V = -47, W = 35
-  + y = -15 \to -22 South lobe bridge
+  + y = -18 \to -22 South lobe bridge
     + V = -38, W = 25
   + y = -22 \to -26 South lobe cap
     + V = -21, W = 40
-+ Diagonal slit S
-  + y = 13 \to 21 North lobe
++ Diagonal slit S, PA = -17.6, cos = 0.953, sin = 0.302, closest = (-1.5, -0.5)
+  + y = 13 \to 19 North lobe (or N jet)
     + V = -27, W = 23, narrow
     + V = -18, W = 35
-    + V = -60, W = 50, faint shoulder
+    + V = -60, W = 50, faint shoulder but really s = 15 \to 19
   + y = 9 \to 13 North lobe
     + V = -29, W = 35
     + V = -52, W = 30
@@ -2732,7 +2753,7 @@ optional arguments:
     + Blended component at V = -61
   + y = -9 \to -20 S lobe
     + Blended component at V = -24
-  + y = -21 \to -24 S lobe cap
+  + y = -21 \to -25 S lobe cap
     + V = -40
   + y = -22 \to -25 S lobe cap
     + V = -17
@@ -2765,11 +2786,11 @@ optional arguments:
 + Vertical Slit G
   + y = +16 to +23 North lobe
     + V = -65 narrow
-  + y = +19 \to +24 North lobe
-    + V = -42 broad
+  + y = +18 \to +23 North lobe
+    + V = -34 broad
   + y = +13 \to +16 Northern jet
     + V = -30 narrow bright
-    + V = -8 broad blended shoulder
+    + V = -12 broad blended shoulder
   + y = +8 \to +13 North lobe
     + V = -30 narrow (slight gradient from -28 at y = +9 to -31 at +12)
   + y = +5 \to +10 NW knot
@@ -2786,7 +2807,7 @@ optional arguments:
   + y = +17 \to +23 North Lobe
     + V = -63
   + y = +18 \to +23 North lobe
-    + V = -36 broad
+    + V = -35 broad
   + y = +13 \to +17 Northern jet
     + V = -29 narrow bright
     + V = -13 broad shoulder
@@ -2802,7 +2823,9 @@ optional arguments:
   + y = +23 \to +32 Very Faint Halo
     + V = -40 narrow
   + y = +14 \to +18 Northern jet
-    + V = -18 broad (W = 45 km/s)
+    + V = -14  (W = 35 km/s)
+  + y = +11 \to +21 Inner halo?
+    + V = -42 
   + y = +3 \to +12 N lobe or W lobe?
     + V = -39 broad
   + y = +4 \to +8 Probably W lobe
@@ -2813,10 +2836,11 @@ optional arguments:
   + y = +20 \to +32 Halo
     + V = -38 narrow
   + y = +11 \to +20 N lobe edge?
-    + V = -35 weak and broadish
+    + V = -37 possibly halo
+    + V = -18 weaker shoulder, s = 13 \to 18 (15.5 +/- 2.5)
   + y = +1 \to +11 West lobe
     + V = -35 narrowish
-    + V = -57 weak blue shoulder
+    + V = -55 weak blue shoulder
     + V = -21 slightly stronger red shoulder
   + y = -10 \to -22 Halo
     + V = -40 narrow
