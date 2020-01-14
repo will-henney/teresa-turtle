@@ -2326,7 +2326,56 @@ optional arguments:
       + But note that the SE Jet knots are missed by the slits
     + It is not clear if these represent independent flows, or are merely part of the same three flows that give the high velocity systems
 + Proper motions
-  + We only have PM for VIII- and II+ in S Lobe, and for I+/VII+ in N Lobe
+  + We only have good PM for VIII- and II+ in S Lobe, and for I+/VII+ in N Lobe
+    + VIII- and II+ are the dominant (bright) component in their regions
+    + For I+/VII+, it is VII+ that dominates in slits G and H (2.5:1 and 2:1), whereas roughly equal in slit I
+      + The brightest knots that are well measured in PM fall between H and I
+      + If we take the 2:1 ratio, mean vel is (2 11 + 24)/(2 + 1) = +15.3
+      + If we take 1:1 ratio it is (11 + 24)/(1 + 1) = +17.5
+      + Combining the two gives 16 +/- 2
+    + We could try measuring IV+/X+/V- in W lobe too, but the PM measurements there are very noisy
+      + Brightness is dominated by X+, so +6
+    + A better one is III-/IX-/VI+ in the S/E lobes
+      + Problem with this is that the PM is measuring the knots, which fall between the slits
+      + The best slit is C, which has components at -26, -7, +13 but we don't know which of these is associated with the knots (if any)
+      + Changed to Slit B, where we can measure PM and Vrad in same place
+        + This is now definitely E lobe and is systems X-/IV-/V+, which we will assign V = -8 
+  + We can take measurements on ~oiii-{Vr,Vth}-win.fits~
+    | System    | Lobe | V_los       | PM_r          | PM_th         | V           | i            | R_proj | R              |
+    |-----------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
+    | II+       | S    | +24 +/- 1.5 | 0.53 +/- 0.26 | 0.05 +/- 0.30 | 58. +/- 21. | 60. +/- 12.  |     25 | 28.9 +/- 3.5   |
+    | VIII-     | S    | -10 +/- 1   | 0.69 +/- 0.10 | 0.04 +/- 0.12 | 67. +/- 9.  | -80. +/- 2.  |     24 | 24.4 +/- 0.1   |
+    | I+/VII+   | N    | +16 +/- 2   | 0.85 +/- 0.3  | -0.1 +/- 0.2  | 83. +/- 28. | 77. +/- 5.   |     17 | 17.4 +/- 0.4   |
+    | IV+/X+/V- | W    | [4 .. 8]    | [0.03 .. 1.0] | 0.04 +/- 1.1  | [6. .. 95.] | [17. .. 87.] |     18 | [18.0 .. 61.6] |
+    | X-/IV-/V+ | E    | -8 +/- 4    | 0.20 +/- 0.15 | 0.05 +/- 0.30 | 21. +/- 13. | -63. +/- 21. |     13 | 14.6 +/- 2.7   |
+    #+TBLFM: $6=sqrt((1.2 $3)**2 + (95 $4)**2);f0::$7=arctan(95 $4 / 1.2 $3) ;f0::$9=$-1/sin(abs($7));f1
+  + Remember, PM is in pix/decade = 10 mas/yr = 95 km/s
+  + The final two columns are total velocity ~V~ and inclination ~i~, both calculated with correction factor 1.2 for the LOS component
+    + Maybe should be lower if total velocity is high-ish, since should be of order 1 + 1/M^2
+    + Inclination is from LOS, but negative values should be modulo 180
+  + The best-measured flow is I+/VII+ \to VIII-[/I-?]
+    + V \approx 70 \to 80 km/s
+    + |i| \approx 70 \to 80\deg
+    + R = 17 \to 24
+    + PA \approx -20\deg of red side
+    + Approximately aligned with axis A of peanut shell
+  + Next best measured is II+ \to [II-]
+    + We have no proper motions for II-, but close antisymmetry allows a confident association from position and LOS velocity alone
+    + V \approx 60 km/s
+    + |i| \approx 60\deg
+    + R \approx 30
+    + PA \approx 170\deg red side
+    + Although II is close to I in projection (20\deg), it is really at 45\deg in 3D
+  + Then there is the E \to W flow, which is much less well constrained: IV+/X+/V- \to 
+    + PM in W lobe is useless (5 \to 95 km/s), whereas in E lobe we have 20 +/- 15 km/s 
+      + Although this is probably dominated by the knots, and in the table above we originally assigned it to III-/IX-/VI+, which is in the S lobe
+      + But now we have remeasured PM in a region crossed by Slit B in the E lobe
+      + So we can (a bit riskily) assign these properties to entire E-W flow
+    + V \approx 10 \to 30 km/s
+    + |i| \approx 40 \to 80\deg
+    + R = 15 \to 20 (up to 24 at end caps)
+    + PA \approx -70\deg red side
+    + So slower than the other flows
 
 ****** Checking reality of components
 + [2020-01-09 Thu 10:43]
