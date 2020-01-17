@@ -1,2 +1,5 @@
 data/imslit/*.fits
 __pycache__
+doc/auto
+*.aux
+*.blg
