@@ -1,0 +1,18 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+# text(251.1276226,23.8018876) text={A}
+# text(251.1260050,23.8019278) textangle=1.3829699e-05 text={B}
+# text(251.1246933,23.8021678) textangle=1.3829699e-05 text={C}
+# text(251.1237317,23.8022478) textangle=1.3829699e-05 text={D}
+# text(251.1227262,23.8024478) textangle=1.3829699e-05 text={E}
+# text(251.1220704,23.8024478) textangle=1.3829699e-05 text={F}
+# text(251.1211090,23.8025046) textangle=1.3829699e-05 text={G}
+# text(251.1208117,23.8027674) textangle=1.3829699e-05 text={H}
+# text(251.1196396,23.8029042) textangle=1.3829699e-05 text={J}
+# text(251.1183104,23.8029675) textangle=1.3829699e-05 text={K}
+# text(251.1174363,23.8031675) textangle=1.3829699e-05 text={L}
+# text(251.1199547,23.8026310) textangle=1.3829699e-05 text={I}
+# text(251.1132392,23.8038872) textangle=1.3829699e-05 text={U}
+# text(251.1216121,23.8059611) textangle=1.3829699e-05 text={R}
+# text(251.1203529,23.8057308) textangle=1.3829699e-05 text={S}

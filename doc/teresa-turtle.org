@@ -1636,6 +1636,9 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 | 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |  20.53 |
 | 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |  20.64 |
 ** Write PV spectra with velocities and slit offsets
+:PROPERTIES:
+:ID:       2261B771-A00A-408E-9569-9E68079034EB
+:END:
 + This is based on [[id:510C5A10-37E2-4C7B-9BB7-D63D01022A2D][Write PV spectra with WCS in arcsec relative to star]] from the Owl project
 + But it is more complicated since we have different PAs for the slits
   1. Find separation from star of all points
@@ -3211,6 +3214,108 @@ Second the red-shifted complexes
     
 + Made an image of these
   + [[file:~/Dropbox/Teresa-Turtle/figs/Screenshot-turtle-nii-knot-complexes.png]]
+
+***** DONE Correct the velocity of the slit spm125
+CLOSED: [2020-01-30 Thu 20:06]
++ This is clearly off by about 20 km/s, which you can see on the isovelocity images
++ Unfortunately, this involves going back and working out how I did the velocity calibration
++ The offending slit is ~009-spm125_bcrx-ha~
+  + It looks obviously wrong in the PV diagrams
+  + The adjacent (in time) slits are ~008-spm122_bcrx-ha~, which looks fine, and ~010-spm130_bcrx-ha~, which is not used for some reason
++ The spectra are written in [[id:2261B771-A00A-408E-9569-9E68079034EB][Write PV spectra with velocities and slit offsets]] but it is better to just fix the one file by hand
++ This seems to have worked
+#+begin_src python :results output
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  fn = "../data/PVoffset/009-spm125_bcrx-nii-PA359-sep-009.fits"
+  hdu, = fits.open(fn)
+  w = WCS(hdu)
+  # Original value was about -230.0
+  w.wcs.crval[0] = -250.0
+  hdu.header.update(w.to_header())
+  hdu.writeto(fn, overwrite=True)
+#+end_src
+
+#+RESULTS:
+
++ But it turns out that we need to do the ~pvextract~ versions because they are the ones that are used to construct the isovelocity images
+#+begin_src python :results output
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  fn = "../data/pvextract/009-spm125_bcrx-nii.fits"
+  hdu, = fits.open(fn)
+  w = WCS(hdu, key="A")
+
+  # Original value was about -230.0
+  w.wcs.crval[0] = 6.5784641404524e-07*(1.0 - 20.0/3e5)
+  hdu.header.update(w.to_header())
+  hdu.writeto(fn, overwrite=True)
+#+end_src
+
+#+RESULTS:
+
+
+***** DONE Redo the isovel images to account for the corrected slit
+CLOSED: [2020-01-31 Fri 21:01]
+Just a matter of re-running [[file:~/Dropbox/Teresa-Turtle/scripts/make-isovel-maps-20.sh]]
+
+***** TODO Make better figures of these images
++ Based on [[id:9B0BB7D0-1CFB-4129-A918-B4A7CB085941][Make figures of maps]] from Raman project
+
+#+begin_src python :tangle ../scripts/turtle-rgb-map-nii-knots.py
+  import numpy as np
+  import matplotlib.pyplot as plt
+  from astropy.visualization import make_lupton_rgb
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  DATADIR = "data/maps20"
+  HDU = "SCALED"
+  LINEID = "nii"
+  STRETCH = 0.4
+  Q = 5
+
+  def load_and_scale_channel(vel, v1, v2, ihdu=HDU):
+      """Load channel given central velocity wrt systemic
+
+      Then scale so that [0 -> 1] maps to [v1 -> v2]
+      """
+      velstring = f"{int(-40.0 + vel - 10.0):+04d}{int(-40.0 + vel + 10.0):+04d}"
+      hdu = fits.open(f"{DATADIR}/turtle-slits-{LINEID}{velstring}.fits")[ihdu]
+      return (hdu.data - v1) / (v2 - v1), WCS(hdu)
+
+
+  image_r, w = load_and_scale_channel(-10, 0.0, 0.03)
+  image_g, _ = load_and_scale_channel(-30, 0.0, 0.06)
+  image_b, _ = load_and_scale_channel(-50, 0.0, 0.08)
+  image = make_lupton_rgb(image_r, image_g, image_b, stretch=STRETCH, Q=Q)
+
+  figfile = "turtle-rgb-map-nii-knots.png"
+
+  fig, ax = plt.subplots(subplot_kw=dict(projection=w))
+  ax.imshow(image)
+
+  ax.set(
+      xlim=[190, 320],
+      ylim=[210, 300],
+      xlabel="RA (J2000)",
+      ylabel="Dec (J2000)",
+  )
+  fig.savefig(figfile, dpi=200)
+  print(figfile, end="")
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :dir .. :results file
+python scripts/turtle-rgb-map-nii-knots.py
+#+end_src
+
+#+RESULTS:
+[[file:../turtle-rgb-map-nii-knots.png]]
+
 
 **** Do Equivalent RGB images of oiii
 First the blue-shifted complexes
