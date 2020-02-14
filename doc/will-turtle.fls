@@ -507,9 +507,9 @@ INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/newtx/ntxsy.vf
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
-INPUT ../figs/Screenshot-turtle-nii-knot-complexes.png
-INPUT ../figs/Screenshot-turtle-nii-knot-complexes.png
-INPUT ../figs/Screenshot-turtle-nii-knot-complexes.png
+INPUT ../figs/turtle-nii-knot-complexes.pdf
+INPUT ../figs/turtle-nii-knot-complexes.pdf
+INPUT ../figs/turtle-nii-knot-complexes.pdf
 INPUT ../figs/turtle-lobes-simplified.pdf
 INPUT ../figs/turtle-lobes-simplified.pdf
 INPUT ../figs/turtle-lobes-simplified.pdf
@@ -517,6 +517,9 @@ INPUT will-turtle.bbl
 INPUT will-turtle.bbl
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/ntx-Regular-tlf-t1.tfm
 INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/ntx-Italic-tlf-t1.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/vf/public/newtx/ntxsy7.vf
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txsys.tfm
+INPUT /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/newtx/txex-bar.tfm
 INPUT will-turtle.aux
 INPUT ./will-turtle.out
 INPUT ./will-turtle.out

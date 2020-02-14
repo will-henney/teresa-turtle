@@ -58,7 +58,7 @@ ax1.contour(
     hdu_hst.data,
     levels=[0.05, 0.1, 0.2, 0.5, 1.0, 2.0],
     linewidths=[0.3, 0.5, 0.7, 1.0, 1.3, 1.6],
-    colors="white",
+    colors="pink",
     transform=ax1.get_transform(whst),
 )
 ax1.set(
@@ -73,7 +73,7 @@ ax2.contour(
     hdu_hst.data,
     levels=[0.05, 0.1, 0.2, 0.5, 1.0, 2.0],
     linewidths=[0.3, 0.5, 0.7, 1.0, 1.3, 1.6],
-    colors="white",
+    colors="cyan",
     transform=ax2.get_transform(whst),
 )
 lon, lat = ax2.coords
