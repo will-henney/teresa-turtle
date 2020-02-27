@@ -1,17 +1,21 @@
 # Fdb version 3
-["bibtex will-turtle"] 1581620135 "will-turtle.aux" "will-turtle.bbl" "will-turtle" 1581620285
+["bibtex will-turtle"] 1582770581 "will-turtle.aux" "will-turtle.bbl" "will-turtle" 1582770583
   "/usr/local/texlive/2019/texmf-dist/bibtex/bst/mnras/mnras.bst" 1434496526 43377 4db2f843e4986670b152898ac35c448e ""
   "turtle-refs-will.bib" 1579278170 3282 920a1758d72e9205f05c1270d8500ba4 ""
-  "will-turtle.aux" 1581620285 6569 2c0b67ecda3346f6d80caa387b7432b5 "pdflatex"
+  "will-turtle.aux" 1582770583 11662 15a5c146a97a026b1c1606a11652e32b "pdflatex"
   (generated)
   "will-turtle.bbl"
   "will-turtle.blg"
-["pdflatex"] 1581620284 "will-turtle.tex" "will-turtle.pdf" "will-turtle" 1581620285
+["pdflatex"] 1582770581 "will-turtle.tex" "will-turtle.pdf" "will-turtle" 1582770583
   "../figs/nii-propermotions.pdf" 1579280211 197162 f11fc48e3300f7f45172fbf5d780ae1e ""
   "../figs/oiii-propermotions.pdf" 1579280253 505322 17dcaac12d16f326d2a829996eef4bed ""
+  "../figs/turtle-knot-complex-map.pdf" 1582737291 1566659 58d725e8689061f389fb8cade08b3eb2 ""
+  "../figs/turtle-knot-complexes-velocity-axes-annotated.pdf" 1582769344 74383 ca54773c762844953fd0ca928c7a47da ""
   "../figs/turtle-lobes-simplified.pdf" 1578931123 540394 aff40c83c97550fd78c5de29e3e4adc9 ""
-  "../figs/turtle-nii-knot-complexes.pdf" 1581620259 369419 ac47089d99371714ab989248cefa1863 ""
-  "/dev/null" 1581620282 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "../figs/turtle-nii-knot-complexes.pdf" 1581647179 369419 ac47089d99371714ab989248cefa1863 ""
+  "../figs/turtle-peanut-map.pdf" 1582313603 2043027 dbbb24dd62bdd5a92fd9854aa8e99307 ""
+  "../figs/turtle-shell-velocity-axes-annotated.pdf" 1582502453 47995 f369a4daedb1cbf919023427a3ac91d4 ""
+  "/dev/null" 1582770580 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1439157308 2880 847ca622ad468c3dafba6a3f9d89a636 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1529098226 3124 3813fd4c981d99822890a2861b0d274c ""
@@ -163,12 +167,12 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "will-turtle.aux" 1581620285 6569 2c0b67ecda3346f6d80caa387b7432b5 "pdflatex"
-  "will-turtle.bbl" 1581620135 1605 b47e7e6daae6cf0285bab427fd32fde2 "bibtex will-turtle"
-  "will-turtle.out" 1581620285 749 7cc70fd36510654820501cf9bb352366 "pdflatex"
-  "will-turtle.tex" 1581620132 6999 4f932c08f2f40075256bfb2e4a8d537b ""
+  "will-turtle.aux" 1582770583 11662 15a5c146a97a026b1c1606a11652e32b "pdflatex"
+  "will-turtle.bbl" 1582770581 1605 b47e7e6daae6cf0285bab427fd32fde2 "bibtex will-turtle"
+  "will-turtle.out" 1582770583 706 1e89d4e75ec122fe1ef8883c01c25c8d "pdflatex"
+  "will-turtle.tex" 1582770577 14377 f4c4d2868bf61d45dba788b3be30c62a ""
   (generated)
-  "will-turtle.aux"
-  "will-turtle.log"
   "will-turtle.pdf"
   "will-turtle.out"
+  "will-turtle.aux"
+  "will-turtle.log"
