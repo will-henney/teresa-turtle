@@ -4,3 +4,4 @@ doc/auto
 *.aux
 *.blg
 /doc/will-turtle.synctex.gz
+.DS_Store

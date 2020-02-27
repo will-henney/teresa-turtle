@@ -85,6 +85,44 @@
   \label{fig:proper-motions-nii}
 \end{figure}
 
+\begin{figure*}
+  \centering
+  \includegraphics[width=\linewidth]{turtle-peanut-map}
+  \caption{
+    Velocity features in the high-ionization shells,
+    which have been identified in the \oiii{} slits.
+    Left panel shows blue-shifted features,
+    while right panel shows red-shifted features,
+    each labelled with their line-of-sight velocity
+    with respect to the nominal systemic velocity of \SI{40}{km.s^{-1}}.
+    Solid lines show features in the inner shells,
+    dashed lines show features in the intermediate shell,
+    and dot-dashed lines show miscellaneous features between the two shells.
+    The line width is a qualitative indicator of the brightness of each feature.
+  }
+  \label{fig:shell-velocity-components}
+\end{figure*}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{turtle-shell-velocity-axes-annotated}
+  \caption{
+    Radial velocity versus position
+    for the shell features shown in Fig.~\ref{fig:shell-velocity-components}.
+    Results are shown along two axes:
+    Axis~A (upper panel) is the apparent major projected axis of the inner shells,
+    while Axis~B (lower panel) is perpendicular to this.
+    Large blue circles show the inner shell,
+    small red circles show the intermediate shell,
+    and green triangles show miscellaneous features between the two shells.
+    Darker colors indicate features that are closer to each respective axis.
+    Colored lines are merely to guide the eye,
+    and show possible interpretations of the shell kinematics along the two axes.
+  }
+  \label{fig:shell-velocity-axes}
+\end{figure}
+
+
 \section{Introduction}
 \label{sec:introduction}
 
@@ -127,15 +165,15 @@ Note that proper motions are unavailable for the end cap of the N lobe since the
 The \nii{} images (Fig.~\ref{fig:proper-motions-nii}) show a similar expansion pattern for the features that are visible in both lines.
 Remarkably low plane-of-sky velocities of \(\le \SI{15}{km.s^{-1}}\) are seen for the \nii{}-bright knot complexes immediately north and west of the central star. 
 
-
-\section{Kinematic components}
+\section{Kinematic components from slit spectra}
 \label{sec:kinematic-components}
 
 In order to investigate the kinematics of the nebula in detail,
-we have measured the velocities of distinct emission components in each slit spectra
+we have measured the velocities of distinct emission components in each slit spectrum
 and organized them into broad systems based on their location, morphology and degree of ionization.
 
 \subsection{High-ionization shells}
+\label{sec:high-ioniz-shells}
 
 These systems represent the majority of the \oiii{} emission in the core of the nebula
 and show a nested elliptical shell morphology.
@@ -150,42 +188,6 @@ and is indicated by thinner dashed ellipses.
 Additional miscellaneous emission features located in between these shells are indicated by dot-dashed ellipses.
 Further features that seem to be associated with the low-ionization knots discussed below in \S~\ref{sec:knot-complexes} are omitted from the figure.
 
-\begin{figure*}
-  \centering
-  \includegraphics[width=\linewidth]{turtle-peanut-map}
-  \caption{
-    Velocity features in the high-ionization shells,
-    which have been identified in the \oiii{} slits.
-    Left panel shows blue-shifted features,
-    while right panel shows red-shifted features,
-    each labelled with their line-of-sight velocity
-    with respect to the nominal systemic velocity of \SI{40}{km.s^{-1}}.
-    Solid lines show features in the inner shells,
-    dashed lines show features in the intermediate shell,
-    and dot-dashed lines show miscellaneous features between the two shells.
-    The line width is a qualitative indicator of the brightness of each feature.
-  }
-  \label{fig:shell-velocity-components}
-\end{figure*}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{turtle-shell-velocity-axes-annotated}
-  \caption{
-    Radial velocity versus position
-    for the shell features shown in Fig.~\ref{fig:shell-velocity-components}.
-    Results are shown along two axes:
-    Axis~A (upper panel) is the apparent major projected axis of the inner shells,
-    while Axis~B (lower panel) is perpendicular to this.
-    Large blue circles show the inner shell,
-    small red circles show the intermediate shell,
-    and green triangles show miscellaneous features between the two shells.
-    Darker colors indicate features that are closer to each respective axis.
-    Colored lines are merely to guide the eye,
-    and show possible interpretations of the shell kinematics along the two axes.
-  }
-  \label{fig:shell-velocity-axes}
-\end{figure}
 
 Although the inner shell is irregular in shape,
 it shows an apparent elongation along \(\text{PA} \approx \ang{160}\).
@@ -237,10 +239,8 @@ It is represented by dot-dashed ellipses in Figure~\ref{fig:shell-velocity-compo
 They do not show any marked kinematic pattern,
 but are broadly compatible with the velocities of nearby portions of the intermediate shell. 
 
-\subsection{Low-ionization Knot complexes}
+\subsection{Low-ionization knot complexes}
 \label{sec:knot-complexes}
-
-Although the 
 
 \begin{figure*}
   \centering
@@ -257,26 +257,6 @@ Although the
   \label{fig:knot-complex-map}
 \end{figure*}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{turtle-knot-complexes-velocity-axes-annotated}
-  \caption{
-    Radial velocity versus position
-    for the low-ionization features features shown in Fig.~\ref{fig:knot-complex-map}.
-    Results are shown projected along along the same two axes,
-    Axis~A (upper panel) and Axis~B (lower panel),
-    as in Fig.~\ref{fig:shell-velocity-axes},
-    but this time each feature is shown projected along both axes.
-    The features are divided into 6 different classes,
-    indicated by symbol type and color.
-    Symbol size is proportional to feature brightness (log scale)
-    and symbol shade indicates position along the other axis (darker is more positive).
-    Continuous lines show the same high ionization shells
-    as in Fig.~\ref{fig:shell-velocity-axes}.
-  }
-  \label{fig:knot-complex-velocity-axes}
-\end{figure}
-
 \begin{figure*}
   \centering
   \includegraphics[width=\linewidth]{turtle-nii-knot-complexes}
@@ -288,11 +268,94 @@ Although the
     Each color image is constructed from 3 channels, each of width \SI{20}{km.s^{-1}},
     as indicated on the figure.
     All velocities are with respect to the nominal heliocentric systemic velocity of \SI{-40}{km.s^{-1}}.
+    The low-ionization emission components from Fig.~\ref{fig:knot-complex-map}
+    have been classified into 5 knot complexes,
+    which are shown as colored outlines. 
   }
   \label{fig:knot-complexes}
 \end{figure*}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{turtle-knot-complexes-velocity-axes-annotated}
+  \caption{
+    Radial velocity versus position
+    for the low-ionization features features shown in Fig.~\ref{fig:knot-complex-map}.
+    Results are shown projected along along the same two axes,
+    Axis~A (upper panel) and Axis~B (lower panel),
+    as in Fig.~\ref{fig:shell-velocity-axes},
+    but this time each feature is shown projected along both axes.
+    The features are divided into different knot complexes,
+    as shown in Fig.~\ref{fig:knot-complexes},
+    which are indicated by symbol type and color.
+    Symbol size is proportional to feature brightness (log scale)
+    and symbol shade indicates position along the other axis (darker is more positive).
+    Continuous lines show the same high ionization shells
+    as in Fig.~\ref{fig:shell-velocity-axes}.
+  }
+  \label{fig:knot-complex-velocity-axes}
+\end{figure}
 
+The \nii{} emission from the nebula is dominated by small-scale knots,
+as can be appreciated on the \textit{HST} images (Figure~XXX).
+These knots have typical sizes \(< 1''\) and so are not spatially resolved
+in our ground-based spectroscopy.
+A small number of isolated knots are individually detected in our spectra,
+but in general we detect only the combined emission of extended knot complexes.
+Figure~\ref{fig:knot-complex-map} shows all the \nii{} emission components
+identified from our spectra, but excluding those associated with the high-ionization
+shells discussed above.
+As previously, the components are divided into negative (left panel)
+and positive (right panel) velocities.  
+In Figure~\ref{fig:knot-complex-velocity-axes}
+we classify the emission components into five knot complexes,
+plus three individual knots, whose plane-of-sky distribution
+and typical line-of-sight velocity are shown
+superimposed on the \textit{HST} \nii{} image (contours)
+and isovelocity channel maps reconstructed from our slit spectra (color images).
+
+Figure~\ref{fig:knot-complexes} shows the velocity of each \nii{} component
+as a function of position along the two axes that characterize the high-ionization shells:
+axis~A at \(\text{PA} = \ang{160}\)
+and axis~B at \(\text{PA} = \ang{70}\) (see \S~\ref{sec:high-ioniz-shells}).
+The kinematics of the shells themselves are shown by faint continuous lines for comparison.
+Note that the extent of the velocity axis in this figure
+is twice as large as in Figure~\ref{fig:shell-velocity-axes}. 
+
+The clearest axial alignment is seen for the SW Red complex,
+which is very tightly clustered around the negative arm of axis~B.
+The same is seen to a lesser extent for the NE Blue complex
+around the positive arm of axis~B,
+but the distribution around the axis is broader in this case.
+The remaining complexes have no clear alignment with either axis,
+except that the SE Blue complex is marginally more elongated
+along the positive arm of axis~A.
+
+The upper panel of Figure~\ref{fig:knot-complex-velocity-axes} indicates
+that there is no clear velocity gradient along axis~A,
+but the low-ionization knots have significantly faster radial velocities
+than the high-ionization shells, by roughly a factor of two.
+In addition, there is an asymmetry between the blue and red components:
+the blue-shifted knot complexes tend to have a larger radial velocity magnitude,
+but to have fainter \nii{} emission, as compared with the red-shifted knot complexes.
+
+From the lower panel of Figure~\ref{fig:knot-complex-velocity-axes},
+it is apparent that there is a significant gradient of \(\approx \SI{20}{km.s^{-1}}\)
+along axis~B, which is seen in both blue-shifted and red-shifted components.
+The sense of this gradient is the same as that seen in the high-ionization shells
+along this axis.
+It is mainly due to velocity differences
+\emph{between} complexes rather than within them,
+although both the SW Red and NE Blue complexes
+show significant internal gradients of \(\approx \SI{10}{km.s^{-1}}\) in the same direction.
+
+There is an approximate kinematic and spatial symmetry
+between pairs of opposite knot complexes:
+SW Red with NE Blue complex, and N Red with SE Blue.
+It is possible that the west and east sides of the N Red complex
+are actually two separate complexes,
+in which case the east side would pair with the SW Faint Blue complex,
+which would further reinforce this symmetry.
 
 \subsection{Outer lobes}
 \label{sec:outer-lobes}
@@ -310,11 +373,44 @@ Although the
 \section{Discussion}
 \label{sec:discussion}
 
+\subsection{Velocities and positions in three dimensions}
+\label{sec:veloc-posit-three}
+
+Combine radial velocities with proper motions.
+
+\begin{figure}
+  \includegraphics[width=\linewidth]
+  {../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-011}
+  \caption{Place-holder figure for three-dimensional reconstruction}
+  \label{fig:axis-B-3d}
+\end{figure}
+
 \subsection{Flow axes}
 \label{sec:flow-axes}
 
+\begin{figure}
+  \includegraphics[width=\linewidth]
+  {../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-010}
+  \caption{Place-holder figure for Axis A and B}
+  \label{fig:flow-axes-AB}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]
+  {../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-014}
+  \caption{Place-holder figure for all four axes.}
+  \label{fig:flow-axes-ABCD}
+\end{figure}
+
 \subsection{Dynamical ages}
 \label{sec:dynamical-ages}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]
+  {../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-013}
+  \caption{Place-holder figure for dynamical ages}
+  \label{fig:ages}
+\end{figure}
 
 \bibliography{turtle-refs-will}
 
