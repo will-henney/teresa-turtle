@@ -1,0 +1,18 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+line(16:44:28.7177,+23:47:47.136,16:44:28.9606,+23:49:12.062) # line=0 0 color=red text={I}
+line(16:44:28.6569,+23:47:47.386,16:44:28.8906,+23:49:12.422) # line=0 0 color=red text={J}
+line(16:44:29.0030,+23:47:46.969,16:44:29.2229,+23:49:13.502) # line=0 0 color=red text={G}
+line(16:44:28.9605,+23:47:47.219,16:44:29.1705,+23:49:12.782) # line=0 0 color=red text={H}
+line(16:44:29.2461,+23:47:48.622,16:44:29.4503,+23:49:09.062) # line=0 0 color=red text={F}
+line(16:44:28.3093,+23:47:40.733,16:44:28.5496,+23:49:11.342) # line=0 0 color=red text={K}
+line(16:44:28.1939,+23:47:28.781,16:44:28.2173,+23:49:11.941) # line=0 0 color=red text={L}
+line(16:44:31.2261,+23:47:36.401,16:44:24.2212,+23:48:41.936) # line=0 0 color=red text={U}
+line(16:44:30.1651,+23:47:34.972,16:44:30.4297,+23:49:11.942) # line=0 0 color=red text={B}
+line(16:44:29.8004,+23:47:17.728,16:44:30.0974,+23:49:09.782) # line=0 0 color=red text={C}
+line(16:44:29.5989,+23:47:26.022,16:44:29.8875,+23:49:09.062) # line=0 0 color=red text={D}
+line(16:44:29.3471,+23:47:20.665,16:44:29.6427,+23:49:11.462) # line=0 0 color=red text={E}
+line(16:44:30.4749,+23:47:02.232,16:44:30.8145,+23:49:11.102) # line=0 0 color=red text={A}
+line(16:44:29.8951,+23:47:21.730,16:44:28.6108,+23:49:12.662) # line=0 0 color=orange text={R}
+line(16:44:30.3168,+23:47:24.814,16:44:27.6051,+23:49:12.901) # line=0 0 color=orange text={S}

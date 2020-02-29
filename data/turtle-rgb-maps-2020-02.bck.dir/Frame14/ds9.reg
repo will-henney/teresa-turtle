@@ -1,0 +1,9 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+# text(251.1289625,23.8065181) textangle=1.3829699e-05 color=yellow text={Positive Velocities}
+ellipse(251.1239546,23.7932158,3.183",1.447",1.3829699e-05) # text={+15}
+# text(251.1277283,23.8056165) textangle=1.3829699e-05 color=#88f text={+10}
+# text(251.1303791,23.8056165) textangle=1.3829699e-05 color=#f44 text={+50}
+# text(251.1289879,23.8056165) textangle=1.3829699e-05 text={+30}
+ellipse(251.1206167,23.8044283,2.888",1.745",62.102743) # text={+20}
