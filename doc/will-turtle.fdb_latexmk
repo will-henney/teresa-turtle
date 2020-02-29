@@ -1,17 +1,17 @@
 # Fdb version 3
-["bibtex will-turtle"] 1582825547 "will-turtle.aux" "will-turtle.bbl" "will-turtle" 1582825549
+["bibtex will-turtle"] 1582942199 "will-turtle.aux" "will-turtle.bbl" "will-turtle" 1582942202
   "/usr/local/texlive/2019/texmf-dist/bibtex/bst/mnras/mnras.bst" 1434496526 43377 4db2f843e4986670b152898ac35c448e ""
   "turtle-refs-will.bib" 1579278170 3282 920a1758d72e9205f05c1270d8500ba4 ""
-  "will-turtle.aux" 1582825549 13454 161e393afbbba2467dbad2087891bf76 "pdflatex"
+  "will-turtle.aux" 1582942201 14068 63f8abb87a367a940ee759d2581d9173 "pdflatex"
   (generated)
   "will-turtle.bbl"
   "will-turtle.blg"
-["pdflatex"] 1582825547 "will-turtle.tex" "will-turtle.pdf" "will-turtle" 1582825549
+["pdflatex"] 1582942199 "will-turtle.tex" "will-turtle.pdf" "will-turtle" 1582942202
   "../figs/nii-propermotions.pdf" 1579280211 197162 f11fc48e3300f7f45172fbf5d780ae1e ""
   "../figs/oiii-propermotions.pdf" 1579280253 505322 17dcaac12d16f326d2a829996eef4bed ""
   "../figs/turtle-knot-complex-map.pdf" 1582737291 1566659 58d725e8689061f389fb8cade08b3eb2 ""
   "../figs/turtle-knot-complexes-velocity-axes-annotated.pdf" 1582769344 74383 ca54773c762844953fd0ca928c7a47da ""
-  "../figs/turtle-lobes-simplified.pdf" 1578931123 540394 aff40c83c97550fd78c5de29e3e4adc9 ""
+  "../figs/turtle-lobes-simplified.pdf" 1582942095 2012559 587b927a1c1e7315e62aa821bd599ab3 ""
   "../figs/turtle-nii-knot-complexes.pdf" 1582816616 370767 7922518ea776ed39fcf06cf71c73383f ""
   "../figs/turtle-peanut-map.pdf" 1582313603 2043027 dbbb24dd62bdd5a92fd9854aa8e99307 ""
   "../figs/turtle-shell-velocity-axes-annotated.pdf" 1582502453 47995 f369a4daedb1cbf919023427a3ac91d4 ""
@@ -19,7 +19,7 @@
   "../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-011.jpeg" 1582825037 715720 7a12d02f67c247265979ce8c9ddc84c1 ""
   "../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-013.jpeg" 1582825037 292479 0aaef9332d08118eb8a8c6822210db32 ""
   "../talk/turtle-talk-morelia-2020-02-export/turtle-talk-morelia-2020-02-export-014.jpeg" 1582825037 394808 0f9c20352f080281d69c4caa711740fa ""
-  "/dev/null" 1582825549 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1582942199 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc" 1439157308 2880 847ca622ad468c3dafba6a3f9d89a636 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1422827479 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1529098226 3124 3813fd4c981d99822890a2861b0d274c ""
@@ -186,12 +186,12 @@
   "/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1557342064 3277517 23507ed665b4dd9046f0f2a94bbef2be ""
   "/usr/local/texlive/2019/texmf-var/web2c/pdftex/pdflatex.fmt" 1557342086 4259635 562fc36ec496993777a6c428d8bfb811 ""
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
-  "will-turtle.aux" 1582825549 13454 161e393afbbba2467dbad2087891bf76 "pdflatex"
-  "will-turtle.bbl" 1582825547 1605 b47e7e6daae6cf0285bab427fd32fde2 "bibtex will-turtle"
-  "will-turtle.out" 1582825549 818 da59124360c72ed90be3b8357727fc3e "pdflatex"
-  "will-turtle.tex" 1582825543 19126 f882e8a3393b626aaeff7c359b09c6a0 ""
+  "will-turtle.aux" 1582942201 14068 63f8abb87a367a940ee759d2581d9173 "pdflatex"
+  "will-turtle.bbl" 1582942199 1605 b47e7e6daae6cf0285bab427fd32fde2 "bibtex will-turtle"
+  "will-turtle.out" 1582942201 818 da59124360c72ed90be3b8357727fc3e "pdflatex"
+  "will-turtle.tex" 1582942195 19460 fedd7b711cf9b56b33369e54333462f6 ""
   (generated)
   "will-turtle.log"
-  "will-turtle.pdf"
   "will-turtle.aux"
+  "will-turtle.pdf"
   "will-turtle.out"
