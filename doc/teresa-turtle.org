@@ -2131,14 +2131,54 @@ Central velocities in [N II] - 20 km/s channels
 
 ** Discrete features in the spectra
 
+*** Strange case of NW knot
+:PROPERTIES:
+:ID:       848F1AAD-9237-4C53-A96A-0D7831C8C018
+:END:
++ This is red-shifted in [N II]: 
+  - V = +17 in slit G
+  - V = +19 in slit H
++ But no red-shifted [O III] components
+  + *But yes there are!!!* although for some reason I never measured them
+    - V = +13 in slit G
+    - V = +10 in slit H
+  + No, the reason is that the lobe flows deliberately omit features associated with the knot complexes, /except/ for the N knot
++ However, the N knot component looks like it might be the same as lobe system IV+ in slits I and J
 *** Summary of flow axes between all features
 + There are at least 4 axes: A, B, C, D
   + Axis A
-    + PA red \approx -30
-    + PA blue \approx 150
+    + PA red \approx -30 - -20
+    + PA blue \approx 150 - 160
+    + Low inclination to plane of sky  
     + Includes:
       1. Fast peanut shell
-      2. Lobe flow I+ \to VIII-
+      2. Lobe flow I+, VII+, VIII+ \to I-, VIII-
+         - 
+      3. Possibly: knot complexes SE Blue and N(W) Red
+         - Alternatively, they could be axis D
+      4. Possibly: The NW Knot, but see [[id:848F1AAD-9237-4C53-A96A-0D7831C8C018][above]]
+         - Could also be axis D
+      5. N knot (which is same as system I+)
+  + Axis B
+    + PA red \approx 70
+    + PA blue \approx 250
+    + Inclined by \approx 45 deg
+    + Includes
+      1. Inner shell B
+      2. Intermediate shell
+      3. Knot complexes: SW Red and NE Blue
+  + Axis C
+    + PA red = 175
+    + PA blue = 355
+    + Includes
+      1. Lobe system II
+  + Axis D
+    + Includes:
+      1. The NW Knot (probably)
+      2. Knot complexes SE Blue and N(W) Red (probably)
+      3. Lobe system IV
+      4. 
+
   + Peanut shell has A and B
     + 
   + Knot complexes
@@ -2150,7 +2190,7 @@ Central velocities in [N II] - 20 km/s channels
 *** Make high-pass filtered maps
 + We already have the unsharp masked image from Beto, but that has some inappropriate labels on it
 + So I could make new ones from the HST images
-+ This is based on a progream in the Luis Angel bow shock project
++ This is based on a program in the Luis Angel bow shock project
   + [[id:171A91D5-C0D6-4411-9DB2-C1AB76D18E61][New images of each group]]
 #+begin_src python :tangle ../scripts/smooth-image.py
   import numpy as np
@@ -2198,6 +2238,8 @@ python ../../scripts/smooth-image.py n6210n-rescaled-1998.fits -w 8 -v 0.01
 
 #+RESULTS:
 
+
+Example of usage. 
 
 #+begin_src sh :results verbatim
 python ../scripts/smooth-image.py -h
@@ -2559,14 +2601,28 @@ optional arguments:
       + Changed to Slit B, where we can measure PM and Vrad in same place
         + This is now definitely E lobe and is systems X-/IV-/V+, which we will assign V = -8 
   + We can take measurements on ~oiii-{Vr,Vth}-win.fits~
-    | System    | Lobe | V_los       | PM_r          | PM_th         | V           | i            | R_proj | R              |
-    |-----------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
-    | II+       | S    | +24 +/- 1.5 | 0.53 +/- 0.26 | 0.05 +/- 0.30 | 58. +/- 21. | 60. +/- 12.  |     25 | 28.9 +/- 3.5   |
-    | VIII-     | S    | -10 +/- 1   | 0.69 +/- 0.10 | 0.04 +/- 0.12 | 67. +/- 9.  | -80. +/- 2.  |     24 | 24.4 +/- 0.1   |
-    | I+/VII+   | N    | +16 +/- 2   | 0.85 +/- 0.3  | -0.1 +/- 0.2  | 83. +/- 28. | 77. +/- 5.   |     17 | 17.4 +/- 0.4   |
-    | IV+/X+/V- | W    | [4 .. 8]    | [0.03 .. 1.0] | 0.04 +/- 1.1  | [6. .. 95.] | [17. .. 87.] |     18 | [18.0 .. 61.6] |
-    | X-/IV-/V+ | E    | -8 +/- 4    | 0.20 +/- 0.15 | 0.05 +/- 0.30 | 21. +/- 13. | -63. +/- 21. |     13 | 14.6 +/- 2.7   |
-    #+TBLFM: $6=sqrt((1.2 $3)**2 + (95 $4)**2);f0::$7=arctan(95 $4 / 1.2 $3) ;f0::$9=$-1/sin(abs($7));f1
+    | System           | Axis | Lobe | V_los       | PM_r          |         PM_th | V           | i            | R_proj | R              |
+    |------------------+------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
+    | II+              | C    | S    | +24 +/- 1.5 | 0.53 +/- 0.26 | 0.05 +/- 0.30 | 58. +/- 21. | 30. +/- 12.  |     25 | 28.9 +/- 3.5   |
+    | VIII-            | A    | S    | -10 +/- 1   | 0.69 +/- 0.10 | 0.04 +/- 0.12 | 67. +/- 9.  | -10. +/- 2.  |     24 | 24.4 +/- 0.1   |
+    | I+/VII+          | A    | N    | +16 +/- 2   | 0.85 +/- 0.3  |  -0.1 +/- 0.2 | 83. +/- 28. | 13. +/- 5.   |     17 | 17.4 +/- 0.4   |
+    | IV+/X+/V-        | D    | W    | [4 .. 8]    | [0.03 .. 1.0] |  0.04 +/- 1.1 | [6. .. 95.] | [3. .. 73.]  |     18 | [18.0 .. 61.6] |
+    | X-/IV-/V+        | D    | E    | -8 +/- 4    | 0.20 +/- 0.15 | 0.05 +/- 0.30 | 21. +/- 13. | -27. +/- 21. |     13 | 14.6 +/- 2.7   |
+    |------------------+------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
+    | North knot       | A    | N    | +24 +/- 1   | 0.63 +/- 0.04 |             0 | 66. +/- 3.  | 26. +/- 2.   |     25 | 27.8 +/- 0.5   |
+    | NW knot          | D    | N/W  | +18 +/- 1   | 0.11 +/- 0.05 |             0 | 24. +/- 2.  | 64. +/- 10.  |     10 | 22.8 +/- 8.2   |
+    | SW Red complex   | B    | -    | +38 +/- 1   | 0.13 +/- 0.09 |             0 | 47. +/- 3.  | 75. +/- 10.  |     11 | 42.5 +/- 27.7  |
+    | NE Blue complex  | B    | -    | -51 +/- 1   | 0.24 +/- 0.05 |             0 | 65. +/- 2.  | -70. +/- 4.  |      5 | 14.6 +/- 2.8   |
+    | N(W) Red complex | D?   |      | +21 +/- 2   | 0.10 +/- 0.03 |             0 | 27. +/- 2.  | 69. +/- 6.   |      9 | 25.1 +/- 6.9   |
+    | SE Blue complex  | D?   |      | -35 +/- 3   | 0.45 +/- 0.03 |             0 | 60. +/- 3.  | -44. +/- 3.  |      6 | 8.3 +/- 0.4    |
+    | N(E) Red complex | ?    |      | +25 +/- 2   | 0.05 +/- 0.02 |             0 | 30. +/- 2.  | 81. +/- 4.   |      4 | 25.6 +/- 11.3  |
+    | SW Faint Blue    | ?    |      | -26 +/- 1   | 0.12 +/- 0.09 |             0 | 33. +/- 3.  | -70. +/- 14. |     10 | 29.2 +/- 19.6  |
+    #+TBLFM: $7=sqrt((1.2 $4)**2 + (95 $5)**2);f0::$8=arctan(1.2 ($4) / 95 ($5) ) ;f0::$10=$-1/cos($8);f1
+    + We want inclination from plane of sky, so that is what I have in the ~i~ column
+    + I am adding some of the low-ionization knots
+      + I had already done this in [[id:76A2C7C7-5190-41B7-90FA-30E35F6A455C][Proper motions and 3D position/velocities of the knot complexes]]
+      + But I am not convinced with some of the measurements, especially the tangential velocities
+      + I want to take the values at the outer tips of the complexes where possible
   + Remember, PM is in pix/decade = 10 mas/yr = 95 km/s
     + So for converting to dynamic times, we have 5 arcsec at 60 km/s (6.3e-3 arcsec/year) is 790 years
     + Or, at 60 km/s
@@ -2683,8 +2739,8 @@ optional arguments:
 | Halo N      | C    |   4.9 |  15.5 |    8.5 |           -40 |           40 |               |         16.3 |  18. |
 | Halo NE     | B    |   9.2 |    16 |      8 |           -40 |           26 |               |         18.5 |  30. |
 | Halo NE     | A    |  14.6 |   +23 |     17 |           -40 |           25 |               |         27.2 |  32. |
-| Halo E      | A*   |  20.6 |     0 |      6 |           -39 |           30 | inner halo    |              |      |
-| Halo SE     | U    |  10.1 |   -12 |      2 |           -39 |           30 |               |              |      |
+| Halo E      | A*   |  20.6 |     0 |      6 |           -39 |           30 | inner halo    |         20.6 |      |
+| Halo SE     | U    |  10.1 |   -12 |      2 |           -39 |           30 |               |         15.7 |      |
 | Halo/N lobe | I    | -11.1 |    16 |      5 |           -42 |           25 | weak shoulder |         19.5 | 325. |
 | Halo S      | E    |  -1.5 |   -19 |      4 |           -39 |           20 |               |         19.1 | 185. |
 | Halo S      | F    |  -3.9 |   -13 |      3 |           -38 |           25 | Inner halo    |         13.6 | 197. |
@@ -2695,54 +2751,57 @@ optional arguments:
 | Halo W      | L    | -18.6 |    -7 |      2 |           -41 |           23 | inner halo    |         19.9 | 249. |
 | Halo NW     | U    |   -27 |    11 |      7 |           -40 |           35 |               |         29.2 | 292. |
 | Halo NW     | K    | -16.3 |    12 |      6 |           -38 |           25 | inner halo    |         20.2 | 306. |
-| Halo NW     | L    | -18.6 |    19 |    4.5 |           -37 |           30 | inner halo    |         24.5 | 311. |
+| Halo NW     | L    | -18.6 |    19 |    4.5 |           -37 |           30 | inner halo    |         26.6 | 311. |
 |-------------+------+-------+-------+--------+---------------+--------------+---------------+--------------+------|
-|             |      |       |       |        | -39.3 +/- 0.4 | 29.3 +/- 1.8 |               | 19.2 +/- 1.2 |      |
-#+TBLFM: @19$6=vmeane(@I..@II);f1::@19$7=vmeane(@I..@II);f1::@19$9=vmeane(@I..@II);f1
+|             |      |       |       |        | -39.3 +/- 0.3 | 29.3 +/- 1.7 |               | 19.2 +/- 1.1 |      |
+#+TBLFM: $9=hypot($3,$4);f1::@19$6=vmeane(@I..@II);f1::@19$7=vmeane(@I..@II);f1::@19$9=vmeane(@I..@II);f1
+
+After correcting for typical instrumental width of 9.2 km/s, we get 28 km/s width.
 
 ****** Outer Halo
 :PROPERTIES:
 :ID:       267DA5F8-900B-4A9C-BD38-A4D358FCBAB2
 :END:
-| Lobe    | Slit |     x |    y | +/- ds |             V |            W | Note       |            R |   PA |
-|---------+------+-------+------+--------+---------------+--------------+------------+--------------+------|
-| Halo NE | A*   |  20.6 |   14 |      6 |           -37 |           24 | outer halo |              |      |
-| Halo SE | A*   |  20.6 |  -14 |      4 |           -40 |           19 |            |              |      |
-| Halo SE | U    |    16 |  -19 |      5 |           -40 |           15 |            |         24.8 | 140. |
-| Halo SE | A    |  14.6 |  -19 |      5 |           -40 |           13 |            |         24.0 | 142. |
-| Halo S  | F    |  -3.9 |  -20 |      4 |           -38 |           15 | Outer halo |         20.4 | 191. |
-| Halo S  | G    |  -7.1 |  -20 |      5 |           -40 |           14 |            |         21.2 | 200. |
-| Halo S  | H    |  -7.7 |  -21 |      4 |           -39 |           13 | outer halo |         22.4 | 200. |
-| Halo SW | I    | -11.1 |  -18 |      4 |           -40 |           17 | outer halo |         21.1 | 212. |
-| Halo SW | J    | -11.9 |  -16 |      6 |           -40 |           14 |            |         19.9 | 217. |
-| Halo SW | K    | -16.3 |  -14 |      5 |           -40 |           15 | outer halo |         21.5 | 229. |
-| Halo SW | L    | -18.6 |  -14 |      5 |           -40 |           15 | outer halo |         23.3 | 233. |
-| Halo NW | K    | -16.3 |   25 |      5 |           -40 |           14 | outer halo |         29.8 | 327. |
-| Halo NW | L    | -18.6 |   29 |      5 |           -38 |           22 | outer halo |         34.5 | 327. |
-| Halo NW | J    | -11.9 |   26 |      6 |           -38 |           16 |            |         28.6 | 335. |
-| Halo NW | I    | -11.1 | 27.5 |    4.5 |           -40 |           20 |            |         29.7 | 338. |
-| Halo NW | U    |   -34 |   16 |      5 |           -38 |           22 | outer halo |              |      |
-| Halo N  | H    |  -7.7 |   30 |      5 |           -40 |           15 | very weak  |         31.0 | 346. |
-|---------+------+-------+------+--------+---------------+--------------+------------+--------------+------|
-|         |      |       |      |        | -40.7 +/- 1.2 | 15.6 +/- 0.7 |            | 25.0 +/- 1.2 |      |
-#+TBLFM: @20$6=vmeane(@I..@II);f1::@20$7=vmeane(@I..@II);f1::@20$9=vmeane(@I..@II);f1
+| Lobe    | Slit |     x |    y | +/- ds |             V |            W |         Win |        Wcorr | Note       |            R |   PA |
+|---------+------+-------+------+--------+---------------+--------------+-------------+--------------+------------+--------------+------|
+| Halo NE | A*   |  20.6 |   14 |      6 |           -37 |           24 |        11.5 |         21.1 | outer halo |         24.9 |      |
+| Halo SE | A*   |  20.6 |  -14 |      4 |           -40 |           19 |        11.5 |         15.1 |            |         24.9 |      |
+| Halo SE | U    |    16 |  -19 |      5 |           -40 |           15 |         9.2 |         11.8 |            |         24.8 | 140. |
+| Halo SE | A    |  14.6 |  -19 |      5 |           -40 |           13 |         9.2 |          9.2 |            |         24.0 | 142. |
+| Halo S  | F    |  -3.9 |  -20 |      4 |           -38 |           15 |         9.2 |         11.8 | Outer halo |         20.4 | 191. |
+| Halo S  | G    |  -7.1 |  -20 |      5 |           -40 |           14 |         9.2 |         10.6 |            |         21.2 | 200. |
+| Halo S  | H    |  -7.7 |  -21 |      4 |           -39 |           13 |         9.2 |          9.2 | outer halo |         22.4 | 200. |
+| Halo SW | I    | -11.1 |  -18 |      4 |           -40 |           17 |         9.2 |         14.3 | outer halo |         21.1 | 212. |
+| Halo SW | J    | -11.9 |  -16 |      6 |           -40 |           14 |         9.2 |         10.6 |            |         19.9 | 217. |
+| Halo SW | K    | -16.3 |  -14 |      5 |           -40 |           15 |         9.2 |         11.8 | outer halo |         21.5 | 229. |
+| Halo SW | L    | -18.6 |  -14 |      5 |           -40 |           15 |        11.5 |          9.6 | outer halo |         23.3 | 233. |
+| Halo NW | K    | -16.3 |   25 |      5 |           -40 |           14 |         9.2 |         10.6 | outer halo |         29.8 | 327. |
+| Halo NW | L    | -18.6 |   29 |      5 |           -38 |           22 |        11.5 |         18.8 | outer halo |         34.5 | 327. |
+| Halo NW | J    | -11.9 |   26 |      6 |           -38 |           16 |         9.2 |         13.1 |            |         28.6 | 335. |
+| Halo NW | I    | -11.1 | 27.5 |    4.5 |           -40 |           20 |         9.2 |         17.8 |            |         29.7 | 338. |
+| Halo NW | U    |   -34 |   16 |      5 |           -38 |           22 |         9.2 |         20.0 | outer halo |         37.6 |      |
+| Halo N  | H    |  -7.7 |   30 |      5 |           -40 |           15 |         9.2 |         11.8 | very weak  |         31.0 | 346. |
+|---------+------+-------+------+--------+---------------+--------------+-------------+--------------+------------+--------------+------|
+|         |      |       |      |     33 | -39.3 +/- 0.3 | 16.6 +/- 0.8 | 9.7 +/- 0.2 | 13.4 +/- 0.9 |            | 25.9 +/- 1.3 |      |
+#+TBLFM: $9=sqrt($-2**2 - $-1**2);f1::$11=hypot($3,$4);f1::@19$6..@19$9=vmeane(@I..@II);f1::@19$11=vmeane(@I..@II);f1
 
 ****** Halo knots
 :PROPERTIES:
 :ID:       4ACE802A-5105-4B30-95F1-0041E59FE26E
 :END:
-| Lobe      | Slit |     x |    y | +/- ds |             V |        W | Note |            R |   PA |
-|-----------+------+-------+------+--------+---------------+----------+------+--------------+------|
-| Halo knot | A*   |  20.6 |   31 |      5 |           -37 |       22 |      |              |      |
-| Halo knot | K    | -16.3 | 43.5 |    2.5 |           -39 |       20 |      |         46.5 | 339. |
-| Halo knot | L    | -18.6 |   62 |      4 |           -38 |       20 |      |         64.7 | 343. |
-| Halo knot | K    | -16.3 |   61 |      7 |           -41 |       20 |      |         63.1 | 345. |
-| Halo knot | J    | -11.9 |   66 |      4 |           -40 |       20 |      |         67.1 | 350. |
-| Halo knot | R    | -10.8 |   61 |      3 |           -29 |       25 |      |              |      |
-|-----------+------+-------+------+--------+---------------+----------+------+--------------+------|
-|           |      |       |      |        | -37.4 +/- 2.2 | 21 +/- 1 |      | 60.4 +/- 4.7 |      |
-#+TBLFM: @8$6=vmeane(@I..@II);f1::@8$7=vmeane(@I..@II);f1::@8$9=vmeane(@I..@II);f1
+| Lobe      | Slit |     x |    y | +/- ds |             V |            W | Note |            R |   PA |
+|-----------+------+-------+------+--------+---------------+--------------+------+--------------+------|
+| Halo knot | A*   |  20.6 |   31 |      5 |           -37 |           22 |      |         37.2 |      |
+| Halo knot | K    | -16.3 | 43.5 |    2.5 |           -39 |           20 |      |         46.5 | 339. |
+| Halo knot | L    | -18.6 |   62 |      4 |           -38 |           20 |      |         64.7 | 343. |
+| Halo knot | K    | -16.3 |   61 |      7 |           -41 |           20 |      |         63.1 | 345. |
+| Halo knot | J    | -11.9 |   66 |      4 |           -40 |           20 |      |         67.1 | 350. |
+| Halo knot | R    | -10.8 |   61 |      3 |           -29 |           25 |      |         61.9 |      |
+|-----------+------+-------+------+--------+---------------+--------------+------+--------------+------|
+|           |      |       |      |        | -37.3 +/- 1.8 | 21.2 +/- 0.8 |      | 56.8 +/- 4.9 |      |
+#+TBLFM: $9=hypot($3,$4);f1::@8$6=vmeane(@I..@II);f1::@8$7=vmeane(@I..@II);f1::@8$9=vmeane(@I..@II);f1
 
+After subtracting instrumental width: W = 19 km/s
 
 ****** Northern jet
 | Lobe       | Slit |     x |    y | +/- ds |   V |  V' |  W | Note   |    R |   PA |
@@ -2772,6 +2831,8 @@ optional arguments:
 | N lobe     | F    |  -3.9 |   11 |      3 | -51 | -11 | 40 |                | 11.7 | 340. |
 | K-NW       | G    |  -7.1 |  7.5 |    2.5 | -50 | -10 | 22 |                | 10.3 | 317. |
 | K-NW       | H    |  -7.7 |    7 |      2 | -48 |  -8 | 20 |                | 10.4 | 312. |
+| K-NW       | G    |  -7.1 |  6.5 |    1.5 | -27 | +13 | 32 | The real knot  |      |      |
+| K-NW       | H    |  -7.7 |    6 |      2 | -27 | +13 | 32 | ditto          |      |      |
 |------------+------+-------+------+--------+-----+-----+----+----------------+------+------|
 | N lobe?    | I    | -11.1 |  7.5 |    4.5 | -39 |  +1 | 26 |                | 13.4 | 304. |
 | N lobe?    | J    | -11.9 | 15.5 |    4.5 | -37 |  +3 | 33 | maybe halo     | 19.5 | 322. |
@@ -3116,6 +3177,8 @@ optional arguments:
     + V = -30 narrow (slight gradient from -28 at y = +9 to -31 at +12)
   + y = +5 \to +10 NW knot
     + V = -50
+  + y = +5 \to +8 NW knot *new*
+    + V = -27 broad and strong
   + y = -9 \to -15 Inner Halo
     + V = -37 broad
       + y = -10 has W = 40 km/s
@@ -3136,6 +3199,8 @@ optional arguments:
     + V = -30
   + y = +5 \to +9 K-NW
     + V = -48
+  + y = +4 \to +8 NW knot *new*
+    + V = -27 broad and strong
   + y = -10 \to -17 Inner Halo
     + V = -39 broad
   + y = -17 \to -25 Outer Halo
@@ -3832,6 +3897,9 @@ And repeat for multibin
 #+END_SRC
 
 **** Proper motions and 3D position/velocities of the knot complexes
+:PROPERTIES:
+:ID:       76A2C7C7-5190-41B7-90FA-30E35F6A455C
+:END:
 + Assume 10 mas/yr = 95 km/s
  | Complex       | V_r | V_t       | tan(i)           | inc          | V            | R_proj | R               |
  |---------------+-----+-----------+------------------+--------------+--------------+--------+-----------------|
@@ -3849,16 +3917,17 @@ And repeat for multibin
 + Then NE Blue complex at -45 (135)
 + I have now done a sketch of all this, which shows the red complexes as farther out and slower.
 + Repeat but "correcting" the radial velocities by factor of 1.2 for the gas/pattern speed distinction
- | Complex       | V_r | V_t       | tan(i)           | inc          | V            | R_proj | R               |
- |---------------+-----+-----------+------------------+--------------+--------------+--------+-----------------|
- | NE Blue       | -45 | 43 +/- 9  | -0.796 +/- 0.167 | -39. +/- 6.  | 69. +/- 6.   |      5 | 7.9 +/- 1.0     |
- | SE Blue       | -30 | 47 +/- 9  | -1.306 +/- 0.250 | -53. +/- 5.  | 59. +/- 7.   |      5 | 6.3 +/- 0.4     |
- | SW Faint Blue | -26 | 24 +/- 9  | -0.769 +/- 0.288 | -38. +/- 10. | 39. +/- 5.   |      6 | 9.7 +/- 2.2     |
- | N Red         | +25 | [1 .. 10] | [0.033 .. 0.333] | [2. .. 18.]  | [30. .. 32.] |      4 | [12.9 .. 114.6] |
- | SW Red        | +39 | 22 +/- 9  | 0.470 +/- 0.192  | 25. +/- 9.   | 52. +/- 4.   |      7 | 16.6 +/- 5.6    |
- | K-NW          | +18 | 12 +/- 9  | 0.556 +/- 0.417  | 29. +/- 18.  | 25. +/- 4.   |      9 | 18.6 +/- 10.5   |
- | N Jet         | +23 | 62 +/- 9  | 2.246 +/- 0.326  | 66. +/- 3.   | 68. +/- 8.   |     15 | 16.4 +/- 0.4    |
- #+TBLFM: $4=$3/1.2 $2;f3::$5=arctan($4);f0::$6=sqrt((1.2 $2)**2 + $3**2);f0::$8=$-1/sin(abs($5));f1
++ And also correct the inclinations to be wrt plane of sky
+ | Complex       | V_r | V_t       | tan(i)            | inc          | V            | R_proj | R               |
+ |---------------+-----+-----------+-------------------+--------------+--------------+--------+-----------------|
+ | NE Blue       | -45 | 43 +/- 9  | -1.256 +/- 0.263  | -51. +/- 6.  | 69. +/- 6.   |      5 | 7.9 +/- 1.0     |
+ | SE Blue       | -30 | 47 +/- 9  | -0.766 +/- 0.147  | -37. +/- 5.  | 59. +/- 7.   |      5 | 6.3 +/- 0.4     |
+ | SW Faint Blue | -26 | 24 +/- 9  | -1.300 +/- 0.488  | -52. +/- 10. | 39. +/- 5.   |      6 | 9.7 +/- 2.2     |
+ | N Red         | +25 | [1 .. 10] | [3.000 .. 30.000] | [72. .. 88.] | [30. .. 32.] |      4 | [12.9 .. 114.6] |
+ | SW Red        | +39 | 22 +/- 9  | 2.127 +/- 0.870   | 65. +/- 9.   | 52. +/- 4.   |      7 | 16.6 +/- 5.6    |
+ | K-NW          | +18 | 12 +/- 9  | 1.800 +/- 1.350   | 61. +/- 18.  | 25. +/- 4.   |      9 | 18.6 +/- 10.5   |
+ | N Jet         | +23 | 62 +/- 9  | 0.445 +/- 0.065   | 24. +/- 3.   | 68. +/- 8.   |     15 | 16.4 +/- 0.4    |
+ #+TBLFM: $4=1.2 ($2)/($3);f3::$5=arctan($4);f0::$6=sqrt((1.2 $2)**2 + $3**2);f0::$8=$-1/cos($5);f1
 + [ ] I should divide up the side-view picture into a W and E half
   + and rotate it so that N-S is up-down and blue-red is left-right
   + The N Red complex would appear on both halves
