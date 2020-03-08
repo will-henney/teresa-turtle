@@ -2178,11 +2178,49 @@ Central velocities in [N II] - 20 km/s channels
       2. Knot complexes SE Blue and N(W) Red (probably)
       3. Lobe system IV
       4. 
-
   + Peanut shell has A and B
-    + 
+  + Intermediate shell has axis B
   + Knot complexes
+**** Table of 3D velocity organized by axis
++ This is taken from [[id:6FA8AF58-5665-4092-A25D-0F18B851D1CD][Organizing components into systems and flows]]
 
+    | System               |  PA | Axis | V_los       | PM_r          | V_pos       | V           | i            | R_proj       | R, pc         | t, 1000 yr  |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
+    | Inner shell A NNW    | 340 | A+   | +8 +/- 3    | 0.51 +/- 0.07 | 48. +/- 7.  | 49. +/- 7.  | 11. +/- 4.   | 7.0 +/- 0.5  | 7.1 +/- 0.5   | 1.4 +/- 0.2 |
+    | Outer lobe I+/VII+   | 340 | A+   | +28 +/- 2   | 0.86 +/- 0.3  | 82. +/- 29. | 89. +/- 27. | 22. +/- 7.   | 16 +/- 1     | 17.3 +/- 1.4  | 1.9 +/- 0.7 |
+    | North knot           | 340 | A+   | +24 +/- 1   | 0.63 +/- 0.04 | 60. +/- 4.  | 67. +/- 4.  | 26. +/- 2.   | 17 +/- 1     | 18.9 +/- 1.2  | 2.7 +/- 0.2 |
+    | Inner shell A SSE    | 160 | A-   | -17 +/- 3   | 0.54 +/- 0.07 | 51. +/- 7.  | 55. +/- 7.  | -22. +/- 4.  | 6.5 +/- 0.5  | 7.0 +/- 0.6   | 1.2 +/- 0.2 |
+    | Outer lobe I-        | 160 | A-   | -32 +/- 1   | 0.75 +/- 0.30 | 71. +/- 29. | 81. +/- 26. | -28. +/- 10. | 15 +/- 2     | 17.0 +/- 2.8  | 2.0 +/- 0.8 |
+    | Outer lobe VIII-     | 160 | A-   | -10 +/- 1   | 0.71 +/- 0.09 | 67. +/- 9.  | 68. +/- 9.  | -10. +/- 2.  | 23 +/- 1     | 23.4 +/- 1.0  | 3.2 +/- 0.4 |
+    | Outer lobe II+       | 170 | C+   | +24 +/- 1.5 | 0.61 +/- 0.13 | 58. +/- 12. | 65. +/- 11. | 26. +/- 5.   | 24 +/- 1     | 26.7 +/- 1.6  | 3.9 +/- 0.9 |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
+    | Inner shell B ENE    |  65 | B-   | -25 +/- 3   | 0.33 +/- 0.05 | 31. +/- 5.  | 43. +/- 4.  | -44. +/- 6.  | 4 +/- 1      | 5.6 +/- 1.5   | 1.2 +/- 0.4 |
+    | NE Blue complex      |  60 | B-   | -51 +/- 1   | 0.24 +/- 0.05 | 23. +/- 5.  | 65. +/- 2.  | -69. +/- 4.  | 5 +/- 1      | 14.0 +/- 3.8  | 2.1 +/- 0.6 |
+    | IS ENE               |  50 | B-   | -18 +/- 3   | 0.28 +/- 0.16 | 27. +/- 15. | 35. +/- 12. | -39. +/- 16. | 9 +/- 2      | 11.6 +/- 3.7  | 3.2 +/- 2.0 |
+    | Inner shell B WSW    | 240 | B+   | +18 +/- 3   | 0.31 +/- 0.04 | 29. +/- 4.  | 36. +/- 4.  | 37. +/- 6.   | 4.5 +/- 1    | 5.6 +/- 1.3   | 1.5 +/- 0.4 |
+    | IS WSW               | 260 | B+   | +20 +/- 3   | 0.30 +/- 0.27 | 29. +/- 26. | 38. +/- 20. | 40. +/- 26.  | 11.5 +/- 1   | 15.0 +/- 5.9  | 3.8 +/- 3.5 |
+    | SW Red complex       | 250 | B+   | +38 +/- 1   | 0.19 +/- 0.03 | 18. +/- 3.  | 49. +/- 2.  | 68. +/- 3.   | 7 +/- 2      | 18.7 +/- 5.9  | 3.7 +/- 1.2 |
+    | N(E) Red complex     |  30 | E+   | +25 +/- 2   | 0.05 +/- 0.04 | 5. +/- 4.   | 30. +/- 2.  | 81. +/- 7.   | 4 +/- 1      | 25.6 +/- 20.7 | 8.0 +/- 6.7 |
+    | SW Faint Blue        | 225 | E-   | -26 +/- 1   | 0.27 +/- 0.04 | 26. +/- 4.  | 41. +/- 3.  | -50. +/- 4.  | 7 +/- 1      | 10.9 +/- 1.8  | 2.6 +/- 0.5 |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
+    | Outer lobe X+        | 285 | D+   | +6 +/- 2    | 0.50 +/- 0.45 | 48. +/- 43. | 49. +/- 43. | 9. +/- 8.    | 18.5 +/- 1.5 | 18.7 +/- 1.6  | 3.7 +/- 3.3 |
+    | Outer lobe IV+       | 315 | D+   | +13 +/- 1   | 0.35 +/- 0.07 | 33. +/- 7.  | 37. +/- 6.  | 25. +/- 5.   | 10 +/- 1     | 11.0 +/- 1.2  | 2.9 +/- 0.6 |
+    | NW knot ([N II])     | 310 | D+   | +18 +/- 1   | 0.12 +/- 0.08 | 11. +/- 8.  | 24. +/- 4.  | 63. +/- 17.  | 8 +/- 1      | 17.6 +/- 10.5 | 6.7 +/- 4.5 |
+    | N(W) Red complex     | 300 | D+   | +21 +/- 2   | 0.10 +/- 0.04 | 10. +/- 4.  | 27. +/- 3.  | 68. +/- 8.   | 7.5 +/- 2    | 20.0 +/- 8.7  | 7.5 +/- 3.6 |
+    | Outer lobe X-/IV-/V+ | 120 | D-   | -8 +/- 4    | 0.25 +/- 0.15 | 24. +/- 14. | 26. +/- 13. | -22. +/- 15. | 13 +/- 3     | 14.0 +/- 3.6  | 5.2 +/- 3.3 |
+    | SE Blue complex      | 135 | D-   | -31 +/- 3   | 0.47 +/- 0.03 | 45. +/- 3.  | 58. +/- 3.  | -40. +/- 3.  | 4.5 +/- 1    | 5.9 +/- 1.3   | 1.0 +/- 0.2 |
+    #+TBLFM: $6=95 $5;f0::$7=sqrt((1.2 ($4))**2 +  ($6)**2) ;f0::$8=arctan(1.2 ($4) / ($6)) ;f0::$10=$9/cos($8);f1::$11=100 $9 / 1000 $5 ;f1
+
+  + In this table, measurements correspond to the parts of each system where we can measure radial velocity and proper motions in the same place
+    + So it doesn't cover the full radial extent, particularly of the knot complexes
+    + And especially not the extent in PA, since they are poorly collimated
+  + Note that II- has no proper motion because it is off the top of the image
+  + Also, although the Outer lobe I+ is basically the same as North knot, there are some differences:
+    1. One is measured in [O III], the other in [N II]
+    2. For Outer lobe I+, the PM is only for the trailing knot, so we take the closest velocity component of +28 km/s
+       - Note that we ignore the +11 km/s component at the same position
+  + Outer lobe IV+ should be same as NW knot
+    + But PM is inconsistent between [O III] and [N II]
 
 *** Summary of nebular history
 + This uses dynamic ages, so may be inaccurate if components have undergone significant acceleration or deceleration
@@ -2282,6 +2320,7 @@ optional arguments:
   + Now done as [[file:~/Dropbox/Teresa-Turtle/figs/turtle-peanut-map.pdf]]
   + This includes peanut shells, intermediate shells, and miscellaneous
 ****** Table and graph of all the components
+******* Table of shell components classified by type and axis
 + Type:
   + I : Intermediate shell
   + M : Misc component
@@ -2345,7 +2384,7 @@ optional arguments:
 | S    | P    |  -1.2 | -0.5 |  18 | 1 | 0 |
 | S    | P    |  -1.8 |  0.5 |  16 | 1 | 0 |
 | S    | P    |  -2.5 |  3.5 |   8 | 1 | 0 |
-
+******* Program to make figures of shell components alon A and B axes
 #+header: :var tab=shell-components :colnames no
 #+begin_src python :return figname :results file
   import numpy as np
@@ -2412,6 +2451,173 @@ optional arguments:
 
 #+RESULTS:
 [[file:turtle-shell-velocity-axes.pdf]]
+******* Program to find mean velocities for each side of shells along their axes
++ This reads the same table as the previous program
++ It finds the velocity gradient and splitting along the axes
+#+header: :var tab=shell-components :colnames no
+#+begin_src python :results output verbatim
+  import numpy as np
+  from astropy.table import Table
+
+  t = Table(rows=tab[1:], names=tab[0])
+
+  pa = 70
+  cpa = np.cos(np.deg2rad(pa))
+  spa = np.sin(np.deg2rad(pa))
+
+  # unit vector along slit
+  uX = spa, cpa
+  # unit vector across slit
+  uY = cpa, -spa
+
+  t["X"] = t["x"]*uX[0] + t["y"]*uX[1]
+  t["Y"] = t["x"]*uY[0] + t["y"]*uY[1]
+
+  # Loop over peanut (inner) and intermediate shells
+  for shell in "PI":
+      # Loop over A and B axes (Y is along A, and X is along B)
+      for axis, S in zip("AB", "YX"):
+          # Select this shell and this axis
+          m = (t[axis] == 1) & (t["Type"] == shell)
+          if not m.sum():
+              continue
+          # Distance along slit:
+          s = t[m][S]
+          # LOS Velocity:
+          v = t[m]["V"]
+          # Subtract off centroid velocity
+          vcent = 0.5*(v.max() + v.min())
+          v = v - vcent
+          print(
+              f"Shell {shell}, axis {axis}:",
+              f"Centroid velocity = {vcent:.1f}"
+          )
+          # Positive and negative axis
+          for sense, mm in ["+", s >= 0.0], ["-", s < 0.0]:
+              smedian = np.median(s[mm])
+              mcap =  np.abs(s) > 0.3*np.abs(smedian)
+              smean = s[mm & mcap].mean()
+              # vmean = v[mm & mcap].mean()
+              vmean = np.median(v[mm & mcap])
+              vmean = 0.5*(v[mm & mcap].max() + v[mm & mcap].min())
+              dvsplit = v[mm].max() - v[mm].min()
+              print(
+                  f"Shell {shell}, axis {sense}{axis}:",
+                  f"Mean velocity = {vmean:.1f}", 
+                  f"Splitting = {dvsplit:.1f}",
+                  f"Mean radius = {smean:.1f}",
+              )
+
+
+#+end_src
+
+#+RESULTS:
+: Shell P, axis A: Centroid velocity = -3.5
+: Shell P, axis +A: Mean velocity = -1.5 Splitting = 43.0 Mean radius = 4.6
+: Shell P, axis -A: Mean velocity = 2.0 Splitting = 38.0 Mean radius = -3.9
+: Shell P, axis B: Centroid velocity = -3.5
+: Shell P, axis +B: Mean velocity = -5.5 Splitting = 32.0 Mean radius = 3.7
+: Shell P, axis -B: Mean velocity = 7.5 Splitting = 28.0 Mean radius = -2.6
+: Shell I, axis B: Centroid velocity = 1.0
+: Shell I, axis +B: Mean velocity = -7.5 Splitting = 23.0 Mean radius = 7.4
+: Shell I, axis -B: Mean velocity = 6.0 Splitting = 26.0 Mean radius = -7.6
+
++ This is a bit unsatisfactory for axis A, because we really had to tweak the ~mcap~ criterion
+  + This is meant to select only the end caps of the shell, cutting out the points too close to the origin
+  + We ended up excluding points with radius < 30% of median
++ But in the end, we have an OK result, which is justifiable
+  + *No* this is no good - best to use /only/ the measurements near the end caps
+    + Peanut A NNW : +4
+    + Peanut A SSE : -1, -1, -17, -13 => -8 +/- 4
+    + Peanut B WSW : -7, +18 => +5.5 +/- 12.5
+    + Peanut B ENE : -25, +0 => -12.5 +/- 12.5
+    + IS WSW : +12, +13, +9, +20, -2, -1, -1, -1 => +6 +/- 3
+    + IS ENE : -10, -18, +4, +2 => -5.5 +/- 5
+  + Note that the +/- are the std of the values, so much larger than the actual uncertainty, since this is dominated by the splitting
+  + And finally, even that gives stuff very close to plane of sky
+    + Instead, take the biggest blue or redshifted value in the end caps
+    
++ This data is going to be used in the table in [[id:6FA8AF58-5665-4092-A25D-0F18B851D1CD][Organizing components into systems and flows]]
+
+****** Theoretical elliptical shells
++ Use parametric equation:
+  + x = a cos(t)
+  + y = b sin(t)
+
+#+name: ellipse-pv
+#+begin_src python :return figfile :results file :var A=2.0
+  import numpy as np
+  import matplotlib.pyplot as plt
+  import seaborn as sns
+  sns.set_color_codes()
+  sns.set_palette("bright")
+  # Normalize to minor axis = 1
+
+  def pv_loop(inc_deg=0.0, a=2.0, alpha=1.0, n=201):
+      """Position-velocity loop along projected major axis of inclined ellipse
+
+      """
+      t = np.linspace(0.0, 2*np.pi, 201)
+      # x is along major axis, y is along minor axis
+      x, y = a*np.cos(t), np.sin(t)
+      # radius of shell
+      r = np.hypot(x, y)
+      # velocity is proportional to radius to some power
+      u = r**alpha
+      # Angle from major axis
+      theta = np.arctan2(y, x)
+      # Angle from plane of sky
+      phi = theta - np.deg2rad(inc_deg)
+      # position and LOS velocity along slit
+      pos, vel = r*np.cos(phi), -u*np.sin(phi)
+      return pos, vel
+
+
+  figfile = f"ellipse-pv-{int(10*A)}.pdf"
+  fig, axes = plt.subplots(2, 3, sharex=True, sharey=True)
+
+  for ax, alpha in zip(axes.flat[:-1], [0.0, 0.5, 1.0, 2.0, 3.0]):
+      lw = 3.0
+      opacity = 0.69
+      for inc_deg in 0, 15, 30, 45, 60, 75, 90:
+          pos, vel = pv_loop(-inc_deg, A, alpha)
+          pos /= np.max(np.abs(pos))
+          vel /= np.max(np.abs(vel))
+          ax.plot(pos, vel, label=fr"$i = {inc_deg}^\circ$", lw=lw, alpha=opacity)
+          ax.set_title(fr"$a/b = {A:.1f}$, $\alpha = {alpha:.1f}$")
+          lw -= 0.4
+          opacity += 0.05
+      ax.set_aspect("equal")
+  axes[-1, 0].set(
+      xlabel="position",
+      ylabel="velocity",
+  )
+  handles, labels = axes[0, 0].get_legend_handles_labels()
+  axes[-1, -1].legend(handles, labels)
+  axes[-1, -1].axis(False)
+  sns.despine(fig)
+  fig.tight_layout()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:ellipse-pv-20.pdf]]
+
+#+call: ellipse-pv(1.5)
+
+#+RESULTS:
+[[file:ellipse-pv-15.pdf]]
+
+#+call: ellipse-pv(3.0)
+
+#+RESULTS:
+[[file:ellipse-pv-30.pdf]]
+
++ So, it seems that you always get an ellipse PV diagram when the shell is an ellipse and the expansion is homologous (\alpha = 1)
++ If the velocity is not linear in radius, then you get more interesting shapes
++ Axis B seems better fit with \alpha > 1
++ Axis A seems better fit with \alpha < 1
++ 
 
 ***** Peanut shell conclusions
 + See [[file:Turtle%20peanut%20shell.pdf]]
@@ -2570,6 +2776,9 @@ optional arguments:
 **** Lobes
 
 ***** Organizing components into systems and flows
+:PROPERTIES:
+:ID:       6FA8AF58-5665-4092-A25D-0F18B851D1CD
+:END:
 + Nomenclature:
   + Component :: a discrete velocity component (maybe blended) over a section of a single slit (these are what are given in the Tables below)
   + System :: a set of components in adjacent slits, with similar velocities, widths, and brightnesses.  Where possible, these are arranged in a point-symmetric red/blue pair
@@ -2601,28 +2810,45 @@ optional arguments:
       + Changed to Slit B, where we can measure PM and Vrad in same place
         + This is now definitely E lobe and is systems X-/IV-/V+, which we will assign V = -8 
   + We can take measurements on ~oiii-{Vr,Vth}-win.fits~
-    | System           | Axis | Lobe | V_los       | PM_r          |         PM_th | V           | i            | R_proj | R              |
-    |------------------+------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
-    | II+              | C    | S    | +24 +/- 1.5 | 0.53 +/- 0.26 | 0.05 +/- 0.30 | 58. +/- 21. | 30. +/- 12.  |     25 | 28.9 +/- 3.5   |
-    | VIII-            | A    | S    | -10 +/- 1   | 0.69 +/- 0.10 | 0.04 +/- 0.12 | 67. +/- 9.  | -10. +/- 2.  |     24 | 24.4 +/- 0.1   |
-    | I+/VII+          | A    | N    | +16 +/- 2   | 0.85 +/- 0.3  |  -0.1 +/- 0.2 | 83. +/- 28. | 13. +/- 5.   |     17 | 17.4 +/- 0.4   |
-    | IV+/X+/V-        | D    | W    | [4 .. 8]    | [0.03 .. 1.0] |  0.04 +/- 1.1 | [6. .. 95.] | [3. .. 73.]  |     18 | [18.0 .. 61.6] |
-    | X-/IV-/V+        | D    | E    | -8 +/- 4    | 0.20 +/- 0.15 | 0.05 +/- 0.30 | 21. +/- 13. | -27. +/- 21. |     13 | 14.6 +/- 2.7   |
-    |------------------+------+------+-------------+---------------+---------------+-------------+--------------+--------+----------------|
-    | North knot       | A    | N    | +24 +/- 1   | 0.63 +/- 0.04 |             0 | 66. +/- 3.  | 26. +/- 2.   |     25 | 27.8 +/- 0.5   |
-    | NW knot          | D    | N/W  | +18 +/- 1   | 0.11 +/- 0.05 |             0 | 24. +/- 2.  | 64. +/- 10.  |     10 | 22.8 +/- 8.2   |
-    | SW Red complex   | B    | -    | +38 +/- 1   | 0.13 +/- 0.09 |             0 | 47. +/- 3.  | 75. +/- 10.  |     11 | 42.5 +/- 27.7  |
-    | NE Blue complex  | B    | -    | -51 +/- 1   | 0.24 +/- 0.05 |             0 | 65. +/- 2.  | -70. +/- 4.  |      5 | 14.6 +/- 2.8   |
-    | N(W) Red complex | D?   |      | +21 +/- 2   | 0.10 +/- 0.03 |             0 | 27. +/- 2.  | 69. +/- 6.   |      9 | 25.1 +/- 6.9   |
-    | SE Blue complex  | D?   |      | -35 +/- 3   | 0.45 +/- 0.03 |             0 | 60. +/- 3.  | -44. +/- 3.  |      6 | 8.3 +/- 0.4    |
-    | N(E) Red complex | ?    |      | +25 +/- 2   | 0.05 +/- 0.02 |             0 | 30. +/- 2.  | 81. +/- 4.   |      4 | 25.6 +/- 11.3  |
-    | SW Faint Blue    | ?    |      | -26 +/- 1   | 0.12 +/- 0.09 |             0 | 33. +/- 3.  | -70. +/- 14. |     10 | 29.2 +/- 19.6  |
+    | System            | Axis | Lobe | V_los       | PM_r          | PM_th          | V           | i            | R_proj | R              |
+    |-------------------+------+------+-------------+---------------+----------------+-------------+--------------+--------+----------------|
+    | II+               | C    | S    | +24 +/- 1.5 | 0.53 +/- 0.26 | 0.05 +/- 0.30  | 58. +/- 21. | 30. +/- 12.  |     25 | 28.9 +/- 3.5   |
+    | VIII-             | A    | S    | -10 +/- 1   | 0.69 +/- 0.10 | 0.04 +/- 0.12  | 67. +/- 9.  | -10. +/- 2.  |     24 | 24.4 +/- 0.1   |
+    | I+/VII+           | A    | N    | +16 +/- 2   | 0.85 +/- 0.3  | -0.1 +/- 0.2   | 83. +/- 28. | 13. +/- 5.   |     17 | 17.4 +/- 0.4   |
+    | IV+/X+/V-         | D    | W    | [4 .. 8]    | [0.03 .. 1.0] | 0.04 +/- 1.1   | [6. .. 95.] | [3. .. 73.]  |     18 | [18.0 .. 61.6] |
+    | X-/IV-/V+         | D    | E    | -8 +/- 4    | 0.20 +/- 0.15 | 0.05 +/- 0.30  | 21. +/- 13. | -27. +/- 21. |     13 | 14.6 +/- 2.7   |
+    |-------------------+------+------+-------------+---------------+----------------+-------------+--------------+--------+----------------|
+    | North knot        | A    | N    | +24 +/- 1   | 0.63 +/- 0.04 | 0              | 66. +/- 3.  | 26. +/- 2.   |     25 | 27.8 +/- 0.5   |
+    | NW knot           | D    | N/W  | +18 +/- 1   | 0.11 +/- 0.05 | 0              | 24. +/- 2.  | 64. +/- 10.  |     10 | 22.8 +/- 8.2   |
+    | SW Red complex    | B    | -    | +38 +/- 1   | 0.13 +/- 0.09 | 0              | 47. +/- 3.  | 75. +/- 10.  |     11 | 42.5 +/- 27.7  |
+    | NE Blue complex   | B    | -    | -51 +/- 1   | 0.24 +/- 0.05 | 0              | 65. +/- 2.  | -70. +/- 4.  |      5 | 14.6 +/- 2.8   |
+    | N(W) Red complex  | D?   |      | +21 +/- 2   | 0.10 +/- 0.03 | 0              | 27. +/- 2.  | 69. +/- 6.   |      9 | 25.1 +/- 6.9   |
+    | SE Blue complex   | D?   |      | -35 +/- 3   | 0.45 +/- 0.03 | 0              | 60. +/- 3.  | -44. +/- 3.  |      6 | 8.3 +/- 0.4    |
+    | N(E) Red complex  | ?    |      | +25 +/- 2   | 0.05 +/- 0.02 | 0              | 30. +/- 2.  | 81. +/- 4.   |      4 | 25.6 +/- 11.3  |
+    | SW Faint Blue     | ?    |      | -26 +/- 1   | 0.12 +/- 0.09 | 0              | 33. +/- 3.  | -70. +/- 14. |     10 | 29.2 +/- 19.6  |
+    |-------------------+------+------+-------------+---------------+----------------+-------------+--------------+--------+----------------|
+    | Inner shell A NNW | A    |      | +4 +/- 3    | 0.53 +/- 0.05 | -0.03 +/- 0.06 | 51. +/- 5.  | 5. +/- 4.    |      7 | 7.0 +/- 4e-2   |
+    | Inner shell A SSE | A    |      | -8 +/- 3    | 0.55 +/- 0.05 | -0.04 +/- 0.06 | 53. +/- 5.  | -10. +/- 4.  |    7.5 | 7.6 +/- 9e-2   |
+    | Inner shell B WSW | B    |      | +5.5 +/- 3  | 0.27 +/- 0.08 | 0.02 +/- 0.05  | 26. +/- 7.  | 14. +/- 9.   |      5 | 5.2 +/- 0.2    |
+    | Inner shell B ENE | B    |      | -12.5 +/- 3 | 0.31 +/- 0.05 | -0.06 +/- 0.05 | 33. +/- 5.  | -27. +/- 7.  |      5 | 5.6 +/- 0.3    |
+    | IS WSW            | B    |      | +6 +/- 3    | 0.30 +/- 0.27 | 0.13 +/- 0.12  | 29. +/- 25. | 14. +/- 14.  |     12 | 12.4 +/- 0.8   |
+    | IS ENE            | B    |      | -5.5 +/- 3  | 0.28 +/- 0.16 | -0.15 +/- 0.20 | 27. +/- 15. | -14. +/- 11. |      9 | 9.3 +/- 0.4    |
+    |-------------------+------+------+-------------+---------------+----------------+-------------+--------------+--------+----------------|
+    | Inner shell A NNW | A    |      | +8 +/- 3    | 0.53 +/- 0.05 | -0.03 +/- 0.06 | 51. +/- 5.  | 11. +/- 4.   |      7 | 7.1 +/- 1.0e-1 |
+    | Inner shell A SSE | A    |      | -17 +/- 3   | 0.55 +/- 0.05 | -0.04 +/- 0.06 | 56. +/- 5.  | -21. +/- 4.  |    7.5 | 8.0 +/- 0.2    |
+    | Inner shell B WSW | B    |      | +18 +/- 3   | 0.27 +/- 0.08 | 0.02 +/- 0.05  | 34. +/- 6.  | 40. +/- 10.  |      5 | 6.5 +/- 1.0    |
+    | Inner shell B ENE | B    |      | -25 +/- 3   | 0.31 +/- 0.05 | -0.06 +/- 0.05 | 42. +/- 4.  | -46. +/- 6.  |      5 | 7.2 +/- 0.8    |
+    | IS WSW            | B    |      | +20 +/- 3   | 0.30 +/- 0.27 | 0.13 +/- 0.12  | 37. +/- 20. | 40. +/- 26.  |     12 | 15.7 +/- 6.0   |
+    | IS ENE            | B    |      | -18 +/- 3   | 0.28 +/- 0.16 | -0.15 +/- 0.20 | 34. +/- 12. | -39. +/- 17. |      9 | 11.6 +/- 2.8   |
     #+TBLFM: $7=sqrt((1.2 $4)**2 + (95 $5)**2);f0::$8=arctan(1.2 ($4) / 95 ($5) ) ;f0::$10=$-1/cos($8);f1
     + We want inclination from plane of sky, so that is what I have in the ~i~ column
     + I am adding some of the low-ionization knots
       + I had already done this in [[id:76A2C7C7-5190-41B7-90FA-30E35F6A455C][Proper motions and 3D position/velocities of the knot complexes]]
       + But I am not convinced with some of the measurements, especially the tangential velocities
       + I want to take the values at the outer tips of the complexes where possible
+    + I have also added the shells
+      + In two versions - second is better - it uses extreme values in the end caps
+      + The other thing we could do is to fit ellipses
   + Remember, PM is in pix/decade = 10 mas/yr = 95 km/s
     + So for converting to dynamic times, we have 5 arcsec at 60 km/s (6.3e-3 arcsec/year) is 790 years
     + Or, at 60 km/s
@@ -2632,7 +2858,8 @@ optional arguments:
       |    2000 |           12.6 |
       |    3000 |           18.9 |
       |    4000 |           25.3 |
-#+TBLFM: $2=0.01 (60/95) $1;f1
+      #+TBLFM: $2=0.01 (60/95) $1;f1
+    + Alternatively, we can just do t = 100 R_proj / PM_r
   + The final two columns are total velocity ~V~ and inclination ~i~, both calculated with correction factor 1.2 for the LOS component
     + Maybe should be lower if total velocity is high-ish, since should be of order 1 + 1/M^2
     + Inclination is from LOS, but negative values should be modulo 180
@@ -3433,8 +3660,8 @@ After subtracting instrumental width: W = 19 km/s
   | e'   | spm0043  | -1.0 | +2.5 | -0.3 |    6 | -85 |  0.011 | -45 |
   | g    | spm112-2 | -1.5 | +2.8 | -0.3 |  6.5 | -80 |  0.004 | -40 |
   |------+----------+------+------+------+------+-----+--------+-----|
-  | w    | spm329  |   1.3 | -2.5 | -0.7 |  2.7 | -86 |  0.009 | -46 |
-  | w    | spm329  |   3.5 | -2.0 |  2.1 |  4.8 | -93 | 0.0045 | -53 |
+  | w    | spm329   |  1.3 | -2.5 | -0.7 |  2.7 | -86 |  0.009 | -46 |
+  | w    | spm329   |  3.5 | -2.0 |  2.1 |  4.8 | -93 | 0.0045 | -53 |
   | o    | obj1003  |  6.1 | -0.4 |  8.5 |  4.6 | -91 |  0.025 | -51 |
   | o    | obj1003  |  3.2 | -0.3 |  4.8 | -0.3 | -85 |  0.045 | -45 |
   | t    | spm224   | -0.6 |  0.1 | -1.4 |  2.7 | -83 | 0.0010 | -43 |
