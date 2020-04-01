@@ -1,0 +1,6 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+ellipse(251.1206704,23.8042573,0.776",0.852",179.26097) # color=#8f6
+ellipse(251.1211908,23.8015433,1.282",0.853",184.6041) # color=#8f6
+# ruler(251.1230544,23.8000294,251.1214235,23.8007125) ruler=fk5 arcsec

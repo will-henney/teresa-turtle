@@ -18,18 +18,32 @@ wav0_dict = {
     'ha': 6562.79,
     'nii': 6583.45,
     'nii_s': 6548.05,
+    'heii': 6560.10,
+    'cii': 6578.15,
+    'hei': 5015.68,
 }
+
+# Which spectrum file do we *really* need to look in?
+parent = {
+    'oiii': 'oiii',
+    'ha': 'ha',
+    'nii': 'nii',
+    'nii_s': 'nii_s',
+    'heii': 'ha',
+    'cii': 'nii',
+    'hei': 'oiii',
+}
+
 try:
     lineid = sys.argv[1]
 except:
     sys.exit(f"Usage: {sys.argv[0]} {{{'|'.join(wav0_dict)}}}")
 
-datadir = "pvextract-oiii" if lineid == "oiii" else "pvextract"
+datadir = "pvextract-oiii" if lineid in ["oiii", "hei"] else "pvextract"
 
-speclist = glob.glob(f'data/{datadir}/*-{lineid}.fits')
+speclist = glob.glob(f'data/{datadir}/*-{parent[lineid]}.fits')
 # Rest wavelength in meters
 wav0 = 1e-10*wav0_dict[lineid]
-
 
 for fn in speclist:
     print('Processing', fn)
@@ -83,6 +97,9 @@ for fn in speclist:
     newhdr = wnew.to_header()
     newhdr["PA"] = pa.to(u.deg).value, "Position angle of slit, degrees"
     newhdr["OFFSET"] = offset, "Perpendicular offset of slit from star, arcsec"
+    newhdr["WEIGHT"] = spechdu.header["WEIGHT"]
     new_fn = fn.replace(f'data/{datadir}/', 'data/PVoffset/')
+    new_fn = new_fn.replace(parent[lineid], lineid)
     new_fn = new_fn.replace('.fits', newsuffix + '.fits')
+    print('Writing', new_fn)
     fits.PrimaryHDU(data=spec2d, header=newhdr).writeto(new_fn, overwrite=True)

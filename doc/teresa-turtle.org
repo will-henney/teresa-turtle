@@ -569,6 +569,9 @@ os.system("which flct")
 + Radial velocity: -35 km/s
 
 ** Weak lines in spectra
+:PROPERTIES:
+:ID:       EC2AD06F-94C3-403B-B1BE-7EF4F0D67EA1
+:END:
 + He II 6560.10
   + Clearly seen on slits that pass through core of nebula
   + Small velocity splitting of only +/- 10 km/s
@@ -1479,7 +1482,8 @@ CLOSED: [2019-05-31 Fri 13:43]
 #+RESULTS:
 [[file:../data/align-ha.tab]]
 
-**** TODO Refinements to the flux calibrations
+**** DONE Refinements to the flux calibrations
+CLOSED: [2020-03-31 Tue 19:20]
 + [X] Faint slits: take into account that continuum bandwidth is 90\AA whereas I+S range is only 40\AA
   + This made no discernible difference
 + [X] Bright slits: take into account saturated pixels
@@ -1497,8 +1501,8 @@ CLOSED: [2019-05-31 Fri 13:43]
     + All are from 2003 with 1800 s exposures
   + Saturated [O III] exposures
     + spm244, spm253
-+ [ ] Try to deal better with the halo rings  
-
++ [X] Try to deal better with the halo rings  
+  + Cancelled
 
 
 
@@ -1787,6 +1791,10 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 + We want the slit axis to increase in direction ...
   + to N for nearly vertical slits
   + to E for nearly horizontal slits
++ *Update* [2020-03-27 Fri]
+  + Add support for the weak lines
+  + See [[id:EC2AD06F-94C3-403B-B1BE-7EF4F0D67EA1][Weak lines in spectra]]
+  + However, this only works for He II, since C II and He I are outside of the wavelength window of their respective parent line ([N II] and [O III])
 
 #+BEGIN_SRC python :tangle ../scripts/turtle-pv-relative.py
   import glob
@@ -1809,18 +1817,32 @@ First run through, try to determine j0_s, j0_i, and shift automatically
       'ha': 6562.79,
       'nii': 6583.45,
       'nii_s': 6548.05,
+      'heii': 6560.10,
+      'cii': 6578.15,
+      'hei': 5015.68,
   }
+
+  # Which spectrum file do we *really* need to look in?
+  parent = {
+      'oiii': 'oiii',
+      'ha': 'ha',
+      'nii': 'nii',
+      'nii_s': 'nii_s',
+      'heii': 'ha',
+      'cii': 'nii',
+      'hei': 'oiii',
+  }
+
   try:
       lineid = sys.argv[1]
   except:
       sys.exit(f"Usage: {sys.argv[0]} {{{'|'.join(wav0_dict)}}}")
 
-  datadir = "pvextract-oiii" if lineid == "oiii" else "pvextract"
+  datadir = "pvextract-oiii" if lineid in ["oiii", "hei"] else "pvextract"
 
-  speclist = glob.glob(f'data/{datadir}/*-{lineid}.fits')
+  speclist = glob.glob(f'data/{datadir}/*-{parent[lineid]}.fits')
   # Rest wavelength in meters
   wav0 = 1e-10*wav0_dict[lineid]
-
 
   for fn in speclist:
       print('Processing', fn)
@@ -1874,8 +1896,11 @@ First run through, try to determine j0_s, j0_i, and shift automatically
       newhdr = wnew.to_header()
       newhdr["PA"] = pa.to(u.deg).value, "Position angle of slit, degrees"
       newhdr["OFFSET"] = offset, "Perpendicular offset of slit from star, arcsec"
+      newhdr["WEIGHT"] = spechdu.header["WEIGHT"]
       new_fn = fn.replace(f'data/{datadir}/', 'data/PVoffset/')
+      new_fn = new_fn.replace(parent[lineid], lineid)
       new_fn = new_fn.replace('.fits', newsuffix + '.fits')
+      print('Writing', new_fn)
       fits.PrimaryHDU(data=spec2d, header=newhdr).writeto(new_fn, overwrite=True)
 
 #+END_SRC
@@ -1901,6 +1926,27 @@ First run through, try to determine j0_s, j0_i, and shift automatically
   import astropy.units as u
   sys.path.append('/Users/will/Dropbox/OrionWest')
   from helio_utils import helio_topo_from_header, vels2waves
+
+  wav0_dict = {
+      'oiii': 5006.84,
+      'ha': 6562.79,
+      'nii': 6583.45,
+      'nii_s': 6548.05,
+      'heii': 6560.10,
+      'cii': 6578.15,
+      'hei': 5015.68,
+  }
+
+  # Which spectrum file do we *really* need to look in?
+  parent = {
+      'oiii': 'oiii',
+      'ha': 'ha',
+      'nii': 'nii',
+      'nii_s': 'nii_s',
+      'heii': 'ha',
+      'cii': 'nii',
+      'hei': 'oiii',
+  }
 
 
   try:
@@ -1929,7 +1975,7 @@ First run through, try to determine j0_s, j0_i, and shift automatically
       # special cases
       "oiii": "data/pvextract-oiii",
   }
-  datadir = datadir_dict.get(line_id, "data/pvextract")
+  datadir = datadir_dict.get(parent[line_id], "data/pvextract")
 
   # First set up WCS for the output image
   #
@@ -1953,7 +1999,7 @@ First run through, try to determine j0_s, j0_i, and shift automatically
   slit_width = 1.0                
   slit_pix_width = slit_width/pixel_scale
 
-  speclist = glob.glob(f'{datadir}/*-{line_id}.fits')
+  speclist = glob.glob(f'{datadir}/*-{parent[line_id]}.fits')
 
   # Window widths for line and BG
   dwline = 7.0*u.Angstrom
@@ -1976,8 +2022,9 @@ First run through, try to determine j0_s, j0_i, and shift automatically
       # Eliminate degenerate 3rd dimension from data array and trim off bad bits
       spec2d = spechdu.data[0]
 
-      # Rest wavelength from FITS header is in meters
-      wavrest = wspec.wcs.restwav*u.m
+      # Change to get rest wavelength from dict instead of from FITS
+      # header, so we can treat minor lines too
+      wavrest = (wav0_dict[line_id]*u.Angstrom).to(u.m)
 
       # Find wavelength limits for line extraction window
       if vrange is None:
@@ -2096,7 +2143,20 @@ And [O III]
   done
 #+END_SRC
 
+And He II
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-heii.sh :eval no
+  ranges='-020+000 -040-020 -060-040 -080-060 -080+000'
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py heii $vrange maps20
+  done
+#+END_SRC
 
+#+BEGIN_SRC sh :tangle ../scripts/make-isovel-maps-heii-centered.sh :eval no
+  ranges='-030-010 -050-030 -070-050'
+  for vrange in $ranges; do
+      python scripts/turtle-spectral-map.py heii $vrange maps20
+  done
+#+END_SRC
 
 *** Look at some of the maps
 Central velocities in Ha
@@ -2219,6 +2279,17 @@ Red velocities in [O III] - 20 km/s channels
   + Instead of using the title of the DS9 instance, you can get its number from menu item File->XPA->Information
   + Use the value of XPA_METHOD
 
+#+BEGIN_SRC sh :dir ../data/maps20 :results silent
+  DS9=oiii-images
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-030-010.fits[3]
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-050-030.fits[3]
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-070-050.fits[3]
+#+END_SRC
+
+
 Central velocities in [N II] - 20 km/s channels
 #+BEGIN_SRC sh :dir ../data/maps20 :results silent
   DS9=7f000001:49265
@@ -2296,33 +2367,33 @@ Central velocities in [N II] - 20 km/s channels
 :END:
 + This is taken from [[id:6FA8AF58-5665-4092-A25D-0F18B851D1CD][Organizing components into systems and flows]]
 
-    | System               |  PA | Axis | V_los       | PM_r          | V_pos       | V           | i            | R_proj       | R, pc         | t, 1000 yr  |
-    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Inner shell A NNW    | 340 | A+   | +8 +/- 3    | 0.51 +/- 0.07 | 48. +/- 7.  | 49. +/- 7.  | 11. +/- 4.   | 7.0 +/- 0.5  | 7.1 +/- 0.5   | 1.4 +/- 0.2 |
-    | Outer lobe I+/VII+   | 340 | A+   | +28 +/- 2   | 0.86 +/- 0.3  | 82. +/- 29. | 89. +/- 27. | 22. +/- 7.   | 16 +/- 1     | 17.3 +/- 1.4  | 1.9 +/- 0.7 |
-    | North knot           | 340 | A+   | +24 +/- 1   | 0.63 +/- 0.04 | 60. +/- 4.  | 67. +/- 4.  | 26. +/- 2.   | 17 +/- 1     | 18.9 +/- 1.2  | 2.7 +/- 0.2 |
-    | Inner shell A SSE    | 160 | A-   | -17 +/- 3   | 0.54 +/- 0.07 | 51. +/- 7.  | 55. +/- 7.  | -22. +/- 4.  | 6.5 +/- 0.5  | 7.0 +/- 0.6   | 1.2 +/- 0.2 |
-    | Outer lobe I-        | 160 | A-   | -32 +/- 1   | 0.75 +/- 0.30 | 71. +/- 29. | 81. +/- 26. | -28. +/- 10. | 15 +/- 2     | 17.0 +/- 2.8  | 2.0 +/- 0.8 |
-    | Outer lobe VIII-     | 160 | A-   | -10 +/- 1   | 0.71 +/- 0.09 | 67. +/- 9.  | 68. +/- 9.  | -10. +/- 2.  | 23 +/- 1     | 23.4 +/- 1.0  | 3.2 +/- 0.4 |
-    | Outer lobe II+       | 170 | C+   | +24 +/- 1.5 | 0.61 +/- 0.13 | 58. +/- 12. | 65. +/- 11. | 26. +/- 5.   | 24 +/- 1     | 26.7 +/- 1.6  | 3.9 +/- 0.9 |
-    | Outer lobe II-       | 355 | C-   | -25 +/- 3   | 0.5 +/- 0.5   | 48. +/- 48. | 57. +/- 41. | -32. +/- 26. | 21 +/- 3     | 24.8 +/- 7.9  | 4.2 +/- 4.2 |
-    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Inner shell B ENE    |  65 | B-   | -25 +/- 3   | 0.33 +/- 0.05 | 31. +/- 5.  | 43. +/- 4.  | -44. +/- 6.  | 4 +/- 1      | 5.6 +/- 1.5   | 1.2 +/- 0.4 |
-    | NE Blue complex      |  60 | B-   | -51 +/- 1   | 0.24 +/- 0.05 | 23. +/- 5.  | 65. +/- 2.  | -69. +/- 4.  | 5 +/- 1      | 14.0 +/- 3.8  | 2.1 +/- 0.6 |
-    | IS ENE               |  50 | B-   | -18 +/- 3   | 0.28 +/- 0.16 | 27. +/- 15. | 35. +/- 12. | -39. +/- 16. | 9 +/- 2      | 11.6 +/- 3.7  | 3.2 +/- 2.0 |
-    | Inner shell B WSW    | 240 | B+   | +18 +/- 3   | 0.31 +/- 0.04 | 29. +/- 4.  | 36. +/- 4.  | 37. +/- 6.   | 4.5 +/- 1    | 5.6 +/- 1.3   | 1.5 +/- 0.4 |
-    | IS WSW               | 260 | B+   | +20 +/- 3   | 0.30 +/- 0.27 | 29. +/- 26. | 38. +/- 20. | 40. +/- 26.  | 11.5 +/- 1   | 15.0 +/- 5.9  | 3.8 +/- 3.5 |
-    | SW Red complex       | 250 | B+   | +38 +/- 1   | 0.19 +/- 0.03 | 18. +/- 3.  | 49. +/- 2.  | 68. +/- 3.   | 7 +/- 2      | 18.7 +/- 5.9  | 3.7 +/- 1.2 |
-    | N(E) Red complex     |  30 | E+   | +25 +/- 2   | 0.05 +/- 0.04 | 5. +/- 4.   | 30. +/- 2.  | 81. +/- 7.   | 4 +/- 1      | 25.6 +/- 20.7 | 8.0 +/- 6.7 |
-    | SW Faint Blue        | 225 | E-   | -26 +/- 1   | 0.27 +/- 0.04 | 26. +/- 4.  | 41. +/- 3.  | -50. +/- 4.  | 7 +/- 1      | 10.9 +/- 1.8  | 2.6 +/- 0.5 |
-    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Outer lobe X+        | 285 | D+   | +6 +/- 2    | 0.50 +/- 0.45 | 48. +/- 43. | 49. +/- 43. | 9. +/- 8.    | 18.5 +/- 1.5 | 18.7 +/- 1.6  | 3.7 +/- 3.3 |
-    | Outer lobe IV+       | 315 | D+   | +13 +/- 1   | 0.35 +/- 0.07 | 33. +/- 7.  | 37. +/- 6.  | 25. +/- 5.   | 10 +/- 1     | 11.0 +/- 1.2  | 2.9 +/- 0.6 |
-    | NW knot ([N II])     | 310 | D+   | +18 +/- 1   | 0.12 +/- 0.08 | 11. +/- 8.  | 24. +/- 4.  | 63. +/- 17.  | 8 +/- 1      | 17.6 +/- 10.5 | 6.7 +/- 4.5 |
-    | N(W) Red complex     | 300 | D+   | +21 +/- 2   | 0.10 +/- 0.04 | 10. +/- 4.  | 27. +/- 3.  | 68. +/- 8.   | 6 +/- 2      | 16.0 +/- 7.7  | 6.0 +/- 3.1 |
-    | Outer lobe X-/IV-/V+ | 120 | D-   | -8 +/- 4    | 0.25 +/- 0.15 | 24. +/- 14. | 26. +/- 13. | -22. +/- 15. | 13 +/- 3     | 14.0 +/- 3.6  | 5.2 +/- 3.3 |
-    | SE Blue complex      | 135 | D-   | -31 +/- 3   | 0.41 +/- 0.10 | 39. +/- 10. | 54. +/- 8.  | -44. +/- 8.  | 4.5 +/- 1    | 6.3 +/- 1.6   | 1.1 +/- 0.4 |
-    #+TBLFM: $6=95 $5;f0::$7=sqrt((1.2 ($4))**2 +  ($6)**2) ;f0::$8=arctan(1.2 ($4) / ($6)) ;f0::$10=$9/cos($8);f1::$11=100 $9 / 1000 $5 ;f1
+    | System               |  PA | Axis | V_los       | PM_r          | V_pos       | V           | i            | R_proj   | R, pc         | t, 1000 yr  |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+----------+---------------+-------------|
+    | Inner shell A NNW    | 340 | A+   | +8 +/- 3    | 0.51 +/- 0.07 | 48. +/- 7.  | 49. +/- 7.  | 11. +/- 4.   | 7 +/- 1  | 0.07 +/- 0.01 | 1.4 +/- 0.3 |
+    | Outer lobe I+/VII+   | 340 | A+   | +28 +/- 2   | 0.86 +/- 0.3  | 82. +/- 29. | 89. +/- 27. | 22. +/- 7.   | 16 +/- 1 | 0.17 +/- 0.01 | 1.9 +/- 0.7 |
+    | North knot           | 340 | A+   | +24 +/- 1   | 0.63 +/- 0.04 | 60. +/- 4.  | 67. +/- 4.  | 26. +/- 2.   | 17 +/- 1 | 0.19 +/- 0.01 | 2.7 +/- 0.2 |
+    | Inner shell A SSE    | 160 | A-   | -17 +/- 3   | 0.54 +/- 0.07 | 51. +/- 7.  | 55. +/- 7.  | -22. +/- 4.  | 7 +/- 1  | 0.08 +/- 0.01 | 1.3 +/- 0.3 |
+    | Outer lobe I-        | 160 | A-   | -32 +/- 1   | 0.75 +/- 0.30 | 71. +/- 29. | 81. +/- 26. | -28. +/- 10. | 15 +/- 2 | 0.17 +/- 0.03 | 2.0 +/- 0.8 |
+    | Outer lobe VIII-     | 160 | A-   | -10 +/- 1   | 0.71 +/- 0.09 | 67. +/- 9.  | 68. +/- 9.  | -10. +/- 2.  | 23 +/- 1 | 0.23 +/- 0.01 | 3.2 +/- 0.4 |
+    | Outer lobe II+       | 170 | C+   | +24 +/- 1.5 | 0.61 +/- 0.13 | 58. +/- 12. | 65. +/- 11. | 26. +/- 5.   | 24 +/- 1 | 0.27 +/- 0.02 | 3.9 +/- 0.9 |
+    | Outer lobe II-       | 355 | C-   | -25 +/- 3   | 0.5 +/- 0.5   | 48. +/- 48. | 57. +/- 41. | -32. +/- 26. | 21 +/- 3 | 0.25 +/- 0.08 | 4.2 +/- 4.2 |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+----------+---------------+-------------|
+    | Inner shell B ENE    |  65 | B-   | -25 +/- 3   | 0.33 +/- 0.05 | 31. +/- 5.  | 43. +/- 4.  | -44. +/- 6.  | 4 +/- 1  | 0.06 +/- 0.01 | 1.2 +/- 0.4 |
+    | NE Blue complex      |  60 | B-   | -51 +/- 1   | 0.24 +/- 0.05 | 23. +/- 5.  | 65. +/- 2.  | -69. +/- 4.  | 5 +/- 1  | 0.14 +/- 0.04 | 2.1 +/- 0.6 |
+    | IS ENE               |  50 | B-   | -18 +/- 3   | 0.28 +/- 0.16 | 27. +/- 15. | 35. +/- 12. | -39. +/- 16. | 9 +/- 2  | 0.12 +/- 0.04 | 3.2 +/- 2.0 |
+    | Inner shell B WSW    | 240 | B+   | +18 +/- 3   | 0.31 +/- 0.04 | 29. +/- 4.  | 36. +/- 4.  | 37. +/- 6.   | 5 +/- 1  | 0.06 +/- 0.01 | 1.6 +/- 0.4 |
+    | IS WSW               | 260 | B+   | +20 +/- 3   | 0.30 +/- 0.27 | 29. +/- 26. | 38. +/- 20. | 40. +/- 26.  | 12 +/- 1 | 0.16 +/- 0.06 | 4.0 +/- 3.6 |
+    | SW Red complex       | 250 | B+   | +38 +/- 1   | 0.19 +/- 0.03 | 18. +/- 3.  | 49. +/- 2.  | 68. +/- 3.   | 7 +/- 2  | 0.19 +/- 0.06 | 3.7 +/- 1.2 |
+    | N(E) Red complex     |  30 | E+   | +25 +/- 2   | 0.05 +/- 0.04 | 5. +/- 4.   | 30. +/- 2.  | 81. +/- 7.   | 4 +/- 1  | 0.26 +/- 0.21 | 8.0 +/- 6.7 |
+    | SW Faint Blue        | 225 | E-   | -26 +/- 1   | 0.27 +/- 0.04 | 26. +/- 4.  | 41. +/- 3.  | -50. +/- 4.  | 7 +/- 1  | 0.11 +/- 0.02 | 2.6 +/- 0.5 |
+    |----------------------+-----+------+-------------+---------------+-------------+-------------+--------------+----------+---------------+-------------|
+    | Outer lobe X+        | 285 | D+   | +6 +/- 2    | 0.50 +/- 0.45 | 48. +/- 43. | 49. +/- 43. | 9. +/- 8.    | 19 +/- 2 | 0.19 +/- 0.02 | 3.8 +/- 3.4 |
+    | Outer lobe IV+       | 315 | D+   | +13 +/- 1   | 0.35 +/- 0.07 | 33. +/- 7.  | 37. +/- 6.  | 25. +/- 5.   | 10 +/- 1 | 0.11 +/- 0.01 | 2.9 +/- 0.6 |
+    | NW knot ([N II])     | 310 | D+   | +18 +/- 1   | 0.12 +/- 0.08 | 11. +/- 8.  | 24. +/- 4.  | 63. +/- 17.  | 8 +/- 1  | 0.18 +/- 0.10 | 6.7 +/- 4.5 |
+    | N(W) Red complex     | 300 | D+   | +21 +/- 2   | 0.10 +/- 0.04 | 10. +/- 4.  | 27. +/- 3.  | 68. +/- 8.   | 6 +/- 2  | 0.16 +/- 0.08 | 6.0 +/- 3.1 |
+    | Outer lobe X-/IV-/V+ | 120 | D-   | -8 +/- 4    | 0.25 +/- 0.15 | 24. +/- 14. | 26. +/- 13. | -22. +/- 15. | 13 +/- 3 | 0.14 +/- 0.04 | 5.2 +/- 3.3 |
+    | SE Blue complex      | 135 | D-   | -31 +/- 3   | 0.41 +/- 0.10 | 39. +/- 10. | 54. +/- 8.  | -44. +/- 8.  | 5 +/- 1  | 0.07 +/- 0.02 | 1.2 +/- 0.4 |
+    #+TBLFM: $6=95 $5;f0::$7=sqrt((1.2 ($4))**2 +  ($6)**2) ;f0::$8=arctan(1.2 ($4) / ($6)) ;f0::$10=0.01 $9/cos($8);f2::$11=100 $9 / 1000 $5 ;f1
 
   + In this table, measurements correspond to the parts of each system where we can measure radial velocity and proper motions in the same place
     + So it doesn't cover the full radial extent, particularly of the knot complexes
@@ -2338,34 +2409,35 @@ Central velocities in [N II] - 20 km/s channels
     + Take the average: 0.41 +/- 0.10
 
 ***** LaTeX version of table
-+ This is a cleaned up version of the [[id:FD05EAD1-3069-4967-986F-1E5F1644DE34][Table of 3D velocity organized by axis]], designed to be exported to a LaTeX file
++ Removed proper motion column
 
-    | System               |  PA | Axis | V_los       | V_pos       | V           | i            | R_proj       | R, pc         | t, 1000 yr  |
-    |----------------------+-----+------+-------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Inner shell A NNW    | 340 | A+   | +8 +/- 3    | 48. +/- 7.  | 49. +/- 7.  | 11. +/- 4.   | 7.0 +/- 0.5  | 7.1 +/- 0.5   | 1.4 +/- 0.2 |
-    | Outer lobe I+/VII+   | 340 | A+   | +28 +/- 2   | 82. +/- 29. | 89. +/- 27. | 22. +/- 7.   | 16 +/- 1     | 17.3 +/- 1.4  | 1.9 +/- 0.7 |
-    | North knot           | 340 | A+   | +24 +/- 1   | 60. +/- 4.  | 67. +/- 4.  | 26. +/- 2.   | 17 +/- 1     | 18.9 +/- 1.2  | 2.7 +/- 0.2 |
-    | Inner shell A SSE    | 160 | A-   | -17 +/- 3   | 51. +/- 7.  | 55. +/- 7.  | -22. +/- 4.  | 6.5 +/- 0.5  | 7.0 +/- 0.6   | 1.2 +/- 0.2 |
-    | Outer lobe I-        | 160 | A-   | -32 +/- 1   | 71. +/- 29. | 81. +/- 26. | -28. +/- 10. | 15 +/- 2     | 17.0 +/- 2.8  | 2.0 +/- 0.8 |
-    | Outer lobe VIII-     | 160 | A-   | -10 +/- 1   | 67. +/- 9.  | 68. +/- 9.  | -10. +/- 2.  | 23 +/- 1     | 23.4 +/- 1.0  | 3.2 +/- 0.4 |
-    | Outer lobe II+       | 170 | C+   | +24 +/- 1.5 | 58. +/- 12. | 65. +/- 11. | 26. +/- 5.   | 24 +/- 1     | 26.7 +/- 1.6  | 3.9 +/- 0.9 |
-    | Outer lobe II-       | 355 | C-   | -25 +/- 3   | 48. +/- 48. | 57. +/- 41. | -32. +/- 26. | 21 +/- 3     | 24.8 +/- 7.9  | 4.2 +/- 4.2 |
-    |----------------------+-----+------+-------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Inner shell B ENE    |  65 | B-   | -25 +/- 3   | 31. +/- 5.  | 43. +/- 4.  | -44. +/- 6.  | 4 +/- 1      | 5.6 +/- 1.5   | 1.2 +/- 0.4 |
-    | NE Blue complex      |  60 | B-   | -51 +/- 1   | 23. +/- 5.  | 65. +/- 2.  | -69. +/- 4.  | 5 +/- 1      | 14.0 +/- 3.8  | 2.1 +/- 0.6 |
-    | IS ENE               |  50 | B-   | -18 +/- 3   | 27. +/- 15. | 35. +/- 12. | -39. +/- 16. | 9 +/- 2      | 11.6 +/- 3.7  | 3.2 +/- 2.0 |
-    | Inner shell B WSW    | 240 | B+   | +18 +/- 3   | 29. +/- 4.  | 36. +/- 4.  | 37. +/- 6.   | 4.5 +/- 1    | 5.6 +/- 1.3   | 1.5 +/- 0.4 |
-    | IS WSW               | 260 | B+   | +20 +/- 3   | 29. +/- 26. | 38. +/- 20. | 40. +/- 26.  | 11.5 +/- 1   | 15.0 +/- 5.9  | 3.8 +/- 3.5 |
-    | SW Red complex       | 250 | B+   | +38 +/- 1   | 18. +/- 3.  | 49. +/- 2.  | 68. +/- 3.   | 7 +/- 2      | 18.7 +/- 5.9  | 3.7 +/- 1.2 |
-    | N(E) Red complex     |  30 | E+   | +25 +/- 2   | 5. +/- 4.   | 30. +/- 2.  | 81. +/- 7.   | 4 +/- 1      | 25.6 +/- 20.7 | 8.0 +/- 6.7 |
-    | SW Faint Blue        | 225 | E-   | -26 +/- 1   | 26. +/- 4.  | 41. +/- 3.  | -50. +/- 4.  | 7 +/- 1      | 10.9 +/- 1.8  | 2.6 +/- 0.5 |
-    |----------------------+-----+------+-------------+-------------+-------------+--------------+--------------+---------------+-------------|
-    | Outer lobe X+        | 285 | D+   | +6 +/- 2    | 48. +/- 43. | 49. +/- 43. | 9. +/- 8.    | 18.5 +/- 1.5 | 18.7 +/- 1.6  | 3.7 +/- 3.3 |
-    | Outer lobe IV+       | 315 | D+   | +13 +/- 1   | 33. +/- 7.  | 37. +/- 6.  | 25. +/- 5.   | 10 +/- 1     | 11.0 +/- 1.2  | 2.9 +/- 0.6 |
-    | NW knot ([N II])     | 310 | D+   | +18 +/- 1   | 11. +/- 8.  | 24. +/- 4.  | 63. +/- 17.  | 8 +/- 1      | 17.6 +/- 10.5 | 6.7 +/- 4.5 |
-    | N(W) Red complex     | 300 | D+   | +21 +/- 2   | 10. +/- 4.  | 27. +/- 3.  | 68. +/- 8.   | 6 +/- 2      | 16.0 +/- 7.7  | 6.0 +/- 3.1 |
-    | Outer lobe X-/IV-/V+ | 120 | D-   | -8 +/- 4    | 24. +/- 14. | 26. +/- 13. | -22. +/- 15. | 13 +/- 3     | 14.0 +/- 3.6  | 5.2 +/- 3.3 |
-    | SE Blue complex      | 135 | D-   | -31 +/- 3   | 39. +/- 10. | 54. +/- 8.  | -44. +/- 8.  | 4.5 +/- 1    | 6.3 +/- 1.6   | 1.1 +/- 0.4 |
+    | System               |  PA | Axis | V_los     | V_pos     | V         | i          | R_proj     | R, pc       | t, 1000 yr |
+    |----------------------+-----+------+-----------+-----------+-----------+------------+------------+-------------+------------|
+    | Inner shell A NNW    | 340 | A^+  | +8 \pm 3    | 48. \pm 7.  | 49. \pm 7.  | 11. \pm 4.   | 7.0 \pm 0.5  | 7.1 \pm 0.5   | 1.4 \pm 0.2  |
+    | Outer lobe I+/VII+   | 340 | A^+  | +28 \pm 2   | 82. \pm 29. | 89. \pm 27. | 22. \pm 7.   | 16 \pm 1     | 17.3 \pm 1.4  | 1.9 \pm 0.7  |
+    | North knot           | 340 | A^+  | +24 \pm 1   | 60. \pm 4.  | 67. \pm 4.  | 26. \pm 2.   | 17 \pm 1     | 18.9 \pm 1.2  | 2.7 \pm 0.2  |
+    | Inner shell A SSE    | 160 | A^-  | -17 \pm 3   | 51. \pm 7.  | 55. \pm 7.  | -22. \pm 4.  | 6.5 \pm 0.5  | 7.0 \pm 0.6   | 1.2 \pm 0.2  |
+    | Outer lobe I-        | 160 | A^-  | -32 \pm 1   | 71. \pm 29. | 81. \pm 26. | -28. \pm 10. | 15 \pm 2     | 17.0 \pm 2.8  | 2.0 \pm 0.8  |
+    | Outer lobe VIII-     | 160 | A^-  | -10 \pm 1   | 67. \pm 9.  | 68. \pm 9.  | -10. \pm 2.  | 23 \pm 1     | 23.4 \pm 1.0  | 3.2 \pm 0.4  |
+    | Outer lobe II+       | 170 | C^+  | +24 \pm 1.5 | 58. \pm 12. | 65. \pm 11. | 26. \pm 5.   | 24 \pm 1     | 26.7 \pm 1.6  | 3.9 \pm 0.9  |
+    | Outer lobe II-       | 355 | C^-  | -25 \pm 3   | -         | > 25      | < 0.       | 21 \pm 3     | >21         | -          |
+    |----------------------+-----+------+-----------+-----------+-----------+------------+------------+-------------+------------|
+    | Inner shell B ENE    |  65 | B^-  | -25 \pm 3   | 31. \pm 5.  | 43. \pm 4.  | -44. \pm 6.  | 4 \pm 1      | 5.6 \pm 1.5   | 1.2 \pm 0.4  |
+    | NE Blue complex      |  60 |      | -51 \pm 1   | 23. \pm 5.  | 65. \pm 2.  | -69. \pm 4.  | 5 \pm 1      | 14.0 \pm 3.8  | 2.1 \pm 0.6  |
+    | IS ENE               |  50 | B^-  | -18 \pm 3   | 27. \pm 15. | 35. \pm 12. | -39. \pm 16. | 9 \pm 2      | 11.6 \pm 3.7  | 3.2 \pm 2.0  |
+    | Inner shell B WSW    | 240 | B^+  | +18 \pm 3   | 29. \pm 4.  | 36. \pm 4.  | 37. \pm 6.   | 4.5 \pm 1    | 5.6 \pm 1.3   | 1.5 \pm 0.4  |
+    | IS WSW               | 260 | B^+  | +20 \pm 3   | 29. \pm 26. | 38. \pm 20. | 40. \pm 26.  | 11.5 \pm 1   | 15.0 \pm 5.9  | 3.8 \pm 3.5  |
+    | SW Red complex       | 250 |      | +38 \pm 1   | 18. \pm 3.  | 49. \pm 2.  | 68. \pm 3.   | 7 \pm 2      | 18.7 \pm 5.9  | 3.7 \pm 1.2  |
+    | N(E) Red complex     |  30 |      | +25 \pm 2   | 5. \pm 4.   | 30. \pm 2.  | 81. \pm 7.   | 4 \pm 1      | 25.6 \pm 20.7 | 8.0 \pm 6.7  |
+    | SW Faint Blue        | 225 |      | -26 \pm 1   | 26. \pm 4.  | 41. \pm 3.  | -50. \pm 4.  | 7 \pm 1      | 10.9 \pm 1.8  | 2.6 \pm 0.5  |
+    |----------------------+-----+------+-----------+-----------+-----------+------------+------------+-------------+------------|
+    | Outer lobe X+        | 285 | D+   | +6 \pm 2    | 48. \pm 43. | 49. \pm 43. | 9. \pm 8.    | 18.5 \pm 1.5 | 18.7 \pm 1.6  | 3.7 \pm 3.3  |
+    | Outer lobe IV+       | 315 | D+   | +13 \pm 1   | 33. \pm 7.  | 37. \pm 6.  | 25. \pm 5.   | 10 \pm 1     | 11.0 \pm 1.2  | 2.9 \pm 0.6  |
+    | NW knot ([N II])     | 310 |      | +18 \pm 1   | 11. \pm 8.  | 24. \pm 4.  | 63. \pm 17.  | 8 \pm 1      | 17.6 \pm 10.5 | 6.7 \pm 4.5  |
+    | N(W) Red complex     | 300 |      | +21 \pm 2   | 10. \pm 4.  | 27. \pm 3.  | 68. \pm 8.   | 6 \pm 2      | 16.0 \pm 7.7  | 6.0 \pm 3.1  |
+    | Outer lobe X-/IV-/V+ | 120 | D-   | -8 \pm 4    | 24. \pm 14. | 26. \pm 13. | -22. \pm 15. | 13 \pm 3     | 14.0 \pm 3.6  | 5.2 \pm 3.3  |
+    | SE Blue complex      | 135 |      | -31 \pm 3   | 39. \pm 10. | 54. \pm 8.  | -44. \pm 8.  | 4.5 \pm 1    | 6.3 \pm 1.6   | 1.1 \pm 0.4  |
++ This is a cleaned up version of the [[id:FD05EAD1-3069-4967-986F-1E5F1644DE34][Table of 3D velocity organized by axis]], designed to be exported to a LaTeX file
 
 *** Summary of nebular history
 + This uses dynamic ages, so may be inaccurate if components have undergone significant acceleration or deceleration
@@ -2447,6 +2519,38 @@ optional arguments:
   -v VMIN, --vmin VMIN  0.0
 #+end_example
 
+*** He II
++ Only appears in the central slits
++ Look for up to 4 components in each slit
+  + Tips of velocity ellipse
+  + Blue/red half of max splitting
++ Velocities are wrt -40 km/s
++ y-values are not right for slit V 
+  - There was a similar issue for [N II] components, but I don't remember how I resolved it
+  - Maybe switch to having x0 and y0 for each slit
++ x-values 
+
+| Slit |     PA |    off |     s |   V |    x |    y | Comments  |
+|------+--------+--------+-------+-----+------+------+-----------|
+| T    | 339.72 |  -0.66 |  -3.2 |  -2 |  0.5 | -2.8 |           |
+| T    | 339.72 |  -0.66 | -1.27 |  -3 | -0.2 | -1.0 |           |
+| T    | 339.72 |  -0.66 |    -1 | +11 | -0.3 | -0.7 |           |
+| T    | 339.72 |  -0.66 |   3.0 |   0 | -1.7 |  3.0 |           |
+|------+--------+--------+-------+-----+------+------+-----------|
+| V    |  292.8 | -0.799 |   3.8 |   5 | -3.8 |  2.2 |           |
+| V    |  292.8 | -0.799 |   1.3 |  -7 | -1.5 |  1.2 |           |
+| V    |  292.8 | -0.799 |  -0.5 | +13 |  0.2 |  0.5 |           |
+| V    |  292.8 | -0.799 |  -3.5 |  -3 |  2.9 | -0.6 |           |
+|------+--------+--------+-------+-----+------+------+-----------|
+| W    |   77.9 |    2.7 |  -3.8 |   3 | -3.1 |  1.8 |           |
+| W    |   77.9 |    2.7 |  -1.8 |  -7 | -1.2 |  2.3 | weaker    |
+| W    |   77.9 |    2.7 |   0.0 |  +8 |  0.6 |  2.6 | stronger  |
+| W    |   77.9 |    2.7 |   2.7 |  -1 |  3.2 |  3.2 |           |
+|------+--------+--------+-------+-----+------+------+-----------|
+| C'   |      2 |   4.19 |  -1.6 |  -8 |  4.1 | -1.5 | very weak |
+|------+--------+--------+-------+-----+------+------+-----------|
+| E    |    359 |   4.63 |  -0.6 |  -6 |  4.6 | -0.7 | very weak |
+#+TBLFM: $6=$3 cos($2) + $4 sin($2);f1::$7=$3 sin($2) + $4 cos($2);f1
 *** [O III]
 + This is much more difficult than [N II]
 
@@ -4219,6 +4323,86 @@ python scripts/turtle-rgb-map-nii-knots.py
 + [X] Now, just need to add the knot complexes on with Affinity
   + [[file:~/Dropbox/Teresa-Turtle/figs/turtle-nii-knot-complexes.afdesign]]
   + [[file:~/Dropbox/Teresa-Turtle/figs/turtle-nii-knot-complexes.pdf]]
+**** Color isovel image of the He II shell
++ We only use 3 channels here, instead of the 6 that we used for [N II]
++ This is because the range of velocities is less
++ Hence, we only need one panel
+
+#+begin_src python :eval no :tangle ../scripts/turtle-rgb-map-heii-shell.py
+  import numpy as np
+  import matplotlib.pyplot as plt
+  from astropy.visualization import make_lupton_rgb
+  from astropy.io import fits
+  from astropy.wcs import WCS
+
+  DATADIR = "data/maps20"
+  HDU = "SCALED"
+  LINEID = "heii"
+  STRETCH = 0.4
+  Q = 5
+
+  def load_and_scale_channel(vel, v1, v2, ihdu=HDU, nancolor=0.5):
+      """Load channel given central velocity wrt systemic
+
+      Then scale so that [0 -> 1] maps to [v1 -> v2]
+      """
+a      velstring = f"{int(-40.0 + vel - 10.0):+04d}{int(-40.0 + vel + 10.0):+04d}"
+      hdu = fits.open(f"{DATADIR}/turtle-slits-{LINEID}{velstring}.fits")[ihdu]
+      im = (hdu.data - v1) / (v2 - v1)
+      im[~np.isfinite(im)] = nancolor
+      return im, WCS(hdu)
+
+
+  image_r, w = load_and_scale_channel(20, 0.0, 0.004, nancolor=0.1)
+  image_g, _ = load_and_scale_channel(0, 0.0, 0.005, nancolor=0.1)
+  image_b, _ = load_and_scale_channel(-20, 0.0, 0.002, nancolor=0.02)
+  im = make_lupton_rgb(image_r, image_g, image_b, stretch=STRETCH, Q=Q)
+
+  hdu_hst = fits.open("propermotions/oiii/oiii-ago1997-win.fits")[0]
+  whst = WCS(hdu_hst)
+
+  figfile = "turtle-rgb-map-heii-shell.pdf"
+
+  fig, ax = plt.subplots(figsize=(5, 5), subplot_kw=dict(projection=w))
+  ax.imshow(im)
+  levs = [2.5, 5, 10, 20, 40, 80] 
+  lws = np.array([0.3, 0.5, 0.7, 1.0, 1.3, 1.6])
+  ax.contour(
+      hdu_hst.data,
+      levels=levs,
+      linewidths=lws + 0.8,
+      colors="k",
+      transform=ax.get_transform(whst),
+  )
+  ax.contour(
+      hdu_hst.data,
+      levels=levs,
+      linewidths=lws,
+      colors="y",
+      transform=ax.get_transform(whst),
+  )
+  ax.set(
+      xlim=[190, 320],
+      ylim=[200, 330],
+      xlabel="RA (J2000)",
+      ylabel="Dec (J2000)",
+  )
+
+
+  fig.tight_layout(
+      rect=[0.18, 0.04, 1.0, 1.0]
+  )
+  fig.savefig(figfile, dpi=200)
+  print(figfile, end="")
+#+end_src
+
+#+begin_src sh :dir .. :results file
+python scripts/turtle-rgb-map-heii-shell.py
+#+end_src
+
+#+RESULTS:
+[[file:../turtle-rgb-map-heii-shell.pdf]]
+
 
 **** Do Equivalent RGB images of oiii
 First the blue-shifted complexes
@@ -4932,6 +5116,39 @@ Saving turtle-slits-oiii-120-100-bin032.fits
 Saving turtle-slits-oiii-120-100-bin064.fits
 #+end_example
 
+#+BEGIN_SRC sh :results verbatim :dir ../data/maps20
+  mdir=/Users/will/Dropbox/OrionWest
+  ranges='-030-010 -050-030 -070-050'
+  for vrange in $ranges; do
+      python $mdir/multibin-map.py turtle-slits-heii$vrange.fits
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-slits-heii-030-010-bin001.fits
+Saving turtle-slits-heii-030-010-bin002.fits
+Saving turtle-slits-heii-030-010-bin004.fits
+Saving turtle-slits-heii-030-010-bin008.fits
+Saving turtle-slits-heii-030-010-bin016.fits
+Saving turtle-slits-heii-030-010-bin032.fits
+Saving turtle-slits-heii-030-010-bin064.fits
+Saving turtle-slits-heii-050-030-bin001.fits
+Saving turtle-slits-heii-050-030-bin002.fits
+Saving turtle-slits-heii-050-030-bin004.fits
+Saving turtle-slits-heii-050-030-bin008.fits
+Saving turtle-slits-heii-050-030-bin016.fits
+Saving turtle-slits-heii-050-030-bin032.fits
+Saving turtle-slits-heii-050-030-bin064.fits
+Saving turtle-slits-heii-070-050-bin001.fits
+Saving turtle-slits-heii-070-050-bin002.fits
+Saving turtle-slits-heii-070-050-bin004.fits
+Saving turtle-slits-heii-070-050-bin008.fits
+Saving turtle-slits-heii-070-050-bin016.fits
+Saving turtle-slits-heii-070-050-bin032.fits
+Saving turtle-slits-heii-070-050-bin064.fits
+#+end_example
+
 *** Combine multibin maps
 
 #+BEGIN_SRC python :tangle ../scripts/turtle-multibin-combine.py
@@ -5017,7 +5234,26 @@ done
   done
 #+END_SRC
 
+#+BEGIN_SRC sh :results silent :dir ..
+  ranges='-030-010 -050-030 -070-050'
+  for vrange in $ranges; do
+      python scripts/turtle-multibin-combine.py data/maps20/turtle-slits-heii$vrange 0.0001 0.0
+  done
+#+END_SRC
+
 *** Load channel images into ds9
+
+
+#+BEGIN_SRC sh :dir ../data/maps20 :results silent
+  DS9=oiii-images
+  xpaset -p $DS9 rgb red
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-030-010-multibin.fits
+  xpaset -p $DS9 rgb green
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-050-030-multibin.fits
+  xpaset -p $DS9 rgb blue
+  xpaset -p $DS9 fits $PWD/turtle-slits-heii-070-050-multibin.fits
+#+END_SRC
+
 
 Central velocities in [O III] - 20 km/s channels
 #+BEGIN_SRC sh :dir ../data/maps-oiii-20 :results silent
