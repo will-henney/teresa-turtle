@@ -12,6 +12,115 @@
 
 * NGC 6210
 
+** Notes for discussion section
+
+*** Physical parameters of the nebula and star
+
++ [ ] He II Zanstra temperature - can we get this?
+  + It looks like it might be optically thick to He+ ionizing photons
+  + Tylenda:1984a have 4686/6563 = 2.5/284
+  + Also need V magnitude of star
+    + Supposedly V = 11.7 from SIMBAD
+  + Continuum flux:
+    + Flam = 3.7e9 10^(-ww0.4 V) = 1.8e14
++ Stellar radial velocity
+  + V = -35.6 km/s from SIMBAD - citation is 
+
+
+*** Literature on the Turtle and similar nebulae
+
+**** Previous longslit spectroscopy
++ Icke:1989a
+  + Fig 2d shows isovel images derived from 5 vertical (PA=350) slits in Ha and [N II]
+  + You can clearly see the different knot complexes that we identify, from blue to red (left to right in the sequence of panels):
+    1. NE Blue
+    2. SE Blue
+    3. N Red
+    4. SW Red
+  + Quote: "A model for the motions and structure of NGC 6210 is obviously fraught with difficulties."
++ Becker:1984a
+  + Short paragraph in German. Not much use
++ Weedman:1968a earliest (?) kinematics study, not much use but should be cited
++ Rechy-Garcia:2020a
+  + Studies several nebulae with (possible) fast collimated outflows, including NGC 6210
+  + J320 (Jonckheere 320) looks very similar
+    + Is this the same as IC 4634? Nope, that is another one
+  + For Turtle, just two slits
+    + Identify 3 outflows: A, B, C
+      + A (PA = 132, V = +/- 19.5 km/s) is the NW knot
+      + B (PA = 132, V = +/- 30.6 km/s) is the SE knot
+      + C (PA = 156, V = +/- 29.4 km/s) is the N knot
+    + I do not understand where the +/- comes from, since each of these is only seen on one side (red, blue, red, respectively)
+    + That aside, the velocities more-or-less agree with us (+18, -31, +24)
+  + Says that the jets are younger than the main shells
+    + /I think this is wrong/
+    + Cites Goncalves:2001a, which does indeed say this in their Table 2
+      + But they have the object marked as "low confidence"
+      + They cite Phillips:1986a for this, but their argument seems completely spurious
++ Phillips:1986a
+  + Has some good stuff - particularly electron densities and a variety of different emission lines: He II, [Ar IV], [O I]
+    + Fig 2 shows profiles along PA=333
+    + [S II], [N II], and [O I] profiles are similar, peaking at knot complex to NW of star (x = -3 arcsec), but can also see the SE knot (x = +3) and peanut shell (x = +6) to the SE, plus the N knot at x = -18 arcsec
+    + High ionization lines peak in center of nebula (inside peanut shell?)
+    + [O III]/Hb ratio has peak that traces the inner shells - we could look at this from the HST images too
+      + [ ] Look at ratio images from HST data
+      + [ ] Also maybe look at kinematics of He II 6560
+    + Densities from [S II] are lop-sided too, being highest for knot complex to N of star
+      + 
+ 
+**** Modelling and speculation 
++ Balick:2020a
+  + Models of PrePNe with poloidal magnetic field
+  + Form dense knots along axis - possibly explains FLIERS
++ Guerrero:2020a
+  + Empirical statistics of supposed jets
+  + Not really modeling but never mind
+  + Find two populations of jets
+  + 30% of jets are fast (> 100 km/s)
+  + 70% of jets are slow (< 100 km/s)
+    + These come from a speed distribution that can be modeled as 66 \pm 30 km/s
++ Akashi:2018a
+  + Formation of column crowns from jet interactions
+  + Tailored for the ant nebula
+  + Not clear it is any relevance for turtle, since structures end up close to axis
++ Bear:2017a and Soker:2016b
+  + Triple systems
+  + Quote from discussion in Soker:2016b
+    : NGC 6210 (PN G043.1+37.7). This was mentioned by Soker (2004) as a descendant of a triple-stellar system with a tight bi- nary at a wide orbit (Section 3.1.2 above). As evident from Fig. 4, this is indeed a messy PN (Balick 1987; Pottasch et al. 2009), and its morphology is more compatible with the expectation from a tight binary merger. The two pairs of unequal lobes might hint that the tight binary system launched jets before it merged.
+  + Quote from earlier in same paper
+    : PN NGC 6210 (PN G043.1+37.7). This PN, as another example of a PN that was proposed to have been shaped by a triple-stellar system (Soker 2004), is a messy PN, with a general elliptical structure with unequal sides, blobs, filaments and two pairs of opposite jets protruding from the main messy (irregular) shell (e.g. Balick 1987; Pottasch, Bernard-Salas & Roellig 2009; I will return to this PN below).
+  + Possibly comes from "Tight binary in a wide orbit" scenario. Quote:
+    : The first scenario for a giant star orbited by a tight binary system involves no CEE or GEE of the giant with the tight binary system, but rather accretion by the tight binary system from the dense wind of the evolved giant star. It has been studied before (Soker 2004, where more details can be found), and it is updated here, as the PNe listed then might not be compatible with new expectations.
+  + But may alternatively be "Tight binary merger". Quote:
+    : In this case, the two stars enter a CEE or a GEE phase. The grav- itational drag on the two stars of the tight binary system is more influential than the three-body dynamical instability, and the two stars merge. Accretion of mass by one or two of the tight binary stars also decreases the orbital separation. Most likely, they merge well inside the envelope. As evident from equation (7), the energy released in the merger process is large. A large fraction of one side of the envelope can be ejected at high velocities, and a binary system survives: the primary and the secondary with the mass it accreted from the destroyed tertiary star (only a fraction of the destroyed tertiary star is accreted by the secondary star).
+    + So one of the tight binary pair is destroyed in this scenario, leaving a binary
+    + Note that this scenario predicts that the surviving binary is quite wide (how wide)
+    + And that the stars have a recoil velocity of order 10 km/s
++ Jones:2020a
+  + Review article on mechanisms for common-envelope evolution
+
+
+**** Analogs of Turtle among other PNe and PrePNe
+
+***** Fg 1
++ Quote from Fig 6 caption of Jones:2020a
+  : FORS2 image of the post-CE PN Fg 1 (Credit: ESO/H. Boffin). The observed jets have been shown to pre-date the central nebula by a few thousand years, while the central star is a double-degenerate binary with an orbital period of 1.195d [72].
++ So this is similar to what we are finding with the dynamic age of the outer lobes being older
+***** Jonckheere 320
++ This has lop-sided [N II] emission, similar to turtle
+***** IC 4634
+
+***** IC 4776
++ Not sure how similar this one really is
++ Sowicka:2017a
++ Miszalski:2019a
+***** NGC 6578
++ Has a "fan" on one side, which may be an analog of the knot complexes
+
+***** M 3-1
++ Mainly because next to Turtle in figures of Jackie paper
++ Seems to consist entirely of knots, but that may be just the filter
++ This is a close binary, see Jones:2019a
 ** Log of Mezcal observations by year
 
 | 1998 |  5 | Zedillo  |
