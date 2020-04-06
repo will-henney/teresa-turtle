@@ -4359,6 +4359,11 @@ python scripts/turtle-rgb-map-nii-knots.py
 + We only use 3 channels here, instead of the 6 that we used for [N II]
 + This is because the range of velocities is less
 + Hence, we only need one panel
++ Also, make it be a zoom in
+  + Previously we had x=[190, 320], y=[200, 330]
+    + That is (255, 265) +/- 65
+  + We crop by a bit less than half and center better
+  + [220, 290] and [220, 290]
 
 #+begin_src python :eval no :tangle ../scripts/turtle-rgb-map-heii-shell.py
   import numpy as np
@@ -4378,7 +4383,7 @@ python scripts/turtle-rgb-map-nii-knots.py
 
       Then scale so that [0 -> 1] maps to [v1 -> v2]
       """
-a      velstring = f"{int(-40.0 + vel - 10.0):+04d}{int(-40.0 + vel + 10.0):+04d}"
+      velstring = f"{int(-40.0 + vel - 10.0):+04d}{int(-40.0 + vel + 10.0):+04d}"
       hdu = fits.open(f"{DATADIR}/turtle-slits-{LINEID}{velstring}.fits")[ihdu]
       im = (hdu.data - v1) / (v2 - v1)
       im[~np.isfinite(im)] = nancolor
@@ -4414,8 +4419,8 @@ a      velstring = f"{int(-40.0 + vel - 10.0):+04d}{int(-40.0 + vel + 10.0):+04d
       transform=ax.get_transform(whst),
   )
   ax.set(
-      xlim=[190, 320],
-      ylim=[200, 330],
+      xlim=[220, 290],
+      ylim=[223, 293],
       xlabel="RA (J2000)",
       ylabel="Dec (J2000)",
   )
@@ -4434,6 +4439,8 @@ python scripts/turtle-rgb-map-heii-shell.py
 
 #+RESULTS:
 [[file:../turtle-rgb-map-heii-shell.pdf]]
+
+Now do one exactly the same, but show the high-pass filtered HST image as a grayscale, and don't show the velocity channels
 
 
 **** Do Equivalent RGB images of oiii

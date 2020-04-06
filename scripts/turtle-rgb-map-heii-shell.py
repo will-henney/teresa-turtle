@@ -51,8 +51,8 @@ ax.contour(
     transform=ax.get_transform(whst),
 )
 ax.set(
-    xlim=[190, 320],
-    ylim=[200, 330],
+    xlim=[220, 290],
+    ylim=[223, 293],
     xlabel="RA (J2000)",
     ylabel="Dec (J2000)",
 )
