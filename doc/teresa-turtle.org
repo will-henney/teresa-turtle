@@ -2534,21 +2534,22 @@ optional arguments:
 + Slit D is noisier than the other central ones
   + Cannot measure the profile at S tip of shell
 
+#+name: heii-shell-components
 | Slit |     PA |    off |     s |   V |    x |    y | Comments   |
 |------+--------+--------+-------+-----+------+------+------------|
 | T    | 339.72 |  -0.66 |  -3.2 |  -2 |  0.5 | -2.8 |            |
 | T    | 339.72 |  -0.66 | -1.27 |  -3 | -0.2 | -1.0 | stronger   |
-| T    | 339.72 |  -0.66 |    -1 | +11 | -0.3 | -0.7 | weaker     |
+| T    | 339.72 |  -0.66 |    -1 |  11 | -0.3 | -0.7 | weaker     |
 | T    | 339.72 |  -0.66 |   3.0 |   0 | -1.7 |  3.0 |            |
 |------+--------+--------+-------+-----+------+------+------------|
 | V    |  292.8 | -0.799 |   3.8 |   5 | -3.8 |  2.2 |            |
 | V    |  292.8 | -0.799 |   1.3 |  -7 | -1.5 |  1.2 | equal      |
-| V    |  292.8 | -0.799 |  -0.5 | +13 |  0.2 |  0.5 | equal      |
+| V    |  292.8 | -0.799 |  -0.5 |  13 |  0.2 |  0.5 | equal      |
 | V    |  292.8 | -0.799 |  -3.5 |  -3 |  2.9 | -0.6 |            |
 |------+--------+--------+-------+-----+------+------+------------|
 | W    |   77.9 |   -2.7 |  -3.8 |   3 | -4.3 | -3.4 |            |
 | W    |   77.9 |   -2.7 |  -1.8 |  -7 | -2.3 | -3.0 | weaker     |
-| W    |   77.9 |   -2.7 |   0.0 |  +8 | -0.6 | -2.6 | stronger   |
+| W    |   77.9 |   -2.7 |   0.0 |   8 | -0.6 | -2.6 | stronger   |
 | W    |   77.9 |   -2.7 |   2.7 |  -1 |  2.1 | -2.1 |            |
 |------+--------+--------+-------+-----+------+------+------------|
 | C'   |      2 |   4.19 |  -1.6 |  -8 |  4.1 | -1.5 | very weak  |
@@ -2556,28 +2557,26 @@ optional arguments:
 | E    |  359.6 |    3.5 |  -0.6 |  -6 |  3.5 | -0.6 | very weak  |
 |------+--------+--------+-------+-----+------+------+------------|
 | F    |  359.6 |   2.76 |   1.4 |  -2 |  2.8 |  1.4 | strongest  |
-| F    |  359.6 |   2.76 |  -1.0 |  +6 |  2.8 | -1.0 | strong     |
+| F    |  359.6 |   2.76 |  -1.0 |   6 |  2.8 | -1.0 | strong     |
 | F    |  359.6 |   2.76 |  -1.2 |  -7 |  2.8 | -1.2 | weaker     |
 | F    |  359.6 |   2.76 |  -3.0 |  -1 |  2.8 | -3.0 |            |
 |------+--------+--------+-------+-----+------+------+------------|
 | D'   |    2.1 |   1.57 |   1.3 |  -2 |  1.6 |  1.4 |            |
-| D'   |    2.1 |   1.57 |  -0.7 |  +4 |  1.5 | -0.6 | stronger   |
+| D'   |    2.1 |   1.57 |  -0.7 |   4 |  1.5 | -0.6 | stronger   |
 | D'   |    2.1 |   1.57 |  -2.2 | -13 |  1.5 | -2.1 | weaker     |
 |------+--------+--------+-------+-----+------+------+------------|
-| E'   |    2.2 |   -1.0 |   1.9 |  +1 | -0.9 |  1.9 |            |
-| E'   |    2.2 |   -1.0 |   0.6 | +10 | -1.0 |  0.6 | equal      |
+| E'   |    2.2 |   -1.0 |   1.9 |   1 | -0.9 |  1.9 |            |
+| E'   |    2.2 |   -1.0 |   0.6 |  10 | -1.0 |  0.6 | equal      |
 | E'   |    2.2 |   -1.0 |  -1.9 |  -6 | -1.1 | -1.9 | equal      |
-| E'   |    2.2 |   -1.0 |  -4.5 |  +3 | -1.2 | -4.5 |            |
+| E'   |    2.2 |   -1.0 |  -4.5 |   3 | -1.2 | -4.5 |            |
 |------+--------+--------+-------+-----+------+------+------------|
-| G    |    1.1 |   -1.5 |   1.9 |  +2 | -1.5 |  1.9 |            |
+| G    |    1.1 |   -1.5 |   1.9 |   2 | -1.5 |  1.9 |            |
 | G    |    1.1 |   -1.5 |  -1.1 |  -1 | -1.5 | -1.1 |            |
-| G    |    1.1 |   -1.5 |  -3.4 |  +3 | -1.6 | -3.4 |            |
+| G    |    1.1 |   -1.5 |  -3.4 |   3 | -1.6 | -3.4 |            |
 |------+--------+--------+-------+-----+------+------+------------|
-| F'   |    2.1 |   -4.7 |  -0.5 |  +5 | -4.7 | -0.7 | weak       |
+| F'   |    2.1 |   -4.7 |  -0.5 |   5 | -4.7 | -0.7 | weak       |
 |------+--------+--------+-------+-----+------+------+------------|
-| H    |        |        |       |     |    0 |    0 | unreliable |
-|------+--------+--------+-------+-----+------+------+------------|
-| I    |    0.4 |   -6.2 |  -0.4 |  +7 | -6.2 | -0.4 | very weak  |
+| I    |    0.4 |   -6.2 |  -0.4 |   7 | -6.2 | -0.4 | very weak  |
 |------+--------+--------+-------+-----+------+------+------------|
 #+TBLFM: $6=$3 cos($2) + $4 sin($2);f1::$7=$3 sin($2) + $4 cos($2);f1
 *** [O III]
@@ -2662,7 +2661,7 @@ optional arguments:
 | S    | P    |  -1.2 | -0.5 |  18 | 1 | 0 |
 | S    | P    |  -1.8 |  0.5 |  16 | 1 | 0 |
 | S    | P    |  -2.5 |  3.5 |   8 | 1 | 0 |
-******* Program to make figures of shell components alon A and B axes
+******* Program to make figures of shell components along A and B axes
 #+header: :var tab=shell-components :colnames no
 #+begin_src python :return figname :results file
   import numpy as np
@@ -2729,6 +2728,71 @@ optional arguments:
 
 #+RESULTS:
 [[file:turtle-shell-velocity-axes.pdf]]
+******* Program to make figure of He II shell components along A and B axes
+#+header: :var tab=heii-shell-components :colnames no
+#+begin_src python :return figname :results file
+  import numpy as np
+  from astropy.table import Table
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  sns.set_color_codes()
+
+  t = Table(rows=tab[1:], names=tab[0])
+
+  pa = 70
+  #pa = 160
+  cpa = np.cos(np.deg2rad(pa))
+  spa = np.sin(np.deg2rad(pa))
+
+  # unit vector along slit
+  uX = spa, cpa
+  # unit vector across slit
+  uY = cpa, -spa
+
+  t["X"] = t["x"]*uX[0] + t["y"]*uX[1]
+  t["Y"] = t["x"]*uY[0] + t["y"]*uY[1]
+
+  t["sX"] = np.abs(t["X"])
+  t["sY"] = np.abs(t["Y"])
+
+  R = np.hypot(t["X"], t["Y"])
+  mX = t["sX"] >= t["sY"] 
+  mY = ~mX
+  mR = R <= 2.0
+
+
+  figname = "turtle-heii-shell-velocity-axes.pdf"
+  fig, [axA, axB] = plt.subplots(2, 1, figsize=(5, 5))
+  axA.axhline(0, ls=":", c="k")
+  axB.axhline(0, ls=":", c="k")
+  axA.axvline(0, ls=":", c="k")
+  axB.axvline(0, ls=":", c="k")
+  axA.scatter("Y", "V", data=t[mY | mR], vmin=0.0, vmax=5.0,
+              c="sX", s=100, marker=".", edgecolors="k", cmap="PuRd")
+  axB.scatter("X", "V", data=t[mX | mR], vmin=0.0, vmax=5.0,
+              c="sY", s=100, marker=".", edgecolors="k", cmap="PuRd")
+  axA.set(
+      xlabel=f"Position along PA = {pa+90}, arcsec",
+      ylabel="Line-of-sight velocity, km/s",
+      xlim=[-13, 13],
+      ylim=[-30, 30],
+  )
+  axB.set(
+      xlabel=f"Position along PA = {pa}, arcsec",
+      ylabel="Line-of-sight velocity, km/s",
+      xlim=[-13, 13],
+      ylim=[-30, 30],
+  #    yticks=[-30, -20, -10, 0, 10, 20, 30],
+  )
+  sns.despine()
+  fig.tight_layout()
+  fig.savefig(figname)
+#+end_src
+
+#+RESULTS:
+[[file:turtle-heii-shell-velocity-axes.pdf]]
+
+
 ******* Program to find mean velocities for each side of shells along their axes
 + This reads the same table as the previous program
 + It finds the velocity gradient and splitting along the axes
@@ -4440,7 +4504,7 @@ python scripts/turtle-rgb-map-heii-shell.py
 #+RESULTS:
 [[file:../turtle-rgb-map-heii-shell.pdf]]
 
-Now do one exactly the same, but show the high-pass filtered HST image as a grayscale, and don't show the velocity channels
+Now do one exactly the same, but show the high-pass filtered HST image as a grayscale, and don't show the velocity channels - /actually, no need - I used the image I already had in the [O III] figure/
 
 
 **** Do Equivalent RGB images of oiii
