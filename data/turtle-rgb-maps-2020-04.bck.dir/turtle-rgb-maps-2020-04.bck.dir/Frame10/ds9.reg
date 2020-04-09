@@ -1,0 +1,24 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+# ruler(251.1231938,23.8005493,251.1230922,23.7999892) ruler=fk5 arcsec color=#080
+line(251.1196571,23.7964267,251.1198846,23.8031628) # line=0 0 color=red text={I}
+line(251.1194038,23.7964961,251.1196821,23.8033942) # line=0 0 color=red text={J}
+line(251.1208458,23.7963803,251.1210737,23.8031164) # line=0 0 color=red text={G}
+line(251.1206688,23.7964497,251.1209217,23.8033711) # line=0 0 color=red text={H}
+line(251.1218587,23.7968394,251.1221396,23.8044753) # line=0 0 color=red text={F}
+line(251.1179554,23.7946481,251.1183483,23.8028481) # line=0 0 color=red text={K}
+line(251.1174746,23.7913281,251.1175175,23.8040481) # line=0 0 color=red text={L}
+line(251.1291667,23.8000000,251.1166667,23.8000000) # line=0 0 color=magenta dash=1
+line(251.1301088,23.7934447,251.1134962,23.8038044) # line=0 0 color=red text={U}
+line(251.1256879,23.7930478,251.1261628,23.8059854) # line=0 0 color=red text={B}
+line(251.1259196,23.8035166,251.1196650,23.7957041) # line=0 0 color=magenta dash=1
+# projection(251.1241207,23.7966116,251.1185759,23.8001610,0.805")
+line(251.1241683,23.7882578,251.1248504,23.8056817) # line=0 0 color=red text={C}
+line(251.1233287,23.7905617,251.1239583,23.8051058) # line=0 0 color=red text={D}
+line(251.1222796,23.7890736,251.1230667,23.8088497) # line=0 0 color=red text={E}
+line(251.1269787,23.7839533,251.1281125,23.8126958) # line=0 0 color=red text={A}
+line(251.1245629,23.7893694,251.1214587,23.8073066) # line=0 0 color=orange text={R}
+line(251.1263200,23.7902261,251.1198379,23.8074697) # line=0 0 color=orange text={S}
+line(251.1230521,23.8078481,251.1230525,23.7884036) # line=0 0 color=magenta dash=1
+point(251.1178334,23.8013067) # point=diamond

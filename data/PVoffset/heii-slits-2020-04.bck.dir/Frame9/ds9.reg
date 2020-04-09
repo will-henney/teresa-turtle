@@ -2,3 +2,4 @@
 global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
 physical
 # text(27.848977,533.27081) textrotate=0 color=blue font="helvetica 16 bold roman" text={g}
+# projection(9.5185819,522.83697,40.861499,523.174,4.8883282) color=red
