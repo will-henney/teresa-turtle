@@ -68,6 +68,23 @@
     + Densities from [S II] are lop-sided too, being highest for knot complex to N of star
       + 
  
+
+
+**** Effects of acceleration
++ The rim
+  + Schoenberner:2005a have models where the rim accelerates, and also forms with a delay and at a certain radius
+    + Acceleration is mainly driven by increasing wind mechanical luminosity
+  + This means that the rim dynamical age is always less than the true age of the nebula
+  + Mind you, their model has the rim velocity always less than the shell velocity, which is not what we see in the Turtle
+    + Along Axis B we have the same speed for the rim and shell (about 40 km/s)
+    + While along Axis A there is a faster rim: 50 km/s
+  + /Are there any models where the rim is moving faster?/
+    + 
++ The shell
+  + Also accelerates probably, due to density becoming increasingly steep with radius
+  + From their Fig 4 (left lower), then a dynamical time of 4000 yr, as we have for the Intermediate Shell, implies a true age of about 6000 yrs
+
+
 **** Modelling and speculation 
 + Balick:2020a
   + Models of PrePNe with poloidal magnetic field
@@ -79,6 +96,7 @@
   + 30% of jets are fast (> 100 km/s)
   + 70% of jets are slow (< 100 km/s)
     + These come from a speed distribution that can be modeled as 66 \pm 30 km/s
+    + *Note* that our own lobes have speeds of 30 \to 90 km/s, which is exactly this range
 + Akashi:2018a
   + Formation of column crowns from jet interactions
   + Tailored for the ant nebula
@@ -98,11 +116,43 @@
     + And that the stars have a recoil velocity of order 10 km/s
 + Jones:2020a
   + Review article on mechanisms for common-envelope evolution
++ Jones:2017a
+  + Review article on binary central stars of PNe
+  + Suggests all aspherical PNe (80% of PNe) are binaries
+  + Abell 63 is prototype of close eclipsing binary
+    + UU Sag
+    + First binary CSPN to be discovered
+  + pre-CE mass transfer is apparently commmon
+    + If a jet forms from the accretion disk during this phase, then it will give polar outflows that are dynamically older than the main nebula
+    + This is often seen
+      + And seems to be the case with the Turtle
+      + Table 2 of Jones:2014b gives examples
+        + Fg 1 Boffin:2012a and Lopez:1993a
+          + See also [[id:D1CDC3FA-0F4C-417F-824F-47BA7CE8408C][Fg 1]] below
+        + Abell 63
+        + Ethos 1
+          + Miszalski:2011b
+          + Inclination of 60 degrees to line of sight
+          + Jet has deprojected V = 110 km/s and t = 1750 yr / kpc (distance )
+          + Ring has V = 55 km/s and t = 900 yr / kpc
+        + The Necklace
+          + Corradi:2011a
+  + Opposite case of dynamically young jets
+    + Less common, but it does occur
+    + Example studied by Tere is NGC 6337
+      + Garcia-Diaz:2009a
+      + However, it is not clear where Jones:2014b get their ages from for this nebula
+      + They are certainly not in the Teresa paper
+    + Also Huggins:2017a, but these are mainly very high velocity jets
+      + 7 out of 9 have V > 100 km/s, up to 500 km/s
 
 
 **** Analogs of Turtle among other PNe and PrePNe
 
 ***** Fg 1
+:PROPERTIES:
+:ID:       D1CDC3FA-0F4C-417F-824F-47BA7CE8408C
+:END:
 + Quote from Fig 6 caption of Jones:2020a
   : FORS2 image of the post-CE PN Fg 1 (Credit: ESO/H. Boffin). The observed jets have been shown to pre-date the central nebula by a few thousand years, while the central star is a double-degenerate binary with an orbital period of 1.195d [72].
 + So this is similar to what we are finding with the dynamic age of the outer lobes being older
