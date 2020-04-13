@@ -24,7 +24,44 @@
   + Continuum flux:
     + Flam = 3.7e9 10^(-ww0.4 V) = 1.8e14
 + Stellar radial velocity
-  + V = -35.6 km/s from SIMBAD - citation is 
+  + V = -35.6 km/s from SIMBAD - citation is
++ Distance
+  + Frew:2016a is the distance that people tend to use
+    + Expansion distance is 2.1 \pm 0.5 kpc
+      + Based on Hajian:1995a and Mellema:2004a
+      + Hajian:1995a used VLA maps to derive distance of 1.57 \pm 0.4 but they didn't do any correction for matter/pattern speed
+      + They used a proper motion of 3.1 \pm 0.4 mas/yr, which is along what they call the "minor" axis.  This is close to axis B
+        + We find PM of 0.33 \pm 0.05 and 0.31 \pm 0.04 in units of 100 mas per 10.45 years
+        + So we have 3.1 \pm 0.3, which is remarkably similar
+      + The line-of-sight velocity used is 23 \pm 5 km/s
+        + This is an average of literature value for the splitting 
+        + whereas we have +18/-25 along axis B
+        + For the splitting we measure \pm 22 km/s, but we attribute that to the A shell, not the B one
+      + Combining the two, using R = 1.3, one finds
+        + U / au/yr = [PM / mas/yr] [D / kpc]
+        + Where 1 au/yr = 4.74 km/s
+        + So, if we put ℛ V = U, then
+          + 4.74 PM D = ℛ V
+          + D = ℛ V / 4.74 PM
+          + D = 1.3 (23 +/- 5) / 4.74 (3.1 +/- 0.4)
+          + D = 2.03 +/- 0.51, which is just what Frew say
+      + Other data from Frew:
+        + (a, b) = (14, 14) arcsec
+          + This is the elliptical shell measurements,
+          + I originally though that these are radii of the Intermediate Shell
+            + Which seems consistent with their Fig 1, where for NGC 2022 they are clearly measuring the shell, not the rim
+            + So the surface brightness is averaged over the whole shell, even though it is dominated by the inner parts
+          + /But/ it turns out below that it must be the diameter, which means it is the rim (peanut shells), not the shell
+        + Intermediate optical thickness
+          + This is because 0.1 > [N II]/Ha < 1.0, which are their cut-off values for definitely optically thin or thick
+        + E(B-V) = 0.05 ± 0.07, so almost no extinction
+        + S_0(Ha) = -1.12 \pm 0.08
+          + This is log10 Ha surface brightness in erg cm−2 s−1 sr−1, supposedly
+          + Although their eq (13) seems to be in error (shouldn't have a factor of 4)
+        + log r / pc = -1.15
+          + Check for consistency
+          + log10(14 2000 au / pc) = log10(0.1357) => -0.867 *wrong*
+          + Dividing by two fixes it log10(7 2000 au / pc) = -1.17 - close enough
 
 
 *** Literature on the Turtle and similar nebulae
