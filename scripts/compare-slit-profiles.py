@@ -45,8 +45,6 @@ table1.remove_column("islit")
 table2.remove_column("spec") 
 table = hstack([table1, table2], join_type="exact")
 
-
-
 # Photometric reference image
 photom, = fits.open('data/imslit-ha/imslit-median.fits')
 wphot = WCS(photom.header)

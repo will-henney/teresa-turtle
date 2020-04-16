@@ -22,7 +22,7 @@
   + Also need V magnitude of star
     + Supposedly V = 11.7 from SIMBAD
   + Continuum flux:
-    + Flam = 3.7e9 10^(-ww0.4 V) = 1.8e14
+    + Flam = 3.7e9 10^(-0.4 V) = 1.8e14
 + Stellar radial velocity
   + V = -35.6 km/s from SIMBAD - citation is
 + Distance
@@ -51,7 +51,7 @@
           + I originally though that these are radii of the Intermediate Shell
             + Which seems consistent with their Fig 1, where for NGC 2022 they are clearly measuring the shell, not the rim
             + So the surface brightness is averaged over the whole shell, even though it is dominated by the inner parts
-          + /But/ it turns out below that it must be the diameter, which means it is the rim (peanut shells), not the shell
+          + /But/ it turns out below that it must be the diameter, which means it is the rim (peanut shells), not the shell proper
         + Intermediate optical thickness
           + This is because 0.1 > [N II]/Ha < 1.0, which are their cut-off values for definitely optically thin or thick
         + E(B-V) = 0.05 ± 0.07, so almost no extinction
@@ -62,7 +62,168 @@
           + Check for consistency
           + log10(14 2000 au / pc) = log10(0.1357) => -0.867 *wrong*
           + Dividing by two fixes it log10(7 2000 au / pc) = -1.17 - close enough
+        + We are pretty close to the mean trend for the S(r) tracks
+        + If we were to use the IS radius instead
+          + then we would increase r by two, to -0.869
+          + and decrease S by 4, to -1.722
+          + This would still be close to the average S(r) tracks
+          + The mean slope is -3.6 instead of -2, but the dispersion about the trend is so large that you can't see this difference
+*** The central star
+**** Results from UV spectral fits
++ Excellent paper by Herald and Bianchi Herald:2011a
++ Fit to lots of UV spectra
++ Find following:
+  + Teff = 75 kK so log T = 4.875
+  + log g = 4.8 +/- 0.2
+  + Vinf = 2150 km/s
+  + log Mdot = −8.04
+  + Wind clumping f = 0.1
++ By assuming M = 0.6 Msun, they get a luminosity from combining the gravity and effective temperature
+  + L = 4 pi R^2 \sigma T^4
+  + g = G M / R^2
+  + => L = 4 pi G M \sigma (T^4 / g) = 7450 +/- 3430
+  + R = sqrt(G M / g) = 0.51 +/- 0.12 Rsun
++ They also have R/D = 0.230 Rsun/kpc from the FUV absolute flux
+  + So that means D = 2.22 +/- 0.52 kpc
+  + If we also add a mass uncertainty of 0.6 +/- 0.1 then we get
+    + R = 0.510 +/- 0.125
+    + D = 2.22 +/- 0.54 kpc
++ This is totally consistent with the expansion parallax method
+**** Nebular modelling from Bohigas:2015a - two stars?
++ Note that Bohigas:2015a propose that a composite spectrum is needed:
+  1. A hot component:
+     - L = 1636 Lsun
+     - T = 111.3 kK
+     - log g = 7
+  2. An O-star:
+     - L = 2067 Lsun
+     - T = 30.8 kK
+     - log g = 4.5
++ But they don't seem to have thought about the stellar masses that these imply
+  + M = L / 4 pi G \sigma (T^4 / g)
+  + R = sqrt(G M / g)
+    | L, Lsun | T, kK | log g | M, Msun | R, Rsun | \lambda max, \AA | T R^2 | T^4 R^2 / L |
+    |---------+-------+-------+---------+---------+----------+-------+-------------|
+    |    1636 | 111.3 |   7.0 |   4.306 |   0.109 |     188. |  1.32 |      1.11e3 |
+    |    2067 |  30.8 |   4.5 |   2.934 |   1.594 |     679. | 78.26 |      1.11e3 |
+    #+TBLFM: $4=$1 $Lsun / 4 $pi $Grav $sigma ((1000 $2)**4 10**(-$3)) $Msun ; f3::$5=sqrt($Grav $4 $Msun 10**(-$3)) / $Rsun ; f3::$6=.209 / 1000 $2 1e-8 ;f0::$7=$2 $5**2;f2::$8=$2**4 $5**2 / $1;s3
+  + So the 4.3 Msun for the hot component is obviously ridiculous
++ Also, they haven't shown that this can reproduce the UV stellar spectrum at all
+  + I suspect not, since around 1000 \AA this will be dominated by the cooler component
+    + see \lambda max column above, calculated for BB
+    + and also the T R^2 since. in RJ limit, flux is \prop T
+    + Last column T^4 R^2 / L is a consistency check - it should be constant
++ Finally, the radii that they give are far too small
+  + Their claimed best model (Exp2) has (Rin, Rout) = (3.34e16, 6.64e16) cm = (0.011, 0.022) pc
+  + Compare with the radius of the inner shell: 0.04 pc in He II or 0.07 pc in [O III]
+  + Even taking a smaller distance (say 1.5 kpc) wouldn't change this much
+**** Bolometric luminosity
++ apparent visual magnitude: m_V = +11.7
+  + Citation is van-Altena:1995a
+    + Also has parallax, but it is negative
+  + Although Acker:1992a have 12.66 with "B" accuracy
+  + Which means \Delta m = 0.1 to 0.25
+  + Citation is Shaw:1985a, who actually give 12.9 +/- 0.3
+  + Also Gaia G magnitude is 12.232 +/- 0.002
+    + G - V = f(B - V) from [[https://gea.esac.esa.int/archive/documentation/GDR2/Data_processing/chap_cu5pho/sec_cu5pho_calibr/ssec_cu5pho_PhotTransf.html][Gaia docs]]
+    + where f(x) = -0.02907	- 0.02385 x - 0.2297 x**2 - 0.001768 x**3
+    + B - V = 0.6 to -0.6
+      | B - V |            G - V |
+      |-------+------------------|
+      |  -0.6 |           -0.097 |
+      |  -0.5 |           -0.074 |
+      |  -0.4 |           -0.056 |
+      |  -0.3 |           -0.043 |
+      | -0.22 |           -0.035 |
+      |  -0.1 |           -0.029 |
+      |   0.0 |           -0.029 |
+      |   0.1 |           -0.034 |
+      |  0.22 |           -0.045 |
+      |   0.3 |           -0.057 |
+      |   0.4 |           -0.075 |
+      |   0.5 |           -0.099 |
+      |   0.6 |           -0.126 |
+      |-------+------------------|
+      |       | -0.061 +/- 0.009 |
+      #+TBLFM: $2=-0.02907 - 0.02385 $1 - 0.2297 $1**2 - 0.001768 $1**3 ;f3::@15$2=vmeane(@I..@II);f3
+    + => B - V = -0.13 to -0.03 (so mean G - V = -0.061 +/- 0.009)
+    + So Gaia photometry implies V = G - (G - V) = 12.30 +/- 0.02
+    + Actually, Acker:1992a give B - V = -0.22, so G - V = -0.035, so if we take that as gospel, then the Gaia G implies V = 12.27
++ distance modulus 5 log10 D - 5 = 11.5051499783 +/- 0.5
++ So absolute visual magnitude is M_V = 11.7 - 11.5 = +0.2 +/- 0.5
++ From Cazetta:1994a, we have the BC as
+  + BC = 27.462 - 6.8144 log T
+  + Use the Zanstra T value of 62000 +/- 2000 => log T = 4.79 +/- 0.01
+    + Different from what I previously assumed of log T = 5 +/- 0.1
+      + 80 \to 120 kK
+  + Which gives BC = -5.17 +/- 0.07
++ So bolometric magnitude is -5.0 +/- 0.5
++ Sun has M_bol = 4.75
++ So L/L_\odot = 10**(0.4 (4.75 - -5.0 +/- 0.5)) = 7900 +/- 3600
+  + This is pretty high
++ Cross-check: use the other equation in Cazetta:1994a
+  + log(L/Lsun) = -0.4 V + 2.726 log T + 2 log d + 1.28 E(B-V) - 11.08
+  + Or adding in the uncertainties and the E(B-V)
+    + -0.4 11.7 + 2.726 (4.79 +/- 0.01) + 2 (3.30 +/- 0.1) + 1.28 (0.05 +/- 0.07) - 11.08
+    + => 3.96 +/- 0.22 = 9100 +/- 4600 
+  + This is rougly the same as above
++ Or, if we use the Gaia photometry (V = 12.30 +/- 0.02)
+  + -0.4 (12.30 +/- 0.02) + 2.726 (4.79 +/- 0.01) + 2 (3.30 +/- 0.1) + 1.28 (0.05 +/- 0.07) - 11.08
+  + => 3.72 +/- 0.22
+  + So 5200 Lsun (3000 to 9000)
+  + This is higher than Pottasch:2009a, mainly because of the larger distance.
++ Finally, we repeat using the T = 75 kK instead of 62 kK
+  + -0.4 (12.30 +/- 0.02) + 2.726 (4.875 +/- 0.01) + 2 (3.30 +/- 0.1) + 1.28 (0.05 +/- 0.07) - 11.08
+  + 3.95 +/- 0.22
+  + However, the Herald:2011a method uses the FUV continuum flux to find R/D, which is why they come out with sightly lower luminosities
 
+
+**** He II Zanstra temperature
++ Frew thesis equation 9.11 gives
+  + F(4686)/F(Vis) = 8.49e-11 T**3 G4(T) (exp(26650/T) - 1)
++ Original reference is Pottasch:1984a
+| T, kK |       G4 |  4686/Vis | log10 |
+|-------+----------+-----------+-------|
+|    50 | 6.106e-4 | 4.5621529 |  0.66 |
+|    60 | 3.591e-3 | 36.824469 |  1.57 |
+|    80 | 2.987e-2 | 513.29086 |  2.71 |
+|   100 | 9.864e-2 | 2557.4794 |  3.41 |
+|   120 | 2.088e-1 | 7617.5410 |  3.88 |
+|   150 | 4.202e-1 | 23409.619 |  4.37 |
+#+TBLFM: $3=8.49e-11 (1000 $1)**3 $2 (exp(26.65/$1) -1)::$4=log10($3);f2
++ Measurements of 4686
+  + Pottasch:2009a have 1.5/100 x Hb
+  + Tylenda:1984a have 2.5/100 x Hb
+  + Phillips:1996a have 2.8/100 x Hb
+  + Delgado-Inglada:2009a have 2.32 ± 0.14 
++ Measurements of Hb
+  + Pottasch:2009a give the extinction-corrected value as 1.1e-10 erg/cm2/s
+    + Observed is 8.07e-11
+    + Really comes from Liu:2004a
+    + But they cite CKS92 and give (8.13 +/- 0.19)e-11
+  + Kohoutek:1981a give (8.3 +/- 0.2)e-11
++ Stellar continuum flux
+  + 3.7e-9 10^(-0.4 V)
+  + Using V = 12.3 +/- 0.02 gives (4.45 +/- 0.08)e-14
++ So 4686/V = ((2 +/- 0.5)/100) 1.1e-10 / (4.45 +/- 0.08) 1e-14 = 49 +/- 12
+  + log10(4686/V) = 1.69 +/- 0.11
+  + => T = 62000 +/- 2000
++ Pottasch:2009a found 61,000 K
+  + This is very close to our own value
+
+*** Effects of changing the distance
++ We are using 2 \pm 0.5 kpc
++ Take 2 sigma limits
+  + 95% confidence level for Gaussian
+  + Or 75% confidence level for general distribution with finite variance (Chebyshev inequality)
++ This means 1 to 3 kpc
++ Consequence of smaller distance: 1 kpc
+  + All plane-of-sky velocities are smaller, so the speeds of the lobes will be reduced
+  + Higher inclinations to plane of sky - axis B has i > 60 deg
+  + Also means that IS is highly elongated, with axis ratio of 3:1
++ Larger disance: 3kpc
+  + Plane of sky velocities larger - speeds of lobes now > 100 km/s in some cases
+  + Lower inclinations to plane of sky - axis B has i < 30 deg
 
 *** Literature on the Turtle and similar nebulae
 
@@ -101,12 +262,45 @@
     + High ionization lines peak in center of nebula (inside peanut shell?)
     + [O III]/Hb ratio has peak that traces the inner shells - we could look at this from the HST images too
       + [ ] Look at ratio images from HST data
-      + [ ] Also maybe look at kinematics of He II 6560
+      + [X] Also maybe look at kinematics of He II 6560
     + Densities from [S II] are lop-sided too, being highest for knot complex to N of star
       + 
  
 
+**** Spectrophotometry
++ Liu:2004a
++ Delgado-Inglada:2009a
+  + Seems to have a larger Hb flux: 2.162 × 10−11 erg/cm2/s
 
+
+
+
+**** Densities and temperatures
++ Pottasch:2009a find "homogeneous" conditions, by which they mean that (T, n) do not vary greatly with degree of ionization
+  + Spitzer IRS LH aperture does include most of the flux
+    + It covers nearly all of the inner shells and most of the IS and knot complexes
+    + It does not include the lobes and halo
+    + Note there are actually two slightly different positions that they are summing. The position they give is the average of them
+  + The IRS SH aperture is smaller
+    + It covers over half of the inner shells but misses most of the IS
+    + It gets the N(W) Red knot complex, but misses N(E) Red and NE Blue, which are the brightest
+  + Density is 3000 to 4000 pcc from [S II], [O II], [S III], [Cl III]
+  + Slightly higher from [Ar IV]: 6800 pcc
+  + No error bars given!
+  + T is very consistent, about 9500 K for high ionizaton, [O III], [N III], [Ne III]
+  + Higher for low ionization: 10,700 K for [N II]
+
+
+***** Spatial variation of conditions
++ [-] Some things I can look at
+  1. [ ] Maps of line ratios from the HST images
+     - In theory I need to account for continuum
+     - But I can check the integrated ratios using the Pottasch:2009a results
+  2. [X] Electron density for different components from Ha surface brightness
+     - Estimate line-of-sight depth in two ways
+       - Shell method, using radius of curvature and thickness
+       - Blob method, assuming same as transverse width, maybe corrected for inclination
+  3. [X] Estimate the Ha flux and ionized mass of each of the components
 **** Effects of acceleration
 + The rim
   + Schoenberner:2005a have models where the rim accelerates, and also forms with a delay and at a certain radius
@@ -208,6 +402,760 @@
 + Mainly because next to Turtle in figures of Jackie paper
 + Seems to consist entirely of knots, but that may be just the filter
 + This is a close binary, see Jones:2019a
+*** Relative H\alpha brightness of different components
++ To start with, I am measuring these on the HST Ha image
+  + Later, I can try the SPM spectra/images too, especially for the halo
++ Only relative brightness - the idea is that later we can calibrate it using the total flux
++ Measure a BG for each component too
++ And also estimate line-of-sight depth, so we can find densities
+  + Using n \propto sqrt(EM / z)
+**** Table of brightnesses
++ Here are Ha brightnesses and fluxes from turtle-F656N-1997.fits
+| Feature          | S(Ha) |     BG |     S' |  ds |   R |  h |    F1 | 1 |    F2 | 2 |     F3 | 3 |      F |   frac |    n |     M_i | R_3d |   U_ion | t_rec |
+|------------------+-------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+------+---------+------+---------+-------|
+| IS WSW           |  0.07 |  0.004 |  0.066 | 100 | 128 | 30 |  660. | 0 |  796. | 0 |  1699. | 1 |  1699. | 0.0531 | 0.13 | 0.22271 | 0.16 |    300. | 2.3e2 |
+| SW Red complex   |  0.45 |  0.027 |  0.423 |  36 |     |    |  548. | 1 |   0e0 | 0 |    0e0 | 0 |   548. | 0.0171 | 0.54 | 0.01729 | 0.19 |     51. | 5.6e1 |
+| NW knot          |  0.75 |   0.26 |   0.49 |   3 |     |    |    4. | 1 |   0e0 | 0 |    0e0 | 0 |     4. | 0.0001 | 2.02 | 0.00003 | 0.18 |     15. | 1.5e1 |
+| N knot           |  0.19 |   0.01 |   0.18 |   5 |     |    |    5. | 1 |   0e0 | 0 |    0e0 | 0 |     5. | 0.0002 | 0.95 | 0.00009 | 0.19 |     29. | 3.2e1 |
+| Shell A N Rim    |   1.0 |   0.12 |   0.88 |  38 |  77 |  6 | 1271. | 0 | 1277. | 1 |  8196. | 0 |  1277. | 0.0399 | 0.76 | 0.02863 | 0.07 |    269. | 4.0e1 |
+| Shell A N inside |  0.83 |   0.30 |   0.53 |  20 |  77 |    |  212. | 0 |   0e0 | 0 |  4936. | 1 |  4936. | 0.1543 | 0.81 | 0.10384 | 0.07 |    252. | 3.8e1 |
+| Peak             |   8.2 |    4.2 |     4. |  15 |     |    |  900. | 1 |   0e0 | 0 |    0e0 | 0 |   900. | 0.0281 | 2.58 | 0.00594 | 0.24 |      7. | 1.2e1 |
+| N complexes      |   4.2 |   0.83 |   3.37 |  50 |     |    | 8425. | 1 |   0e0 | 0 |    0e0 | 0 |  8425. | 0.2633 | 1.30 | 0.11044 | 0.24 |     13. | 2.3e1 |
+| S complexes      |   2.5 |    1.1 |    1.4 |  51 |     |    | 3641. | 1 |   0e0 | 0 |    0e0 | 0 |  3641. | 0.1138 | 0.83 | 0.07475 | 0.07 |    246. | 3.7e1 |
+| SE knot          |   2.2 |    1.2 |     1. |   5 |     |    |   25. | 1 |   0e0 | 0 |    0e0 | 0 |    25. | 0.0008 | 2.24 | 0.00019 | 0.07 |     91. | 1.4e1 |
+| Shell A S Rim    |   1.5 |   0.20 |    1.3 |  26 |  70 |  3 |  879. | 0 |  858. | 1 | 10006. | 0 |   858. | 0.0268 | 1.12 | 0.01305 | 0.08 |    140. | 2.7e1 |
+| Shell A S inside |   1.1 |   0.20 |    0.9 |  20 |  70 |    |  360. | 0 |   0e0 | 0 |  6927. | 1 |  6927. | 0.2165 | 1.06 | 0.11136 | 0.08 |    147. | 2.9e1 |
+| IS SE            |  0.15 |   0.06 |   0.09 |  40 |     |    |  144. | 1 |   0e0 | 0 |    0e0 | 0 |   144. | 0.0045 | 0.24 | 0.01022 | 0.12 |    289. | 1.3e2 |
+| IS ENE           |  0.16 |   0.01 |   0.15 | 117 |  99 | 35 | 2053. | 0 | 1633. | 0 |  2309. | 1 |  2309. | 0.0722 | 0.18 | 0.21860 | 0.10 |    556. | 1.7e2 |
+| Lobe W           | 0.015 |  0.001 |  0.014 |  50 |     |    |   35. | 1 |   0e0 | 0 |    0e0 | 0 |    35. | 0.0011 | 0.08 | 0.00746 | 0.19 |    346. | 3.8e2 |
+| Lobe E           | 0.009 |  0.001 |   8e-3 |  60 |     |    |   29. | 1 |   0e0 | 0 |    0e0 | 0 |    29. | 0.0009 | 0.06 | 0.00824 | 0.14 |    850. | 5.1e2 |
+| Lobe S           | 0.008 | 0.0006 | 7.4e-3 | 100 |     |    |   74. | 1 |   0e0 | 0 |    0e0 | 0 |    74. | 0.0023 | 0.04 | 0.03153 | 0.17 |    865. | 7.6e2 |
+| Lobe N           | 0.011 | 0.0005 | 0.0105 | 100 |     |    |  105. | 1 |   0e0 | 0 |    0e0 | 0 |   105. | 0.0033 | 0.05 | 0.03579 | 0.17 |    692. | 6.1e2 |
+|------------------+-------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+------+---------+------+---------+-------|
+|                  |     1 |      0 |      1 |   1 |     |    |     1 |   |   0e0 |   |    0e0 |   | 31941. | 0.9982 | 5.00 | 1.00016 |      | 1 / 0e0 | 6.1e0 |
+#+TBLFM: $4=$2 - $3::$8=$4 $5**2;f0::$10=$4 $pi $6 $7;f0::$12=$4 $pi 0.5 $6**2;f0::$14=$8 $9 + $10 $11 + $12 $13::$15=$14/32000;f4::$16=sqrt($4/$5) / 0.2;f2::$17=$14/$16 58682;f5::$19=1/ $16 $18**2 ;f0::$20=30.5/$16;s2::@20$14=vsum(@I..@II)::@20$17=vsum(@I..@II)
++ ds is transverse width in pixels
++ R is the radius of a shell
++ h is the thickness of a shell
++ S' is the BG-subtracted surface brightness
++ Fluxes are calculated in three different ways (only one of the 3 is used for each feature)
+  1. F1 uses Area = ds^2
+  2. F2 uses Area = \pi R h (semi-circular annulus)
+  3. F3 uses Area = 0.5 \pi R^2 (semi-circular disk)
++ F is the selected flux 
+  + Columns 1, 2, 3 are flags, which select ehich of F1, F2, or F3 to use
++ frac is the fraction of the total nebular flux
+  + The denominator of 32,000 comes from the nested box photometry in the table below
++ So H\alpha flux fractions are something like this:
+  - Intermediate Shell: 0.0722 + 0.0045 + 0.0531 = 13%
+  - Inner shells: 0.0399 + 0.1543 + 0.0268 + 0.2165 = 44%
+  - Complexes: 0.0281 + 0.2633 + 0.1138 + 0.0171 = 42%
+  - Lobes: 0.0011 + 0.0009 + 0.0023 + 0.0033 + 0.0002 + 0.0001 = 0.8%
++ Densities of the components
+  + These are all relative and are proportional to sqrt(S' / dz), assuming dz = ds
+  + I made it so the brightest features are around n = 1
+    + This should be about 4000 pcc from Pottasch:2009a
+  + Inner shells have n = 0.76, 0.81, 1.12, 1.06 => 0.938 +/- 0.089
+    + Very slightly higher on S side
+  + Intermediate shell has n = 0.18, 0.13 => 0.16 +/- 0.03
+  + Knot complexes have n = 1.30, 0.83, 0.54 => 0.89 +/- 0.22
+    + A bit higher on N side
+  + Lobes have 0.08, 0.06, 0.04, 0.05 => 0.058 +/- 0.009
+  + Highest density features
+    + Brightness peak has n = 2.58 - at least 2x its surroundings
+    + NW knot has n = 2 - at least 10x its surroundings
+    + N knot has n = 0.95 - about 20x its surroundings
+    + SE knot has n = 2.24 - nearly 3x its surroundings 
++ Ionized mass
+  + Proportional to F/n
+  + Inner shells: 0.02863 + 0.10384 + 0.01305 + 0.11136 = 26%
+  + Intermediate shells: 0.21860 + 0.01022 + 0.22271 = 45%
+  + Knot complexes: 0.07475 + 0.11044 + 0.00594 + 0.01729 = 21%
+  + Lobes: 0.03579 + 0.03153 + 0.00824 +  0.00746 = 8%
++ Ionization parameter
+  + Proportional to 1/(R^2 n) if optically thin
+  + Where R is the 3D radius
+  + Inner shells: 147., 140., 252., 269. => 202 +/- 34
+    + Higher on N side due to lower density
+  + Intermediate shells: 556, 289, 300. => 381 +/- 87
+    + So significantly higher than the inner shells
+  + Knot complexes: 91, 246., 13., 7., 51., 15., 29. => 65 +/- 32
+    + Much lower values, except for the diffuse SE complexes, which are more like the inner shell
+    + These ionization parameters are based /entirely/ on analysis of the H\alpha emission, but they will allow us to predict the [N II]/Ha ratio (or [O II]/[O III])
+  + Lobes: 692, 865, 850, 346 => 688 +/- 121
+    + This is the highest of all, which explains why the lobes are mainly visible in [O III]
+  + So, the progression: rim \to shell \to lobes with increasing ionization parameter means that the density is falling faster than R^-2
++ t_rec is Recombination time
+  + t = 1.22e5 yr / (n / cm^-3)
+  + Our n is in units of 4000 pcc, so t = 30.5 / n
+  + Even the lobes have a short t_rec < 800 yrs
+  + For inner shell it is decades
+  + Halo might be longer
++ /Earlier measurements/ of fluxes in nested boxes
+  |                                     |       | frac |
+  |-------------------------------------+-------+------|
+  | Big box that includes lobes         | 32768 | 0.02 |
+  | Intermediate shell and inner shells | 32143 | 0.14 |
+  | Inner shells only                   | 27692 | 0.58 |
+  | N bright ridge only                 |  8529 | 0.26 |
+  | Zero                                |     0 |      |
+  #+TBLFM: $3=($-1 - @+1$-1)/32768 ; f2
+  + The frac column subtracts off the following one, so it gives the fraction of the total that corresponds to each component
+    + Lobes are 2% of total flux
+    + Inner shells are 60%
+    + IS is 14% but that is an over-estimate since it includes emission associated with the knot complexes
+**** Summary table of physical properties
+| Component          | Ha frac | Density     | Mass frac |   |
+|--------------------+---------+-------------+-----------+---|
+| Inner shells       | 44 %    | 3000 \to 4500 | 26 %      |   |
+| Intermediate shell | 13 %    | 500 \to 750   | 45 %      |   |
+| Knot complexes     | 42 %    | 2000 \to 5000 | 21 %      |   |
+| Outer Lobes        | 1 %     | 160 \to 320   | 8 %       |   |
+|--------------------+---------+-------------+-----------+---|
+| Bright peak        | 3%      | 10000       |           |   |
+| NW knot            | 0.01%   | 8000        |           |   |
+**** Combine images and remove CRs
+***** First, find what files we have
+#+begin_src python :results output verbatim
+  from astropy.io import fits
+  from pathlib import Path
+    datadir = Path("~/Dropbox/Papers/LL-Objects/NGC6210/HST").expanduser()
+    fitsfiles = tuple(datadir.glob("*_drz.fits"))
+    for fitsfile in fitsfiles:
+        hdulist = fits.open(fitsfile)
+        hdulist.info()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b010cm_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060er_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0609r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0505r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060hr_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011002m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     357   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0102m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0604r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0508r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0109m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0503r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1514, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1514, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1514, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060cr_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0602r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0104m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u8s10403m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     359   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011004m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     357   ()      
+  1  SCI           1 ImageHDU       121   (1516, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1516, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1516, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060dr_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b010bm_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1496)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1496)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1496)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0504r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0608r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011003m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     356   ()      
+  1  SCI           1 ImageHDU       121   (1516, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1516, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1516, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u39h0702t_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0103m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0502r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1514, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1514, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1514, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0108m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0605m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b010dm_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060br_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0105m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0603r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011005m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     358   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u8s10402m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     358   ()      
+  1  SCI           1 ImageHDU       121   (1514, 1493)   float32   
+  2  WHT           1 ImageHDU       133   (1514, 1493)   float32   
+  3  CTX           1 ImageHDU       132   (1514, 1493)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0507r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b010am_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1496)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1496)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1496)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060gr_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0606r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u39h0701t_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060ar_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0501r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1514, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1514, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1514, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u8s10401m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     358   ()      
+  1  SCI           1 ImageHDU       121   (1514, 1493)   float32   
+  2  WHT           1 ImageHDU       133   (1514, 1493)   float32   
+  3  CTX           1 ImageHDU       132   (1514, 1493)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011006m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     358   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0106m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u66b0506r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js060fr_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     354   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0607r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0101m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011001m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     359   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u39h0701-2t_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     431   (1515, 1495)   float32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/ua011007m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     358   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u37b0107m_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     353   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+Filename: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/HST/u4js0601r_drz.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU     355   ()      
+  1  SCI           1 ImageHDU       121   (1515, 1495)   float32   
+  2  WHT           1 ImageHDU       133   (1515, 1495)   float32   
+  3  CTX           1 ImageHDU       132   (1515, 1495)   int32   
+#+end_example
+
+
+***** Next, make table of important parameters
+
+#+begin_src python :return table
+  from astropy.io import fits
+  from pathlib import Path
+
+  datadir = Path("~/Dropbox/Papers/LL-Objects/NGC6210/HST").expanduser()
+  fitsfiles = tuple(datadir.glob("*_drz.fits"))
+  table = [
+      [
+          "Name",
+          "Date",
+          "Photmode",
+          "Exposure",
+      ],
+      None,
+  ]
+  for fitsfile in fitsfiles:
+      hdulist = fits.open(fitsfile)
+      try:
+          h = hdulist[0].header
+          hi = hdulist["SCI"].header
+          data = [
+              h["ROOTNAME"],
+              f'{h["DATE-OBS"]} {h["TIME-OBS"]}',
+              hi["PHOTMODE"],
+              h["EXPTIME"],
+          ]
+          table.append(data)
+      except:
+          pass
+#+end_src
+
+#+RESULTS:
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u37b010cm | 1997-08-06 09:58:13 | WFPC2,1,A2D7,F375N,,CAL  |    260.0 |
+| u4js060er | 1998-06-30 13:41:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js0609r | 1998-06-30 13:29:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| u66b0505r | 2000-06-24 18:49:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
+| u4js060hr | 1998-06-30 13:47:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| ua011002m | 2008-01-18 03:30:17 | WFPC2,1,A2D7,F502N,,CAL  |    160.0 |
+| u37b0102m | 1997-08-06 08:04:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+| u4js0604r | 1998-06-30 13:16:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+| u66b0508r | 2000-06-24 19:55:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
+| u37b0109m | 1997-08-06 09:44:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
+| u66b0503r | 2000-06-24 18:32:14 | WFPC2,1,A2D7,F502N,,CAL  |    300.0 |
+| u4js060cr | 1998-06-30 13:36:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+| u4js0602r | 1998-06-30 13:10:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| u37b0104m | 1997-08-06 09:22:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
+| u8s10403m | 2004-03-02 18:20:15 | WFPC2,1,A2D7,F547M,,CAL  |     60.0 |
+| ua011004m | 2008-01-18 03:37:17 | WFPC2,1,A2D7,F656N,,CAL  |    100.0 |
+| u4js060dr | 1998-06-30 13:39:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u37b010bm | 1997-08-06 09:53:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
+| u66b0504r | 2000-06-24 18:42:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
+| u4js0608r | 1998-06-30 13:26:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| ua011003m | 2008-01-18 03:35:17 | WFPC2,1,A2D7,F656N,,CAL  |     40.0 |
+| u39h0702t | 1996-07-02 03:06:16 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
+| u37b0103m | 1997-08-06 08:19:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+| u66b0502r | 2000-06-24 18:27:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
+| u37b0108m | 1997-08-06 09:40:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
+| u4js0605m | 1998-06-30 13:18:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+| u37b010dm | 1997-08-06 10:04:13 | WFPC2,1,A2D7,F375N,,CAL  |    200.0 |
+| u4js060br | 1998-06-30 13:34:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+| u37b0105m | 1997-08-06 09:26:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
+| u4js0603r | 1998-06-30 13:13:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| ua011005m | 2008-01-18 03:43:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| u8s10402m | 2004-03-02 18:11:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
+| u66b0507r | 2000-06-24 19:53:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
+| u37b010am | 1997-08-06 09:49:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
+| u4js060gr | 1998-06-30 13:45:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js0606r | 1998-06-30 13:20:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+| u39h0701t | 1996-07-02 02:57:16 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| u4js060ar | 1998-06-30 13:32:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+| u66b0501r | 2000-06-24 18:22:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
+| u8s10401m | 2004-03-02 18:03:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
+| ua011006m | 2008-01-18 03:52:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| u37b0106m | 1997-08-06 09:31:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
+| u66b0506r | 2000-06-24 18:56:14 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
+| u4js060fr | 1998-06-30 13:43:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js0607r | 1998-06-30 13:23:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| u37b0101m | 1997-08-06 07:49:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+| ua011001m | 2008-01-18 03:27:17 | WFPC2,1,A2D7,F502N,,CAL  |    100.0 |
+| ua011007m | 2008-01-18 04:58:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| u37b0107m | 1997-08-06 09:35:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
+| u4js0601r | 1998-06-30 13:07:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+
+***** Organize the exposures
+
+****** 1996-07-02
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u39h0701t | 1996-07-02 02:57:16 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| u39h0702t | 1996-07-02 03:06:16 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
+
+****** 1997-08-06
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u37b0101m | 1997-08-06 07:49:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+| u37b0102m | 1997-08-06 08:04:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+| u37b0103m | 1997-08-06 08:19:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
+|-----------+---------------------+--------------------------+----------|
+| u37b0104m | 1997-08-06 09:22:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
+| u37b0105m | 1997-08-06 09:26:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
+|-----------+---------------------+--------------------------+----------|
+| u37b0106m | 1997-08-06 09:31:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
+| u37b0107m | 1997-08-06 09:35:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
+|-----------+---------------------+--------------------------+----------|
+| u37b0108m | 1997-08-06 09:40:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
+| u37b0109m | 1997-08-06 09:44:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
+|-----------+---------------------+--------------------------+----------|
+| u37b010am | 1997-08-06 09:49:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
+| u37b010bm | 1997-08-06 09:53:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
+|-----------+---------------------+--------------------------+----------|
+| u37b010cm | 1997-08-06 09:58:13 | WFPC2,1,A2D7,F375N,,CAL  |    260.0 |
+| u37b010dm | 1997-08-06 10:04:13 | WFPC2,1,A2D7,F375N,,CAL  |    200.0 |
+
+****** 1998-06-30
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u4js0601r | 1998-06-30 13:07:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| u4js0602r | 1998-06-30 13:10:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| u4js0603r | 1998-06-30 13:13:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| u4js0604r | 1998-06-30 13:16:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+| u4js0605m | 1998-06-30 13:18:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+| u4js0606r | 1998-06-30 13:20:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
+|-----------+---------------------+--------------------------+----------|
+| u4js0607r | 1998-06-30 13:23:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| u4js0608r | 1998-06-30 13:26:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| u4js0609r | 1998-06-30 13:29:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
+| u4js060ar | 1998-06-30 13:32:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+| u4js060br | 1998-06-30 13:34:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+| u4js060cr | 1998-06-30 13:36:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
+|-----------+---------------------+--------------------------+----------|
+| u4js060dr | 1998-06-30 13:39:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js060er | 1998-06-30 13:41:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js060fr | 1998-06-30 13:43:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js060gr | 1998-06-30 13:45:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+| u4js060hr | 1998-06-30 13:47:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
+
+****** 2000-06-24
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u66b0501r | 2000-06-24 18:22:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
+| u66b0502r | 2000-06-24 18:27:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
+| u66b0503r | 2000-06-24 18:32:14 | WFPC2,1,A2D7,F502N,,CAL  |    300.0 |
+|-----------+---------------------+--------------------------+----------|
+| u66b0504r | 2000-06-24 18:42:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
+| u66b0505r | 2000-06-24 18:49:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
+| u66b0506r | 2000-06-24 18:56:14 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
+|-----------+---------------------+--------------------------+----------|
+| u66b0507r | 2000-06-24 19:53:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
+| u66b0508r | 2000-06-24 19:55:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
+
+****** 2004-03-02
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| u8s10401m | 2004-03-02 18:03:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
+| u8s10402m | 2004-03-02 18:11:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
+|-----------+---------------------+--------------------------+----------|
+| u8s10403m | 2004-03-02 18:20:15 | WFPC2,1,A2D7,F547M,,CAL  |     60.0 |
+
+****** 2008-01-18
+| Name      | Date                | Photmode                 | Exposure |
+|-----------+---------------------+--------------------------+----------|
+| ua011001m | 2008-01-18 03:27:17 | WFPC2,1,A2D7,F502N,,CAL  |    100.0 |
+| ua011002m | 2008-01-18 03:30:17 | WFPC2,1,A2D7,F502N,,CAL  |    160.0 |
+|-----------+---------------------+--------------------------+----------|
+| ua011003m | 2008-01-18 03:35:17 | WFPC2,1,A2D7,F656N,,CAL  |     40.0 |
+| ua011004m | 2008-01-18 03:37:17 | WFPC2,1,A2D7,F656N,,CAL  |    100.0 |
+|-----------+---------------------+--------------------------+----------|
+| ua011005m | 2008-01-18 03:43:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| ua011006m | 2008-01-18 03:52:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+| ua011007m | 2008-01-18 04:58:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
+
+
+***** Try to remove CRs
++ With three images, we can take the median
+  + 2008 [N II] - N = 3
+  + 2000 [N II] - N = 3
+  + 2000 [O III] - N = 3
+  + 1998 [N II] - N = 6
+  + 1998 [O III] - N = 6
+  + 1998 F555W - N = 6
+  + 1997 F437N [O III] 4363 - N = 3
++ With two images, we could take the minimum?
+  + Otherwise would have to use something like spotless or scrappy
+  + 2004 F185W - C III + cont - N = 2
+  + 1997 F375N - [O II] - N = 2
+  + 1997 F656N - H alpha
+
+#+begin_src python :eval no :tangle ../scripts/hst-cr-combine.py
+  import sys
+  import numpy as np
+  from astropy.io import fits
+  from pathlib import Path
+
+  datadir = Path("~/Dropbox/Papers/LL-Objects/NGC6210/HST").expanduser()
+  fitsfiles = tuple(datadir.glob("*_drz.fits"))
+
+  try:
+      FILTER, YEAR = sys.argv[1], sys.argv[2]
+  except:
+      sys.exit(f"Usage: {sys.argv[0]} FILTER YEAR")
+
+  # Find all observations that are for the requested filter and year
+  obslist = []
+  for fitsfile in fitsfiles:
+      hdulist = fits.open(fitsfile)
+      try:
+          h = hdulist[0].header
+          hi = hdulist["SCI"].header
+          if FILTER in hi["PHOTMODE"] and h["DATE-OBS"].startswith(YEAR):
+             obslist.append(hdulist) 
+      except:
+          pass
+
+  print(f"Found {len(obslist)} files with FILTER={FILTER} YEAR={YEAR}")
+
+  outfile = f"turtle-{FILTER}-{YEAR}.fits"
+  outdir = Path("../data/hst-cr-combine")
+
+
+  data = None
+  THRESH = 1.5
+  # supposedly already in counts/s
+  image_stack = np.stack(
+      # [_["SCI"].data/float(_[0].header["EXPTIME"]) for _ in obslist]
+      [_["SCI"].data for _ in obslist]
+  )
+  times = np.array([float(_[0].header["EXPTIME"]) for _ in obslist])
+  times = times[:, None, None] * np.ones_like(image_stack)
+  if len(obslist) >= 3:
+      # Easy case - median masking for CRs
+      median_image = np.median(image_stack, axis=0, keepdims=True)
+      cr_mask = (image_stack > 0.0) & (image_stack > THRESH*median_image)
+      times[cr_mask] = 0.0
+      image = np.average(image_stack, axis=0, weights=times)
+  else:
+      # Only two images - take the minimum and hope!
+      image = np.nanmin(image_stack, axis=0)
+
+  obslist[0]["SCI"].data = image
+  obslist[0].writeto(outdir / outfile, overwrite=True)
+#+end_src
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F502N 1998
+#+end_src
+
+#+RESULTS:
+: Found 6 files with FILTER=F502N YEAR=1998
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F658N 1998
+#+end_src
+
+#+RESULTS:
+: Found 6 files with FILTER=F658N YEAR=1998
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F437N 1997
+#+end_src
+
+#+RESULTS:
+: Found 3 files with FILTER=F437N YEAR=1997
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F555W 1998
+#+end_src
+
+#+RESULTS:
+: Found 5 files with FILTER=F555W YEAR=1998
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F656N 1997
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F656N YEAR=1997
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F375N 1997
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F375N YEAR=1997
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F185W 2004
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F185W YEAR=2004
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F487N 1997
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F487N YEAR=1997
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F502N 1997
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F502N YEAR=1997
+
+#+begin_src sh
+python ../scripts/hst-cr-combine.py F547M 1997
+#+end_src
+
+#+RESULTS:
+: Found 2 files with FILTER=F547M YEAR=1997
+
+***** Emission line fluxes
++ To correct for atomic continuum, we can use the results for Saturn nebula from Rubin:2002
++ That gives Ha, Hb, and the two [O III] lines
+  + Where 4363 is corrected for H gamma as well as continuum
++ Unfortunately, they don't do [N II] from f658n, but we can get that from O'Dell & Doi (ODell:1999a)
+
 ** Log of Mezcal observations by year
 
 | 1998 |  5 | Zedillo  |
@@ -237,8 +1185,7 @@
 | Fox        | 19 |
 | Calderón   |  2 |
 | Peña Nieto | 14 |
-| AMLO       |  1 |
-
+| AMLO       |  1 
 ** Proper motions
 
 *** [N II]

@@ -27,7 +27,7 @@ try:
 except:
     choice = None
 
-restwavs = {'oiii': 5006.84,}
+restwavs = {}
 
 # Position of star
 RA0, Dec0 = 251.122998321, 23.7998586853

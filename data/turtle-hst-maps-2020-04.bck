@@ -66,195 +66,6 @@ colorbarrgb configure -fontweight normal
 colorbarrgb configure -fontslant roman
 colorbarrgb colorbar rgb 0.5 0.5 0.5 1 1 1 0
 colorbarrgb tag "{}"
-CreateNameNumberFrame Frame1 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame1/u37b0109m_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame1 magnifier graphics 1
-Frame1 magnifier cursor 1
-Frame1 magnifier zoom 4
-Frame1 magnifier color white
-Frame1 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame1 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame1 precision 8 7 4 3 8 7 5 3 8
-Frame1 bg color white
-Frame1 nan color white
-Frame1 cube axes 123
-Frame1 rgb channel red
-Frame1 rgb view 1 1 1
-Frame1 rgb system image
-Frame1 bin factor to 1 1
-Frame1 bin depth 1
-Frame1 bin filter {""}
-Frame1 bin buffer size 1024
-Frame1 bin about 0 0
-Frame1 bin function sum
-Frame1 colorscale sqrt
-Frame1 colorscale log 1000
-Frame1 datasec 1
-Frame1 clip user 0 4
-Frame1 clip mode user
-Frame1 clip scope local
-Frame1 clip minmax mode scan
-Frame1 clip minmax sample 25
-Frame1 clip zscale contrast 0.25
-Frame1 clip zscale sample 600
-Frame1 clip zscale line 120
-Frame1 block to 1 1
-Frame1 wcs wcs fk5 sexagesimal
-Frame1 pan preserve 0
-Frame1 pan to physical 377.15563 377.235
-Frame1 zoom to 0.578703 0.578703
-Frame1 rotate to 0
-Frame1 orient none
-Frame1 wcs align 1
-Frame1 3d view 0 0
-Frame1 3d scale 1
-Frame1 3d method mip
-Frame1 3d highlite 1
-Frame1 3d border 1
-Frame1 3d background none
-Frame1 3d view point 0 0 0 0 0
-Frame1 crosshair physical 758 748
-Frame1 marker centroid radius 10
-Frame1 marker centroid iteration 30
-Frame1 mask transparency 0
-Frame1 mask system wcs
-Frame1 mask color red
-Frame1 mask mark nonzero
-Frame1 mask range 0 0
-CreateNameNumberFrame Frame2 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame2/u37b0105m_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame2 magnifier graphics 1
-Frame2 magnifier cursor 1
-Frame2 magnifier zoom 4
-Frame2 magnifier color white
-Frame2 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame2 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame2 precision 8 7 4 3 8 7 5 3 8
-Frame2 bg color white
-Frame2 nan color white
-Frame2 cube axes 123
-Frame2 rgb channel red
-Frame2 rgb view 1 1 1
-Frame2 rgb system image
-Frame2 bin factor to 1 1
-Frame2 bin depth 1
-Frame2 bin filter {""}
-Frame2 bin buffer size 1024
-Frame2 bin about 0 0
-Frame2 bin function sum
-Frame2 colorscale sqrt
-Frame2 colorscale log 1000
-Frame2 datasec 1
-Frame2 clip user 0 2.0319
-Frame2 clip mode user
-Frame2 clip scope local
-Frame2 clip minmax mode scan
-Frame2 clip minmax sample 25
-Frame2 clip zscale contrast 0.25
-Frame2 clip zscale sample 600
-Frame2 clip zscale line 120
-Frame2 block to 1 1
-Frame2 wcs wcs fk5 sexagesimal
-Frame2 pan preserve 0
-Frame2 pan to physical 377.08592 377.15255
-Frame2 zoom to 0.578703 0.578703
-Frame2 rotate to 0
-Frame2 orient none
-Frame2 wcs align 1
-Frame2 3d view 0 0
-Frame2 3d scale 1
-Frame2 3d method mip
-Frame2 3d highlite 1
-Frame2 3d border 1
-Frame2 3d background none
-Frame2 3d view point 0 0 0 0 0
-Frame2 crosshair physical 758 748
-Frame2 marker centroid radius 10
-Frame2 marker centroid iteration 30
-Frame2 mask transparency 0
-Frame2 mask system wcs
-Frame2 mask color red
-Frame2 mask mark nonzero
-Frame2 mask range 0 0
-CreateNameNumberFrame Frame3 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame3/u37b0102m_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame3 magnifier graphics 1
-Frame3 magnifier cursor 1
-Frame3 magnifier zoom 4
-Frame3 magnifier color white
-Frame3 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame3 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame3 precision 8 7 4 3 8 7 5 3 8
-Frame3 bg color white
-Frame3 nan color white
-Frame3 cube axes 123
-Frame3 rgb channel red
-Frame3 rgb view 1 1 1
-Frame3 rgb system image
-Frame3 bin factor to 1 1
-Frame3 bin depth 1
-Frame3 bin filter {""}
-Frame3 bin buffer size 1024
-Frame3 bin about 0 0
-Frame3 bin function sum
-Frame3 colorscale sqrt
-Frame3 colorscale log 1000
-Frame3 datasec 1
-Frame3 clip user 0 0.108166
-Frame3 clip mode user
-Frame3 clip scope local
-Frame3 clip minmax mode scan
-Frame3 clip minmax sample 25
-Frame3 clip zscale contrast 0.25
-Frame3 clip zscale sample 600
-Frame3 clip zscale line 120
-Frame3 block to 1 1
-Frame3 wcs wcs fk5 sexagesimal
-Frame3 pan preserve 0
-Frame3 pan to physical 377.01066 377.09171
-Frame3 zoom to 0.578703 0.578703
-Frame3 rotate to 0
-Frame3 orient none
-Frame3 wcs align 1
-Frame3 3d view 0 0
-Frame3 3d scale 1
-Frame3 3d method mip
-Frame3 3d highlite 1
-Frame3 3d border 1
-Frame3 3d background none
-Frame3 3d view point 0 0 0 0 0
-Frame3 crosshair physical 758 748
-Frame3 marker centroid radius 10
-Frame3 marker centroid iteration 30
-Frame3 mask transparency 0
-Frame3 mask system wcs
-Frame3 mask color red
-Frame3 mask mark nonzero
-Frame3 mask range 0 0
 CreateNameNumberFrame Frame4 base
 global loadParam
 array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame4/ua011004m_drz.fits file,mode {} load,type mmapincr file,type fits]
@@ -298,8 +109,8 @@ Frame4 clip zscale line 120
 Frame4 block to 1 1
 Frame4 wcs wcs fk5 sexagesimal
 Frame4 pan preserve 0
-Frame4 pan to physical 921.36118 914.4137
-Frame4 zoom to 0.578703 0.578703
+Frame4 pan to physical 915.89498 907.88779
+Frame4 zoom to 0.334898 0.334898
 Frame4 rotate to 0
 Frame4 orient none
 Frame4 wcs align 1
@@ -310,6 +121,7 @@ Frame4 3d highlite 1
 Frame4 3d border 1
 Frame4 3d background none
 Frame4 3d view point 0 0 0 0 0
+Frame4 marker load ds9 {"./turtle-hst-maps-2020-04.bck.dir/Frame4/ds9.reg"}
 Frame4 crosshair physical 759 748
 Frame4 marker centroid radius 10
 Frame4 marker centroid iteration 30
@@ -361,8 +173,8 @@ Frame5 clip zscale line 120
 Frame5 block to 1 1
 Frame5 wcs wcs fk5 sexagesimal
 Frame5 pan preserve 0
-Frame5 pan to physical 921.1521 914.42852
-Frame5 zoom to 0.578703 0.578703
+Frame5 pan to physical 915.6859 907.90261
+Frame5 zoom to 0.334898 0.334898
 Frame5 rotate to 0
 Frame5 orient none
 Frame5 wcs align 1
@@ -373,6 +185,7 @@ Frame5 3d highlite 1
 Frame5 3d border 1
 Frame5 3d background none
 Frame5 3d view point 0 0 0 0 0
+Frame5 marker load ds9 {"./turtle-hst-maps-2020-04.bck.dir/Frame5/ds9.reg"}
 Frame5 crosshair physical 758 748
 Frame5 marker centroid radius 10
 Frame5 marker centroid iteration 30
@@ -381,195 +194,6 @@ Frame5 mask system wcs
 Frame5 mask color red
 Frame5 mask mark nonzero
 Frame5 mask range 0 0
-CreateNameNumberFrame Frame6 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame6/u37b010dm_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame6 magnifier graphics 1
-Frame6 magnifier cursor 1
-Frame6 magnifier zoom 4
-Frame6 magnifier color white
-Frame6 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame6 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame6 precision 8 7 4 3 8 7 5 3 8
-Frame6 bg color white
-Frame6 nan color white
-Frame6 cube axes 123
-Frame6 rgb channel red
-Frame6 rgb view 1 1 1
-Frame6 rgb system image
-Frame6 bin factor to 1 1
-Frame6 bin depth 1
-Frame6 bin filter {""}
-Frame6 bin buffer size 1024
-Frame6 bin about 0 0
-Frame6 bin function sum
-Frame6 colorscale sqrt
-Frame6 colorscale log 1000
-Frame6 datasec 1
-Frame6 clip user 0 0.191825
-Frame6 clip mode user
-Frame6 clip scope local
-Frame6 clip minmax mode scan
-Frame6 clip minmax sample 25
-Frame6 clip zscale contrast 0.25
-Frame6 clip zscale sample 600
-Frame6 clip zscale line 120
-Frame6 block to 1 1
-Frame6 wcs wcs fk5 sexagesimal
-Frame6 pan preserve 0
-Frame6 pan to physical 376.91595 377.01564
-Frame6 zoom to 0.578703 0.578703
-Frame6 rotate to 0
-Frame6 orient none
-Frame6 wcs align 1
-Frame6 3d view 0 0
-Frame6 3d scale 1
-Frame6 3d method mip
-Frame6 3d highlite 1
-Frame6 3d border 1
-Frame6 3d background none
-Frame6 3d view point 0 0 0 0 0
-Frame6 crosshair physical 758 748
-Frame6 marker centroid radius 10
-Frame6 marker centroid iteration 30
-Frame6 mask transparency 0
-Frame6 mask system wcs
-Frame6 mask color red
-Frame6 mask mark nonzero
-Frame6 mask range 0 0
-CreateNameNumberFrame Frame7 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame7/u8s10401m_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame7 magnifier graphics 1
-Frame7 magnifier cursor 1
-Frame7 magnifier zoom 4
-Frame7 magnifier color white
-Frame7 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame7 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame7 precision 8 7 4 3 8 7 5 3 8
-Frame7 bg color white
-Frame7 nan color white
-Frame7 cube axes 123
-Frame7 rgb channel red
-Frame7 rgb view 1 1 1
-Frame7 rgb system image
-Frame7 bin factor to 1 1
-Frame7 bin depth 1
-Frame7 bin filter {""}
-Frame7 bin buffer size 1024
-Frame7 bin about 0 0
-Frame7 bin function sum
-Frame7 colorscale sqrt
-Frame7 colorscale log 1000
-Frame7 datasec 1
-Frame7 clip user 0 0.0390652
-Frame7 clip mode user
-Frame7 clip scope local
-Frame7 clip minmax mode scan
-Frame7 clip minmax sample 25
-Frame7 clip zscale contrast 0.25
-Frame7 clip zscale sample 600
-Frame7 clip zscale line 120
-Frame7 block to 1 1
-Frame7 wcs wcs fk5 sexagesimal
-Frame7 pan preserve 0
-Frame7 pan to physical 380.33789 377.29232
-Frame7 zoom to 0.578703 0.578703
-Frame7 rotate to 0
-Frame7 orient none
-Frame7 wcs align 1
-Frame7 3d view 0 0
-Frame7 3d scale 1
-Frame7 3d method mip
-Frame7 3d highlite 1
-Frame7 3d border 1
-Frame7 3d background none
-Frame7 3d view point 0 0 0 0 0
-Frame7 crosshair physical 758 747
-Frame7 marker centroid radius 10
-Frame7 marker centroid iteration 30
-Frame7 mask transparency 0
-Frame7 mask system wcs
-Frame7 mask color red
-Frame7 mask mark nonzero
-Frame7 mask range 0 0
-CreateNameNumberFrame Frame9 base
-global loadParam
-array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame9/u8s10403m_drz.fits file,mode {} load,type mmapincr file,type fits]
-if [BackupFindFile loadParam] {
-  ProcessLoad
-}
-Frame9 magnifier graphics 1
-Frame9 magnifier cursor 1
-Frame9 magnifier zoom 4
-Frame9 magnifier color white
-Frame9 colorbar tag "{}"
-colorbar tag "{}"
-set sav [colorbar get colorbar]
-colorbar colorbar 1 0.5 1 0
-Frame9 colormap [colorbar get colormap]
-colorbar colorbar $sav
-Frame9 precision 8 7 4 3 8 7 5 3 8
-Frame9 bg color white
-Frame9 nan color white
-Frame9 cube axes 123
-Frame9 rgb channel red
-Frame9 rgb view 1 1 1
-Frame9 rgb system image
-Frame9 bin factor to 1 1
-Frame9 bin depth 1
-Frame9 bin filter {""}
-Frame9 bin buffer size 1024
-Frame9 bin about 0 0
-Frame9 bin function sum
-Frame9 colorscale sqrt
-Frame9 colorscale log 1000
-Frame9 datasec 1
-Frame9 clip user 0 4
-Frame9 clip mode user
-Frame9 clip scope local
-Frame9 clip minmax mode scan
-Frame9 clip minmax sample 25
-Frame9 clip zscale contrast 0.25
-Frame9 clip zscale sample 600
-Frame9 clip zscale line 120
-Frame9 block to 1 1
-Frame9 wcs wcs fk5 sexagesimal
-Frame9 pan preserve 0
-Frame9 pan to physical 380.90841 377.77518
-Frame9 zoom to 0.578703 0.578703
-Frame9 rotate to 0
-Frame9 orient none
-Frame9 wcs align 1
-Frame9 3d view 0 0
-Frame9 3d scale 1
-Frame9 3d method mip
-Frame9 3d highlite 1
-Frame9 3d border 1
-Frame9 3d background none
-Frame9 3d view point 0 0 0 0 0
-Frame9 crosshair physical 758 748
-Frame9 marker centroid radius 10
-Frame9 marker centroid iteration 30
-Frame9 mask transparency 0
-Frame9 mask system wcs
-Frame9 mask color red
-Frame9 mask mark nonzero
-Frame9 mask range 0 0
 CreateNameNumberFrame Frame10 base
 global loadParam
 array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame10/u37b0106m_drz.fits file,mode {} load,type mmapincr file,type fits]
@@ -613,8 +237,8 @@ Frame10 clip zscale line 120
 Frame10 block to 1 1
 Frame10 wcs wcs fk5 sexagesimal
 Frame10 pan preserve 0
-Frame10 pan to physical 377.31234 377.17041
-Frame10 zoom to 0.578703 0.578703
+Frame10 pan to physical 382.92448 383.57125
+Frame10 zoom to 0.334898 0.334898
 Frame10 rotate to 0
 Frame10 orient none
 Frame10 wcs align 1
@@ -625,6 +249,7 @@ Frame10 3d highlite 1
 Frame10 3d border 1
 Frame10 3d background none
 Frame10 3d view point 0 0 0 0 0
+Frame10 marker load ds9 {"./turtle-hst-maps-2020-04.bck.dir/Frame10/ds9.reg"}
 Frame10 crosshair physical 758 748
 Frame10 marker centroid radius 10
 Frame10 marker centroid iteration 30
@@ -744,8 +369,8 @@ Frame11 block to 1 1
 Frame11 rgb channel red
 Frame11 wcs wcs fk5 sexagesimal
 Frame11 pan preserve 0
-Frame11 pan to physical 377.31234 377.17041
-Frame11 zoom to 0.578703 0.578703
+Frame11 pan to physical 382.92448 383.57125
+Frame11 zoom to 0.334898 0.334898
 Frame11 rotate to 0
 Frame11 orient none
 Frame11 wcs align 1
@@ -760,6 +385,7 @@ Frame11 3d highlite 1
 Frame11 3d border 1
 Frame11 3d background none
 Frame11 3d view point 0 0 0 0 0
+Frame11 marker load ds9 {"./turtle-hst-maps-2020-04.bck.dir/Frame11/ds9.reg"}
 Frame11 crosshair physical 758 748
 Frame11 marker centroid radius 10
 Frame11 marker centroid iteration 30
@@ -815,8 +441,8 @@ Frame12 rgb channel green
 Frame12 cube axes 123
 Frame12 rgb channel blue
 Frame12 cube axes 123
-Frame12 rgb channel blue
-Frame12 rgb channel blue
+Frame12 rgb channel red
+Frame12 rgb channel red
 Frame12 rgb view 1 1 1
 Frame12 rgb system wcs
 Frame12 rgb channel red
@@ -840,9 +466,9 @@ Frame12 bin filter {""}
 Frame12 bin buffer size 1024
 Frame12 bin about 0 0
 Frame12 bin function sum
-Frame12 rgb channel blue
 Frame12 rgb channel red
-Frame12 colorscale sqrt
+Frame12 rgb channel red
+Frame12 colorscale log
 Frame12 colorscale log 1000
 Frame12 datasec 1
 Frame12 clip user 0 3.3795
@@ -854,7 +480,7 @@ Frame12 clip zscale contrast 0.25
 Frame12 clip zscale sample 600
 Frame12 clip zscale line 120
 Frame12 rgb channel green
-Frame12 colorscale sqrt
+Frame12 colorscale log
 Frame12 colorscale log 1000
 Frame12 datasec 1
 Frame12 clip user 0 0.282647
@@ -866,7 +492,7 @@ Frame12 clip zscale contrast 0.25
 Frame12 clip zscale sample 600
 Frame12 clip zscale line 120
 Frame12 rgb channel blue
-Frame12 colorscale sqrt
+Frame12 colorscale log
 Frame12 colorscale log 1000
 Frame12 datasec 1
 Frame12 clip user 0 3.3795
@@ -877,25 +503,25 @@ Frame12 clip minmax sample 25
 Frame12 clip zscale contrast 0.25
 Frame12 clip zscale sample 600
 Frame12 clip zscale line 120
-Frame12 rgb channel blue
+Frame12 rgb channel red
 Frame12 rgb channel red
 Frame12 block to 1 1
 Frame12 rgb channel green
 Frame12 block to 1 1
 Frame12 rgb channel blue
 Frame12 block to 1 1
-Frame12 rgb channel blue
+Frame12 rgb channel red
 Frame12 wcs wcs fk5 sexagesimal
 Frame12 pan preserve 0
-Frame12 pan to physical 380.90841 377.77518
-Frame12 zoom to 0.578703 0.578703
+Frame12 pan to physical 915.6859 907.90261
+Frame12 zoom to 0.334898 0.334898
 Frame12 rotate to 0
 Frame12 orient none
 Frame12 wcs align 1
 Frame12 rgb channel red
 Frame12 rgb channel green
 Frame12 rgb channel blue
-Frame12 rgb channel blue
+Frame12 rgb channel red
 Frame12 3d view 0 0
 Frame12 3d scale 1
 Frame12 3d method mip
@@ -903,7 +529,7 @@ Frame12 3d highlite 1
 Frame12 3d border 1
 Frame12 3d background none
 Frame12 3d view point 0 0 0 0 0
-Frame12 crosshair physical 555.98267 495.28214
+Frame12 crosshair physical 1132 913
 Frame12 marker centroid radius 10
 Frame12 marker centroid iteration 30
 Frame12 mask transparency 0
@@ -914,15 +540,801 @@ Frame12 mask range 0 0
 Frame12 rgb channel red
 Frame12 rgb channel green
 Frame12 rgb channel blue
-Frame12 rgb channel blue
+Frame12 rgb channel red
 Frame12 rgb channel red
 Frame12 rgb channel green
 Frame12 rgb channel blue
-Frame12 rgb channel blue
+Frame12 rgb channel red
+CreateNameNumberFrame Frame13 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame13/turtle-F502N-1998.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame13 magnifier graphics 1
+Frame13 magnifier cursor 1
+Frame13 magnifier zoom 4
+Frame13 magnifier color white
+Frame13 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame13 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame13 precision 8 7 4 3 8 7 5 3 8
+Frame13 bg color white
+Frame13 nan color white
+Frame13 cube axes 123
+Frame13 rgb channel red
+Frame13 rgb view 1 1 1
+Frame13 rgb system image
+Frame13 bin factor to 1 1
+Frame13 bin depth 1
+Frame13 bin filter {""}
+Frame13 bin buffer size 1024
+Frame13 bin about 0 0
+Frame13 bin function sum
+Frame13 colorscale sqrt
+Frame13 colorscale log 1000
+Frame13 datasec 1
+Frame13 clip user 0 11.0844
+Frame13 clip mode user
+Frame13 clip scope local
+Frame13 clip minmax mode scan
+Frame13 clip minmax sample 25
+Frame13 clip zscale contrast 0.25
+Frame13 clip zscale sample 600
+Frame13 clip zscale line 120
+Frame13 block to 1 1
+Frame13 wcs wcs fk5 sexagesimal
+Frame13 pan preserve 0
+Frame13 pan to physical 924.28952 893.80991
+Frame13 zoom to 0.334898 0.334898
+Frame13 rotate to 0
+Frame13 orient none
+Frame13 wcs align 1
+Frame13 3d view 0 0
+Frame13 3d scale 1
+Frame13 3d method mip
+Frame13 3d highlite 1
+Frame13 3d border 1
+Frame13 3d background none
+Frame13 3d view point 0 0 0 0 0
+Frame13 crosshair physical 758 748
+Frame13 marker centroid radius 10
+Frame13 marker centroid iteration 30
+Frame13 mask transparency 0
+Frame13 mask system wcs
+Frame13 mask color red
+Frame13 mask mark nonzero
+Frame13 mask range 0 0
+CreateNameNumberFrame Frame14 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame14/turtle-F658N-1998.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame14 magnifier graphics 1
+Frame14 magnifier cursor 1
+Frame14 magnifier zoom 4
+Frame14 magnifier color white
+Frame14 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame14 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame14 precision 8 7 4 3 8 7 5 3 8
+Frame14 bg color white
+Frame14 nan color white
+Frame14 cube axes 123
+Frame14 rgb channel red
+Frame14 rgb view 1 1 1
+Frame14 rgb system image
+Frame14 bin factor to 1 1
+Frame14 bin depth 1
+Frame14 bin filter {""}
+Frame14 bin buffer size 1024
+Frame14 bin about 0 0
+Frame14 bin function sum
+Frame14 colorscale sqrt
+Frame14 colorscale log 1000
+Frame14 datasec 1
+Frame14 clip user 0 1.5
+Frame14 clip mode user
+Frame14 clip scope local
+Frame14 clip minmax mode scan
+Frame14 clip minmax sample 25
+Frame14 clip zscale contrast 0.25
+Frame14 clip zscale sample 600
+Frame14 clip zscale line 120
+Frame14 block to 1 1
+Frame14 wcs wcs fk5 sexagesimal
+Frame14 pan preserve 0
+Frame14 pan to physical 924.50075 894.00619
+Frame14 zoom to 0.334898 0.334898
+Frame14 rotate to 0
+Frame14 orient none
+Frame14 wcs align 1
+Frame14 3d view 0 0
+Frame14 3d scale 1
+Frame14 3d method mip
+Frame14 3d highlite 1
+Frame14 3d border 1
+Frame14 3d background none
+Frame14 3d view point 0 0 0 0 0
+Frame14 crosshair physical 758 748
+Frame14 marker centroid radius 10
+Frame14 marker centroid iteration 30
+Frame14 mask transparency 0
+Frame14 mask system wcs
+Frame14 mask color red
+Frame14 mask mark nonzero
+Frame14 mask range 0 0
+CreateNameNumberFrame Frame15 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame15/turtle-F437N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame15 magnifier graphics 1
+Frame15 magnifier cursor 1
+Frame15 magnifier zoom 4
+Frame15 magnifier color white
+Frame15 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame15 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame15 precision 8 7 4 3 8 7 5 3 8
+Frame15 bg color white
+Frame15 nan color white
+Frame15 cube axes 123
+Frame15 rgb channel red
+Frame15 rgb view 1 1 1
+Frame15 rgb system image
+Frame15 bin factor to 1 1
+Frame15 bin depth 1
+Frame15 bin filter {""}
+Frame15 bin buffer size 1024
+Frame15 bin about 0 0
+Frame15 bin function sum
+Frame15 colorscale sqrt
+Frame15 colorscale log 1000
+Frame15 datasec 1
+Frame15 clip user 0 0.1
+Frame15 clip mode user
+Frame15 clip scope local
+Frame15 clip minmax mode scan
+Frame15 clip minmax sample 25
+Frame15 clip zscale contrast 0.25
+Frame15 clip zscale sample 600
+Frame15 clip zscale line 120
+Frame15 block to 1 1
+Frame15 wcs wcs fk5 sexagesimal
+Frame15 pan preserve 0
+Frame15 pan to physical 382.62281 383.49255
+Frame15 zoom to 0.334898 0.334898
+Frame15 rotate to 0
+Frame15 orient none
+Frame15 wcs align 1
+Frame15 3d view 0 0
+Frame15 3d scale 1
+Frame15 3d method mip
+Frame15 3d highlite 1
+Frame15 3d border 1
+Frame15 3d background none
+Frame15 3d view point 0 0 0 0 0
+Frame15 crosshair physical 758 748
+Frame15 marker centroid radius 10
+Frame15 marker centroid iteration 30
+Frame15 mask transparency 0
+Frame15 mask system wcs
+Frame15 mask color red
+Frame15 mask mark nonzero
+Frame15 mask range 0 0
+CreateNameNumberFrame Frame16 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame16/turtle-F555W-1998.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame16 magnifier graphics 1
+Frame16 magnifier cursor 1
+Frame16 magnifier zoom 4
+Frame16 magnifier color white
+Frame16 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame16 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame16 precision 8 7 4 3 8 7 5 3 8
+Frame16 bg color white
+Frame16 nan color white
+Frame16 cube axes 123
+Frame16 rgb channel red
+Frame16 rgb view 1 1 1
+Frame16 rgb system image
+Frame16 bin factor to 1 1
+Frame16 bin depth 1
+Frame16 bin filter {""}
+Frame16 bin buffer size 1024
+Frame16 bin about 0 0
+Frame16 bin function sum
+Frame16 colorscale sqrt
+Frame16 colorscale log 1000
+Frame16 datasec 1
+Frame16 clip user 0 30
+Frame16 clip mode user
+Frame16 clip scope local
+Frame16 clip minmax mode scan
+Frame16 clip minmax sample 25
+Frame16 clip zscale contrast 0.25
+Frame16 clip zscale sample 600
+Frame16 clip zscale line 120
+Frame16 block to 1 1
+Frame16 wcs wcs fk5 sexagesimal
+Frame16 pan preserve 0
+Frame16 pan to physical 924.36084 893.87423
+Frame16 zoom to 0.334898 0.334898
+Frame16 rotate to 0
+Frame16 orient none
+Frame16 wcs align 1
+Frame16 3d view 0 0
+Frame16 3d scale 1
+Frame16 3d method mip
+Frame16 3d highlite 1
+Frame16 3d border 1
+Frame16 3d background none
+Frame16 3d view point 0 0 0 0 0
+Frame16 crosshair physical 758 748
+Frame16 marker centroid radius 10
+Frame16 marker centroid iteration 30
+Frame16 mask transparency 0
+Frame16 mask system wcs
+Frame16 mask color red
+Frame16 mask mark nonzero
+Frame16 mask range 0 0
+CreateNameNumberFrame Frame17 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame17/turtle-F656N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame17 magnifier graphics 1
+Frame17 magnifier cursor 1
+Frame17 magnifier zoom 4
+Frame17 magnifier color white
+Frame17 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame17 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame17 precision 8 7 4 3 8 7 5 3 8
+Frame17 bg color white
+Frame17 nan color white
+Frame17 cube axes 123
+Frame17 rgb channel red
+Frame17 rgb view 1 1 1
+Frame17 rgb system image
+Frame17 bin factor to 1 1
+Frame17 bin depth 1
+Frame17 bin filter {""}
+Frame17 bin buffer size 1024
+Frame17 bin about 0 0
+Frame17 bin function sum
+Frame17 colorscale sqrt
+Frame17 colorscale log 1000
+Frame17 datasec 1
+Frame17 clip user 0 7.90909
+Frame17 clip mode user
+Frame17 clip scope local
+Frame17 clip minmax mode scan
+Frame17 clip minmax sample 25
+Frame17 clip zscale contrast 0.25
+Frame17 clip zscale sample 600
+Frame17 clip zscale line 120
+Frame17 block to 1 1
+Frame17 wcs wcs fk5 sexagesimal
+Frame17 pan preserve 0
+Frame17 pan to physical 382.88954 383.75276
+Frame17 zoom to 0.334898 0.334898
+Frame17 rotate to 0
+Frame17 orient none
+Frame17 wcs align 1
+Frame17 3d view 0 0
+Frame17 3d scale 1
+Frame17 3d method mip
+Frame17 3d highlite 1
+Frame17 3d border 1
+Frame17 3d background none
+Frame17 3d view point 0 0 0 0 0
+Frame17 crosshair physical 758 749
+Frame17 marker centroid radius 10
+Frame17 marker centroid iteration 30
+Frame17 mask transparency 0
+Frame17 mask system wcs
+Frame17 mask color red
+Frame17 mask mark nonzero
+Frame17 mask range 0 0
+CreateNameNumberFrame Frame18 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame18/turtle-F375N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame18 magnifier graphics 1
+Frame18 magnifier cursor 1
+Frame18 magnifier zoom 4
+Frame18 magnifier color white
+Frame18 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame18 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame18 precision 8 7 4 3 8 7 5 3 8
+Frame18 bg color white
+Frame18 nan color white
+Frame18 cube axes 123
+Frame18 rgb channel red
+Frame18 rgb view 1 1 1
+Frame18 rgb system image
+Frame18 bin factor to 1 1
+Frame18 bin depth 1
+Frame18 bin filter {""}
+Frame18 bin buffer size 1024
+Frame18 bin about 0 0
+Frame18 bin function sum
+Frame18 colorscale sqrt
+Frame18 colorscale log 1000
+Frame18 datasec 1
+Frame18 clip user 0 0.230105
+Frame18 clip mode user
+Frame18 clip scope local
+Frame18 clip minmax mode scan
+Frame18 clip minmax sample 25
+Frame18 clip zscale contrast 0.25
+Frame18 clip zscale sample 600
+Frame18 clip zscale line 120
+Frame18 block to 1 1
+Frame18 wcs wcs fk5 sexagesimal
+Frame18 pan preserve 0
+Frame18 pan to physical 382.52809 383.41648
+Frame18 zoom to 0.334898 0.334898
+Frame18 rotate to 0
+Frame18 orient none
+Frame18 wcs align 1
+Frame18 3d view 0 0
+Frame18 3d scale 1
+Frame18 3d method mip
+Frame18 3d highlite 1
+Frame18 3d border 1
+Frame18 3d background none
+Frame18 3d view point 0 0 0 0 0
+Frame18 crosshair physical 758 748
+Frame18 marker centroid radius 10
+Frame18 marker centroid iteration 30
+Frame18 mask transparency 0
+Frame18 mask system wcs
+Frame18 mask color red
+Frame18 mask mark nonzero
+Frame18 mask range 0 0
+CreateNameNumberFrame Frame19 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame19/turtle-F185W-2004.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame19 magnifier graphics 1
+Frame19 magnifier cursor 1
+Frame19 magnifier zoom 4
+Frame19 magnifier color white
+Frame19 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame19 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame19 precision 8 7 4 3 8 7 5 3 8
+Frame19 bg color white
+Frame19 nan color white
+Frame19 cube axes 123
+Frame19 rgb channel red
+Frame19 rgb view 1 1 1
+Frame19 rgb system image
+Frame19 bin factor to 1 1
+Frame19 bin depth 1
+Frame19 bin filter {""}
+Frame19 bin buffer size 1024
+Frame19 bin about 0 0
+Frame19 bin function sum
+Frame19 colorscale sqrt
+Frame19 colorscale log 1000
+Frame19 datasec 1
+Frame19 clip user 0 0.05
+Frame19 clip mode user
+Frame19 clip scope local
+Frame19 clip minmax mode scan
+Frame19 clip minmax sample 25
+Frame19 clip zscale contrast 0.25
+Frame19 clip zscale sample 600
+Frame19 clip zscale line 120
+Frame19 block to 1 1
+Frame19 wcs wcs fk5 sexagesimal
+Frame19 pan preserve 0
+Frame19 pan to physical 379.49344 368.82155
+Frame19 zoom to 0.334898 0.334898
+Frame19 rotate to 0
+Frame19 orient none
+Frame19 wcs align 1
+Frame19 3d view 0 0
+Frame19 3d scale 1
+Frame19 3d method mip
+Frame19 3d highlite 1
+Frame19 3d border 1
+Frame19 3d background none
+Frame19 3d view point 0 0 0 0 0
+Frame19 crosshair physical 758 747
+Frame19 marker centroid radius 10
+Frame19 marker centroid iteration 30
+Frame19 mask transparency 0
+Frame19 mask system wcs
+Frame19 mask color red
+Frame19 mask mark nonzero
+Frame19 mask range 0 0
+CreateNameNumberFrame Frame20 base
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame20/turtle-F487N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame20 magnifier graphics 1
+Frame20 magnifier cursor 1
+Frame20 magnifier zoom 4
+Frame20 magnifier color white
+Frame20 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbar get colorbar]
+colorbar colorbar 1 0.5 1 0
+Frame20 colormap [colorbar get colormap]
+colorbar colorbar $sav
+Frame20 precision 8 7 4 3 8 7 5 3 8
+Frame20 bg color white
+Frame20 nan color white
+Frame20 cube axes 123
+Frame20 rgb channel red
+Frame20 rgb view 1 1 1
+Frame20 rgb system image
+Frame20 bin factor to 1 1
+Frame20 bin depth 1
+Frame20 bin filter {""}
+Frame20 bin buffer size 1024
+Frame20 bin about 0 0
+Frame20 bin function sum
+Frame20 colorscale sqrt
+Frame20 colorscale log 1000
+Frame20 datasec 1
+Frame20 clip user 0 1.63629
+Frame20 clip mode user
+Frame20 clip scope local
+Frame20 clip minmax mode scan
+Frame20 clip minmax sample 25
+Frame20 clip zscale contrast 0.25
+Frame20 clip zscale sample 600
+Frame20 clip zscale line 120
+Frame20 block to 1 1
+Frame20 wcs wcs fk5 sexagesimal
+Frame20 pan preserve 0
+Frame20 pan to physical 382.69807 383.55339
+Frame20 zoom to 0.334898 0.334898
+Frame20 rotate to 0
+Frame20 orient none
+Frame20 wcs align 1
+Frame20 3d view 0 0
+Frame20 3d scale 1
+Frame20 3d method mip
+Frame20 3d highlite 1
+Frame20 3d border 1
+Frame20 3d background none
+Frame20 3d view point 0 0 0 0 0
+Frame20 crosshair physical 758 748
+Frame20 marker centroid radius 10
+Frame20 marker centroid iteration 30
+Frame20 mask transparency 0
+Frame20 mask system wcs
+Frame20 mask color red
+Frame20 mask mark nonzero
+Frame20 mask range 0 0
+CreateNameNumberFrame Frame21 rgb
+Frame21 rgb channel red
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame21/turtle-F437N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame21 rgb channel green
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame21/turtle-F487N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame21 rgb channel blue
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame21/turtle-F502N-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+RGBDialog
+Frame21 magnifier graphics 1
+Frame21 magnifier cursor 1
+Frame21 magnifier zoom 4
+Frame21 magnifier color white
+Frame21 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbarrgb get colorbar]
+colorbarrgb colorbar rgb 0.500000 0.500000 0.500000 1.000000 1.000000 1.000000 0 
+Frame21 colormap [colorbarrgb get colormap]
+colorbarrgb colorbar $sav
+Frame21 precision 8 7 4 3 8 7 5 3 8
+Frame21 bg color white
+Frame21 nan color white
+Frame21 rgb channel red
+Frame21 cube axes 123
+Frame21 rgb channel green
+Frame21 cube axes 123
+Frame21 rgb channel blue
+Frame21 cube axes 123
+Frame21 rgb channel blue
+Frame21 rgb channel blue
+Frame21 rgb view 1 1 1
+Frame21 rgb system image
+Frame21 rgb channel red
+Frame21 bin factor to 1 1
+Frame21 bin depth 1
+Frame21 bin filter {""}
+Frame21 bin buffer size 1024
+Frame21 bin about 0 0
+Frame21 bin function sum
+Frame21 rgb channel green
+Frame21 bin factor to 1 1
+Frame21 bin depth 1
+Frame21 bin filter {""}
+Frame21 bin buffer size 1024
+Frame21 bin about 0 0
+Frame21 bin function sum
+Frame21 rgb channel blue
+Frame21 bin factor to 1 1
+Frame21 bin depth 1
+Frame21 bin filter {""}
+Frame21 bin buffer size 1024
+Frame21 bin about 0 0
+Frame21 bin function sum
+Frame21 rgb channel blue
+Frame21 rgb channel red
+Frame21 colorscale sqrt
+Frame21 colorscale log 1000
+Frame21 datasec 1
+Frame21 clip user 0 0.1
+Frame21 clip mode user
+Frame21 clip scope local
+Frame21 clip minmax mode scan
+Frame21 clip minmax sample 25
+Frame21 clip zscale contrast 0.25
+Frame21 clip zscale sample 600
+Frame21 clip zscale line 120
+Frame21 rgb channel green
+Frame21 colorscale sqrt
+Frame21 colorscale log 1000
+Frame21 datasec 1
+Frame21 clip user 0 1.63629
+Frame21 clip mode user
+Frame21 clip scope local
+Frame21 clip minmax mode scan
+Frame21 clip minmax sample 25
+Frame21 clip zscale contrast 0.25
+Frame21 clip zscale sample 600
+Frame21 clip zscale line 120
+Frame21 rgb channel blue
+Frame21 colorscale sqrt
+Frame21 colorscale log 1000
+Frame21 datasec 1
+Frame21 clip user 0 9.67964
+Frame21 clip mode user
+Frame21 clip scope local
+Frame21 clip minmax mode scan
+Frame21 clip minmax sample 25
+Frame21 clip zscale contrast 0.25
+Frame21 clip zscale sample 600
+Frame21 clip zscale line 120
+Frame21 rgb channel blue
+Frame21 rgb channel red
+Frame21 block to 1 1
+Frame21 rgb channel green
+Frame21 block to 1 1
+Frame21 rgb channel blue
+Frame21 block to 1 1
+Frame21 rgb channel blue
+Frame21 wcs wcs fk5 sexagesimal
+Frame21 pan preserve 0
+Frame21 pan to physical 382.92448 383.57125
+Frame21 zoom to 0.334898 0.334898
+Frame21 rotate to 0
+Frame21 orient none
+Frame21 wcs align 1
+Frame21 rgb channel red
+Frame21 rgb channel green
+Frame21 rgb channel blue
+Frame21 rgb channel blue
+Frame21 3d view 0 0
+Frame21 3d scale 1
+Frame21 3d method mip
+Frame21 3d highlite 1
+Frame21 3d border 1
+Frame21 3d background none
+Frame21 3d view point 0 0 0 0 0
+Frame21 crosshair physical 758 748
+Frame21 marker centroid radius 10
+Frame21 marker centroid iteration 30
+Frame21 mask transparency 0
+Frame21 mask system physical
+Frame21 mask color red
+Frame21 mask mark nonzero
+Frame21 mask range 0 0
+Frame21 rgb channel red
+Frame21 rgb channel green
+Frame21 rgb channel blue
+Frame21 rgb channel blue
+Frame21 rgb channel red
+Frame21 rgb channel green
+Frame21 rgb channel blue
+Frame21 rgb channel blue
+CreateNameNumberFrame Frame22 rgb
+Frame22 rgb channel red
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame22/turtle-F658N-1998.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+Frame22 rgb channel green
+global loadParam
+array set loadParam [list load,layer {} file,name ./turtle-hst-maps-2020-04.bck.dir/Frame22/turtle-F547M-1997.fits file,mode {} load,type mmapincr file,type fits]
+if [BackupFindFile loadParam] {
+  ProcessLoad
+}
+RGBDialog
+Frame22 magnifier graphics 1
+Frame22 magnifier cursor 1
+Frame22 magnifier zoom 4
+Frame22 magnifier color white
+Frame22 colorbar tag "{}"
+colorbar tag "{}"
+set sav [colorbarrgb get colorbar]
+colorbarrgb colorbar rgb 0.500000 0.500000 0.500000 1.000000 1.000000 1.000000 0 
+Frame22 colormap [colorbarrgb get colormap]
+colorbarrgb colorbar $sav
+Frame22 precision 8 7 4 3 8 7 5 3 8
+Frame22 bg color white
+Frame22 nan color white
+Frame22 rgb channel red
+Frame22 cube axes 123
+Frame22 rgb channel green
+Frame22 cube axes 123
+Frame22 rgb channel blue
+Frame22 cube axes 123
+Frame22 rgb channel green
+Frame22 rgb channel green
+Frame22 rgb view 1 1 1
+Frame22 rgb system image
+Frame22 rgb channel red
+Frame22 bin factor to 1 1
+Frame22 bin depth 1
+Frame22 bin filter {""}
+Frame22 bin buffer size 1024
+Frame22 bin about 0 0
+Frame22 bin function sum
+Frame22 rgb channel green
+Frame22 bin factor to 1 1
+Frame22 bin depth 1
+Frame22 bin filter {""}
+Frame22 bin buffer size 1024
+Frame22 bin about 0 0
+Frame22 bin function sum
+Frame22 rgb channel blue
+Frame22 bin factor to 1 1
+Frame22 bin depth 1
+Frame22 bin filter {""}
+Frame22 bin buffer size 1024
+Frame22 bin about 0 0
+Frame22 bin function sum
+Frame22 rgb channel green
+Frame22 rgb channel red
+Frame22 colorscale sqrt
+Frame22 colorscale log 1000
+Frame22 datasec 1
+Frame22 clip user 0 1.56116
+Frame22 clip mode user
+Frame22 clip scope local
+Frame22 clip minmax mode scan
+Frame22 clip minmax sample 25
+Frame22 clip zscale contrast 0.25
+Frame22 clip zscale sample 600
+Frame22 clip zscale line 120
+Frame22 rgb channel green
+Frame22 colorscale sqrt
+Frame22 colorscale log 1000
+Frame22 datasec 1
+Frame22 clip user 0 2.91803
+Frame22 clip mode user
+Frame22 clip scope local
+Frame22 clip minmax mode scan
+Frame22 clip minmax sample 25
+Frame22 clip zscale contrast 0.25
+Frame22 clip zscale sample 600
+Frame22 clip zscale line 120
+Frame22 rgb channel blue
+Frame22 colorscale sqrt
+Frame22 colorscale log 1000
+Frame22 datasec 1
+Frame22 clip user 0 9.67964
+Frame22 clip mode user
+Frame22 clip scope local
+Frame22 clip minmax mode scan
+Frame22 clip minmax sample 25
+Frame22 clip zscale contrast 0.25
+Frame22 clip zscale sample 600
+Frame22 clip zscale line 120
+Frame22 rgb channel green
+Frame22 rgb channel red
+Frame22 block to 1 1
+Frame22 rgb channel green
+Frame22 block to 1 1
+Frame22 rgb channel blue
+Frame22 block to 1 1
+Frame22 rgb channel green
+Frame22 wcs wcs fk5 sexagesimal
+Frame22 pan preserve 0
+Frame22 pan to physical 382.76778 383.63584
+Frame22 zoom to 0.334898 0.334898
+Frame22 rotate to 0
+Frame22 orient none
+Frame22 wcs align 1
+Frame22 rgb channel red
+Frame22 rgb channel green
+Frame22 rgb channel blue
+Frame22 rgb channel green
+Frame22 3d view 0 0
+Frame22 3d scale 1
+Frame22 3d method mip
+Frame22 3d highlite 1
+Frame22 3d border 1
+Frame22 3d background none
+Frame22 3d view point 0 0 0 0 0
+Frame22 crosshair physical 758 748
+Frame22 marker centroid radius 10
+Frame22 marker centroid iteration 30
+Frame22 mask transparency 0
+Frame22 mask system physical
+Frame22 mask color red
+Frame22 mask mark nonzero
+Frame22 mask range 0 0
+Frame22 rgb channel red
+Frame22 rgb channel green
+Frame22 rgb channel blue
+Frame22 rgb channel green
+Frame22 rgb channel red
+Frame22 rgb channel green
+Frame22 rgb channel blue
+Frame22 contour create green 1 0 block 5 4 linear 1000 minmax local 1 100 {""}
+Frame22 contour load {"./turtle-hst-maps-2020-04.bck.dir/Frame22/aux.ctr"}
+Frame22 rgb channel green
 global pds9
 array set pds9 { dialog native text,font courier samp 1 prec,linear 8 iraf 1 prec,len,arcsec 3 font,weight normal automarker 1 language locale text,font,weight normal dialog,all 0 nan white prec,angle 8 font,slant roman confirm 1 prec,deg 7 backup 1 language,dir {} font helvetica language,name {} bg white prec,len,deg 7 xpa 1 prec,dms 3 prec,len,arcmin 5 prec,len,linear 8 dialog,center 0 prec,hms 4 font,size 13 text,font,slant roman text,font,size 12 }
 global current
-array set current { colorbar colorbarrgb orient none zoom {0.833333 0.833333} mode none ext {} display tile cursor {} align 1 rotate 0 rgb red frame Frame11 }
+array set current { colorbar colorbarrgb orient none zoom {0.334898 0.334898} mode region ext {} display tile cursor {} align 1 rotate 0 rgb green frame Frame22 }
 global pcurrent
 array set pcurrent { orient none zoom {1 1} mode none display single align 0 rotate 0 }
 global view
@@ -950,7 +1362,7 @@ array set ps { scale 100 orient portrait height 11 size letter resolution 150 fi
 global pps
 array set pps { scale 100 orient portrait height 11 size letter resolution 150 filename,txt ds9.txt dest printer level 2 width 8.5 filename ds9.ps cmd lp color rgb }
 global rgb
-array set rgb { lock,block 0 blue 1 lock,wcs 0 frame Frame11 red 1 lock,slice 0 lock,axes 0 lock,scalelimits 0 green 1 lock,crop 0 lock,colorbar 0 system wcs lock,scale 0 lock,bin 0 lock,smooth 0 }
+array set rgb { lock,block 0 blue 1 lock,wcs 0 frame Frame22 red 1 lock,slice 0 lock,axes 0 lock,scalelimits 0 green 1 lock,crop 0 lock,colorbar 0 system image lock,scale 0 lock,bin 0 lock,smooth 0 }
 global threed
 array set threed { scale 1 lock 0 method mip highlite,color cyan border,color blue compass,color green az 0 highlite 1 border 1 compass 0 background none el 0 }
 global blink
@@ -970,13 +1382,13 @@ array set bin { buffersize 1024 depth 1 lock 0 function sum factor {1 1} }
 global pbin
 array set pbin { wheel,factor 1.2 wheel 0 lock 0 depth 1 buffersize 1024 function sum factor {1 1} }
 global panzoom
-array set panzoom { skyformat sexagesimal preserve 0 system wcs lock wcs sky fk5 }
+array set panzoom { skyformat sexagesimal preserve 0 system wcs lock none sky fk5 }
 global ppanzoom
 array set ppanzoom { wheel,factor 1.2 preserve 0 wheel 1 mode click }
 global crop
 array set crop { skyformat sexagesimal rcoord wcs dformat degrees system wcs lock none dcoord wcs sky fk5 }
 global scale
-array set scale { lock 0 type log scope local log 1000 min 0 bins 512 xaxis full mode user datasec 1 max 2.031896967836257 yaxis log lock,limits 0 }
+array set scale { lock 0 type sqrt scope local log 1000 min 0 bins 512 xaxis full mode user datasec 1 max 2.9180346119969633 yaxis log lock,limits 0 }
 global pscale
 array set pscale { datasec 1 mode minmax scope local log 1000 type linear }
 global minmax
@@ -988,13 +1400,13 @@ array set zscale { line 120 sample 600 contrast .25 }
 global pzscale
 array set pzscale { line 120 contrast .25 sample 600 }
 global marker
-array set marker { skyformat sexagesimal fixed 0 load,system physical format ds9 show 1 shape circle load,sky fk5 copy {} font,weight normal delete 1 tag {} copy,system {} include 1 centroid,radius 10 load,format ds9 font,slant roman centroid,auto 0 plot3d 0 edit 1 font helvetica load current width 1 dash 0 source 1 strip 0 show,text 1 centroid,iteration 30 preserve 0 dashlist {8 3} system wcs plot2d 0 maxdialog 48 font,size 10 sky fk5 stats 0 rotate 1 move 1 color green }
+array set marker { skyformat sexagesimal fixed 0 load,system physical format ds9 show 1 shape ruler load,sky fk5 copy Frame4 font,weight normal delete 1 tag {} copy,system wcs include 1 centroid,radius 10 load,format ds9 font,slant roman centroid,auto 0 plot3d 0 edit 1 font helvetica load current width 1 dash 0 source 1 strip 0 show,text 1 centroid,iteration 30 preserve 0 dashlist {8 3} system wcs plot2d 0 maxdialog 48 font,size 10 sky fk5 stats 0 rotate 1 move 1 color green }
 global pmarker
 array set pmarker { panda,ang2 360 bpanda,ang1 0 shape circle show 1 bpanda,ang2 360 boxannulus,annuli 1 delete 1 centroid,radius 10 dformat degrees annulus,inner 15 panda,angnum 4 show,text 1 epanda,angnum 4 centroid,iteration 30 plot2d 0 font,size 10 rotate 1 move 1 fixed 0 ellipseannulus,radius1 40 ellipseannulus,radius2 20 ellipseannulus,radius3 60 plot3d 0 epanda,radius1 40 panda,outer 30 panda,annuli 1 epanda,radius2 20 epanda,radius3 60 segment,length 20 source 1 epsilon 3 bpanda,radius1 80 bpanda,radius2 40 epanda,annuli 1 bpanda,radius3 120 stats 0 color green format ds9 annulus,outer 30 font,weight normal polygon,width 20 font,slant roman edit 1 font helvetica bpanda,angnum 4 dash 0 projection,thick 0 boxannulus,radius1 80 dashlist {8 3} polygon,height 20 boxannulus,radius2 40 boxannulus,radius3 120 box,radius1 80 box,radius2 40 point,size 11 annulus,annuli 1 compass,radius 40 epanda,ang1 0 include 1 epanda,ang2 360 centroid,auto 0 circle,radius 20 width 1 bpanda,annuli 1 ellipse,radius1 40 preserve 0 panda,inner 15 ellipse,radius2 20 panda,ang1 0 ellipseannulus,annuli 1 }
 global centroid
 array set centroid {  }
 global wcs
-array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame11 sky fk5 }
+array set wcs { load,fn {} load,sock {} skyformat sexagesimal system wcs frame Frame22 sky fk5 }
 global pwcs
 array set pwcs { skyformat sexagesimal load,sock {} load,fn {} system wcs sky fk5 }
 global graph
@@ -1012,7 +1424,7 @@ array set mask { high 0 system physical low 0 transparency 0 mark nonzero color 
 global pmask
 array set pmask { high 0 system physical transparency 0 low 0 color red mark nonzero }
 global contour
-array set contour { init,scale 0 numlevel 5 scale log method smooth init,scope 0 scope local view 0 copy {} width 1 dash 0 init,limits 0 smooth 4 log 1000 min 0 init,mode 0 mode user max 9.86703 color green }
+array set contour { init,scale 0 numlevel 5 scale sqrt method smooth init,scope 0 scope local view 0 copy {} width 1 dash 0 init,limits 0 smooth 4 log 1000 min 0 init,mode 0 mode user max 2.91803 color green }
 global pcontour
 array set pcontour { numlevel 5 dash 0 width 1 method smooth smooth 4 color green view 0 }
 global grid
@@ -1056,4 +1468,4 @@ array set pap { layout,strip,scale 50 grid,color gray64 graph,axis,x,max {} grap
 global panalysis
 array set panalysis { user2 {} autoload 1 user3 {} log 0 user4 {} user {} }
 global active
-array set active { Frame10 1 Frame9 1 Frame5 1 Frame1 1 Frame11 1 Frame6 1 Frame2 1 Frame12 1 Frame7 1 Frame3 1 Frame4 1 }
+array set active { Frame14 1 Frame5 1 Frame15 1 Frame16 1 Frame17 1 Frame18 1 Frame20 1 Frame19 1 Frame21 1 Frame22 1 Frame1 1 Frame10 1 Frame2 1 Frame11 1 Frame3 1 Frame12 1 Frame4 1 Frame13 1 }
