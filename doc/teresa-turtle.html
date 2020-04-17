@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-03-27 Fri 19:24 -->
+<!-- 2020-04-16 Thu 11:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Weak lines in spectra</title>
+<title>Summary table of physical properties</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="William Henney" />
 <style type="text/css">
@@ -423,34 +423,181 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Weak lines in spectra</h1>
+<h1 class="title">Summary table of physical properties</h1>
 <ul class="org-ul">
-<li>He II 6560.10
+<li>Convert to physical units:
 <ul class="org-ul">
-<li>Clearly seen on slits that pass through core of nebula</li>
-<li>Small velocity splitting of only +/- 10 km/s</li>
+<li>Density: normalize by 4000 pcc</li>
+<li>Mass: Area times column density, which is flux / density
+<ul class="org-ul">
+<li>Flux = S &Omega; = (&alpha;_eff n^2 dz E / 4 &pi;) (A / D^2)</li>
+<li>M = A dz n m = [4&pi; D^2 m / &alpha;_eff E]  (F / n)</li>
+<li>Total F = 3.3e-10 erg/cm2/s (scaling from Hb) with RMS n = 4000 pcc</li>
+<li>&alpha;_eff = 1e-13 cm^3/s</li>
+<li>E = 3.e-12 erg</li>
+<li>m = 1.3 m_p = 2e-24 g</li>
+<li>So, [4&pi; D^2 m / &alpha;_eff E] = 3.47e45 g s cm^-1 erg^-1</li>
+<li>And F/n = 8.25e-14 erg cm s^-1</li>
+<li>Giving mass normalization of 2.86275e32 g = 0.14 Msun
+<ul class="org-ul">
+<li>This applies to the bright parts: inner shells + knot complexes, which are 47% of the shells+knots+lobes normalization I used above</li>
+<li>So the per-component masses are (0.14/0.47) = 0.30 Msun times the fractions in the above table</li>
 </ul></li>
-<li>C II 6578.15
-<ul class="org-ul">
-<li>Weaker than the He II, but extends to a bit larger radii</li>
-<li>Slightly larger velocity splitting</li>
-<li>Also has a night sky component</li>
-</ul></li>
-<li>He I 5015.68
-<ul class="org-ul">
-<li>In the [O III] spectrum</li>
-<li>I think this is really a line</li>
-<li>But we also have some optical ghosts
-<ul class="org-ul">
-<li>5002 - definitely a ghost</li>
-<li>4996</li>
 </ul></li>
 </ul></li>
 </ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Component</th>
+<th scope="col" class="org-left">Ha flux</th>
+<th scope="col" class="org-left">Density, pcc</th>
+<th scope="col" class="org-right">Mass, Msun</th>
+<th scope="col" class="org-left">ion par</th>
+<th scope="col" class="org-right">t_start</th>
+<th scope="col" class="org-right">t_end</th>
+<th scope="col" class="org-right">Mdot, Msun/yr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Inner shells</td>
+<td class="org-left">44 %</td>
+<td class="org-left">3000 &rarr; 4500</td>
+<td class="org-right">0.078</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">0</td>
+<td class="org-right">5.2e-5</td>
+</tr>
+
+<tr>
+<td class="org-left">Intermediate shell</td>
+<td class="org-left">13 %</td>
+<td class="org-left">500 &rarr; 750</td>
+<td class="org-right">0.135</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-4</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">5.4e-5</td>
+</tr>
+
+<tr>
+<td class="org-left">Knot complexes</td>
+<td class="org-left">42 %</td>
+<td class="org-left">2000 &rarr; 5000</td>
+<td class="org-right">0.063</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-8</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">9.7e-6</td>
+</tr>
+
+<tr>
+<td class="org-left">Outer Lobes</td>
+<td class="org-left">1 %</td>
+<td class="org-left">160 &rarr; 320</td>
+<td class="org-right">0.024</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-8</td>
+<td class="org-right">-2</td>
+<td class="org-right">4e-6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Inner Halo</td>
+<td class="org-left">0.5 %</td>
+<td class="org-left">80 &rarr; 160</td>
+<td class="org-right">0.030</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-20</td>
+<td class="org-right">-10</td>
+<td class="org-right">3e-6</td>
+</tr>
+
+<tr>
+<td class="org-left">Outer Halo</td>
+<td class="org-left">0.2 %</td>
+<td class="org-left">15 &rarr; 40</td>
+<td class="org-right">0.042</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-40</td>
+<td class="org-right">-20</td>
+<td class="org-right">2.1e-6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Bright peak</td>
+<td class="org-left">(3%)</td>
+<td class="org-left">10000</td>
+<td class="org-right">(0.002)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2e-3 / 0</td>
+</tr>
+
+<tr>
+<td class="org-left">NW knot</td>
+<td class="org-left">(0.01%)</td>
+<td class="org-left">8000</td>
+<td class="org-right">(1e-5)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1e-5 / 0</td>
+</tr>
+
+<tr>
+<td class="org-left">N knot</td>
+<td class="org-left">(0.02%)</td>
+<td class="org-left">3800</td>
+<td class="org-right">(3e-5)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">3e-5 / 0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0.372</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">3.7e-1 / 0</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: William Henney</p>
-<p class="date">Created: 2020-03-27 Fri 19:24</p>
+<p class="date">Created: 2020-04-16 Thu 11:26</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
