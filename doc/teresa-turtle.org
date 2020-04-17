@@ -353,7 +353,7 @@
   + Abell 63 is prototype of close eclipsing binary
     + UU Sag
     + First binary CSPN to be discovered
-  + pre-CE mass transfer is apparently commmon
+  + pre-CE mass transfer is apparently common
     + If a jet forms from the accretion disk during this phase, then it will give polar outflows that are dynamically older than the main nebula
     + This is often seen
       + And seems to be the case with the Turtle
@@ -411,33 +411,33 @@
   + Using n \propto sqrt(EM / z)
 **** Table of brightnesses
 + Here are Ha brightnesses and fluxes from turtle-F656N-1997.fits
-| Feature          |  S(Ha) |     BG |     S' |  ds |   R |  h |    F1 | 1 |    F2 | 2 |     F3 | 3 |      F |   frac |      n |     M_i | R_3d |   U_ion | t_rec |
-|------------------+--------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+--------+---------+------+---------+-------|
-| IS WSW           |   0.07 |  0.004 |  0.066 | 100 | 128 | 30 |  660. | 0 |  796. | 0 |  1699. | 1 |  1699. | 0.0531 |   0.13 | 0.22271 | 0.16 |    300. | 2.3e2 |
-| SW Red complex   |   0.45 |  0.027 |  0.423 |  36 |     |    |  548. | 1 |   0e0 | 0 |    0e0 | 0 |   548. | 0.0171 |   0.54 | 0.01729 | 0.19 |     51. | 5.6e1 |
-| NW knot          |   0.75 |   0.26 |   0.49 |   3 |     |    |    4. | 1 |   0e0 | 0 |    0e0 | 0 |     4. | 0.0001 |   2.02 | 0.00003 | 0.18 |     15. | 1.5e1 |
-| N knot           |   0.19 |   0.01 |   0.18 |   5 |     |    |    5. | 1 |   0e0 | 0 |    0e0 | 0 |     5. | 0.0002 |   0.95 | 0.00009 | 0.19 |     29. | 3.2e1 |
-| Shell A N Rim    |    1.0 |   0.12 |   0.88 |  38 |  77 |  6 | 1271. | 0 | 1277. | 1 |  8196. | 0 |  1277. | 0.0399 |   0.76 | 0.02863 | 0.07 |    269. | 4.0e1 |
-| Shell A N inside |   0.83 |   0.30 |   0.53 |  20 |  77 |    |  212. | 0 |   0e0 | 0 |  4936. | 1 |  4936. | 0.1543 |   0.81 | 0.10384 | 0.07 |    252. | 3.8e1 |
-| Peak             |    8.2 |    4.2 |     4. |  15 |     |    |  900. | 1 |   0e0 | 0 |    0e0 | 0 |   900. | 0.0281 |   2.58 | 0.00594 | 0.24 |      7. | 1.2e1 |
-| N complexes      |    4.2 |   0.83 |   3.37 |  50 |     |    | 8425. | 1 |   0e0 | 0 |    0e0 | 0 |  8425. | 0.2633 |   1.30 | 0.11044 | 0.24 |     13. | 2.3e1 |
-| S complexes      |    2.5 |    1.1 |    1.4 |  51 |     |    | 3641. | 1 |   0e0 | 0 |    0e0 | 0 |  3641. | 0.1138 |   0.83 | 0.07475 | 0.07 |    246. | 3.7e1 |
-| SE knot          |    2.2 |    1.2 |     1. |   5 |     |    |   25. | 1 |   0e0 | 0 |    0e0 | 0 |    25. | 0.0008 |   2.24 | 0.00019 | 0.07 |     91. | 1.4e1 |
-| Shell A S Rim    |    1.5 |   0.20 |    1.3 |  26 |  70 |  3 |  879. | 0 |  858. | 1 | 10006. | 0 |   858. | 0.0268 |   1.12 | 0.01305 | 0.08 |    140. | 2.7e1 |
-| Shell A S inside |    1.1 |   0.20 |    0.9 |  20 |  70 |    |  360. | 0 |   0e0 | 0 |  6927. | 1 |  6927. | 0.2165 |   1.06 | 0.11136 | 0.08 |    147. | 2.9e1 |
-| IS SE            |   0.15 |   0.06 |   0.09 |  40 |     |    |  144. | 1 |   0e0 | 0 |    0e0 | 0 |   144. | 0.0045 |   0.24 | 0.01022 | 0.12 |    289. | 1.3e2 |
-| IS ENE           |   0.16 |   0.01 |   0.15 | 117 |  99 | 35 | 2053. | 0 | 1633. | 0 |  2309. | 1 |  2309. | 0.0722 |   0.18 | 0.21860 | 0.10 |    556. | 1.7e2 |
-| Lobe W           |  0.015 |  0.001 |  0.014 |  50 |     |    |   35. | 1 |   0e0 | 0 |    0e0 | 0 |    35. | 0.0011 |   0.08 | 0.00746 | 0.19 |    346. | 3.8e2 |
-| Lobe E           |  0.009 |  0.001 |   8e-3 |  60 |     |    |   29. | 1 |   0e0 | 0 |    0e0 | 0 |    29. | 0.0009 |   0.06 | 0.00824 | 0.14 |    850. | 5.1e2 |
-| Lobe S           |  0.008 | 0.0006 | 7.4e-3 | 100 |     |    |   74. | 1 |   0e0 | 0 |    0e0 | 0 |    74. | 0.0023 |   0.04 | 0.03153 | 0.17 |    865. | 7.6e2 |
-| Lobe N           |  0.011 | 0.0005 | 0.0105 | 100 |     |    |  105. | 1 |   0e0 | 0 |    0e0 | 0 |   105. | 0.0033 |   0.05 | 0.03579 | 0.17 |    692. | 6.1e2 |
-| Inner Halo S     |  0.004 |  0.001 |   3e-3 | 170 | 100 |    |   87. | 0 |   0e0 | 0 |    47. | 1 |    47. | 0.0015 |   0.02 | 0.04005 | 0.19 |   1385. | 1.5e3 |
-| Inner Halo N     |  0.010 |  0.001 |   9e-3 | 170 | 100 |    |  260. | 0 |   0e0 | 0 |   141. | 1 |   141. | 0.0044 |   0.04 | 0.06007 | 0.19 |    693. | 7.6e2 |
-| Outer Halo S     |  0.001 |    0.0 |   1e-3 | 300 | 160 |    |   90. | 0 |   0e0 | 0 |    40. | 1 |    40. | 0.0013 | 9.1e-3 | 0.07491 | 0.25 |   1758. | 3.4e3 |
-| Outer Halo N     | 0.0002 |    0.0 |   2e-4 | 400 | 210 |    |   32. | 0 |   0e0 | 0 |    14. | 1 |    14. | 0.0004 | 3.5e-3 | 0.06816 | 0.30 |   3175. | 8.7e3 |
-|------------------+--------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+--------+---------+------+---------+-------|
-|                  |      1 |      0 |      1 |   1 |     |    |     1 |   |   0e0 |   |    0e0 |   | 32183. | 1.0057 |   5.00 | 1.24335 |      | 1 / 0e0 | 6.1e0 |
-#+TBLFM: $4=$2 - $3::$8=$4 $5**2;f0::$10=$4 $pi $6 $7;f0::$12=$4 $pi 0.5 $6**2;f0::$14=$8 $9 + $10 $11 + $12 $13::$15=$14/32000;f4::$16=sqrt($4/$5) / 0.2;f2::$17=$14/$16 58682;f5::$19=1/ $16 $18**2 ;f0::$20=30.5/$16;s2::@24$14=vsum(@I..@II)::@24$17=vsum(@I..@II)
+| Feature          |  S(Ha) |     BG |     S' |  ds |   R |  h |    F1 | 1 |    F2 | 2 |     F3 | 3 |      F |   frac |      n |     M_i | R_3d |   U_ion | t_rec |      N |
+|------------------+--------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+--------+---------+------+---------+-------+--------|
+| IS WSW           |   0.07 |  0.004 |  0.066 | 100 | 128 | 30 |  660. | 0 |  796. | 0 |  1699. | 1 |  1699. | 0.0531 |   0.13 | 0.22271 | 0.16 |    300. | 2.3e2 | 1.6e20 |
+| SW Red complex   |   0.45 |  0.027 |  0.423 |  36 |     |    |  548. | 1 |   0e0 | 0 |    0e0 | 0 |   548. | 0.0171 |   0.54 | 0.01729 | 0.19 |     51. | 5.6e1 | 2.3e20 |
+| NW knot          |   0.75 |   0.26 |   0.49 |   3 |     |    |    4. | 1 |   0e0 | 0 |    0e0 | 0 |     4. | 0.0001 |   2.02 | 0.00003 | 0.18 |     15. | 1.5e1 | 7.3e19 |
+| N knot           |   0.19 |   0.01 |   0.18 |   5 |     |    |    5. | 1 |   0e0 | 0 |    0e0 | 0 |     5. | 0.0002 |   0.95 | 0.00009 | 0.19 |     29. | 3.2e1 | 5.7e19 |
+| Shell A N Rim    |    1.0 |   0.12 |   0.88 |  38 |  77 |  6 | 1271. | 0 | 1277. | 1 |  8196. | 0 |  1277. | 0.0399 |   0.76 | 0.02863 | 0.07 |    269. | 4.0e1 | 3.5e20 |
+| Shell A N inside |   0.83 |   0.30 |   0.53 |  20 |  77 |    |  212. | 0 |   0e0 | 0 |  4936. | 1 |  4936. | 0.1543 |   0.81 | 0.10384 | 0.07 |    252. | 3.8e1 | 1.9e20 |
+| Peak             |    8.2 |    4.2 |     4. |  15 |     |    |  900. | 1 |   0e0 | 0 |    0e0 | 0 |   900. | 0.0281 |   2.58 | 0.00594 | 0.24 |      7. | 1.2e1 | 4.6e20 |
+| N complexes      |    4.2 |   0.83 |   3.37 |  50 |     |    | 8425. | 1 |   0e0 | 0 |    0e0 | 0 |  8425. | 0.2633 |   1.30 | 0.11044 | 0.24 |     13. | 2.3e1 | 7.8e20 |
+| S complexes      |    2.5 |    1.1 |    1.4 |  51 |     |    | 3641. | 1 |   0e0 | 0 |    0e0 | 0 |  3641. | 0.1138 |   0.83 | 0.07475 | 0.07 |    246. | 3.7e1 | 5.1e20 |
+| SE knot          |    2.2 |    1.2 |     1. |   5 |     |    |   25. | 1 |   0e0 | 0 |    0e0 | 0 |    25. | 0.0008 |   2.24 | 0.00019 | 0.07 |     91. | 1.4e1 | 1.3e20 |
+| Shell A S Rim    |    1.5 |   0.20 |    1.3 |  26 |  70 |  3 |  879. | 0 |  858. | 1 | 10006. | 0 |   858. | 0.0268 |   1.12 | 0.01305 | 0.08 |    140. | 2.7e1 | 3.5e20 |
+| Shell A S inside |    1.1 |   0.20 |    0.9 |  20 |  70 |    |  360. | 0 |   0e0 | 0 |  6927. | 1 |  6927. | 0.2165 |   1.06 | 0.11136 | 0.08 |    147. | 2.9e1 | 2.5e20 |
+| IS SE            |   0.15 |   0.06 |   0.09 |  40 |     |    |  144. | 1 |   0e0 | 0 |    0e0 | 0 |   144. | 0.0045 |   0.24 | 0.01022 | 0.12 |    289. | 1.3e2 | 1.2e20 |
+| IS ENE           |   0.16 |   0.01 |   0.15 | 117 |  99 | 35 | 2053. | 0 | 1633. | 0 |  2309. | 1 |  2309. | 0.0722 |   0.18 | 0.21860 | 0.10 |    556. | 1.7e2 | 2.5e20 |
+| Lobe W           |  0.015 |  0.001 |  0.014 |  50 |     |    |   35. | 1 |   0e0 | 0 |    0e0 | 0 |    35. | 0.0011 |   0.08 | 0.00746 | 0.19 |    346. | 3.8e2 | 4.8e19 |
+| Lobe E           |  0.009 |  0.001 |   8e-3 |  60 |     |    |   29. | 1 |   0e0 | 0 |    0e0 | 0 |    29. | 0.0009 |   0.06 | 0.00824 | 0.14 |    850. | 5.1e2 | 4.3e19 |
+| Lobe S           |  0.008 | 0.0006 | 7.4e-3 | 100 |     |    |   74. | 1 |   0e0 | 0 |    0e0 | 0 |    74. | 0.0023 |   0.04 | 0.03153 | 0.17 |    865. | 7.6e2 | 4.8e19 |
+| Lobe N           |  0.011 | 0.0005 | 0.0105 | 100 |     |    |  105. | 1 |   0e0 | 0 |    0e0 | 0 |   105. | 0.0033 |   0.05 | 0.03579 | 0.17 |    692. | 6.1e2 |   6e19 |
+| Inner Halo S     |  0.004 |  0.001 |   3e-3 | 170 | 100 |    |   87. | 0 |   0e0 | 0 |    47. | 1 |    47. | 0.0015 |   0.02 | 0.04005 | 0.19 |   1385. | 1.5e3 | 4.1e19 |
+| Inner Halo N     |  0.010 |  0.001 |   9e-3 | 170 | 100 |    |  260. | 0 |   0e0 | 0 |   141. | 1 |   141. | 0.0044 |   0.04 | 0.06007 | 0.19 |    693. | 7.6e2 | 8.2e19 |
+| Outer Halo S     |  0.001 |    0.0 |   1e-3 | 300 | 160 |    |   90. | 0 |   0e0 | 0 |    40. | 1 |    40. | 0.0013 | 9.1e-3 | 0.07491 | 0.25 |   1758. | 3.4e3 | 3.3e19 |
+| Outer Halo N     | 0.0002 |    0.0 |   2e-4 | 400 | 210 |    |   32. | 0 |   0e0 | 0 |    14. | 1 |    14. | 0.0004 | 3.5e-3 | 0.06816 | 0.30 |   3175. | 8.7e3 | 1.7e19 |
+|------------------+--------+--------+--------+-----+-----+----+-------+---+-------+---+--------+---+--------+--------+--------+---------+------+---------+-------+--------|
+|                  |      1 |      0 |      1 |   1 |     |    |     1 |   |   0e0 |   |    0e0 |   | 32183. | 1.0057 |   5.00 | 1.24335 |      | 1 / 0e0 | 6.1e0 |   6e19 |
+#+TBLFM: $4=$2 - $3::$8=$4 $5**2;f0::$10=$4 $pi $6 $7;f0::$12=$4 $pi 0.5 $6**2;f0::$14=$8 $9 + $10 $11 + $12 $13::$15=$14/32000;f4::$16=sqrt($4/$5) / 0.2;f2::$17=$14/$16 58682;f5::$19=1/ $16 $18**2 ;f0::$20=30.5/$16;s2::$21=3e15 $5 $16 4000;s2::@24$14=vsum(@I..@II)::@24$17=vsum(@I..@II)
 + ds is transverse width in pixels
 + R is the radius of a shell
 + h is the thickness of a shell
@@ -497,6 +497,11 @@
   + Even the lobes have a short t_rec < 800 yrs
   + For inner shell it is decades
   + Halo might be longer
++ Column density
+  + n dz with dz in cm
+  + Currently it is in 0.1 arcsec pixels, so multiply by 0.1 2000 au = 2.99e+15 cm
+  + Highest is 7e20 cm^-2 for the N knot complexes, which would give \tau = 0.4 with standard \sigma = 5e-22 cm^2/H
+  + It may be that I am overestimating dz by using ds
 + /Earlier measurements/ of fluxes in nested boxes
   |                                     |       | frac |
   |-------------------------------------+-------+------|
@@ -537,7 +542,7 @@
       + Of course, the durations may be shorter if the knots have expanded along their length since they were launched
   + Mass loss rates then follow by dividing the mass by the duration
     + This can be compared with the current mass-loss rate of 9.12e-09 Msun/yr
-  + [ ] Ionization parameter
+  + [X] Ionization parameter
     + This requires knowing the ionizing photon luminosity of the star
     + Need to run Cloudy models using the stellar parameters from the Herald:2011a paper
     + Actually, that is not necessary since we can use the Krticka:2020a results (Table 4)
@@ -569,6 +574,40 @@
 |--------------------+---------+--------------+------------+-----------------+---------+-------+---------------|
 |                    |         |              |      0.372 |                 |         |       |    3.7e-1 / 0 |
 #+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@11$4=vsum(@I..@III)
+
+**** Ionization balance
++ Stellar luminosity in H-ionizing photons is 4.9e47 s^-1
++ Observed H\beta flux is F = L(H\beta) / 4\pi D^2
++ Where L(H\beta) = VEM E(H\beta) \alpha_H\beta
++ Volume emission measure, VEM = \int n^2 d^3 x = L(H\beta) /  E(H\beta) \alpha_H\beta
++ Total recombination rate = \alpha_B VEM
+  + Or should that be \alpha_A in this case?
+  + Since we are optically thin to diffuse Lyman continuum
+  + But we are still optically thick to the Lyman lines
++ Recombs = (\alpha_A / \alpha_H\beta) F(H\beta) 4\pi D^2 / E(H\beta)
++ F(H\beta) = 1.1e-10 erg/cm2/s,  E(H\beta) = 4.239e-12 erg
++ => Q(H\beta) = F(H\beta) 4\pi D^2 / E(H\beta) = 1.242e+46 s^-1
++ From Osterbrock,
+  + Case A: (\alpha_A / \alpha_H\beta,A) = (4.18e-13/2.04e-14) = 20.49
+  + Case B: (\alpha_B / \alpha_H\beta,B) = (2.59e-13/3.03e-14) = 8.548
+  + Case A for continuum but Case B for Lyman \gamma: (\alpha_A / \alpha_H\beta,B) = (4.18e-13/3.03e-14) = 13.8
+  + The last case is probably the most realistic
++ Hence, recombination rate is 13.8 1.242e+46 = 1.714e+47 s^-1, which is 35% of ionizing photon luminosity
+  + *Conclusion:* nebula is matter-bounded, but only just
+    + Optical depth to ionizing photons is -ln(1 - Recs/Q) = 0.4
+  + Stellar ionizing luminosity increases with time
+  + Also, general homologous expansion means that recomb rate \propto M^2 / R^3, so that falls with time
+  + On the other hand, the inner shells (44% of recombinations) are accumulating mass, which causes an increase in recombinations with time
+  + Even if the last two cancel out, the nebula was probably ionization-bounded in the past
+    + But how recently?
+    + Time-scale to ionize the halo:
+      + R-type ionization front has propagation speed u = F/n
+      + Timescale = R/u = 4 \pi n R^3 / Q(H)
+      + This is better expressed in terms of mass: M = 4 \pi n R^3 m / 3
+      + So t_ion = 3 M / m Q(H)
+      + So taking M = 0.1 Msun for the total halo => t = 6 years!
+      + This is only 10x longer than the light travel time
+ 
 **** Pressure balance in the shells
 + Ram pressure on inside of inner shells
   + Inner radius of He II shell is about 3 arcsec, or 0.03 pc = 9.257e+16 cm
