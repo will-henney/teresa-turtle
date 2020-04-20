@@ -89,6 +89,11 @@
     + R = 0.510 +/- 0.125
     + D = 2.22 +/- 0.54 kpc
 + This is totally consistent with the expansion parallax method
+***** Evolutionary tracks
++ If we take the Herald:2011a results
+  + log L = 3.872 +/- 0.200
+  + log T = 4.875
++ Then the Vassiliadis:1994 tracks imply M_i = 2 +/- 0.5 Msun
 **** Nebular modelling from Bohigas:2015a - two stars?
 + Note that Bohigas:2015a propose that a composite spectrum is needed:
   1. A hot component:
@@ -289,7 +294,9 @@
   + No error bars given!
   + T is very consistent, about 9500 K for high ionizaton, [O III], [N III], [Ne III]
   + Higher for low ionization: 10,700 K for [N II]
-
+***** Abundances
++ Pottasch:2009a claim that it is mot enriched in N or C (C/O < 1)
++ This is unlike most other planetary nebulae, Henry:2018a, which all show enhanced M and He
 
 ***** Spatial variation of conditions
 + [-] Some things I can look at
@@ -380,6 +387,14 @@
 
 **** Analogs of Turtle among other PNe and PrePNe
 
+***** Helix nebula
++ Much older, but also claimed to be polypolar, see sec 4.6 of ODell:2004b
++ If we fast-forward the lobes another 10,000 years, then at 90 km/s (axis A) they would propagate 0.92 pc
++ This is about the same size as the outer bow-shock features seen around the Helix
+***** NGC 2440
++ Multipolar, but otherwise very different from Turtle
++ Shows lots of knots/elephant trunks
++ Progenitor seems to be high-mass (3 Msun, Henry:2018a)
 ***** Fg 1
 :PROPERTIES:
 :ID:       D1CDC3FA-0F4C-417F-824F-47BA7CE8408C
@@ -575,7 +590,7 @@
 |                    |         |              |      0.372 |                 |         |       |    3.7e-1 / 0 |
 #+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@11$4=vsum(@I..@III)
 
-**** Ionization balance
+**** Ionization balance for H
 + Stellar luminosity in H-ionizing photons is 4.9e47 s^-1
 + Observed H\beta flux is F = L(H\beta) / 4\pi D^2
 + Where L(H\beta) = VEM E(H\beta) \alpha_H\beta
@@ -585,16 +600,16 @@
   + Since we are optically thin to diffuse Lyman continuum
   + But we are still optically thick to the Lyman lines
 + Recombs = (\alpha_A / \alpha_H\beta) F(H\beta) 4\pi D^2 / E(H\beta)
-+ F(H\beta) = 1.1e-10 erg/cm2/s,  E(H\beta) = 4.239e-12 erg
-+ => Q(H\beta) = F(H\beta) 4\pi D^2 / E(H\beta) = 1.242e+46 s^-1
++ F(H\beta) = 1.1e-10 erg/cm2/s,  E(H\beta) = 4.085e-12 erg
++ => Q(H\beta) = F(H\beta) 4\pi D^2 / E(H\beta) = 1.289e+46 s^-1
 + From Osterbrock,
   + Case A: (\alpha_A / \alpha_H\beta,A) = (4.18e-13/2.04e-14) = 20.49
   + Case B: (\alpha_B / \alpha_H\beta,B) = (2.59e-13/3.03e-14) = 8.548
   + Case A for continuum but Case B for Lyman \gamma: (\alpha_A / \alpha_H\beta,B) = (4.18e-13/3.03e-14) = 13.8
   + The last case is probably the most realistic
-+ Hence, recombination rate is 13.8 1.242e+46 = 1.714e+47 s^-1, which is 35% of ionizing photon luminosity
++ Hence, recombination rate is 13.8 1.289e+46 = 1.779e+47 s^-1, which is 36% of ionizing photon luminosity
   + *Conclusion:* nebula is matter-bounded, but only just
-    + Optical depth to ionizing photons is -ln(1 - Recs/Q) = 0.4
+    + Optical depth to ionizing photons is -ln(1 - Recs/Q) = 0.45
   + Stellar ionizing luminosity increases with time
   + Also, general homologous expansion means that recomb rate \propto M^2 / R^3, so that falls with time
   + On the other hand, the inner shells (44% of recombinations) are accumulating mass, which causes an increase in recombinations with time
@@ -607,7 +622,32 @@
       + So t_ion = 3 M / m Q(H)
       + So taking M = 0.1 Msun for the total halo => t = 6 years!
       + This is only 10x longer than the light travel time
- 
+**** Ionization balance for He
++ We can repeat exactly the same reasoning for He II 4686 line
+  + Although we are ignoring complications, such as ionization of H0 by He recombinations
+  + Would this make much difference?  Maybe not, since nebula is matter-bounded
++ Taking average of Pottasch:2009a, Tylenda:1984a, Phillips:1996a, Delgado-Inglada:2009a gives 4686/4863 = (2.28 +/- 0.28) / 100
++ Note that 4686 is 4-3 transition, which is like Paschen \alpha, but they are called Fowler lines
++ The line we measure (6560.10) is 6-4, which is like Brackett \beta, but they are called Pickering
+  + According to Tab 4.5 of AGN^2 we have 6560/4686 = 0.135 with very little dependence on (n, T) (\pm 0.002)
+  + This implies that 6560/6563 = (6560/4686) (4686/4863) (4863/6563) = 0.135 0.0228 / 2.84 = 0.00108
+  + [ ] It would be interesting to make a map of this ratio, since it would tell us the He^++/H^+ ratio
++ Hence F(4686) = 0.0228 1.1e-10 = 2.508e-12 erg/s/cm^2
++ E(4686) = 4.239e-12 erg
++ From Tab 2.7 of AGN^2 we can use the Z-scaling for hydrogenic recombination to write \alpha_B(He+, T=10,000 K) = 2 \alpha_B(H0, T=2500 K)
+  + \alpha_B,He+ = 2 7.72e-13 = 1.544e-12
++ (\alpha_B,He+ / \alpha_4686) = 1.544e-12 / 3.53e-13 = 4.37
++ He recombs = (\alpha_B,He+ / \alpha_4686) F(4686) 4\pi D^2 / E(4686) = 1.237e+45 s^-1
+  + This is *larger* than the predicted stellar luminosity of 4.78e+44
+  + Note that the uncertainty in the distance does not affect this, since both Q(He II) and L(4686) are proportional to D^2
+  + This discrepancy is not unexpected because the He II model predictions are not very reliable.  Here is a quote from Krticka:2020a:
+    : However, even global models are not able to predict He II ionizing flux reliably because there are even significant differences in predicting the He II ionizing flux between individual global models (Puls et al. 2005).
+  + If we used the TLUSTY results instead, we would have got q(He II) = 22.63 => Q(He II) = 6.75e44, which is larger but still not large enough
+  + Also, we could account for the n=2 He recomb continuum that gets absorbed by H0, although very little of that will be absorbed in the He^++ zone
+  + Another possibility is that there is a double-degenerate binary, where the other star is smaller and hotter, so that it has the same Q(He II) but negligible contribution to the FUV spectrum
+    + E.g., if we take T = 110,000 K, then q(He II) = 24.7, so 165 times larger, so radius could be 12.8 times smaller
+    + This means that the bolometric luminosity of the hot component would be (110/75)**4 / 165 = 0.028 of the primary, or only 3%
+    + So it would make a negligible contribution to the FUV spectrum - its luminosity would be 200 Lsun, so like the Helix, or Ring, or Owl. Probably an age of 10,000 years - but could be longer if it were lower mass. (But if it were lower mass, why did it evolve first?!)
 **** Pressure balance in the shells
 + Ram pressure on inside of inner shells
   + Inner radius of He II shell is about 3 arcsec, or 0.03 pc = 9.257e+16 cm
@@ -1232,7 +1272,7 @@ python ../scripts/hst-cr-combine.py F656N 1997
 #+begin_src sh
 python ../scripts/hst-cr-combine.py F375N 1997
 #+end_src
-
+v
 #+RESULTS:
 : Found 2 files with FILTER=F375N YEAR=1997
 
@@ -1269,7 +1309,278 @@ python ../scripts/hst-cr-combine.py F547M 1997
 + That gives Ha, Hb, and the two [O III] lines
   + Where 4363 is corrected for H gamma as well as continuum
 + Unfortunately, they don't do [N II] from f658n, but we can get that from O'Dell & Doi (ODell:1999a)
+**** Ratio images
+***** DONE Alignment of individual images
+CLOSED: [2020-04-19 Sun 20:28]
++ Use the central star
++ Use auto-centroid feature of DS9 regions
+  + Parameters: iterations=100, radius=2
++ Note entirely repeatable, so need to average over a few tries
+  + Use this [[id:CCD7AFF0-BFA3-4C29-87F2-2E43FE470F02][script]] to get the coords from DS9
++ F656N-1997
+  |               x |               y |
+  |-----------------+-----------------|
+  |       385.30111 |       385.61402 |
+  |       385.62125 |       385.53761 |
+  |       385.59211 |       385.45621 |
+  |       385.48541 |       385.25522 |
+  |       385.36123 |       385.44643 |
+  |-----------------+-----------------|
+  | 385.47 +/- 0.06 | 385.46 +/- 0.06 |
+  #+TBLFM: @7$1..@7$2=vmeane(@I..@II);f2
++ F658N-1998 - this one has a bit more variation
+  |               x |               y |
+  |-----------------+-----------------|
+  |       924.41408 |       895.99711 |
+  |       925.10859 |       895.43239 |
+  |       924.51009 |       895.29264 |
+  |       924.61649 |       895.38887 |
+  |       924.60215 |         895.991 |
+  |       924.88464 |       895.18547 |
+  |       925.13396 |       895.76236 |
+  |-----------------+-----------------|
+  | 924.75 +/- 0.11 | 895.58 +/- 0.13 |
+  #+TBLFM: @9$1..@9$2=vmeane(@I..@II);f2
++ F502N-1997 - very good precision on this one
+  |               x |               y |
+  |-----------------+-----------------|
+  |        385.4094 |       385.56198 |
+  |       385.29831 |       385.49116 |
+  |       385.31258 |       385.35069 |
+  |       385.33187 |       385.52835 |
+  |       385.23617 |       385.39349 |
+  |       385.40693 |       385.50351 |
+  |        385.3669 |       385.40962 |
+  |-----------------+-----------------|
+  | 385.34 +/- 0.02 | 385.46 +/- 0.03 |
+  #+TBLFM: @9$1..@9$2=vmeane(@I..@II);f2
++ F487N-1997
+  |               x |               y |
+  |-----------------+-----------------|
+  |       385.52888 |       385.34763 |
+  |       385.51526 |       385.33171 |
+  |       385.57225 |       385.13733 |
+  |       385.24543 |       385.35822 |
+  |       385.24678 |       385.66455 |
+  |       385.67088 |       385.46378 |
+  |       385.56283 |       385.66382 |
+  |-----------------+-----------------|
+  | 385.48 +/- 0.06 | 385.42 +/- 0.07 |
+  #+TBLFM: @9$1..@9$2=vmeane(@I..@II);f2
++ F547M-1997 is saturated - use crossed spikes method - no error estimate
+  | 385.0 | 385.1 |
++ F375N-1997
+  |               x |               y |
+  |-----------------+-----------------|
+  |       384.85562 |       384.81427 |
+  |       384.86558 |       384.42606 |
+  |       385.20188 |       384.77356 |
+  |       385.03787 |       384.46952 |
+  |       385.24552 |       384.82536 |
+  |       384.95943 |       384.79848 |
+  |       385.19087 |       384.73964 |
+  |-----------------+-----------------|
+  | 385.05 +/- 0.06 | 384.69 +/- 0.06 |
+  #+TBLFM: @9$1..@9$2=vmeane(@I..@II);f2
++ F437N-1997 also saturated - do the best we can
+  | 385.0 | 384.5 |
++ F502N-1998
+  |               x |               y |
+  |-----------------+-----------------|
+  |       924.37568 |       895.54559 |
+  |       924.60996 |       895.44372 |
+  |       924.34605 |        895.6802 |
+  |       924.56385 |       895.61718 |
+  |        924.4597 |       895.59542 |
+  |        924.2446 |       895.34909 |
+  |       924.28903 |       895.36786 |
+  |-----------------+-----------------|
+  | 924.41 +/- 0.05 | 895.51 +/- 0.05 |
+  #+TBLFM: @9$1..@9$2=vmeane(@I..@II);f2
++ F555W-1998 also suffers from saturation
+| 925.0 | 896.0 |
++ F185W-2004 has a single saturated pixel - assume that is the star
+  | 374.0 | 377.0 |
++ Summary of star pixel positions in the original images
+  #+name: hst-star-xy-pixels-and-bg
+  | F656N-1997 | 385.47 | 385.46 |  -0.0010 |
+  | F502N-1997 | 385.24 | 385.26 |  -0.0014 |
+  | F487N-1997 | 385.18 | 385.22 |  -0.0011 |
+  | F547M-1997 |  385.0 |  385.1 |   0.0010 |
+  | F375N-1997 | 385.05 | 384.69 |  -0.0011 |
+  | F437N-1997 |  385.0 |  384.7 | -0.00006 |
+  | F658N-1998 | 924.75 | 895.58 |   -0.009 |
+  | F502N-1998 | 924.51 | 895.61 |   -0.003 |
+  | F555W-1998 |  924.9 |  895.75 |   -0.002 |
+  | F185W-2004 |  374.0 |  377.0 |   -0.001 |
++ Now with 4th column that is the BG value (negative in many cases)
+  + We subtract this from the images at the same time as doing the re-projection below
+  + Note that this may mean subtracting part of the outer halo for [O III] and H lines
++ Changes
+  + F487N-1997 : y -0.2 pix, x -0.3 pix
+  + F502N-1997 : y -0.2, x -0.1
+  + F437N-1997 : y +0.2, x +0.0
+  + F502N-1998 : y +0.1 x +0.1
+  + F555W-1998 : y -0.25 x -0.1
 
+****** Script to get XY position of all regions in active frame
+:PROPERTIES:
+:ID:       CCD7AFF0-BFA3-4C29-87F2-2E43FE470F02
+:END:
+  #+begin_src sh :results verbatim
+  xpaget ds9 regions -format xy -system image 
+  #+end_src
+
+  #+RESULTS:
+  : 924.28903 895.36786
+
+***** DONE Re-projection to a common grid
+CLOSED: [2020-04-19 Sun 20:28]
++ Reproject all the images to the WCS of F656N-1997
++ Use the star pixel positions from above to align at the sub-pixel level
+#+begin_src python :var TAB=hst-star-xy-pixels-and-bg ONLY="F555W-1998"
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from reproject import reproject_interp
+
+  datadir = Path("../data/hst-cr-combine")
+
+  # First image in the table is the reference image, F656N
+  filter0, x0, y0, bg0 = TAB[0]
+  hdu0 = fits.open(datadir / f"turtle-{filter0}.fits")["SCI"]
+  hdu0.data -= bg0
+  w0 = WCS(hdu0.header)
+  # RA, DEC components of star according to reference image
+  # Pixels are converted from 1-based to 0-based indexing 
+  ra0, dec0 = w0.pixel_to_world_values(x0 - 1, y0 - 1)
+
+  # Put all the new files in a sub-folder
+  outdir = datadir / "reproject"
+  outdir.mkdir(exist_ok=True)
+
+  # Save a copy of the reference image
+  hdu0.writeto(
+      outdir / f"turtle-{filter0}-reproject.fits",
+      overwrite=True,
+  )
+
+  # Loop over all the other images
+  for filter1, x1, y1, bg1 in TAB[1:]:
+      if not filter1 == ONLY:
+          # option to skip all but one
+          continue
+      hdu1 = fits.open(datadir / f"turtle-{filter1}.fits")["SCI"]
+      # Simply force the reference pixel to be the star
+      hdu1.header["CRPIX1"] = x1
+      hdu1.header["CRPIX2"] = y1
+      # And use the RA, DEC that we determined from the reference image
+      hdu1.header["CRVAL1"] = float(ra0)
+      hdu1.header["CRVAL2"] = float(dec0)
+      # Note that there is no need to use the WCS machinery here
+
+      hdu1.data -= bg1
+
+      # Now we can safely reproject the image onto the grid of the reference image
+      newdata, _ = reproject_interp(hdu1, hdu0.header)
+      # Re-use the same header *except* for the WCS part, which needs to
+      # come from the reference image
+      newheader = hdu1.header.copy()
+      newheader.update(w0.to_header())
+      fits.PrimaryHDU(header=newheader, data=newdata).writeto(
+          outdir / f"turtle-{filter1}-reproject.fits",
+          overwrite=True,
+      )
+
+#+end_src
+
+#+RESULTS:
+: None
+
+***** DONE Taking the ratio of the re-projected images
+CLOSED: [2020-04-19 Sun 20:27]
+#+name: pairs-for-ratios
+| R658-656 | F658N-1998 | F656N-1997 |
+| R375-502 | F375N-1997 | F502N-1997 |
+| R502-502 | F502N-1998 | F502N-1997 |
+| R437-502 | F437N-1997 | F502N-1997 |
+| R487-547 | F487N-1997 | F547M-1997 |
+| R502-487 | F502N-1997 | F487N-1997 |
+| R656-487 | F656N-1997 | F487N-1997 |
+| R502-555 | F502N-1998 | F555W-1998 |
+| R375-658 | F375N-1997 | F658N-1998 |
+| R502-547 | F502N-1997 | F547M-1997 |
+
+#+begin_src python :results silent :var TAB=pairs-for-ratios
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+
+  datadir = Path("../data/hst-cr-combine/reproject")
+  for rname, fname1, fname2 in TAB:
+      hdu1 = fits.open(datadir / f"turtle-{fname1}-reproject.fits")["SCI"]
+      hdu2 = fits.open(datadir / f"turtle-{fname2}-reproject.fits")["SCI"]
+      ratio = hdu1.data / hdu2.data
+      fits.PrimaryHDU(header=hdu1.header, data=ratio).writeto(
+          datadir / f"turtle-{rname}.fits",
+          overwrite=True
+      )
+#+end_src
+
+***** DONE Notes and adjustments
+CLOSED: [2020-04-19 Sun 20:29]
++ [2020-04-18 Sat]
+  + In general these are better than the first naive attempts
+  + But they could be improved
+  + Start with the 1997 ones
+    + R656-487 :: F656N-1997  F487N-1997
+      - This one first since it includes the H\alpha reference image
+      - Small shifts in F487N-1997 fix it
+    + R502-487 :: F502N-1997 F487N-1997
+      - Also solved with even smaller shifts
+    + R375-502 :: F375N-1997 F502N-1997
+      - No need to change
+    + R437-502 :: F437N-1997  F502N-1997
+      - A small shift in y
+    + R487-547 :: F487N-1997 F547M-1997
+      - no change necessaet
+  + Now the 1998 ones
+    + R658-656 :: F658N-1998 F656N-1997
+      - seems fine
+    + R502-502 :: F502N-1998 F502N-1997
+      - small shift
+      - still a residual at S shell - expansion?
+    + R502-555 :: F502N-1998 F555W-1998
+
+
+***** Flux calibration and correction for cross-contamination between filters
+
+***** Multigrids of the HST images
+
+***** BPT diagrams and similar
++ [O III]/Hb vs [N II]/Ha
++ [O II]/[N II] vs [N II]/Ha
+***** Conclusions from the line ratios
++ [O II]/[N II] is primarily a density indicator for the low-ionization gas
+  + Assuming that O^+/O and N^+/N have similar distributions
+  + Highest density is in N knot complexes and SE and NW knots
+  + Lower density in SE red complex
+  + This is in agreement with densities from Ha measurements
++ 4363/5007 shows interesting structure
+  + But may be affected by H gamma contamination
+  + Inner ring is clearly due to continuum contamination
++ 4861/cont shows drops at knot positions
+  + Might indicate dust-scattered continuum
++ 5007/4861 has small variations (< 20% in bright nebula)
+  + But they are significant
+  + Peaks in outer edge of peanut shells
+  + Higher near brightness maximum
+  + But locally anti-correlated with [N II]/Ha
+  + Minima at positions of brightest knots
+  + Highest in the intermediate shell
+  + 5007/cont is very similar
+    + Especially F502N/F547M, but also F502N/F555W
 ** Log of Mezcal observations by year
 
 | 1998 |  5 | Zedillo  |
