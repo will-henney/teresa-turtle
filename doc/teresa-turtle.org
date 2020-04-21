@@ -1403,25 +1403,44 @@ CLOSED: [2020-04-19 Sun 20:28]
   | 374.0 | 377.0 |
 + Summary of star pixel positions in the original images
   #+name: hst-star-xy-pixels-and-bg
-  | F656N-1997 | 385.47 | 385.46 |  -0.0010 |
-  | F502N-1997 | 385.24 | 385.26 |  -0.0014 |
-  | F487N-1997 | 385.18 | 385.22 |  -0.0011 |
-  | F547M-1997 |  385.0 |  385.1 |   0.0010 |
+  | F656N-1997 | 385.47 | 385.46 |   0.0000 |
+  | F502N-1997 | 385.24 | 385.26 |   0.0006 |
+  | F487N-1997 | 385.18 | 385.22 |  -0.0013 |
+  | F547M-1997 |  385.0 |  385.1 |   0.0014 |
   | F375N-1997 | 385.05 | 384.69 |  -0.0011 |
-  | F437N-1997 |  385.0 |  384.7 | -0.00006 |
+  | F437N-1997 |  385.0 |  384.7 | -0.00001 |
   | F658N-1998 | 924.75 | 895.58 |   -0.009 |
-  | F502N-1998 | 924.51 | 895.61 |   -0.003 |
-  | F555W-1998 |  924.9 |  895.75 |   -0.002 |
+  | F502N-1998 | 924.51 | 895.61 |   -0.005 |
+  | F555W-1998 |  924.9 | 895.75 |   -0.006 |
   | F185W-2004 |  374.0 |  377.0 |   -0.001 |
 + Now with 4th column that is the BG value (negative in many cases)
   + We subtract this from the images at the same time as doing the re-projection below
   + Note that this may mean subtracting part of the outer halo for [O III] and H lines
+  + Change of strategy [2020-04-20 Mon]
+    + Set the zero point to be the halo contour that is circular just outside the lobes
 + Changes
   + F487N-1997 : y -0.2 pix, x -0.3 pix
   + F502N-1997 : y -0.2, x -0.1
   + F437N-1997 : y +0.2, x +0.0
   + F502N-1998 : y +0.1 x +0.1
   + F555W-1998 : y -0.25 x -0.1
++ [2020-04-20 Mon 20:15] More tweaks
+  + Some of the zero levels are still not right, which becomes obvious when we look at the binned ratios
+  + F502N-1998 still has negative values in halo of -0.002
+    - change bg value to -0.005
+  + F502N-1997 has positive values of 0.002 in the halo
+    - change BG to positive value
+  + F487N-1997 looks like it has -0.0002 in halo
+    - change bg value to -0.0013
+  + F656N-1997 has 0.001 in the halo
+    - change bg value to zero
+  + F547M-1997 has 0.0004 in halo
+    - change bg value to 0.0014
+  + F555W-1998 has -0.004 in halo
+    - change bg value to -0.006
+  + F437N-1997 has 0.00005 in halo
+    - change bg value to -0.00001
+
 
 ****** Script to get XY position of all regions in active frame
 :PROPERTIES:
@@ -1438,7 +1457,7 @@ CLOSED: [2020-04-19 Sun 20:28]
 CLOSED: [2020-04-19 Sun 20:28]
 + Reproject all the images to the WCS of F656N-1997
 + Use the star pixel positions from above to align at the sub-pixel level
-#+begin_src python :var TAB=hst-star-xy-pixels-and-bg ONLY="F555W-1998"
+#+begin_src python :var TAB=hst-star-xy-pixels-and-bg ONLY="F437N-1997"
   from pathlib import Path
   import numpy as np
   from astropy.io import fits
@@ -1557,6 +1576,200 @@ CLOSED: [2020-04-19 Sun 20:29]
 ***** Flux calibration and correction for cross-contamination between filters
 
 ***** Multigrids of the HST images
++ I looked at the other two HDUs in the original files (WHT and CTX)
+  + Not much use: WHT is roughly constant, except for some bad columns, CTX seems to be the number of the chip PC1, WFC2, etc
++ I can't be bothered to re-download the data so we will just work with what we have
++ Base it on what we did for the slits here: [[id:66ACAB44-11C6-4C73-B066-D03D8C7FAC8D][Multibinning]]
+  + But why are we not using the more recent tetrablok version?
+  + I will try using that instead
+
+
+#+BEGIN_SRC sh :results verbatim :dir ../data/hst-cr-combine/reproject
+  mdir=/Users/will/Dropbox/dust-wave-case-studies
+  files=turtle-F*-reproject.fits
+  for f in $files; do
+      python $mdir/tetrabloks-map.py $f
+  done
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+Saving turtle-F185W-2004-reproject-bin001.fits
+Saving turtle-F185W-2004-reproject-bin002.fits
+Saving turtle-F185W-2004-reproject-bin004.fits
+Saving turtle-F185W-2004-reproject-bin008.fits
+Saving turtle-F185W-2004-reproject-bin016.fits
+Saving turtle-F185W-2004-reproject-bin032.fits
+Saving turtle-F375N-1997-reproject-bin001.fits
+Saving turtle-F375N-1997-reproject-bin002.fits
+Saving turtle-F375N-1997-reproject-bin004.fits
+Saving turtle-F375N-1997-reproject-bin008.fits
+Saving turtle-F375N-1997-reproject-bin016.fits
+Saving turtle-F375N-1997-reproject-bin032.fits
+Saving turtle-F437N-1997-reproject-bin001.fits
+Saving turtle-F437N-1997-reproject-bin002.fits
+Saving turtle-F437N-1997-reproject-bin004.fits
+Saving turtle-F437N-1997-reproject-bin008.fits
+Saving turtle-F437N-1997-reproject-bin016.fits
+Saving turtle-F437N-1997-reproject-bin032.fits
+Saving turtle-F487N-1997-reproject-bin001.fits
+Saving turtle-F487N-1997-reproject-bin002.fits
+Saving turtle-F487N-1997-reproject-bin004.fits
+Saving turtle-F487N-1997-reproject-bin008.fits
+Saving turtle-F487N-1997-reproject-bin016.fits
+Saving turtle-F487N-1997-reproject-bin032.fits
+Saving turtle-F502N-1997-reproject-bin001.fits
+Saving turtle-F502N-1997-reproject-bin002.fits
+Saving turtle-F502N-1997-reproject-bin004.fits
+Saving turtle-F502N-1997-reproject-bin008.fits
+Saving turtle-F502N-1997-reproject-bin016.fits
+Saving turtle-F502N-1997-reproject-bin032.fits
+Saving turtle-F502N-1998-reproject-bin001.fits
+Saving turtle-F502N-1998-reproject-bin002.fits
+Saving turtle-F502N-1998-reproject-bin004.fits
+Saving turtle-F502N-1998-reproject-bin008.fits
+Saving turtle-F502N-1998-reproject-bin016.fits
+Saving turtle-F502N-1998-reproject-bin032.fits
+Saving turtle-F547M-1997-reproject-bin001.fits
+Saving turtle-F547M-1997-reproject-bin002.fits
+Saving turtle-F547M-1997-reproject-bin004.fits
+Saving turtle-F547M-1997-reproject-bin008.fits
+Saving turtle-F547M-1997-reproject-bin016.fits
+Saving turtle-F547M-1997-reproject-bin032.fits
+Saving turtle-F555W-1998-reproject-bin001.fits
+Saving turtle-F555W-1998-reproject-bin002.fits
+Saving turtle-F555W-1998-reproject-bin004.fits
+Saving turtle-F555W-1998-reproject-bin008.fits
+Saving turtle-F555W-1998-reproject-bin016.fits
+Saving turtle-F555W-1998-reproject-bin032.fits
+Saving turtle-F656N-1997-reproject-bin001.fits
+Saving turtle-F656N-1997-reproject-bin002.fits
+Saving turtle-F656N-1997-reproject-bin004.fits
+Saving turtle-F656N-1997-reproject-bin008.fits
+Saving turtle-F656N-1997-reproject-bin016.fits
+Saving turtle-F656N-1997-reproject-bin032.fits
+Saving turtle-F658N-1998-reproject-bin001.fits
+Saving turtle-F658N-1998-reproject-bin002.fits
+Saving turtle-F658N-1998-reproject-bin004.fits
+Saving turtle-F658N-1998-reproject-bin008.fits
+Saving turtle-F658N-1998-reproject-bin016.fits
+Saving turtle-F658N-1998-reproject-bin032.fits
+#+end_example
+
+
+****** Ratios of the binned images
+#+begin_src python :results silent :var TAB=pairs-for-ratios
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+
+  datadir = Path("../data/hst-cr-combine/reproject")
+  for rname, fname1, fname2 in TAB:
+      for binning in "002", "004", "016":
+          hdu1 = fits.open(
+              datadir / f"turtle-{fname1}-reproject-bin{binning}.fits"
+          )["SCALED"]
+          hdu2 = fits.open(
+              datadir / f"turtle-{fname2}-reproject-bin{binning}.fits"
+          )["SCALED"]
+          ratio = hdu1.data / hdu2.data
+          fits.PrimaryHDU(header=hdu1.header, data=ratio).writeto(
+              datadir / f"turtle-{rname}-bin{binning}.fits",
+              overwrite=True
+          )
+#+end_src
+
+
+****** Combine multigrid images for ratios
++ This is based on [[file:~/Dropbox/dust-wave-case-studies/tetrabloks-combine-sigori.py]]
+
+
+#+BEGIN_SRC python :tangle ../scripts/turtle-hst-multibin-combine.py
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  import regions as rg
+
+  datadir = Path("../data/hst-cr-combine/reproject")
+  nlist = [1, 2, 4, 8, 16, 32]
+  nmax = max(nlist)
+
+  win = rg.read_ds9(datadir / "turtle-viewport.reg")[0]
+
+  # do an outer envelope mask based on H alpha or [N II] 
+  fn = datadir / "turtle-F656N-1997-reproject-bin002.fits"
+  hdu = fits.open(fn)["SCALED"]
+  hamask = hdu.data > 0.01
+
+  fn = datadir / "turtle-F658N-1998-reproject-bin004.fits"
+  hdu = fits.open(fn)["SCALED"]
+  niimask = hdu.data > 0.02
+
+
+  for ratname, bandA, bandB, minA, minB in [
+          ["R502-487", "F502N-1997", "F487N-1997", 0.1, 0.1],
+          ["R656-487", "F656N-1997", "F487N-1997", 0.3, 0.6],
+          ["R437-502", "F437N-1997", "F502N-1997", 0.01, 0.1],
+          ["R658-656", "F658N-1998", "F656N-1997", 0.2, 0.1],
+          ["R502-502", "F502N-1998", "F502N-1997", 0.6, 0.6],
+          ["R375-502", "F375N-1997", "F502N-1997", 0.03, 0.1],
+          ["R375-658", "F375N-1997", "F658N-1998", 0.05, 0.2],
+          ["R487-547", "F487N-1997", "F547M-1997", 0.5, 0.5],
+          ["R502-547", "F502N-1997", "F547M-1997", 0.1, 0.3],
+          ["R502-555", "F502N-1998", "F555W-1998", 0.3, 0.3],
+  ]:
+      outimA, outimB = None, None
+      for n in reversed(nlist):
+          fnA = datadir / f"turtle-{bandA}-reproject-bin{n:03d}.fits"
+          fnB = datadir / f"turtle-{bandB}-reproject-bin{n:03d}.fits"
+
+          hduA = fits.open(fnA)["SCALED"]
+          hduB = fits.open(fnB)["SCALED"]
+          if outimA is None:
+              hdr = hduA.header
+              outimA = np.empty_like(hduA.data)
+              outimB = np.empty_like(hduA.data)
+
+          # Minimum flux requirement
+          mask = (n**2 * hduA.data > minA) & (n**2 * hduB.data > minB)
+          outimA[mask] = hduA.data[mask]
+          outimB[mask] = hduB.data[mask]
+
+
+
+      # Cut off the image at the border of the original diamond window
+      winmask = win.to_pixel(WCS(hduA.header)).to_mask()
+      mask = ~winmask.to_image(hduA.data.shape).astype(bool)
+      outimA[mask] = np.nan
+      outimB[mask] = np.nan
+
+      # Apply the outer envelope mask
+      if "658" in ratname or "375" in ratname:
+          # Low-ionization lines use the [N II] mask
+          outimA[~niimask] = np.nan
+          outimB[~niimask] = np.nan
+      else:
+          # Others use the Ha mask
+          outimA[~hamask] = np.nan
+          outimB[~hamask] = np.nan
+
+      ratio = outimA / outimB
+      out_fn =  datadir / f"turtle-{ratname}-multibin.fits"
+      fits.PrimaryHDU(header=hdr, data=ratio).writeto(out_fn, overwrite=True)
+#+END_SRC
+
+#+RESULTS:
+: None
+
+
+#+begin_src sh :dir ../data/hst-cr-combine/reproject
+xpaset -p rebinned backup $PWD/line-ratios-multibin.bck
+#+end_src
+
+#+RESULTS:
+
+
 
 ***** BPT diagrams and similar
 + [O III]/Hb vs [N II]/Ha
@@ -1610,7 +1823,7 @@ CLOSED: [2020-04-19 Sun 20:29]
 | Fox        | 19 |
 | Calderón   |  2 |
 | Peña Nieto | 14 |
-| AMLO       | 1  |
+| AMLO       |  1 |
 ** Proper motions
 
 *** [N II]
@@ -6290,6 +6503,9 @@ python ../scripts/moments-from-channels20.py nii -multibin
 
 
 ** Multibinning
+:PROPERTIES:
+:ID:       66ACAB44-11C6-4C73-B066-D03D8C7FAC8D
+:END:
 #+BEGIN_SRC sh :results verbatim :dir ../data/maps
   mdir=/Users/will/Dropbox/OrionWest
   ranges='+030+040 +020+030 +010+020 +000+010 -010+000 -020-010 -030-020 -040-030 -050-040 -060-050 -070-060 -080-070 -090-080'
@@ -6830,6 +7046,9 @@ Saving turtle-slits-heii-060-020-bin064.fits
 #+end_example
 
 *** Combine multibin maps
+:PROPERTIES:
+:ID:       1239EA79-BF2F-42FD-9D27-F6CFD2A6E647
+:END:
 
 #+BEGIN_SRC python :tangle ../scripts/turtle-multibin-combine.py
   import sys
