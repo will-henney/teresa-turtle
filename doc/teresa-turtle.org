@@ -1574,7 +1574,43 @@ CLOSED: [2020-04-19 Sun 20:29]
 
 
 ***** Flux calibration and correction for cross-contamination between filters
-
++ First step is to use the ~PHOTFLAM~ keyword to convert count/s in erg/c/cm^2/AA
++ Of course, this is not so helpful for an emission line
++ We need to know the effective width of the filter
+  | Filter |  W_eff |
+  |--------+--------|
+  | F185W  |  370.7 |
+  | F375N  |   30.0 |
+  | F437N  |   31.8 |
+  | F487N  |   33.9 |
+  | F502N  |   35.8 |
+  | F547M  | 627.56 |
+  | F555W  | 1427.6 |
+  | F656N  |   28.3 |
+  | F658N  |   39.2 |
++ So, for Hb for example we have:
+  F(cont) + F(Hb) / W = F487N 
++ Rubin does the heliocentric correction to estimate the H\gamma contamination of F437N
+  + We estimate a topocentric velocity of -55 km/s so H gamma is at 4341.2 \AA (vacuum)
+    + This is from [[id:7E76623E-8C5F-4635-A8CA-BA29675E0C02][Test the heliocentric correction machinery]]
+  + This gives a transmission of 0.0007 according to the filter curve
+  + Whereas the peak transmission is 0.0304 at 4368 \AA
+  + Observed [O III] wave is 4364 (1 - 55/3e5) = 4363.2 where transmission is 0.0297
+  + So H gamma transmission is 0.02357 times [O III] transmission
+  + Intrinsic Hb/Hg ratio is 2.13
+  + Observed 4364/5007 is 0.008
+  + Observed 5007/Hb is 6
+  + So we expect Hg/4364 = Hg/Hb Hb/5007 5007/4364 = 1 / (2.13 6 0.008) = 9.78
+  + So we expect that about 20% of F437N signal is in fact Hb
+  + But we estimate it using 0.02357 Hb / 2.13 = 0.01107 Hb
++ Atomic continuum emission at 4364 is 6.91e-4 Hb per \AA
+  + (basically 1/EW with wavelength dependence)
+  + So with W = 31.8 this gives 0.02197 Hb
++ So adding together the H gamma and continuum means a total of 0.03304 Hb
+  + But then we need to reduce it slightly due to reddening
+  + Note that Rubin got something very similar
+  
+  
 ***** Multigrids of the HST images
 + I looked at the other two HDUs in the original files (WHT and CTX)
   + Not much use: WHT is roughly constant, except for some bad columns, CTX seems to be the number of the chip PC1, WFC2, etc
@@ -3378,6 +3414,9 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 
 + 00 - j0_i 308 \to 318 and islit 275 \to 273
 ** Test the heliocentric correction machinery
+:PROPERTIES:
+:ID:       7E76623E-8C5F-4635-A8CA-BA29675E0C02
+:END:
 + This is completely re-implemented using astropy.coordinates instead of pyslalib.slalib
 + These are largely similar to Teresa's values, but there are differences of up to 0.5 km/s
 + Although I managed to get the old method working as well
@@ -3450,6 +3489,57 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 | 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |  20.46 |
 | 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |  20.53 |
 | 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |  20.64 |
+
+
+Try the same but for the HST images
+#+BEGIN_SRC python :return outtab
+  import sys
+  import os
+  import glob
+  from astropy.io import fits
+  import astropy.coordinates as coord
+  from astropy.wcs import WCS
+  from astropy.time import Time
+  import astropy.units as u
+  sys.path.append('/Users/will/Dropbox/OrionWest')
+  from helio_utils import helio_topo_from_header
+
+  outtab = [['File', 'Date', 'JD', 'ST', 'RA', 'Dec', 'Helio', 'Helio2'], None]
+  speclist = glob.glob('../data/hst-cr-combine/turtle-F*')
+  spm = coord.EarthLocation.of_site("ctio")
+  for fn in sorted(speclist):
+      hdr = fits.open(fn)['SCI'].header
+      w = WCS(hdr)
+      c = w.pixel_to_world(1, 1)
+      time = Time(hdr['DATE'])
+      heliocorr = c.radial_velocity_correction(
+          'barycentric', obstime=time, location=spm)
+      heliocorr2 = 0.0 # helio_topo_from_header(hdr)
+      id_, _ = os.path.splitext(os.path.basename(fn))
+      outtab.append([id_, time.iso.split()[0],
+                     time.mjd,
+                     hdr.get('ST'), hdr.get('RA', 0.0), hdr.get('DEC', 0.0),
+                     '{:.2f}'.format(heliocorr.to(u.km/u.s).value),
+                     '{:.2f}'.format(heliocorr2),
+      ])
+#+END_SRC
+
+#+RESULTS:
+| File              |       Date |                 JD | ST   |  RA | Dec | Helio | Helio2 |
+|-------------------+------------+--------------------+------+-----+-----+-------+--------|
+| turtle-F185W-2004 | 2009-02-19 |  54881.48987268518 | None | 0.0 | 0.0 | 20.99 |   0.00 |
+| turtle-F375N-1997 | 2009-04-08 | 54929.328877314816 | None | 0.0 | 0.0 | 15.36 |   0.00 |
+| turtle-F437N-1997 | 2009-04-08 |  54929.32712962963 | None | 0.0 | 0.0 | 15.37 |   0.00 |
+| turtle-F487N-1997 | 2009-04-08 |  54929.32780092592 | None | 0.0 | 0.0 | 15.37 |   0.00 |
+| turtle-F502N-1997 | 2009-04-08 |  54929.32827546296 | None | 0.0 | 0.0 | 15.37 |   0.00 |
+| turtle-F502N-1998 | 2009-04-09 |  54930.48694444444 | None | 0.0 | 0.0 | 14.74 |   0.00 |
+| turtle-F547M-1997 | 2008-12-20 |  54820.21611111111 | None | 0.0 | 0.0 |  8.72 |   0.00 |
+| turtle-F555W-1998 | 2008-12-26 |  54826.08001157407 | None | 0.0 | 0.0 | 10.40 |   0.00 |
+| turtle-F656N-1997 | 2009-04-08 |  54929.32859953704 | None | 0.0 | 0.0 | 15.37 |   0.00 |
+| turtle-F658N-1998 | 2009-04-09 | 54930.490115740744 | None | 0.0 | 0.0 | 14.73 |   0.00 |
+
+So these are positive, which means that the observed velocity should be more blueshifted: -55 km/s for the F437N that may be contaminated by H gamma: 4342 (1 - 55/3e5) = 4341.2 \AA
+
 ** Write PV spectra with velocities and slit offsets
 :PROPERTIES:
 :ID:       2261B771-A00A-408E-9569-9E68079034EB
