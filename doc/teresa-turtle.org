@@ -530,6 +530,36 @@
     + Lobes are 2% of total flux
     + Inner shells are 60%
     + IS is 14% but that is an over-estimate since it includes emission associated with the knot complexes
+**** Densities from the [S II] longslit spectrum
++ There is only on exposure: Slit S
++ It is at a very similar position/PA to Slit T (Ha, [N II]) and Slit R ([O III])
++ We can identify the following components from the [N II] and [O III] spectra, from N to S:
+  + The N knot: V = +24 km/s
+  + Lobe flows VI-/IX+: -12, +11 km/s
+  + Inner peanut shell: V = -16 km/s
+  + N Red complex: V = +23 km/s
+  + NE Blue complex: V = -43 km/s
+  + SW Red complex: V = +34 km/s
+  + SE Blue complex: V = -28 km/s
++ Heliocentric correction is -6.6 km/s, which is added to observed to get VHEL
+  + Hence zero-point of velocity scale is -33.4 km/s
+  + Rest wavelengths are 6716.44 and 6730.82 
+***** Table of 6716/6731 ratio measurements
+| Component       |   V |  wav_16 |  wav_31 |   I_16 | sig_16 |   I_31 | sig_31 | BG_16 | BG_31 | Ratio         |
+|-----------------+-----+---------+---------+--------+--------+--------+--------+-------+-------+---------------|
+| N knot          | +24 | 6716.30 | 6730.68 |  82.49 |  11.77 |  92.24 |  14.82 | 48.72 | 49.85 | 0.89 +/- 0.03 |
+| N Lobe VI-/IX+  | +20 | 6716.21 | 6730.59 |  64.66 |  11.60 |  71.75 |  20.64 | 50.29 | 52.41 | 0.89 +/- 0.05 |
+| Inner shell     | -16 | 6715.40 | 6729.78 | 155.65 |  51.53 | 211.81 |  71.47 |  63.9 |  68.0 | 0.72 +/- 0.06 |
+| N Red complex   | +23 | 6716.27 | 6730.65 |   1399 |    721 |   2084 |   1058 |    63 |    66 | 0.67 +/- 0.08 |
+| NE Blue complex | -43 | 6714.80 | 6729.17 |    135 |     10 |    161 |     14 |    78 |    77 | 0.82 +/- 0.02 |
+| SW Red complex  | +34 | 6716.52 | 6730.90 |    824 |    583 |   1043 |    823 |    76 |    74 | 0.79 +/- 0.13 |
+| SE Blue complex | -28 | 6715.13 | 6729.51 |    105 |     19 |    118 |     24 |    63 |    62 | 0.88 +/- 0.04 |
+#+TBLFM: $3=6716.44 (1 + ($2 - 40 + 6.6 + 3) $km/$c) ;f2::$4=6730.82 (1 + ($2 - 40 + 6.6 + 3) $km/$c) ;f2::$11=($5 - $9 +/- $6/6.32) / ($7 - $10 +/- $8/6.32);f2
++ 42 pixels per sample, so std error is sigma/6.32
++ Liu:2004a have 6731/6716 = 1.66 => 6716/6731 = 0.60 
+  + Implying n = 4000 pcc
+  + So, we could multiply all ours by 0.9
+  + This means our lowest 31/16 ratio would be 1.248 => n = 2000
 **** TODO Summary table of physical properties
 + Convert to physical units:
   + Density: normalize by 4000 pcc
@@ -1470,6 +1500,9 @@ CLOSED: [2020-04-19 Sun 20:28]
   filter0, x0, y0, bg0 = TAB[0]
   hdu0 = fits.open(datadir / f"turtle-{filter0}.fits")["SCI"]
   hdu0.data -= bg0
+  # Convert to flux units
+  hdu0.data *= hdu0.header["PHOTFLAM"]
+
   w0 = WCS(hdu0.header)
   # RA, DEC components of star according to reference image
   # Pixels are converted from 1-based to 0-based indexing 
@@ -1487,9 +1520,9 @@ CLOSED: [2020-04-19 Sun 20:28]
 
   # Loop over all the other images
   for filter1, x1, y1, bg1 in TAB[1:]:
-      if not filter1 == ONLY:
-          # option to skip all but one
-          continue
+      # if not filter1 == ONLY:
+      #     # option to skip all but one
+      #     continue
       hdu1 = fits.open(datadir / f"turtle-{filter1}.fits")["SCI"]
       # Simply force the reference pixel to be the star
       hdu1.header["CRPIX1"] = x1
@@ -1500,6 +1533,7 @@ CLOSED: [2020-04-19 Sun 20:28]
       # Note that there is no need to use the WCS machinery here
 
       hdu1.data -= bg1
+      hdu1.data *= hdu1.header["PHOTFLAM"]
 
       # Now we can safely reproject the image onto the grid of the reference image
       newdata, _ = reproject_interp(hdu1, hdu0.header)
@@ -1574,9 +1608,15 @@ CLOSED: [2020-04-19 Sun 20:29]
 
 
 ***** Flux calibration and correction for cross-contamination between filters
-+ First step is to use the ~PHOTFLAM~ keyword to convert count/s in erg/c/cm^2/AA
-+ Of course, this is not so helpful for an emission line
-+ We need to know the effective width of the filter
++ First step is to use the ~PHOTFLAM~ keyword to convert count/s in erg/s/cm^2/AA
+  + Note that to first order, ~PHOTFLAM~ is inversely proportional to the filter width
+  + This is why it is so low for F547M
++ Extra steps are needed for an emission line
+  + Correction for transmission at line wavelength versus peak transmission
+    + Potentially informed by spectrophotometry (e.g., STIS)
+  + Multiplication ~RECTW~ to get line flux: erg/s/cm^2
+  + Subtraction of contaminating continuum and lines
++ We need to know the effective (rectangular) width of the filters ~RECTW~
   | Filter |  W_eff |
   |--------+--------|
   | F185W  |  370.7 |
@@ -1589,7 +1629,36 @@ CLOSED: [2020-04-19 Sun 20:29]
   | F656N  |   28.3 |
   | F658N  |   39.2 |
 + So, for Hb for example we have:
-  F(cont) + F(Hb) / W = F487N 
+  + Continuum estimation from Hb itself
+    + Continuum flux is 6.53e-4 per \AA times Hb from Rubin:2002a
+    + Filter width is 33.9 \AA, so continuum is 0.0221367 Hb
+    + Taking into account the efficiency correction below then gives the conversion:
+      + Hb (1 + 0.0221367) = 0.969 F487N
+      + => Hb = 0.94801 F487N
+      + This almost exactly the same as Rubin
+  + /Alternative/ continuum estimation from F547M
+    + Interpolating on the other values, I get 6.21e-4 Hb per \AA for the continuum in F547M
+    + So the F547M continuum needs to be scaled for other filters as follows:
+      | F437N | 6.91e-4 | 1.113 |
+      | F487N | 6.53e-4 | 1.052 |
+      | F502N | 6.45e-4 | 1.039 |
+      | F547M | 6.21e-4 | 1.000 |
+      | F656N | 5.65e-4 | 0.910 |
+      #+TBLFM: $3=$2/6.21e-4;f3
+    + Comparing filter widths, W(547M)/W(487N) = 18.51
+    + So we predict that the 0.0221367 Hb continuum level should give F547M/F487N = 0.0221367 / 1.052 = 0.02104 if other efficiencies are equal
+    + We actually find that F547M/F487N = 0.033, so that suggests 50% line contamination
+      + Alternatively, scattered continuum
+      + If it is mainly [O III], then 487/547 should go down when 502/487 goes up
+      + This does seem to be the case, approximately
+    + *Conclusions*: best use theoretical scaling with Hb for the continuum, rather than F547M
++ STIS calibration from Rubin:2002a
+  + By comparing STIS and WFPC2, they get overall efficiency correction factors as follows:
+    | F487N |  0.969 |
+    | F656N | 0.9643 |
+    | F437N |  1.089 |
+    | F502N |  1.043 |
+  + These multiply the observed counts
 + Rubin does the heliocentric correction to estimate the H\gamma contamination of F437N
   + We estimate a topocentric velocity of -55 km/s so H gamma is at 4341.2 \AA (vacuum)
     + This is from [[id:7E76623E-8C5F-4635-A8CA-BA29675E0C02][Test the heliocentric correction machinery]]
@@ -1609,8 +1678,69 @@ CLOSED: [2020-04-19 Sun 20:29]
 + So adding together the H gamma and continuum means a total of 0.03304 Hb
   + But then we need to reduce it slightly due to reddening
   + Note that Rubin got something very similar
-  
-  
+    + They got 0.03218 F487N, but they have Hb = 0.9482 F487N, so this is 0.03394
+    + Slightly higher than our value because their lines are less blue-shifted
++ We can do the same for [N II] contamination of Ha and vice versa
+  + All the narrow-band observations were in April, so similar heliocentric correction
+    | wav, air | wav, vac | wav(-55 km/s) |  T(656N) |  T(658N) | TT(656N) | TT(658N) |
+    |----------+----------+---------------+----------+----------+----------+----------|
+    |  6548.04 |  6549.85 |       6548.65 | 4.161e-2 |        0 |   0.3628 |   0.0000 |
+    |  6562.80 |  6564.61 |       6563.41 | 1.139e-1 |   5.2e-3 |   0.9930 |   0.0446 |
+    |  6583.46 |  6585.28 |       6584.07 |   4.2e-3 | 1.147e-1 |   0.0366 |   0.9845 |
+    |----------+----------+---------------+----------+----------+----------+----------|
+    |     Peak |          |          0.00 | 1.147e-1 | 1.165e-1 |   1.0000 |   1.0000 |
+    #+TBLFM: $3=$2 (1 - 55 $km/$c);f2::$6=$4/@5$4;f4::$7=$5/@5$5;f4
+  + So relative contribution of Ha to F658N is 0.04534 (I_6563 / I_6583)
+  + And relative contribution of [N II] to F656N is (4.2e-3 + (1/3) 4.161e-2) / 1.139e-1
+    + => 0.1586 (I_6583 / I_6563), where the majority comes from the 6548 component (assuming 3:1 doublet ratio)
+  + So if R = I_6583 / I_6563
+  + Then F656N W656N = I_6563 (1 + C_656N + 0.1586 R) : (A)
+  + And F658N W658N =  I_6583 (1 + C_658N / R + 0.04534 / R) : (B)
+  + Where C_656N, C_658N are the continuum contributions to each filter per Ha
+  + Then if we take (B)/(A) we get
+    + (R + C_658N + 0.04534) = r (1 + C_656N + 0.1586 R)
+    + where r = (F658N W658N) / (F656N W656N) = 1.385 F658N / F656N using 39.2, 28.3 for the widths
+    + => R = [(1 + C_656N) r - (C_658N + 0.04534)] / [1 - 0.1586 r]
+  + Observed values of r are [0.04 .. 0.5]
+  + C_656N = 28.3 5.65e-4 (Hb/Ha) = 0.00561 if we take Ha/Hb = 2.85
+  + C_658N = 39.2 5.65e-4 (Hb/Ha) = 0.00777
+  + => R = [1.00561 r - 0.05311] / [1 - 0.1586 r]
+  + Table of values:
+    |    r |      R |
+    |------+--------|
+    | 0.05 | -0.003 |
+    | 0.10 |  0.048 |
+    | 0.20 |  0.153 |
+    | 0.50 |  0.488 |
+    #+TBLFM: $2=(1.00561 $1 - 0.05311) / (1 - 0.1586 $1) ;f3
+  + Note that it goes negative!
+    + This is because there is a minimum value of r, when R = 0
+    + r_min = (C_658N + 0.04534) / (1 + C_656N) = (0.00777 + 0.04534) / (1 + 0.00561) = 0.05281
+    + In this situation, there is only continuum and Ha in the two filters
+    + Averaging over a small box, the smallest value we get is 0.030 for the ratio of F_\lambda
+    + This is 0.0415 after multiplying by the rectangular widths
+    + This means that Ha contribution to F658N  must be less than the 0.0446 of peak transmission that I calculated above
+      + Reducing it by 20% is equivalent to about 0.5 \AA in the transmission curve, or 20 km/s
+      + This seems well within the margin of error
+  + What about ODell:1999a?
+    + The Ha-line correction term for S([N II]) is -0.0384 divided by ratio of raw counts F658N/F656N
+    + So, I need to undo the ~PHOTFLAM~ multiplication!
+      | F658N | 2.057664E-16 |
+      | F656N | 2.903543E-16 |
+    + So F_\lambda Ratio in F658N/F656N = (2.057664/2.903543) = 0.7087 times Counts/s Ratio
+    + So we should multiply Bob's constant by 0.7087 to get it in terms of F_\lambda and then again by 1.385 to get it in terms of F_line (since the peak transmissions are nearly the same, these two factors should approximately cancel out - and they do: 0.9815)
+    + This gives 0.03769
+    + If we use that in the equation for r_min, we get 0.0452 on an F_line scale, or 0.03264 on an F_\lambda scale
+      + We still get observed values a bit smaller than this
+  + There is also Ueta:2019a, although they seem to be using air instead of vacuum wavelengths
+    + The quadratic programming method is a way of solving the matrix equation while avoiding that measurement errors give negative ratios (for instance)
+    + They take the transmission co-efficients as given
+    + They get a minimum ratio of 10**-1.477 = 0.03573
+
+
+
+
+
 ***** Multigrids of the HST images
 + I looked at the other two HDUs in the original files (WHT and CTX)
   + Not much use: WHT is roughly constant, except for some bad columns, CTX seems to be the number of the chip PC1, WFC2, etc
@@ -1727,6 +1857,8 @@ Saving turtle-F658N-1998-reproject-bin032.fits
   from astropy.wcs import WCS
   import regions as rg
 
+  FLUXSCALE = 3e-16               # approx PHOTFLAM for Ha
+
   datadir = Path("../data/hst-cr-combine/reproject")
   nlist = [1, 2, 4, 8, 16, 32]
   nmax = max(nlist)
@@ -1736,29 +1868,34 @@ Saving turtle-F658N-1998-reproject-bin032.fits
   # do an outer envelope mask based on H alpha or [N II] 
   fn = datadir / "turtle-F656N-1997-reproject-bin002.fits"
   hdu = fits.open(fn)["SCALED"]
-  hamask = hdu.data > 0.01
+  hamask = hdu.data > 0.008*FLUXSCALE
 
   fn = datadir / "turtle-F658N-1998-reproject-bin004.fits"
   hdu = fits.open(fn)["SCALED"]
-  niimask = hdu.data > 0.02
+  niimask = hdu.data > 0.02*FLUXSCALE*2/3
 
 
   for ratname, bandA, bandB, minA, minB in [
-          ["R502-487", "F502N-1997", "F487N-1997", 0.1, 0.1],
-          ["R656-487", "F656N-1997", "F487N-1997", 0.3, 0.6],
-          ["R437-502", "F437N-1997", "F502N-1997", 0.01, 0.1],
+          ["R502-487", "F502N-1997", "F487N-1997", 0.6, 0.6],
+          ["R656-487", "F656N-1997", "F487N-1997", 0.6, 1.2],
+          ["R437-502", "F437N-1997", "F502N-1997", 0.08, 0.1],
           ["R658-656", "F658N-1998", "F656N-1997", 0.2, 0.1],
           ["R502-502", "F502N-1998", "F502N-1997", 0.6, 0.6],
           ["R375-502", "F375N-1997", "F502N-1997", 0.03, 0.1],
           ["R375-658", "F375N-1997", "F658N-1998", 0.05, 0.2],
-          ["R487-547", "F487N-1997", "F547M-1997", 0.5, 0.5],
-          ["R502-547", "F502N-1997", "F547M-1997", 0.1, 0.3],
-          ["R502-555", "F502N-1998", "F555W-1998", 0.3, 0.3],
+          ["R487-547", "F487N-1997", "F547M-1997", 0.5, 0.06],
+          ["R502-547", "F502N-1997", "F547M-1997", 0.1, 0.05],
+          ["R502-555", "F502N-1998", "F555W-1998", 0.3, 0.1],
   ]:
       outimA, outimB = None, None
+      # Correct limits since we have now put in flux units
+      minA *= FLUXSCALE
+      minB *= FLUXSCALE
+    
       for n in reversed(nlist):
           fnA = datadir / f"turtle-{bandA}-reproject-bin{n:03d}.fits"
           fnB = datadir / f"turtle-{bandB}-reproject-bin{n:03d}.fits"
+
 
           hduA = fits.open(fnA)["SCALED"]
           hduB = fits.open(fnB)["SCALED"]
@@ -2293,6 +2430,10 @@ os.system("which flct")
   + But we also have some optical ghosts
     + 5002 - definitely a ghost
     + 4996
++ [Fe IV] 6739.8
+  + To the red end of the [S II] spectrum
+  + Shows the inner shell only
+
 
 ** Original data files
 + [[file:~/Dropbox/Papers/LL-Objects/NGC6210/]]
@@ -3437,16 +3578,25 @@ First run through, try to determine j0_s, j0_i, and shift automatically
   from helio_utils import helio_topo_from_header
 
   outtab = [['File', 'Date', 'JD', 'ST', 'RA', 'Dec', 'Helio', 'Helio2'], None]
-  speclist = glob.glob('../data/pvextract/0*-ha.fits')
+  speclist = list(glob.glob('../data/pvextract/0*-ha.fits')) + ["/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Varias-temporadas/spm408_bcrx_sii.fits"]
   spm = coord.EarthLocation.of_site("spm")
   for fn in sorted(speclist):
       hdr = fits.open(fn)[0].header
-      w = WCS(hdr, key="A")
-      wav, c = w.pixel_to_world(1, 1, 1)
+      try: 
+          w = WCS(hdr, key="A")
+      except:
+          w = WCS(hdr)
+      try: 
+          _, c = w.pixel_to_world(1, 1, 1)
+      except:
+          c = coord.SkyCoord(f"{hdr['RA']} {hdr['DEC']}", unit=(u.hourangle, u.deg))
       time = Time(w.wcs.dateobs)
       heliocorr = c.radial_velocity_correction(
           'barycentric', obstime=time, location=spm)
-      heliocorr2 = helio_topo_from_header(hdr, usewcs='A')
+      try:
+          heliocorr2 = helio_topo_from_header(hdr, usewcs='A')
+      except:
+          heliocorr2 = 0.0
       id_, _ = os.path.splitext(os.path.basename(fn))
       outtab.append([id_, time.iso.split()[0],
                      time.mjd,
@@ -3489,6 +3639,7 @@ First run through, try to determine j0_s, j0_i, and shift automatically
 | 027-spm0173o_bcrx-ha | 2015-08-20 | 57254.0 | 17:28:59.83 | 16:45:07.3 | 23:46:42.0 | -20.16 |  20.46 |
 | 028-spm0179o_bcrx-ha | 2015-08-20 | 57254.0 | 18:15:15.41 | 16:45:06.5 | 23:46:41.0 | -20.16 |  20.53 |
 | 029-spm0186o_bcrx-ha | 2015-08-20 | 57254.0 | 19:36:02.64 | 16:45:05.7 | 23:46:47.0 | -20.16 |  20.64 |
+| spm408_bcrx_sii      | 2004-06-16 | 53172.0 |    15:59:28 |   16:44:37 |  +23:47:35 |  -6.61 |   0.00 |
 
 
 Try the same but for the HST images
