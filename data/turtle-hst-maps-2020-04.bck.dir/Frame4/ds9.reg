@@ -1,0 +1,7 @@
+# Region file format: DS9 version 4.1
+global color=green dashlist=8 3 width=1 font="helvetica 10 normal roman" select=1 highlite=1 dash=0 fixed=0 edit=1 move=1 delete=1 include=1 source=1
+fk5
+# projection(251.1271427,23.7974800,251.1196375,23.8031464,0.860")
+# projection(251.1310335,23.7983417,251.1207095,23.7934455,6.862")
+box(251.1230756,23.8001010,15.141",10.822",246.88308)
+# ruler(251.1229182,23.8001730,251.1225684,23.8011330) ruler=fk5 image
