@@ -1,4 +1,8 @@
 data/imslit/*.fits
+data/hst-cr-combine/reproject/*.fits
+data/hst-cr-combine/*.bck.dir
+data/hst-cr-combine/reproject/*.bck.dir
+data/turtle-hst-maps-2020-04.bck.dir
 __pycache__
 doc/auto
 *.aux
