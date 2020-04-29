@@ -1,0 +1,109 @@
+Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits"...
+Extracting sources...
+simplexy: found 46 sources.
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: divide by zero encountered in log
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: invalid value encountered in multiply
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:26: RuntimeWarning: invalid value encountered in less
+  badbins = occupied[logpoisson < logcut]
+Solving...
+system: No such file or directory
+engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+Reading file "./spm0053o_b.axy"...
+Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+  log-odds ratio 14.0457 (1.25885e+06), 11 match, 1 conflict, 30 distractors, 40 index.
+  RA,Dec = (251.119,23.798), pixel scale 0.350507 arcsec/pix.
+  Hit/miss:   Hit/miss: c+------+---+-----+----+---+--+-+-+----+-+(best)++++
+Field 1: solved with index index-5001-10.fits.
+Field 1 solved: writing to file ./spm0053o_b.solved to indicate this.
+Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0053o_b.fits
+Field center: (RA,Dec) = (251.118539, 23.797955) deg.
+Field center: (RA H:M:S, Dec D:M:S) = (16:44:28.449, +23:47:52.637).
+Field size: 5.52048 x 5.92941 arcminutes
+Field rotation angle: up is -87.9076 degrees E of N
+Field parity: pos
+Creating new FITS file "./spm0053o_b-wcs.fits"...
+Creating index object overlay plot...
+Creating annotation plot...
+Your field contains:
+  NGC 6210
+
+Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits"...
+Extracting sources...
+simplexy: found 51 sources.
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: divide by zero encountered in log
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: invalid value encountered in multiply
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:26: RuntimeWarning: invalid value encountered in less
+  badbins = occupied[logpoisson < logcut]
+Solving...
+system: No such file or directory
+engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+Reading file "./spm0061o_b.axy"...
+Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+Field 1 did not solve (index index-5000-10.fits).
+Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0061o_b.fits
+Did not solve (or no WCS file was written).
+
+Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0128o_b.fits"...
+Extracting sources...
+simplexy: found 50 sources.
+Solving...
+system: No such file or directory
+engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+Reading file "./spm0128o_b.axy"...
+Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+Field 1 did not solve (index index-5001-10.fits).
+Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0128o_b.fits
+Did not solve (or no WCS file was written).
+
+Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0183o_b.fits"...
+Extracting sources...
+simplexy: found 32 sources.
+Solving...
+system: No such file or directory
+engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+Reading file "./spm0183o_b.axy"...
+Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+Field 1 did not solve (index index-5003-10.fits).
+Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0183o_b.fits
+Did not solve (or no WCS file was written).
+
+Reading input file 1 of 1: "/Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0190o_b.fits"...
+Extracting sources...
+simplexy: found 49 sources.
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: divide by zero encountered in log
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:25: RuntimeWarning: invalid value encountered in multiply
+  logpoisson = k*np.log(mean) - mean - np.array([sum(np.arange(kk)) for kk in k])
+/usr/local/Cellar/astrometry-net/0.76_2/libexec/lib/python3.7/site-packages/astrometry/util/removelines.py:26: RuntimeWarning: invalid value encountered in less
+  badbins = occupied[logpoisson < logcut]
+Solving...
+system: No such file or directory
+engine.c:79:engine_autoindex_search_paths: Warning: failed to open index directory: "/usr/local/Cellar/astrometry-net/0.76_2/data"
+
+Reading file "./spm0190o_b.axy"...
+Only searching for solutions within 1 degrees of RA,Dec (251.123,23.7999)
+  log-odds ratio 15.1284 (3.71678e+06), 11 match, 0 conflict, 34 distractors, 40 index.
+  RA,Dec = (251.119,23.8057), pixel scale 0.350562 arcsec/pix.
+  Hit/miss:   Hit/miss: -+------++-----++-------+---+--------+--++--+(best)++++
+Field 1: solved with index index-5001-10.fits.
+Field 1 solved: writing to file ./spm0190o_b.solved to indicate this.
+Field: /Users/will/Dropbox/Papers/LL-Objects/NGC6210/Temporada2015/spm0190o_b.fits
+Field center: (RA,Dec) = (251.118495, 23.805702) deg.
+Field center: (RA H:M:S, Dec D:M:S) = (16:44:28.439, +23:48:20.528).
+Field size: 5.52135 x 5.93034 arcminutes
+Field rotation angle: up is -87.8942 degrees E of N
+Field parity: pos
+Creating new FITS file "./spm0190o_b-wcs.fits"...
+Creating index object overlay plot...
+Creating annotation plot...
+Your field contains:
+  NGC 6210
+

@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-04-16 Thu 11:26 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Summary table of physical properties</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="William Henney" />
+<style type="text/css">
+<!--/*--><![CDATA[/*><!--*/
+/* 18 Jan 2016: Modified from the stylesheet by Zhitao Gong on
+https://github.com/gongzhitaao/orgcss/
+ */
+
+body {
+    max-width: 100%;
+    margin: 1% 1%;
+    font: normal normal normal 16px/1.6em 'Open Sans', sans-serif;
+    color: #333;
+}
+
+@media all and (min-width: 95ex) {
+    body {
+        max-width: 95ex;
+        margin: 1% auto;
+    }
+
+    .creator {
+        float: right;
+    }
+}
+
+@media not all and (min-width: 110ex) {
+
+    .creator {
+        float: left;
+    }
+
+    p img {
+        width: 95%;
+    }
+}
+
+.title {
+    padding: .5em 0;
+    text-align: center;
+    color: black;
+}
+
+.subtitle {
+    font-size: medium;
+    font-weight: bold;
+    margin-top: 0;
+    text-align: center;
+}
+
+.abstract {
+    width: 80%;
+    margin: auto;
+    font-style: italic;
+}
+
+.abstract p:last-of-type:before {
+    content: "    ";
+    white-space: pre;
+}
+
+.status {
+    font-size: 90%;
+    margin: 2em auto;
+}
+
+[class^="section-number-"] {
+    margin-right: .5em;
+}
+
+#footnotes {
+    font-size: 90%;
+}
+
+.footpara {
+    display: inline;
+    margin: .2em auto;
+}
+
+.footdef {
+    margin-bottom: 1em;
+}
+
+.footdef sup {
+    padding-right: .5em;
+}
+
+a {
+    color: #527d9a;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #003355;
+    border-bottom: 1px dotted;
+}
+
+p img {
+    vertical-align: middle;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #A5573E;
+    line-height: 1.6em;
+    font-family: 'Droid Serif', serif;
+}
+
+h4,h5,h6 {
+    font-size: 1em;
+}
+
+table {
+    border-top: 2px solid;
+    border-bottom: 2px solid;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+thead {
+    border-bottom: 2px solid;
+}
+
+table td + td, table th + th {
+    border-left: 1px solid gray;
+}
+
+table tr {
+    border-top: 1px solid lightgray;
+}
+
+td,th {
+    padding: 5px 10px;
+    vertical-align: middle;
+}
+
+code {
+    padding: 2px 5px;
+    margin: auto 1px;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    background-clip: padding-box;
+    color: #333;
+    font-size: 90%;
+}
+
+blockquote {
+    margin: 1em 2em;
+    padding-left: 1em;
+    border-left: 3px solid #ccc;
+}
+
+kbd {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    margin: 0 .1em;
+    padding: .1em .6em;
+}
+
+.figure {
+    padding: 1em;
+}
+
+.figure p {
+    text-align: center;
+}
+
+.todo {
+    color: red;
+    font-family: monospace;
+}
+
+.done {
+    color: green;
+    font-family: monospace;
+}
+
+.priority {
+    color: orange;
+    font-family: monospace;
+}
+
+.tag {
+    background-color: #eee;
+    font-family: monospace;
+    font-size: 80%;
+    font-weight: normal;
+    padding: 2px;
+}
+
+.timestamp {
+    color: #bebebe;
+}
+
+.timestamp-kwd {
+    color: #5f9ea0;
+}
+
+.org-right {
+    margin-left: auto;
+    margin-right: 0px;
+    text-align: right;
+}
+
+.org-left {
+    margin-left: 0px;
+    margin-right: auto;
+    text-align: left;
+}
+
+.org-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+#postamble p, #preamble p {
+    font-size: 90%;
+    margin: .2em;
+}
+
+p.verse {
+    margin-left: 3%;
+}
+
+pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    font-family: monospace;
+    margin: 1.2em;
+    padding: 8pt;
+}
+
+pre.src {
+    overflow: auto;
+    padding-top: 1.2em;
+    position: relative;
+    font-size: 90%;
+    color: #dcdccc;
+    background-color: #3f3f3f; 
+}
+
+pre.src:before {
+    background-color: gray;
+    border: 1px solid black;
+    display: none;
+    padding: 3px;
+    position: absolute;
+    right: 10px;
+    /* top: -10px; */
+}
+
+pre.src:hover:before {
+    display: inline;
+}
+
+pre.src-sh:before {
+    content: 'sh';
+}
+pre.src-bash:before {
+    content: 'bash';
+}
+pre.src-emacs-lisp:before {
+    content: 'Emacs Lisp';
+}
+pre.src-R:before {
+    content: 'R';
+}
+pre.src-python:before {
+    content: 'Python';
+}
+pre.src-org:before {
+    content: 'Org';
+}
+pre.src-c++:before {
+    content: 'C++';
+}
+pre.src-c:before {
+    content: 'C';
+}
+pre.src-html:before {
+    content: 'HTML'
+}
+
+caption.t-above {
+    caption-side: top;
+}
+
+caption.t-bottom {
+    caption-side: bottom;
+}
+
+th.org-right {
+    text-align: center;
+}
+
+th.org-left {
+    text-align: center;
+}
+
+th.org-center {
+    text-align: center;
+}
+
+td.org-right {
+    text-align: right;
+}
+
+td.org-left {
+    text-align: left;
+}
+
+td.org-center {
+    text-align: center;
+}
+
+dt {
+    font-weight: bold;
+}
+
+.inlinetask {
+    background: #ffffcc;
+    border: 2px solid gray;
+    margin: 10px;
+    padding: 10px;
+}
+
+#org-div-home-and-up {
+    font-size: 70%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.linenr {
+    font-size: smaller;
+}
+
+.code-highlighted {
+    background-color: #ffff00;
+}
+
+#bibliography {
+    font-size: 90%;
+}
+
+#bibliography table {
+    width: 100%;
+}
+
+/* .org-info-js_info-navigation { */
+/*     border-style: none; */
+/* } */
+/* #org-info-js_console-label { */
+/*     font-size: 10px; */
+/*     font-weight: bold; */
+/*     white-space: nowrap; */
+/* } */
+/* .org-info-js_search-highlight { */
+/*     background-color: #ffff00; */
+/*     color: #000000; */
+/*     font-weight: bold; */
+/* } */
+/*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Summary table of physical properties</h1>
+<ul class="org-ul">
+<li>Convert to physical units:
+<ul class="org-ul">
+<li>Density: normalize by 4000 pcc</li>
+<li>Mass: Area times column density, which is flux / density
+<ul class="org-ul">
+<li>Flux = S &Omega; = (&alpha;_eff n^2 dz E / 4 &pi;) (A / D^2)</li>
+<li>M = A dz n m = [4&pi; D^2 m / &alpha;_eff E]  (F / n)</li>
+<li>Total F = 3.3e-10 erg/cm2/s (scaling from Hb) with RMS n = 4000 pcc</li>
+<li>&alpha;_eff = 1e-13 cm^3/s</li>
+<li>E = 3.e-12 erg</li>
+<li>m = 1.3 m_p = 2e-24 g</li>
+<li>So, [4&pi; D^2 m / &alpha;_eff E] = 3.47e45 g s cm^-1 erg^-1</li>
+<li>And F/n = 8.25e-14 erg cm s^-1</li>
+<li>Giving mass normalization of 2.86275e32 g = 0.14 Msun
+<ul class="org-ul">
+<li>This applies to the bright parts: inner shells + knot complexes, which are 47% of the shells+knots+lobes normalization I used above</li>
+<li>So the per-component masses are (0.14/0.47) = 0.30 Msun times the fractions in the above table</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Component</th>
+<th scope="col" class="org-left">Ha flux</th>
+<th scope="col" class="org-left">Density, pcc</th>
+<th scope="col" class="org-right">Mass, Msun</th>
+<th scope="col" class="org-left">ion par</th>
+<th scope="col" class="org-right">t_start</th>
+<th scope="col" class="org-right">t_end</th>
+<th scope="col" class="org-right">Mdot, Msun/yr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Inner shells</td>
+<td class="org-left">44 %</td>
+<td class="org-left">3000 &rarr; 4500</td>
+<td class="org-right">0.078</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">0</td>
+<td class="org-right">5.2e-5</td>
+</tr>
+
+<tr>
+<td class="org-left">Intermediate shell</td>
+<td class="org-left">13 %</td>
+<td class="org-left">500 &rarr; 750</td>
+<td class="org-right">0.135</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-4</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">5.4e-5</td>
+</tr>
+
+<tr>
+<td class="org-left">Knot complexes</td>
+<td class="org-left">42 %</td>
+<td class="org-left">2000 &rarr; 5000</td>
+<td class="org-right">0.063</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-8</td>
+<td class="org-right">-1.5</td>
+<td class="org-right">9.7e-6</td>
+</tr>
+
+<tr>
+<td class="org-left">Outer Lobes</td>
+<td class="org-left">1 %</td>
+<td class="org-left">160 &rarr; 320</td>
+<td class="org-right">0.024</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-8</td>
+<td class="org-right">-2</td>
+<td class="org-right">4e-6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Inner Halo</td>
+<td class="org-left">0.5 %</td>
+<td class="org-left">80 &rarr; 160</td>
+<td class="org-right">0.030</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-20</td>
+<td class="org-right">-10</td>
+<td class="org-right">3e-6</td>
+</tr>
+
+<tr>
+<td class="org-left">Outer Halo</td>
+<td class="org-left">0.2 %</td>
+<td class="org-left">15 &rarr; 40</td>
+<td class="org-right">0.042</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-40</td>
+<td class="org-right">-20</td>
+<td class="org-right">2.1e-6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Bright peak</td>
+<td class="org-left">(3%)</td>
+<td class="org-left">10000</td>
+<td class="org-right">(0.002)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">2e-3 / 0</td>
+</tr>
+
+<tr>
+<td class="org-left">NW knot</td>
+<td class="org-left">(0.01%)</td>
+<td class="org-left">8000</td>
+<td class="org-right">(1e-5)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1e-5 / 0</td>
+</tr>
+
+<tr>
+<td class="org-left">N knot</td>
+<td class="org-left">(0.02%)</td>
+<td class="org-left">3800</td>
+<td class="org-right">(3e-5)</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">3e-5 / 0</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0.372</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">3.7e-1 / 0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: William Henney</p>
+<p class="date">Created: 2020-04-16 Thu 11:26</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
