@@ -275,7 +275,8 @@
 **** Spectrophotometry
 + Liu:2004a
 + Delgado-Inglada:2009a
-  + Seems to have a larger Hb flux: 2.162 × 10−11 erg/cm2/s
+  + Seems to have a smaller Hb flux: 2.162 × 10−11 erg/cm2/s
+  + But this is because it is just flux through their slit
 
 
 
@@ -425,46 +426,62 @@
 + And also estimate line-of-sight depth, so we can find densities
   + Using n \propto sqrt(EM / z)
 **** Table of brightnesses
+:PROPERTIES:
+:ID:       0CA50980-C2C9-4718-ABE6-44177D753BAC
+:END:
 + Here are Ha brightnesses and fluxes from turtle-F656N-1997.fits
-| Feature          |  S(Ha) |     BG |      S' |  ds |   R |  h |    F1 | 1 |    F2 | 2 |    F3 | 3 |      F |   frac |     n |        M_i | R_3d |    U_ion | t_rec |      N | 658/656 |   R_NII |
-|------------------+--------+--------+---------+-----+-----+----+-------+---+-------+---+-------+---+--------+--------+-------+------------+------+----------+-------+--------+---------+---------|
-| IS WSW           |   0.07 |  0.004 |   0.066 | 100 | 128 | 30 |  660. | 0 |  796. | 0 | 1699. | 1 |  1699. | 0.0531 |  0.61 |    0.04746 | 0.16 |   0.0087 |   2e2 | 1.8e20 | 0.03245 |  0.0000 |
-| SW Red complex   |   0.45 |  0.027 |   0.400 |  36 |     |    |  518. | 1 |   0e0 | 0 |   0e0 | 0 |   518. | 0.0162 |  2.50 |    0.00353 | 0.19 |   0.0015 | 4.9e1 | 2.7e20 |    0.25 |  0.3207 |
-| NW knot          |   0.75 |   0.26 |   0.455 |   3 |     |    |    4. | 1 |   0e0 | 0 |   0e0 | 0 |     4. | 0.0001 |  9.23 |  7.3850e-6 | 0.18 |   0.0005 | 1.3e1 | 8.3e19 |    0.33 |  0.4469 |
-| N knot           |   0.19 |   0.01 |   0.163 |   5 |     |    |    4. | 1 |   0e0 | 0 |   0e0 | 0 |     4. | 0.0001 |  4.28 |    0.00002 | 0.19 |   0.0009 | 2.9e1 | 6.4e19 |    0.43 |  0.6116 |
-| Shell A N Rim    |    1.0 |   0.12 |   0.873 |  38 |  77 |  6 | 1261. | 0 | 1267. | 1 | 8130. | 0 |  1267. | 0.0396 |  3.59 |    0.00601 | 0.07 |   0.0077 | 3.4e1 | 4.1e20 |   0.045 |  0.0177 |
-| Shell A N inside |   0.83 |   0.30 |   0.526 |  20 |  77 |    |  210. | 0 |   0e0 | 0 | 4899. | 1 |  4899. | 0.1531 |  3.84 |    0.02174 | 0.07 |   0.0072 | 3.2e1 | 2.3e20 |   0.045 |  0.0177 |
-| Peak             |    8.2 |    4.2 |   3.927 |  15 |     |    |  884. | 1 |   0e0 | 0 |   0e0 | 0 |   884. | 0.0276 | 12.13 |    0.00124 | 0.24 |   0.0002 | 1.0e1 | 5.5e20 |    0.09 |  0.0818 |
-| N complexes      |    4.2 |   0.83 |   3.286 |  50 |     |    | 8215. | 1 |   0e0 | 0 |   0e0 | 0 |  8215. | 0.2567 |  6.08 |    0.02302 | 0.24 |   0.0004 | 2.0e1 | 9.1e20 |    0.12 |  0.1253 |
-| S complexes      |    2.5 |    1.1 |   1.390 |  51 |     |    | 3615. | 1 |   0e0 | 0 |   0e0 | 0 |  3615. | 0.1130 |  3.91 |    0.01576 | 0.07 |   0.0071 | 3.1e1 | 6.0e20 |    0.04 |  0.0106 |
-| SE knot          |    2.2 |    1.2 |   0.969 |   5 |     |    |   24. | 1 |   0e0 | 0 |   0e0 | 0 |    24. | 0.0008 | 10.43 |    0.00004 | 0.07 |   0.0027 | 1.2e1 | 1.6e20 |    0.15 |  0.1693 |
-| Shell A S Rim    |    1.5 |   0.20 |   1.288 |  26 |  70 |  3 |  871. | 0 |  850. | 1 | 9914. | 0 |   850. | 0.0266 |  5.27 |    0.00275 | 0.08 |   0.0040 | 2.3e1 | 4.1e20 |    0.05 |  0.0247 |
-| Shell A S inside |    1.1 |   0.20 |   0.893 |  20 |  70 |    |  357. | 0 |   0e0 | 0 | 6873. | 1 |  6873. | 0.2148 |  5.01 |    0.02338 | 0.08 |   0.0043 | 2.4e1 | 3.0e20 |    0.04 |  0.0106 |
-| IS SE            |   0.15 |   0.06 |   0.089 |  40 |     |    |  142. | 1 |   0e0 | 0 |   0e0 | 0 |   142. | 0.0044 |  1.12 |    0.00216 | 0.12 |   0.0085 | 1.1e2 | 1.3e20 | 0.03245 |  0.0000 |
-| IS ENE           |   0.16 |   0.01 |   0.149 | 117 |  99 | 35 | 2040. | 0 | 1622. | 0 | 2294. | 1 |  2294. | 0.0717 |  0.85 |    0.04599 | 0.10 |   0.0160 | 1.4e2 | 3.0e20 | 0.03245 |  0.0000 |
-| Lobe W           |  0.015 |  0.001 |   0.014 |  50 |     |    |   35. | 1 |   0e0 | 0 |   0e0 | 0 |    35. | 0.0011 |  0.40 |    0.00149 | 0.19 |   0.0094 | 3.1e2 |   6e19 | 0.03245 |  0.0000 |
-| Lobe E           |  0.009 |  0.001 |   0.008 |  60 |     |    |   29. | 1 |   0e0 | 0 |   0e0 | 0 |    29. | 0.0009 |  0.27 |    0.00183 | 0.14 |   0.0258 | 4.5e2 | 4.9e19 | 0.03245 |  0.0000 |
-| Lobe S           |  0.008 | 0.0006 |   0.007 | 100 |     |    |   70. | 1 |   0e0 | 0 |   0e0 | 0 |    70. | 0.0022 |  0.20 |    0.00596 | 0.17 |   0.0236 | 6.1e2 |   6e19 | 0.03245 |  0.0000 |
-| Lobe N           |  0.011 | 0.0005 |   0.010 | 100 |     |    |  100. | 1 |   0e0 | 0 |   0e0 | 0 |   100. | 0.0031 |  0.24 |    0.00710 | 0.17 |   0.0197 | 5.1e2 | 7.2e19 | 0.03245 |  0.0000 |
-| Inner Halo S     |  0.004 |  0.001 |   0.003 | 170 | 100 |    |   87. | 0 |   0e0 | 0 |   47. | 1 |    47. | 0.0015 |  0.10 |    0.00801 | 0.19 |   0.0378 | 1.2e3 | 5.1e19 | 0.03245 |  0.0000 |
-| Inner Halo N     |  0.010 |  0.001 |   0.009 | 170 | 100 |    |  260. | 0 |   0e0 | 0 |  141. | 1 |   141. | 0.0044 |  0.17 |    0.01413 | 0.19 |   0.0222 | 7.2e2 | 8.7e19 | 0.03245 |  0.0000 |
-| Outer Halo S     |  0.001 |    0.0 | 9.94e-4 | 300 | 160 |    |   89. | 0 |   0e0 | 0 |   40. | 1 |    40. | 0.0013 |  0.04 |    0.01704 | 0.25 |   0.0545 | 3.1e3 | 3.6e19 | 0.03245 |  0.0000 |
-| Outer Halo N     | 0.0002 |    0.0 | 1.99e-4 | 400 | 210 |    |   32. | 0 |   0e0 | 0 |   14. | 1 |    14. | 0.0004 |  0.02 |    0.01193 | 0.30 |   0.0757 | 6.1e3 | 2.4e19 | 0.03245 |  0.0000 |
-|------------------+--------+--------+---------+-----+-----+----+-------+---+-------+---+-------+---+--------+--------+-------+------------+------+----------+-------+--------+---------+---------|
-|                  |      1 |      0 |   1.002 |   1 |     |    |    1. |   |   0e0 |   |   0e0 |   | 31764. | 0.9926 | 23.72 | 0.26059739 |    1 | 5.747e-6 | 5.1e0 | 7.1e19 |         | -0.0452 |
-#+TBLFM: $4=($2 - $3) / (1.00561 + 0.1586 $23); f3::$8=$4 $5**2;f0::$10=$4 $pi $6 $7;f0::$12=$4 $pi 0.5 $6**2;f0::$14=$8 $9 + $10 $11 + $12 $13::$15=$14/32000;f4::$16=23.7 sqrt($4/$5);f2::$17=$14/$16 58682;f5::$19=4.89e47/ 4 $pi 1000 $16 $c ($18 $pc)**2 ;f4::$20=122/$16;s2::$21=3e15 $5 $16 1000;s2::$23=(1.393 $22 - 0.0452) / (1 - 0.2197 $22) ;%.4f::@24$14=vsum(@I..@II)::@24$17=vsum(@I..@II)
+#+name: big-table-of-ha-brightness
+| Feature          |  S(Ha) |     BG |      S' |  ds |   R |  h |     F1 | 1 |    F2 | 2 |     F3 | 3 |      F |   frac |     n |     M_i | R_3d |    U_ion | t_rec |      N | 658/656 |   R_NII | 502/487 | E5/4 |
+|------------------+--------+--------+---------+-----+-----+----+--------+---+-------+---+--------+---+--------+--------+-------+---------+------+----------+-------+--------+---------+---------+---------+------|
+| IS WSW           |   0.07 |  0.004 |   0.080 | 100 | 128 | 30 |   800. | 0 |  965. | 0 |  2059. | 1 |  2059. | 0.0521 |  0.67 | 0.05237 | 0.16 |   0.0079 | 1.8e2 | 2.0e20 |  0.0809 |  0.0687 |    10.1 |  1.0 |
+| SW Red complex   |   0.45 |  0.027 |   0.494 |  36 |     |    |   640. | 1 |   0e0 | 0 |    0e0 | 0 |   640. | 0.0162 |  2.78 | 0.00392 | 0.19 |   0.0014 | 4.4e1 | 3.0e20 |    0.25 |  0.3207 |     8.9 |  0.3 |
+| NW knot          |   0.75 |   0.26 |   0.562 |   7 |     |    |    28. | 1 |   0e0 | 0 |    0e0 | 0 |    28. | 0.0007 |  6.72 | 0.00007 | 0.18 |   0.0006 | 1.8e1 | 1.4e20 |    0.33 |  0.4469 |     9.6 |  0.5 |
+| N knot           |   0.19 |   0.01 |   0.201 |  12 |     |    |    29. | 1 |   0e0 | 0 |    0e0 | 0 |    29. | 0.0007 |  3.07 | 0.00016 | 0.19 |   0.0012 | 4.0e1 | 1.1e20 |    0.43 |  0.6116 |     8.3 |  0.8 |
+| Shell A N Rim    |    1.0 |   0.12 |   1.077 |  38 |  77 |  6 |  1555. | 0 | 1563. | 1 | 10030. | 0 |  1563. | 0.0396 |  3.99 | 0.00668 | 0.07 |   0.0070 | 3.1e1 | 4.5e20 |   0.045 |  0.0177 |    10.4 |  0.6 |
+| Shell A N inside |   0.83 |   0.30 |   0.649 |  20 |  77 |    |   260. | 0 |   0e0 | 0 |  6044. | 1 |  6044. | 0.1531 |  4.27 | 0.02412 | 0.07 |   0.0065 | 2.9e1 | 2.6e20 |   0.045 |  0.0177 |     9.2 |  0.3 |
+| Peak             |    8.2 |    4.2 |   4.846 |  15 |     |    |  1090. | 1 |   0e0 | 0 |    0e0 | 0 |  1090. | 0.0276 | 13.47 | 0.00138 | 0.24 |   0.0002 | 9.1e0 | 6.1e20 |    0.09 |  0.0818 |    10.0 |  0.2 |
+| N complexes      |    4.2 |   0.83 |   4.055 |  50 |     |    | 10138. | 1 |   0e0 | 0 |    0e0 | 0 | 10138. | 0.2567 |  6.75 | 0.02559 | 0.24 |   0.0004 | 1.8e1 | 1.0e21 |    0.12 |  0.1253 |     9.9 |  0.4 |
+| S complexes      |    2.3 |    1.5 |   0.980 |  51 |     |    |  2549. | 1 |   0e0 | 0 |    0e0 | 0 |  2549. | 0.0646 |  3.29 | 0.01320 | 0.07 |   0.0085 | 3.7e1 | 5.0e20 |    0.04 |  0.0106 |     9.2 |  0.2 |
+| SE knot          |    2.2 |    1.2 |   1.195 |  10 |     |    |   120. | 1 |   0e0 | 0 |    0e0 | 0 |   120. | 0.0030 |  8.19 | 0.00025 | 0.07 |   0.0034 | 1.5e1 | 2.5e20 |    0.15 |  0.1693 |     9.2 |  0.3 |
+| Shell A S Rim    |    1.5 |   0.20 |   1.589 |  26 |  70 |  3 |  1074. | 0 | 1048. | 1 | 12230. | 0 |  1048. | 0.0265 |  5.86 | 0.00305 | 0.08 |   0.0036 | 2.1e1 | 4.6e20 |    0.05 |  0.0247 |     9.9 |  0.4 |
+| Shell A S inside |    1.1 |   0.20 |   1.103 |  20 |  70 |    |   441. | 0 |   0e0 | 0 |  8490. | 1 |  8490. | 0.2150 |  5.57 | 0.02597 | 0.08 |   0.0038 | 2.2e1 | 3.3e20 |    0.04 |  0.0106 |     9.1 |  0.3 |
+| IS SE            |   0.15 |   0.06 |   0.110 |  40 |     |    |   176. | 1 |   0e0 | 0 |    0e0 | 0 |   176. | 0.0045 |  1.24 | 0.00242 | 0.12 |   0.0076 | 9.8e1 | 1.5e20 | 0.03636 |  0.0055 |     9.2 |  0.3 |
+| IS ENE           |   0.16 |   0.01 |   0.183 | 117 |  99 | 35 |  2505. | 0 | 1992. | 0 |  2817. | 1 |  2817. | 0.0713 |  0.94 | 0.05107 | 0.10 |   0.0145 | 1.3e2 | 3.3e20 | 0.07027 |  0.0535 |    10.7 |  1.0 |
+| Lobe W           |  0.015 |  0.001 |   0.017 |  50 |     |    |    43. | 1 |   0e0 | 0 |    0e0 | 0 |    43. | 0.0011 |  0.44 | 0.00167 | 0.19 |   0.0086 | 2.8e2 | 6.6e19 | 0.06337 |  0.0437 |     9.8 |  0.7 |
+| Lobe E           |  0.009 |  0.001 |   0.010 |  60 |     |    |    36. | 1 |   0e0 | 0 |    0e0 | 0 |    36. | 0.0009 |  0.31 | 0.00198 | 0.14 |   0.0224 | 3.9e2 | 5.6e19 |   0.045 |  0.0177 |     9.7 |  0.9 |
+| Lobe S           |  0.008 | 0.0006 |   0.009 | 100 |     |    |    90. | 1 |   0e0 | 0 |    0e0 | 0 |    90. | 0.0023 |  0.22 | 0.00697 | 0.17 |   0.0214 | 5.5e2 | 6.6e19 | 0.03333 |  0.0012 |     9.2 |  1.1 |
+| Lobe N           |  0.011 | 0.0005 |   0.013 | 100 |     |    |   130. | 1 |   0e0 | 0 |    0e0 | 0 |   130. | 0.0033 |  0.27 | 0.00820 | 0.17 |   0.0175 | 4.5e2 | 8.1e19 | 0.05588 |  0.0330 |     7.0 |  0.8 |
+| Inner Halo S     |  0.004 |  0.001 |   0.004 | 170 | 100 |    |   116. | 0 |   0e0 | 0 |    63. | 1 |    63. | 0.0016 |  0.11 | 0.00976 | 0.19 |   0.0343 | 1.1e3 | 5.6e19 |  0.1792 |  0.2128 |    12.6 |  0.8 |
+| Inner Halo N     |  0.010 |  0.001 |   0.011 | 170 | 100 |    |   318. | 0 |   0e0 | 0 |   173. | 1 |   173. | 0.0044 |  0.19 | 0.01552 | 0.19 |   0.0199 | 6.4e2 | 9.7e19 |  0.1143 |  0.1170 |    11.7 |    3 |
+| Outer Halo S     |  0.001 |    0.0 |   0.001 | 300 | 160 |    |    90. | 0 |   0e0 | 0 |    40. | 1 |    40. | 0.0010 |  0.04 | 0.01704 | 0.25 |   0.0545 | 3.1e3 | 3.6e19 | 0.03245 |  0.0000 |     0.0 |  0.0 |
+| Outer Halo N     | 0.0002 |    0.0 | 2.45e-4 | 400 | 210 |    |    39. | 0 |   0e0 | 0 |    17. | 1 |    17. | 0.0004 |  0.02 | 0.01448 | 0.30 |   0.0757 | 6.1e3 | 2.4e19 | 0.03245 |  0.0000 |     0.0 |  0.0 |
+|------------------+--------+--------+---------+-----+-----+----+--------+---+-------+---+--------+---+--------+--------+-------+---------+------+----------+-------+--------+---------+---------+---------+------|
+|                  |      1 |      0 |   1.236 |   1 |     |    |     1. |   |   0e0 |   |    0e0 |   | 37383. | 0.9467 | 26.35 | 0.28587 |    1 | 5.174e-6 | 4.6e0 | 7.9e19 |         | -0.0452 |         |      |
+#+TBLFM: $4=1.234 ($2 - $3) / (1.00561 + 0.1586 $23); f3::$8=$4 $5**2;f0::$10=$4 $pi $6 $7;f0::$12=$4 $pi 0.5 $6**2;f0::$14=$8 $9 + $10 $11 + $12 $13::$15=$14/1.234 32000;f4::$16=23.7 sqrt($4/$5);f2::$17=$14/$16 58682;f5::$19=4.89e47/ 4 $pi 1000 $16 $c ($18 $pc)**2 ;f4::$20=122/$16;s2::$21=3e15 $5 $16 1000;s2::$23=(1.393 $22 - 0.0452) / (1 - 0.2197 $22) ;%.4f::@24$14=vsum(@I..@II)::@24$17=vsum(@I..@II)
 + ds is transverse width in pixels
 + R is the radius of a shell
 + h is the thickness of a shell
 + S' is the BG-subtracted surface brightness
+  + Now corrected for continuum and [N II] contribution to F656N
 + Fluxes are calculated in three different ways (only one of the 3 is used for each feature)
   1. F1 uses Area = ds^2
   2. F2 uses Area = \pi R h (semi-circular annulus)
   3. F3 uses Area = 0.5 \pi R^2 (semi-circular disk)
 + F is the selected flux 
-  + Columns 1, 2, 3 are flags, which select ehich of F1, F2, or F3 to use
+  + Columns 1, 2, 3 are flags, which select which of F1, F2, or F3 to use
 + frac is the fraction of the total nebular flux
   + The denominator of 32,000 comes from the nested box photometry in the table below
+  + So, we can check the total flux using the absolute calibration
+    + To do this, we don't need the pixel \to sr conversion since we are summing over the pixels
+    + So the conversion factor is 8.217e-15 erg/cm2/s per count/s
+    + And assuming an average R_NII of 0.1, this is divided by 1.02147 => 8.044e-15
+    + Total H\alpha flux is 2.574e-10 erg/s/cm^2
+      + We need to correct this for extinction
+      + Pottasch:2009a give C(Hb) = 0.13
+      + For H\alpha we have C(Ha) = 0.70 C(Hb) = 0.0913, assuming Cardelli:1989a reddening law
+      + So intrinsic H\alpha flux is 1.234 2.574e-10 = 3.176e-10 erg/s/cm^2
+      + Assuming Ha/Hb = 2.85, H\beta flux is 1.114e-10 erg/s/cm^2
+      + /Hurray/, this is identical to Pottasch:2009a value of 1.1e-10 erg/cm2/s, which really comes from Liu:2004a
 + So H\alpha flux fractions are something like this:
   - Intermediate Shell: 0.0722 + 0.0045 + 0.0531 = 13%
   - Inner shells: 0.0399 + 0.1543 + 0.0268 + 0.2165 = 44%
@@ -491,7 +508,6 @@
 + Ionized mass
   + Proportional to F/n
     + Following calculation is relative to total shells+knots+lobes (that is, not the halos)
-    + See below for 
   + Inner shells: 0.02863 + 0.10384 + 0.01305 + 0.11136 = 26%
   + Intermediate shells: 0.21860 + 0.01022 + 0.22271 = 45%
   + Knot complexes: 0.07475 + 0.11044 + 0.00594 + 0.01729 = 21%
@@ -535,6 +551,33 @@
     + Lobes are 2% of total flux
     + Inner shells are 60%
     + IS is 14% but that is an over-estimate since it includes emission associated with the knot complexes
+**** Table of HST line ratios
+#+name: big-table-of-line-ratios
+| Feature          |  U_ion | 658/656 |  R_NII | 502/487 | E502/487 | 4363/5007 | E(4363/5007) |
+|------------------+--------+---------+--------+---------+----------+-----------+--------------|
+| IS WSW           | 0.0079 |  0.0809 | 0.0687 |    10.1 |      1.0 |   0.00966 |      0.00543 |
+| SW Red complex   | 0.0014 |    0.25 | 0.3207 |     8.9 |      0.3 |   0.00585 |      0.00043 |
+| NW knot          | 0.0006 |    0.33 | 0.4469 |     9.6 |      0.5 |   0.00653 |      0.00089 |
+| N knot           | 0.0012 |    0.43 | 0.6116 |     8.3 |      0.8 |   0.00708 |      0.00108 |
+| Shell A N Rim    | 0.0070 |   0.045 | 0.0177 |    10.4 |      0.6 |   0.00569 |      0.00053 |
+| Shell A N inside | 0.0065 |   0.045 | 0.0177 |     9.2 |      0.3 |   0.00610 |      0.00039 |
+| Peak             | 0.0002 |    0.09 | 0.0818 |    10.0 |      0.2 |   0.00619 |      0.00036 |
+| N complexes      | 0.0004 |    0.12 | 0.1253 |     9.9 |      0.4 |   0.00525 |      0.00024 |
+| S complexes      | 0.0085 |    0.04 | 0.0106 |     9.2 |      0.2 |   0.00596 |      0.00028 |
+| SE knot          | 0.0034 |    0.15 | 0.1693 |     9.2 |      0.3 |   0.00609 |      0.00029 |
+| Shell A S Rim    | 0.0036 |    0.05 | 0.0247 |     9.9 |      0.4 |   0.00490 |      0.00041 |
+| Shell A S inside | 0.0038 |    0.04 | 0.0106 |     9.1 |      0.3 |   0.00580 |      0.00033 |
+| IS SE            | 0.0076 | 0.03636 | 0.0055 |     9.2 |      0.3 |   0.00663 |      0.00060 |
+| IS ENE           | 0.0145 | 0.07027 | 0.0535 |    10.7 |      1.0 |   0.01292 |      0.00293 |
+| Lobe W           | 0.0086 | 0.06337 | 0.0437 |     9.8 |      0.7 |   0.02387 |      0.00770 |
+| Lobe E           | 0.0224 |   0.045 | 0.0177 |     9.7 |      0.9 |   0.01009 |      0.00697 |
+| Lobe S           | 0.0214 | 0.03333 | 0.0012 |     9.2 |      1.1 |   0.01155 |      0.00472 |
+| Lobe N           | 0.0175 | 0.05588 | 0.0330 |     7.0 |      0.8 |   0.01275 |      0.00379 |
+| Inner Halo S     | 0.0343 |  0.1792 | 0.2128 |    12.6 |      0.8 |   0.01221 |      0.00283 |
+| Inner Halo N     | 0.0199 |  0.1143 | 0.1170 |    11.7 |        3 |   0.02034 |      0.00836 |
+|------------------+--------+---------+--------+---------+----------+-----------+--------------|
+#+TBLFM: $4=(1.393 $5 - 0.0452) / (1 - 0.2197 $5) ;%.4f::
+
 **** Densities from the [S II] longslit spectrum
 + There is only on exposure: Slit S
 + It is at a very similar position/PA to Slit T (Ha, [N II]) and Slit R ([O III])
@@ -658,12 +701,12 @@ This table corrects the raw 6716/6731 ratio to force the average ratio to be 0.6
 | Component       | [S II]  Dens | Ha Den | F375N/F658N   |
 |                 |     1000 pcc |        |               |
 |-----------------+--------------+--------+---------------|
-| N knot          |          1.8 |    4.3 | 1.84 +/- 0.70 |
-| Inner shell     |          4.1 |    3.8 | 1.80 +/- 0.30 |
-| N Red complex   |          5.9 |    6.1 | 1.52 +/- 0.20 |
+| N knot          |          1.8 |   3.07 | 1.84 +/- 0.70 |
+| Inner shell     |          4.1 |   4.13 | 1.80 +/- 0.30 |
+| N Red complex   |          5.9 |   6.75 | 1.52 +/- 0.20 |
 | NE Blue complex |          2.4 |        |               |
-| SW Red complex  |          2.8 |    2.5 | 1.87 +/- 0.27 |
-| SE Blue complex |          1.9 |    3.9 | 1.60 +/- 0.30 |
+| SW Red complex  |          2.8 |   2.78 | 1.87 +/- 0.27 |
+| SE Blue complex |          1.9 |   3.29 | 1.60 +/- 0.30 |
 | Average nebula  |          3.2 |        |               |
 
 
@@ -679,11 +722,13 @@ This table corrects the raw 6716/6731 ratio to force the average ratio to be 0.6
   + Conversion factor of 8.217e-15 erg/cm2/count/pixel
   + Pixel size is 0.1 arcsec^2 = (10 206265)**-2 sr = 2.35e-13 sr
   + Final conversion is S = 0.03496 erg s^-1 cm^-2 sr^-1 times the counts/s value
-+ [X] Note that this is only approximate, since it doesn't include continuum and [N II] contribution to F656N
-  + To fix this, we need to record the filter ratio F658N/F656N ratio for each component
++ [-] Note that this *originally was* only approximate, since it doesn't include continuum and [N II] contribution to F656N
+  + [X] To fix this, we need to record the filter ratio F658N/F656N ratio for each component
     + Now done in the big table, and converted to line ratio R_NII = I6583/I6563
     + So, accounting for atomic continuum and 6548 contamination, the Ha fluxes need to be divided by 1.00561 + 0.1586 R_NII
     + This is done in the S' column, so that it propagates through to all the other measures, such as mass and ionization parameter, as well as density
+  + [ ] We also need to correct for extinction, which I did above (see discussion of flux fractions after [[id:0CA50980-C2C9-4718-ABE6-44177D753BAC][Table of brightnesses]])
+    + This multiplies all H\alpha brightnesses by 1.234, which is now incorporated in the S' column 
 + Derived density:
   + S = \alpha_eff E(H\alpha) n^2 dz / 4 \pi
     + \alpha_eff = 3.03e-14 2.84 = 8.6052e-14 cm^3 s^-1
@@ -691,7 +736,8 @@ This table corrects the raw 6716/6731 ratio to force the average ratio to be 0.6
     + dz is measured in pixels = 0.1 arcsec = 2.992e+15 cm
   + n = sqrt(4 pi 0.03496 S' / 2.992e+15 dz 8.6052e-14 3.027e-12) = 2.374e+04 sqrt(S' / dz)
     + With S' in counts/s/pix and dz in pixels
-**** TODO Summary table of physical properties
+**** DONE Summary table of physical properties
+CLOSED: [2020-04-29 Wed 18:23]
 + Convert to physical units:
   + Density: normalize by 4000 pcc
   + Mass: Area times column density, which is flux / density
@@ -734,22 +780,248 @@ This table corrects the raw 6716/6731 ratio to force the average ratio to be 0.6
     + In above table, R is in pc and n is in 4000 pcc, so normalization is:
       + 4.89e+47 / 4 pi 4000 c (1 pc)**2 = 3.408e-05 +/- 47% 
 
-| Component          | Ha flux | Density, pcc | Mass, Msun | ioniz param     | t_start | t_end | Mdot, Msun/yr |
-|--------------------+---------+--------------+------------+-----------------+---------+-------+---------------|
-| Inner shells       | 44 %    | 3000 \to 4500  |      0.078 | 0.0048 \to 0.0092 |      -4 |  -1.5 |        3.1e-5 |
-| Intermediate shell | 13 %    | 500 \to 750    |      0.135 | 0.0098 \to 0.0189 |     -10 |    -4 |        2.3e-5 |
-| Knot complexes     | 42 %    | 2000 \to 5000  |      0.063 | 0.0002 \to 0.0017 |      -8 |  -1.5 |        9.7e-6 |
-| Outer Lobes        | 1 %     | 160 \to 320    |      0.024 | 0.0118 \to 0.0295 |      -8 |    -2 |          4e-6 |
-|--------------------+---------+--------------+------------+-----------------+---------+-------+---------------|
-| Inner Halo         | 0.5 %   | 80 \to 160     |      0.030 | 0.0236 \to 0.0472 |     -20 |   -10 |          3e-6 |
-| Outer Halo         | 0.2 %   | 15 \to 40      |      0.042 | 0.0599 \to 0.1082 |     -40 |   -20 |        2.1e-6 |
-|--------------------+---------+--------------+------------+-----------------+---------+-------+---------------|
-| Bright peak        | (3%)    | 10000        |    (0.002) | 0.0002          |         |       |      2e-3 / 0 |
-| NW knot            | (0.01%) | 8000         |     (1e-5) | 0.0005          |    -7.1 |  -6.7 |        2.5e-8 |
-| N knot             | (0.02%) | 3800         |     (3e-5) | 0.0010          |    -3.0 |  -2.7 |          1e-7 |
-|--------------------+---------+--------------+------------+-----------------+---------+-------+---------------|
-|                    |         |              |      0.372 |                 |         |       |    3.7e-1 / 0 |
-#+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@11$4=vsum(@I..@III)
+#+name: summary-pars
+| Component          | Ha flux | Density, pcc | Mass, Msun | ioniz param, 1e-4 | t_start | t_end | Mdot, Msun/yr |
+|--------------------+---------+--------------+------------+-------------------+---------+-------+---------------|
+| Inner shells       | 44 %    | 4000 \to 5000  |      0.078 | 36 \to 70           |      -4 |  -1.5 |        3.1e-5 |
+| Intermediate shell | 13 %    | 700 \to 1000   |      0.135 | 80 \to 140          |     -10 |    -4 |        2.3e-5 |
+| Knot complexes     | 42 %    | 2000 \to 5000  |      0.063 | 4 \to 50            |      -8 |  -1.5 |        9.7e-6 |
+| Outer Lobes        | 1 %     | 160 \to 320    |      0.024 | 86 \to 224          |      -8 |    -2 |          4e-6 |
+|--------------------+---------+--------------+------------+-------------------+---------+-------+---------------|
+| Inner Halo         | 0.5 %   | 80 \to 160     |      0.030 | 200 \to 340         |     -20 |   -10 |          3e-6 |
+| Outer Halo         | 0.2 %   | 15 \to 40      |      0.042 | 540 \to 760         |     -40 |   -20 |        2.1e-6 |
+|--------------------+---------+--------------+------------+-------------------+---------+-------+---------------|
+| Bright peak        | (3%)    | 14000        |    (0.002) | 2                 |         |       |      2e-3 / 0 |
+| NW knot            | (0.01%) | 6700         |     (1e-5) | 6                 |    -7.1 |  -6.7 |        2.5e-8 |
+| SE knot            | (0.08%) | 8200         |     (6e-5) | 34                |   -1.25 | -0.95 |          2e-7 |
+| N knot             | (0.02%) | 3000         |     (3e-5) | 12                |    -3.0 |  -2.7 |          1e-7 |
+|--------------------+---------+--------------+------------+-------------------+---------+-------+---------------|
+|                    |         |              |      0.372 |                   |         |       |    3.7e-1 / 0 |
+#+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@12$4=vsum(@I..@III)
+**** TODO Latex version of summary table
+**** TODO Graph of [N II]/Ha versus ionization parameter
+#+begin_src python :var TAB=big-table-of-ha-brightness :colnames no :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.table import Table
+
+  data = Table(rows=TAB[1:-1], names=TAB[0])
+
+  type_list = []
+  for name in data["Feature"]:
+      if "IS" in name or "Shell" in name:
+          t = "shell"
+      elif "knot" in name or "complex" in name or "Peak" in name:
+          t = "knot"
+      elif "Lobe" in name:
+          t = "lobe"
+      elif "Halo" in name:
+          t = "halo"
+      else:
+          t = ""
+      type_list.append(t)
+  data["Type"] = type_list
+
+  sns.set_color_codes("bright")
+  figfile = "rnii-vs-ion-par.pdf"
+  fig, ax = plt.subplots()
+
+  Ugrid = np.logspace(-5.5, 0.0)
+  ax.plot(Ugrid, 3.295 / (1 + 1.6e4*Ugrid), lw=8, c="0.8")
+  for type_, marker, color, size in [
+          ["shell", "o", "b", 100],
+          ["knot", "o", "orange", 100],
+          ["lobe", "o", "red", 100],
+          ["halo", f"$\downarrow$", "k", 200],
+  ]:
+      m = data["Type"] == type_
+      ax.scatter("U_ion", "R_NII", data=data[m], s=size, marker=marker, color=color)
+
+  ax.set(
+      xscale="log",
+      yscale="log",
+      xlim=[0.00002, 0.1],
+      ylim=[0.001, 4.0],
+      xlabel="Ionization parameter",
+      ylabel=r"[N II] / H$\alpha$",
+  )
+  sns.despine()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:rnii-vs-ion-par.pdf]]
+
+**** TODO Graph of [O III]/H\beta versus ionization parameter
++ 1.159 times filter ratio
++ From pyneb I get the following emissivities (T = 10000 K, n = 4000)
+  | Hb           | 1.23880618e-25 |
+  | [O III] 5007 | 3.56864937e-21 |
+  | [N II] 6583  | 5.83203588e-21 |
+  | Ha           | 3.53159176e-25 |
++ Pottasch gives abundances as follows:
+  + N/H = 7.0e-5
+  + O/H = 4.9e-4
++ So, assuming 100% respective ion fraction, we predict
+  + [O III]/Hb = 4.9e-4 3.56864937e-21 / 1.23880618e-25 = 14.12
+  + [N II]/Ha = 7.0e-5 5.83203588e-21 / 1.23880618e-25 = 3.295
++ We expect the following
+  + f++/(1 - f++) = A U_ion
+  + => f++ = A U_ion / (1 + A U_ion) 
+  + AND (1 - f+) / f+ = A U_ion
+  + f+ = 1 / (1 + A U_ion)
+
+#+begin_src python :var TAB=big-table-of-line-ratios :colnames no :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.table import Table
+
+  data = Table(rows=TAB[1:], names=TAB[0])
+
+  type_list = []
+  for name in data["Feature"]:
+      if "IS" in name or "Shell" in name:
+          t = "shell"
+      elif "knot" in name or "complex" in name or "Peak" in name:
+          t = "knot"
+      elif "Lobe" in name:
+          t = "lobe"
+      elif "Halo" in name:
+          t = "halo"
+      else:
+          t = ""
+      type_list.append(t)
+  data["Type"] = type_list
+
+  data["R_OIII"] = 1.159*data["502/487"]
+
+  sns.set_color_codes("bright")
+  figfile = "roiii-vs-ion-par.pdf"
+  fig, ax = plt.subplots()
+
+  Ugrid = np.logspace(-5.5, 0.0)
+  ax.plot(Ugrid, 14.12 * 1.6e4*Ugrid / (1 + 1.6e4*Ugrid), lw=8, c="0.8", zorder=-200)
+  for type_, marker, color, size in [
+          ["shell", "o", "b", 100],
+          ["knot", "o", "orange", 100],
+          ["lobe", "o", "red", 100],
+          ["halo", "o", "k", 100],
+  ]:
+      m = data["Type"] == type_
+      ax.errorbar("U_ion", "R_OIII", yerr="E502/487", fmt="none", data=data[m],  zorder=-100, ecolor=color)
+      ax.scatter("U_ion", "R_OIII", data=data[m], s=size, marker=marker, color=color)
+
+  ax.set(
+      xscale="log",
+      yscale="linear",
+      xlim=[0.00002, 0.1],
+      ylim=[0.0, 16.0],
+      xlabel="Ionization parameter",
+      ylabel=r"[O III] / H$\beta$",
+  )
+  sns.despine()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:roiii-vs-ion-par.pdf]]
+
+**** [O III] T ratio vs [O III]/Hb
+#+begin_src python :var TAB=big-table-of-line-ratios :colnames no :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.table import Table
+  import pyneb as pn
+
+  data = Table(rows=TAB[1:], names=TAB[0])
+
+  type_list = []
+  for name in data["Feature"]:
+      if "IS" in name:
+          t = "intermediate shell"
+      elif "Shell" in name:
+          t = "shell"
+      elif "knot" in name:
+          t = "knot"
+      elif "complex" in name or "Peak" in name:
+          t = "knot complex"
+      elif "Lobe" in name:
+          t = "lobe"
+      elif "Halo" in name:
+          t = "halo"
+      else:
+          t = ""
+      type_list.append(t)
+  data["Type"] = type_list
+
+  data["R_OIII"] = 1.159*data["502/487"]
+
+  nii = pn.Atom(atom='N2')
+  oiii = pn.Atom(atom='O3')
+  hi = pn.RecAtom('H', 1)
+  T = np.linspace(9000, 15000, 61)
+  den = 4000.0
+  em4363 = oiii.getEmissivity(T, den, wave=4363)
+  em5007 = oiii.getEmissivity(T, den, wave=5007)
+  em6583 = nii.getEmissivity(T, den, wave=6583)
+  em6563 = hi.getEmissivity(T, den, lev_i=3, lev_j=2)
+  em4861 = hi.getEmissivity(T, den, lev_i=4, lev_j=2)
+  O_H = 4.9e-4
+  N_H = 7.0e-5
+
+  sns.set_color_codes("bright")
+  figfile = "roiii-vs-rtoiii.pdf"
+  fig, ax = plt.subplots()
+
+  
+
+  ax.plot(em4363/em5007, O_H*em5007/em4861, lw=8, c="0.7", zorder=-200)
+  ax.plot(em4363/em5007, O_H*em5007/em4861, 'o', markevery=10, c="w", zorder=-199)
+
+  ax.plot(em4363/em5007, 0.4*O_H*em5007/em4861, lw=8, c="0.7", zorder=-200, alpha=0.7)
+  ax.plot(em4363/em5007, 0.4*O_H*em5007/em4861, 'o', markevery=10, c="w", zorder=-199)
+
+  for type_, marker, color, size in [
+          ["intermediate shell", "o", "b", 50],
+          ["shell", "o", "b", 100],
+          ["knot", "o", "orange", 50],
+          ["knot complex", "o", "orange", 100],
+          ["lobe", "o", "red", 100],
+          ["halo", "o", "k", 100],
+  ]:
+      m = data["Type"] == type_
+      ax.errorbar("4363/5007", "R_OIII", xerr="E(4363/5007)", yerr="E502/487", fmt="none", data=data[m],  zorder=-100, ecolor=color)
+      ax.scatter("4363/5007", "R_OIII", data=data[m], s=size, marker=marker, color=color)
+
+  ax.text(0.01, 25, r"O$^{2+}$ / H = " + f"{O_H:.1e}", color="0.7", rotation=37)
+  ax.text(0.015, 15.5, r"O$^{2+}$ / H = " + f"{0.4*O_H:.1e}", color="0.7", alpha=0.7, rotation=38)
+
+  ax.text(0.0205, 46, r"$T$ = 15,000 K", color="0.7")
+  ax.text(0.0205, 18, r"$T$ = 15,000 K", color="0.7", alpha=0.7)
+
+  ax.text(0.012, 24, r"$T$ = 12,000 K", color="0.7")
+  ax.text(0.012, 9.5, r"$T$ = 12,000 K", color="0.7", alpha=0.7, zorder=-200)
+
+  ax.text(0.007, 13.5, r"$T$ = 10,000 K", color="0.7")
+
+  ax.set(
+      xscale="log",
+      yscale="log",
+      xlim=[0.004, 0.03],
+      ylim=[6.0, 50.0],
+      xlabel="[O III] 4363 / 5007",
+      ylabel=r"[O III] 5007 / H$\beta$",
+  )
+  #ax.yaxis.set_major_formatter()
+  sns.despine()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:roiii-vs-rtoiii.pdf]]
 
 **** Ionization balance for H
 + Stellar luminosity in H-ionizing photons is 4.9e47 s^-1
@@ -1564,16 +1836,16 @@ CLOSED: [2020-04-19 Sun 20:28]
   | 374.0 | 377.0 |
 + Summary of star pixel positions in the original images
   #+name: hst-star-xy-pixels-and-bg
-  | F656N-1997 | 385.47 | 385.46 |   0.0000 |
-  | F502N-1997 | 385.24 | 385.26 |   0.0006 |
-  | F487N-1997 | 385.18 | 385.22 |  -0.0013 |
-  | F547M-1997 |  385.0 |  385.1 |   0.0014 |
-  | F375N-1997 | 385.05 | 384.69 |  -0.0011 |
-  | F437N-1997 |  385.0 |  384.7 | -0.00001 |
-  | F658N-1998 | 924.75 | 895.58 |   -0.009 |
-  | F502N-1998 | 924.51 | 895.61 |   -0.005 |
-  | F555W-1998 |  924.9 | 895.75 |   -0.006 |
-  | F185W-2004 |  374.0 |  377.0 |   -0.001 |
+  | F656N-1997    | 385.47 | 385.46 |   0.0000 |
+  | F502N-1997    | 385.24 | 385.26 |   0.0006 |
+  | F487N-1997    | 385.18 | 385.22 |  -0.0013 |
+  | F547M-1997    |  385.0 |  385.1 |   0.0014 |
+  | F375N-1997    | 385.05 | 384.69 |  -0.0011 |
+  | F437N-1997-cr |  385.0 |  384.7 | -0.00001 |
+  | F658N-1998    | 924.75 | 895.58 |   -0.009 |
+  | F502N-1998    | 924.51 | 895.61 |   -0.005 |
+  | F555W-1998    |  924.9 | 895.75 |   -0.006 |
+  | F185W-2004    |  374.0 |  377.0 |   -0.001 |
 + Now with 4th column that is the BG value (negative in many cases)
   + We subtract this from the images at the same time as doing the re-projection below
   + Note that this may mean subtracting part of the outer halo for [O III] and H lines
@@ -1618,7 +1890,7 @@ CLOSED: [2020-04-19 Sun 20:28]
 CLOSED: [2020-04-19 Sun 20:28]
 + Reproject all the images to the WCS of F656N-1997
 + Use the star pixel positions from above to align at the sub-pixel level
-#+begin_src python :var TAB=hst-star-xy-pixels-and-bg ONLY="F437N-1997"
+#+begin_src python :var TAB=hst-star-xy-pixels-and-bg ONLY="F437N-1997-cr"
   from pathlib import Path
   import numpy as np
   from astropy.io import fits
@@ -1651,9 +1923,9 @@ CLOSED: [2020-04-19 Sun 20:28]
 
   # Loop over all the other images
   for filter1, x1, y1, bg1 in TAB[1:]:
-      # if not filter1 == ONLY:
-      #     # option to skip all but one
-      #     continue
+      if not filter1 == ONLY:
+          # option to skip all but one
+          continue
       hdu1 = fits.open(datadir / f"turtle-{filter1}.fits")["SCI"]
       # Simply force the reference pixel to be the star
       hdu1.header["CRPIX1"] = x1
@@ -1790,6 +2062,9 @@ CLOSED: [2020-04-19 Sun 20:29]
     | F437N |  1.089 |
     | F502N |  1.043 |
   + These multiply the observed counts
++ So, the 5007/Hb ratio can be easily calculated by just using the Rubin equations, together with the widths above:
+  + 5007/Hb = (1.041/0.9482) (35.8/33.9) (F502N/F487N) = 1.159 (F502N/F487N)
+  + Assuming that F502N and F487N are already in F_\lambda units
 + Rubin does the heliocentric correction to estimate the H\gamma contamination of F437N
   + We estimate a topocentric velocity of -55 km/s so H gamma is at 4341.2 \AA (vacuum)
     + This is from [[id:7E76623E-8C5F-4635-A8CA-BA29675E0C02][Test the heliocentric correction machinery]]
@@ -1811,6 +2086,13 @@ CLOSED: [2020-04-19 Sun 20:29]
   + Note that Rubin got something very similar
     + They got 0.03218 F487N, but they have Hb = 0.9482 F487N, so this is 0.03394
     + Slightly higher than our value because their lines are less blue-shifted
+  + The Reddening factor in the H gamma correction is 10**(-0.124 CHB) = 0.9636 if we take a constant CHB = 0.13
+  + So our final equation is I4364 = 1.089 F437N - 0.03019 F487N
+  + We also have I5008 = 1.041 F502N, W437 = 31.8, W502 = 35.8
+  + So 4364/5008 = (31.8 / 35.8) (1.089 F437N - 0.03019 F487N) / (1.041 F502N) = (0.9292 F437N - 0.02576 F487N) / F502N
+  + But that is observed ratio - we need to correct that for reddening too between 5007 and 4363
+    + With CCM87 reddening with chb=0.13, pyneb gives 1.058 as the extra factor (~RC.getCorr(4363)/RC.getCorr(5007)~)
+  + So *Finally* we get the intrinsic 4364/5008 = (0.9831 F437N - 0.02725 F487N) / F502N
 + We can do the same for [N II] contamination of Ha and vice versa
   + All the narrow-band observations were in April, so similar heliocentric correction
     | wav, air | wav, vac | wav(-55 km/s) |  T(656N) |  T(658N) | TT(656N) | TT(658N) |
@@ -1907,6 +2189,12 @@ Saving turtle-F375N-1997-reproject-bin004.fits
 Saving turtle-F375N-1997-reproject-bin008.fits
 Saving turtle-F375N-1997-reproject-bin016.fits
 Saving turtle-F375N-1997-reproject-bin032.fits
+Saving turtle-F437N-1997-cr-reproject-bin001.fits
+Saving turtle-F437N-1997-cr-reproject-bin002.fits
+Saving turtle-F437N-1997-cr-reproject-bin004.fits
+Saving turtle-F437N-1997-cr-reproject-bin008.fits
+Saving turtle-F437N-1997-cr-reproject-bin016.fits
+Saving turtle-F437N-1997-cr-reproject-bin032.fits
 Saving turtle-F437N-1997-reproject-bin001.fits
 Saving turtle-F437N-1997-reproject-bin002.fits
 Saving turtle-F437N-1997-reproject-bin004.fits
@@ -2013,7 +2301,7 @@ Saving turtle-F658N-1998-reproject-bin032.fits
   for ratname, bandA, bandB, minA, minB in [
           ["R502-487", "F502N-1997", "F487N-1997", 0.6, 0.6],
           ["R656-487", "F656N-1997", "F487N-1997", 0.6, 1.2],
-          ["R437-502", "F437N-1997", "F502N-1997", 0.08, 0.1],
+          ["R437-502", "F437N-1997-cr", "F502N-1997", 0.08, 0.1],
           ["R658-656", "F658N-1998", "F656N-1997", 0.2, 0.1],
           ["R502-502", "F502N-1998", "F502N-1997", 0.6, 0.6],
           ["R375-502", "F375N-1997", "F502N-1997", 0.03, 0.1],
@@ -2077,6 +2365,168 @@ xpaset -p rebinned backup $PWD/line-ratios-multibin.bck
 
 #+RESULTS:
 
+And another version that does a refined 4364/5007 ratio
+
+#+BEGIN_SRC python :tangle ../scripts/turtle-hst-multibin-oiii-ratio.py
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.convolution import convolve_fft, Gaussian2DKernel
+  import regions as rg
+
+  FLUXSCALE = 3e-16               # approx PHOTFLAM for Ha
+
+  datadir = Path("../data/hst-cr-combine/reproject")
+  nlist = [1, 2, 4, 8, 16, 32]
+  nmax = max(nlist)
+
+  win = rg.read_ds9(datadir / "turtle-viewport.reg")[0]
+
+  # do an outer envelope mask based on H alpha or [N II] 
+  fn = datadir / "turtle-F502N-1997-reproject-bin001.fits"
+  hdu = fits.open(fn)["SCALED"]
+  # Convolve to give a nice smooth boundary
+  kernel = Gaussian2DKernel(x_stddev=3)
+  hamask = convolve_fft(hdu.data, kernel) > 7e-18
+
+  ratname = "R4363-5007"
+  bandA, bandB, bandC = "F437N-1997-cr", "F502N-1997", "F487N-1997"
+  minA, minB = 0.05, 0.04
+  outimA, outimB = None, None
+  # Correct limits since we have now put in flux units
+  minA *= FLUXSCALE
+  minB *= FLUXSCALE
+
+  for n in reversed(nlist):
+      fnA = datadir / f"turtle-{bandA}-reproject-bin{n:03d}.fits"
+      fnB = datadir / f"turtle-{bandB}-reproject-bin{n:03d}.fits"
+      fnC = datadir / f"turtle-{bandC}-reproject-bin{n:03d}.fits"
+
+
+      hduA = fits.open(fnA)["SCALED"]
+      hduB = fits.open(fnB)["SCALED"]
+      hduC = fits.open(fnC)["SCALED"]
+      if outimA is None:
+          hdr = hduA.header
+          outimA = np.empty_like(hduA.data)
+          outimB = np.empty_like(hduA.data)
+          outimC = np.empty_like(hduA.data)
+
+      # Minimum flux requirement
+      mask = (n**2 * hduA.data > minA) & (n**2 * hduB.data > minB)
+      outimA[mask] = hduA.data[mask]
+      outimB[mask] = hduB.data[mask]
+      outimC[mask] = hduC.data[mask]
+
+
+
+  # Cut off the image at the border of the original diamond window
+  winmask = win.to_pixel(WCS(hduA.header)).to_mask()
+  mask = ~winmask.to_image(hduA.data.shape).astype(bool)
+  outimA[mask] = np.nan
+  outimB[mask] = np.nan
+  outimC[mask] = np.nan
+
+  # Apply the outer envelope mask
+  # Others use the Ha mask
+  outimA[~hamask] = np.nan
+  outimB[~hamask] = np.nan
+  outimC[~hamask] = np.nan
+
+  # This is the final intrinsic auroral-nebula ratio for [O III] Taking
+  # into account reddening (CHB=0.13) and contamination of the F437N
+  # filter by H gamma and atomic continuum
+  ratio = (0.9831*outimA - 0.02725*outimC)/ outimB
+  out_fn =  datadir / f"turtle-{ratname}-multibin.fits"
+  fits.PrimaryHDU(header=hdr, data=ratio).writeto(out_fn, overwrite=True)
+#+END_SRC
+
+#+RESULTS:
+: None
+
+
+***** Look at differences instead of ratios
+
+****** F547M minus F487N
++ *Conclusion* Yes it is likely that [N II] 5755 can explain the excess emission in F547M
++ This is to look and see if there is any excess (non-recombination) continuum anywhere, which might explain some of the F437N signal in the faint parts
++ From comparing contours, it looks like F547M - F487N/29.5 should eliminate most of the atomic continuum
+#+begin_src python
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  datadir = Path("../data/hst-cr-combine/reproject")
+
+  hduA = fits.open(datadir / "turtle-F547M-1997-reproject.fits")["SCI"]
+  hduB = fits.open(datadir / "turtle-F487N-1997-reproject.fits")["SCI"]
+  hduA.data -= hduB.data/30.5
+  hduA.writeto(datadir / "diff-F547M-F487N-reproject.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
++ That shows excess emission associated with knot complexes
+  + But nothing significant in the IS and lobes (except for N knot)
+  + This could be scattered continuum, or could be a line - but the only low-ionization line is [N II] 5755 and that should be very weak
+  + The peak contribution is about 10% of the total F547M, which has W = 627.56 \AA
+  + That implies an equivalent width of about 60 \AA
+  + H\beta has EW = 1500 \AA, so we want a line with intensity I = 100 60 / 1500 = 4.0 on a scale of H\beta = 100
+  + [N II] 5755 has I = 0.5 according to Delgado-Inglada:2009a, *but* this is an average over the slit
+    + Their average [N II] 6583 / Ha is 23.7 / 345 = 0.069
+    + We have it varying from 0.1 \to 0.7 in the knot complexes
+    + So it is expected that [N II] 5755 should be 10x brighter relative to H\beta
+
+
+****** F437N minus F502N 
+#+begin_src python
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  datadir = Path("../data/hst-cr-combine/reproject")
+
+  hduA = fits.open(datadir / "turtle-F437N-1997-cr-reproject.fits")["SCI"]
+  hduB = fits.open(datadir / "turtle-F502N-1997-reproject.fits")["SCI"]
+  hduC = fits.open(datadir / "turtle-F487N-1997-reproject.fits")["SCI"]
+  hduA.data = 0.9831*hduA.data - 0.02725*hduC.data - 0.0055*hduB.data
+  hduA.writeto(datadir / "diff-F437N-F502N-reproject.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
+
+***** Take profiles through the nebula
++ We can't use the save dialogs since it keeps crashing
++ So use XPA instead
+
+#+begin_src sh :dir ../data/hst-cr-combine/reproject
+xpaset -p ratios backup $PWD/oiii-profiles-check.bck
+#+end_src
+
+#+begin_src sh :results verbatim :dir ../data/hst-cr-combine/reproject 
+xpaset -p ratios regions system wcs
+xpaset -p ratios regions save $PWD/F437N-cosmic-rays.reg 
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results verbatim :dir ../data/hst-cr-combine 
+/Users/will/Dropbox/spotless/spotless --method thresh --threshold 10.0 --include-regions-from-file reproject/F437N-cosmic-rays.reg --verbose --hdu-name SCI turtle-F437N-1997
+#+end_src
+
+#+RESULTS:
+: Finding bad pixels by the 'thresh' method
+: Regions from reproject/F437N-cosmic-rays.reg added to bad pixels
+: Number of bad pixels: 3273 (0.145% of total)
+: Number of distinct bad pixel objects found: 231
+: Number of objects skipped:  53
+: Replacement of bad pixels complete
+
+#+begin_src sh :results verbatim :dir ../data/hst-cr-combine/reproject 
+xpaset -p ratios regions load $PWD/F437N-cosmic-rays.reg 
+#+end_src
+
+#+RESULTS:
 
 
 ***** BPT diagrams and similar

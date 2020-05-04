@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-04-16 Thu 11:26 -->
+<!-- 2020-05-01 Fri 13:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Summary table of physical properties</title>
+<title>H&alpha; + [N II] positions</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="William Henney" />
 <style type="text/css">
@@ -423,31 +423,21 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Summary table of physical properties</h1>
+<h1 class="title">H&alpha; + [N II] positions</h1>
 <ul class="org-ul">
-<li>Convert to physical units:
+<li>30 positions in total</li>
+<li><code>wa = 1</code> wavelength is first axis (fits order) in PV spec</li>
+<li><code>wa = 2</code> wavelength is second axis (fits order) in PV spec</li>
+<li><code>ij = 1</code> slit is vertical in I+S, so <code>islit</code> is along x-axis</li>
+<li><code>ij = 2</code> slit is horizontal in I+S, so <code>islit</code> is along y-axis</li>
+<li><code>s = -1</code> means that slit axis in I+S is reversed with respect to PV image</li>
+<li><b>Note</b>
 <ul class="org-ul">
-<li>Density: normalize by 4000 pcc</li>
-<li>Mass: Area times column density, which is flux / density
-<ul class="org-ul">
-<li>Flux = S &Omega; = (&alpha;_eff n^2 dz E / 4 &pi;) (A / D^2)</li>
-<li>M = A dz n m = [4&pi; D^2 m / &alpha;_eff E]  (F / n)</li>
-<li>Total F = 3.3e-10 erg/cm2/s (scaling from Hb) with RMS n = 4000 pcc</li>
-<li>&alpha;_eff = 1e-13 cm^3/s</li>
-<li>E = 3.e-12 erg</li>
-<li>m = 1.3 m_p = 2e-24 g</li>
-<li>So, [4&pi; D^2 m / &alpha;_eff E] = 3.47e45 g s cm^-1 erg^-1</li>
-<li>And F/n = 8.25e-14 erg cm s^-1</li>
-<li>Giving mass normalization of 2.86275e32 g = 0.14 Msun
-<ul class="org-ul">
-<li>This applies to the bright parts: inner shells + knot complexes, which are 47% of the shells+knots+lobes normalization I used above</li>
-<li>So the per-component masses are (0.14/0.47) = 0.30 Msun times the fractions in the above table</li>
-</ul></li>
-</ul></li>
+<li>spm0172o_b is clearly at an angle to the image axis (of 0.5 deg)</li>
 </ul></li>
 </ul>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org25611cc" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
@@ -455,149 +445,399 @@ for the JavaScript code in this tag.
 
 <col  class="org-left" />
 
-<col  class="org-left" />
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
 
 <col  class="org-right" />
 
 <col  class="org-left" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
-
-<col  class="org-right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Component</th>
-<th scope="col" class="org-left">Ha flux</th>
-<th scope="col" class="org-left">Density, pcc</th>
-<th scope="col" class="org-right">Mass, Msun</th>
-<th scope="col" class="org-left">ion par</th>
-<th scope="col" class="org-right">t_start</th>
-<th scope="col" class="org-right">t_end</th>
-<th scope="col" class="org-right">Mdot, Msun/yr</th>
+<th scope="col" class="org-left">spec</th>
+<th scope="col" class="org-left">imslit</th>
+<th scope="col" class="org-right">run</th>
+<th scope="col" class="org-right">t</th>
+<th scope="col" class="org-right">wa</th>
+<th scope="col" class="org-right">islit</th>
+<th scope="col" class="org-right">ij</th>
+<th scope="col" class="org-right">s</th>
+<th scope="col" class="org-left">id</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">Inner shells</td>
-<td class="org-left">44 %</td>
-<td class="org-left">3000 &rarr; 4500</td>
-<td class="org-right">0.078</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-1.5</td>
-<td class="org-right">0</td>
-<td class="org-right">5.2e-5</td>
+<td class="org-left">obj1003_bcrx</td>
+<td class="org-left">obj1002_bcr</td>
+<td class="org-right">1998-06</td>
+<td class="org-right">60</td>
+<td class="org-right">1</td>
+<td class="org-right">390</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">o</td>
 </tr>
 
 <tr>
-<td class="org-left">Intermediate shell</td>
-<td class="org-left">13 %</td>
-<td class="org-left">500 &rarr; 750</td>
-<td class="org-right">0.135</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-4</td>
-<td class="org-right">-1.5</td>
-<td class="org-right">5.4e-5</td>
+<td class="org-left">obj1007_bcrx</td>
+<td class="org-left">obj1006_bcr</td>
+<td class="org-right">1998-06</td>
+<td class="org-right">300</td>
+<td class="org-right">1</td>
+<td class="org-right">388</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">n</td>
 </tr>
 
 <tr>
-<td class="org-left">Knot complexes</td>
-<td class="org-left">42 %</td>
-<td class="org-left">2000 &rarr; 5000</td>
-<td class="org-right">0.063</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-8</td>
-<td class="org-right">-1.5</td>
-<td class="org-right">9.7e-6</td>
+<td class="org-left">obj1010_bcrx</td>
+<td class="org-left">obj1009_bcr</td>
+<td class="org-right">1998-06</td>
+<td class="org-right">1200</td>
+<td class="org-right">1</td>
+<td class="org-right">388</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">m</td>
 </tr>
 
 <tr>
-<td class="org-left">Outer Lobes</td>
-<td class="org-left">1 %</td>
-<td class="org-left">160 &rarr; 320</td>
-<td class="org-right">0.024</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-8</td>
-<td class="org-right">-2</td>
-<td class="org-right">4e-6</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">Inner Halo</td>
-<td class="org-left">0.5 %</td>
-<td class="org-left">80 &rarr; 160</td>
-<td class="org-right">0.030</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-20</td>
-<td class="org-right">-10</td>
-<td class="org-right">3e-6</td>
+<td class="org-left">obj1015_bcrx</td>
+<td class="org-left">obj1012_bcr</td>
+<td class="org-right">1998-06</td>
+<td class="org-right">1200</td>
+<td class="org-right">1</td>
+<td class="org-right">390.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">p</td>
 </tr>
 
 <tr>
-<td class="org-left">Outer Halo</td>
-<td class="org-left">0.2 %</td>
-<td class="org-left">15 &rarr; 40</td>
-<td class="org-right">0.042</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">-40</td>
-<td class="org-right">-20</td>
-<td class="org-right">2.1e-6</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-<td class="org-left">Bright peak</td>
-<td class="org-left">(3%)</td>
-<td class="org-left">10000</td>
-<td class="org-right">(0.002)</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">2e-3 / 0</td>
+<td class="org-left">obj1018_bcrx</td>
+<td class="org-left">obj1017_bcr</td>
+<td class="org-right">1998-06</td>
+<td class="org-right">1200</td>
+<td class="org-right">1</td>
+<td class="org-right">390.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">q</td>
 </tr>
 
 <tr>
-<td class="org-left">NW knot</td>
-<td class="org-left">(0.01%)</td>
-<td class="org-left">8000</td>
-<td class="org-right">(1e-5)</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">1e-5 / 0</td>
+<td class="org-left">spm112_bcrx</td>
+<td class="org-left">spm110_u</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">257</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">f</td>
 </tr>
 
 <tr>
-<td class="org-left">N knot</td>
-<td class="org-left">(0.02%)</td>
-<td class="org-left">3800</td>
-<td class="org-right">(3e-5)</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">3e-5 / 0</td>
+<td class="org-left">spm116_bcrx</td>
+<td class="org-left">spm115_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">263</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">e</td>
 </tr>
-</tbody>
-<tbody>
+
 <tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">0.372</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">&#xa0;</td>
-<td class="org-right">3.7e-1 / 0</td>
+<td class="org-left">spm119_bcrx</td>
+<td class="org-left">spm118_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">265</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">d</td>
+</tr>
+
+<tr>
+<td class="org-left">spm122_bcrx</td>
+<td class="org-left">spm121_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">267</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">h</td>
+</tr>
+
+<tr>
+<td class="org-left">spm125_bcrx</td>
+<td class="org-left">spm124_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">269.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">i</td>
+</tr>
+
+<tr>
+<td class="org-left">spm130_bcrx</td>
+<td class="org-left">spm127_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">272.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">k</td>
+</tr>
+
+<tr>
+<td class="org-left">spm135_bcrx</td>
+<td class="org-left">spm134_bcr</td>
+<td class="org-right">2003-06</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">277.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">b</td>
+</tr>
+
+<tr>
+<td class="org-left">spm224_bcrx</td>
+<td class="org-left">spm223_bcr</td>
+<td class="org-right">2003-10</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">294.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">t</td>
+</tr>
+
+<tr>
+<td class="org-left">spm230_bcrx</td>
+<td class="org-left">spm229_bcr</td>
+<td class="org-right">2003-10</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">294.5</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">v</td>
+</tr>
+
+<tr>
+<td class="org-left">spm329_bcrx</td>
+<td class="org-left">spm328_bcr</td>
+<td class="org-right">2003-10</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">273</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">w</td>
+</tr>
+
+<tr>
+<td class="org-left">spm112-2_bcrx</td>
+<td class="org-left">spm111_cr</td>
+<td class="org-right">2011-05</td>
+<td class="org-right">1800</td>
+<td class="org-right">2</td>
+<td class="org-right">531</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">g</td>
+</tr>
+
+<tr>
+<td class="org-left">spm018-bcrx</td>
+<td class="org-left">spm017_b</td>
+<td class="org-right">2013-07</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">505</td>
+<td class="org-right">2</td>
+<td class="org-right">-1</td>
+<td class="org-left">c</td>
+</tr>
+
+<tr>
+<td class="org-left">spm020-bcrx</td>
+<td class="org-left">spm019_b</td>
+<td class="org-right">2013-07</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">483</td>
+<td class="org-right">2</td>
+<td class="org-right">-1</td>
+<td class="org-left">i</td>
+</tr>
+
+<tr>
+<td class="org-left">spm023-bcrx</td>
+<td class="org-left">spm021_b</td>
+<td class="org-right">2013-07</td>
+<td class="org-right">1800</td>
+<td class="org-right">1</td>
+<td class="org-right">496</td>
+<td class="org-right">2</td>
+<td class="org-right">-1</td>
+<td class="org-left">j</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0031o_bcrx</td>
+<td class="org-left">spm0030o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">485</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">c</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0037o_bcrx</td>
+<td class="org-left">spm0036o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">484</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">d</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0043o_bcrx</td>
+<td class="org-left">spm0042o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">481</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">e</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0049o_bcrx</td>
+<td class="org-left">spm0048o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">480</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">f</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0057o_bcrx</td>
+<td class="org-left">spm0056o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">476</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">g</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0110o_bcrx</td>
+<td class="org-left">spm0109o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">1200</td>
+<td class="org-right">2</td>
+<td class="org-right">490.5</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">b</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0116o_bcrx</td>
+<td class="org-left">spm0115o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">1800</td>
+<td class="org-right">2</td>
+<td class="org-right">485.5</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">a</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0124o_bcrx</td>
+<td class="org-left">spm0123o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">1200</td>
+<td class="org-right">2</td>
+<td class="org-right">478</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">i</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0173o_bcrx</td>
+<td class="org-left">spm0172o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">900</td>
+<td class="org-right">2</td>
+<td class="org-right">493</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">h</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0179o_bcrx</td>
+<td class="org-left">spm0178o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">1800</td>
+<td class="org-right">2</td>
+<td class="org-right">489.5</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">j</td>
+</tr>
+
+<tr>
+<td class="org-left">spm0186o_bcrx</td>
+<td class="org-left">spm0185o_b</td>
+<td class="org-right">2015-08</td>
+<td class="org-right">1800</td>
+<td class="org-right">2</td>
+<td class="org-right">515.5</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">k</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: William Henney</p>
-<p class="date">Created: 2020-04-16 Thu 11:26</p>
+<p class="date">Created: 2020-05-01 Fri 13:13</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

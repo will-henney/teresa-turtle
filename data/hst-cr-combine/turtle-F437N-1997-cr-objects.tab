@@ -1,0 +1,232 @@
+# label	mx	my	TooBig	Compact	Shadow	fillfac	aspect	contrast	skip?
+1	4	4	False	True	False	0.812	1.000	10.682	 
+2	4	4	False	True	False	0.812	1.000	12.757	 
+3	4	4	False	True	False	0.812	1.000	36.526	 
+4	4	4	False	True	True	0.812	1.000	-17.528	*
+5	4	4	False	True	False	0.812	1.000	151.916	 
+6	4	4	False	False	False	0.750	1.000	46.527	 
+7	5	4	False	False	False	0.750	1.250	7.552	 
+8	4	5	False	False	True	0.750	1.250	-111.179	*
+9	4	4	False	True	True	0.812	1.000	-25.614	*
+10	4	4	False	False	True	0.750	1.000	-7.793	*
+11	4	4	False	False	False	0.688	1.000	503.258	 
+12	4	5	False	False	False	0.750	1.250	82.383	 
+13	6	6	True	True	False	0.889	1.000	43.340	*
+14	9	8	True	False	False	0.639	1.125	33.259	 
+15	5	4	False	False	False	0.750	1.250	3.202	 
+16	5	5	False	False	False	0.720	1.000	10.641	 
+17	5	5	False	False	False	0.560	1.000	10.771	 
+18	4	4	False	True	True	0.812	1.000	-4.566	*
+19	4	4	False	False	False	0.688	1.000	6.625	 
+20	5	5	False	False	True	0.720	1.000	-90.426	*
+21	4	4	False	True	True	0.875	1.000	-5.230	*
+22	4	4	False	True	False	0.875	1.000	23.669	 
+23	5	5	False	False	False	0.720	1.000	36.548	 
+24	4	4	False	True	True	0.875	1.000	-4.220	*
+25	4	4	False	True	False	0.812	1.000	12.947	 
+26	3	3	False	True	False	0.889	1.000	19.475	 
+27	4	4	False	True	False	0.812	1.000	18.980	 
+28	5	5	False	False	False	0.720	1.000	12.939	 
+29	4	4	False	True	True	0.875	1.000	-29.097	*
+30	3	3	False	True	False	0.889	1.000	18.944	 
+31	4	4	False	True	False	0.812	1.000	10.759	 
+32	4	5	False	True	False	0.800	1.250	58.660	 
+33	4	4	False	True	False	0.875	1.000	10.145	 
+34	4	4	False	True	False	0.812	1.000	16.335	 
+35	4	4	False	True	True	1.000	1.000	-14.936	*
+36	5	4	False	False	False	0.600	1.250	15.082	 
+37	4	4	False	True	True	0.875	1.000	-8.244	*
+38	4	4	False	True	True	0.875	1.000	-121.401	*
+39	4	5	False	False	False	0.750	1.250	21.882	 
+40	4	4	False	True	True	0.875	1.000	-13.528	*
+41	4	4	False	True	False	1.000	1.000	34.843	 
+42	6	5	False	True	False	0.833	1.200	3.376	 
+43	4	5	False	True	False	0.800	1.250	15.221	 
+44	4	5	False	True	False	0.800	1.250	32.799	 
+45	5	5	False	True	False	0.840	1.000	5.150	 
+46	4	4	False	True	False	0.875	1.000	7.489	 
+47	4	4	False	True	False	0.812	1.000	30.675	 
+48	4	4	False	True	False	0.875	1.000	29.273	 
+49	5	5	False	False	False	0.760	1.000	52.428	 
+50	3	3	False	True	False	1.000	1.000	377.465	 
+51	3	3	False	True	False	1.000	1.000	11.550	 
+52	4	5	False	True	False	0.800	1.250	4.047	 
+53	5	4	False	True	False	0.900	1.250	12.294	 
+54	4	4	False	True	False	0.875	1.000	20.474	 
+55	5	5	False	False	False	0.520	1.000	23.746	 
+56	5	5	False	False	False	0.680	1.000	8.816	 
+57	5	4	False	True	False	0.850	1.250	10.118	 
+58	3	3	False	True	False	0.889	1.000	3.935	 
+59	3	4	False	False	False	0.750	1.333	10.779	 
+60	4	3	False	False	False	0.667	1.333	7.111	 
+61	3	4	False	False	False	0.833	1.333	12.123	 
+62	4	4	False	True	False	0.812	1.000	6.459	 
+63	3	3	False	True	False	0.889	1.000	4.803	 
+64	4	3	False	False	False	0.667	1.333	21.224	 
+65	5	5	False	False	False	0.720	1.000	12.117	 
+66	3	3	False	False	False	0.667	1.000	17.937	 
+67	3	3	False	True	False	1.000	1.000	5.642	 
+68	4	4	False	True	False	0.938	1.000	14.905	 
+69	3	3	False	True	False	0.889	1.000	7.290	 
+70	5	4	False	True	False	0.800	1.250	3.409	 
+71	5	4	False	True	False	0.850	1.250	5.457	 
+72	4	4	False	True	False	0.875	1.000	11.516	 
+73	4	4	False	True	False	0.875	1.000	7.901	 
+74	3	3	False	True	False	0.889	1.000	9.503	 
+75	5	4	False	True	False	0.800	1.250	8.940	 
+76	3	3	False	True	False	0.889	1.000	69.341	 
+77	4	3	False	False	False	0.750	1.333	6.314	 
+78	4	4	False	True	False	0.938	1.000	95.351	 
+79	5	4	False	True	False	0.800	1.250	7.683	 
+80	4	4	False	True	False	0.875	1.000	8.575	 
+81	4	4	False	True	False	0.875	1.000	6.757	 
+82	4	4	False	True	False	0.938	1.000	12.195	 
+83	4	4	False	True	False	0.938	1.000	36.264	 
+84	4	4	False	True	False	0.875	1.000	7.574	 
+85	5	5	False	False	False	0.720	1.000	289.288	 
+86	5	4	False	True	False	0.800	1.250	5.666	 
+87	5	4	False	True	False	0.800	1.250	5.204	 
+88	5	4	False	True	False	0.850	1.250	15.986	 
+89	4	5	False	False	True	0.750	1.250	-142.813	*
+90	3	4	False	False	False	0.667	1.333	3.126	 
+91	4	4	False	True	False	0.938	1.000	73.179	 
+92	3	4	False	False	False	0.833	1.333	14.723	 
+93	4	4	False	True	True	0.938	1.000	-483.325	*
+94	4	5	False	True	False	0.800	1.250	1.639	 
+95	4	4	False	False	False	0.625	1.000	4.424	 
+96	4	5	False	False	False	0.700	1.250	129.155	 
+97	5	4	False	True	False	0.800	1.250	23.320	 
+98	4	4	False	False	False	0.750	1.000	44.172	 
+99	3	3	False	False	False	0.778	1.000	32.263	 
+100	7	7	True	False	False	0.694	1.000	25.488	 
+101	4	5	False	True	True	0.850	1.250	-95.602	*
+102	3	2	False	False	False	1.000	1.500	6.690	 
+103	3	2	False	False	False	1.000	1.500	10.560	 
+104	4	3	False	False	False	0.833	1.333	7.912	 
+105	3	3	False	True	True	1.000	1.000	-38.848	*
+106	3	3	False	False	False	0.778	1.000	1.916	 
+107	5	5	False	True	False	0.800	1.000	23.741	 
+108	3	4	False	False	False	0.667	1.333	6.174	 
+109	3	3	False	True	False	1.000	1.000	5.069	 
+110	5	4	False	False	False	0.600	1.250	1.179	 
+111	3	3	False	False	False	0.778	1.000	11.657	 
+112	3	3	False	False	False	0.556	1.000	1.218	 
+113	3	2	False	False	False	0.833	1.500	1.612	 
+114	3	3	False	True	False	1.000	1.000	6.273	 
+115	5	4	False	True	False	0.850	1.250	7.490	 
+116	4	3	False	False	False	0.833	1.333	6.421	 
+117	4	4	False	False	False	0.688	1.000	1.147	 
+118	4	4	False	False	False	0.750	1.000	61.843	 
+119	4	4	False	True	False	0.875	1.000	2.407	 
+120	4	5	False	False	False	0.750	1.250	4.813	 
+121	4	4	False	True	True	0.875	1.000	-600.548	*
+122	5	6	False	True	False	0.800	1.200	1.338	 
+123	4	5	False	True	False	0.800	1.250	21.810	 
+124	3	3	False	False	False	0.778	1.000	4.259	 
+125	4	3	False	False	False	0.833	1.333	34.565	 
+126	3	4	False	False	False	0.750	1.333	50.672	 
+127	3	2	False	False	False	0.833	1.500	1.029	 
+128	3	3	False	True	False	1.000	1.000	14.280	 
+129	3	2	False	False	False	0.833	1.500	1.141	 
+130	7	7	True	False	False	0.694	1.000	101.840	 
+131	4	4	False	False	False	0.688	1.000	4.838	 
+132	3	4	False	False	False	0.833	1.333	17.816	 
+133	5	5	False	False	True	0.560	1.000	-40.648	*
+134	4	4	False	True	False	0.875	1.000	44.671	 
+135	5	4	False	True	False	0.800	1.250	10870.018	 
+136	3	4	False	False	False	0.667	1.333	4.231	 
+137	4	4	False	True	False	0.875	1.000	4.145	 
+138	5	5	False	False	False	0.680	1.000	2.225	 
+139	3	3	False	False	False	0.667	1.000	1.951	 
+140	6	5	False	True	False	0.867	1.200	5.698	 
+141	6	6	True	False	True	0.778	1.000	-53.860	*
+142	5	5	False	True	False	0.840	1.000	59.294	 
+143	3	3	False	False	False	0.778	1.000	4.756	 
+144	3	4	False	False	False	0.833	1.333	4.303	 
+145	4	4	False	True	True	0.875	1.000	-46.629	*
+146	5	6	False	False	False	0.767	1.200	35.722	 
+147	4	5	False	True	False	0.800	1.250	2.616	 
+148	5	7	False	False	False	0.743	1.400	21.699	 
+149	2	2	False	True	False	1.000	1.000	4.236	 
+150	6	5	False	False	False	0.767	1.200	6.428	 
+151	3	3	False	True	False	1.000	1.000	9.211	 
+152	3	3	False	True	False	1.000	1.000	5.757	 
+153	6	5	False	False	True	0.767	1.200	-355.455	*
+154	5	5	False	False	False	0.680	1.000	16.509	 
+155	4	4	False	True	False	0.875	1.000	90.763	 
+156	4	4	False	True	False	0.875	1.000	148.429	 
+157	3	3	False	False	False	0.778	1.000	15.391	 
+158	3	4	False	False	False	0.750	1.333	13.263	 
+159	5	4	False	False	True	0.750	1.250	-1001.116	*
+160	4	4	False	True	False	0.875	1.000	34.171	 
+161	5	4	False	False	False	0.750	1.250	53.332	 
+162	4	4	False	True	False	0.875	1.000	26.969	 
+163	5	5	False	False	False	0.760	1.000	40.477	 
+164	4	5	False	False	False	0.750	1.250	10.765	 
+165	3	4	False	False	False	0.833	1.333	13.808	 
+166	5	5	False	False	True	0.600	1.000	-43.527	*
+167	4	4	False	True	True	0.875	1.000	-5.117	*
+168	4	4	False	True	False	0.875	1.000	26.261	 
+169	4	3	False	False	False	0.750	1.333	29.548	 
+170	4	4	False	True	False	0.875	1.000	69.090	 
+171	3	4	False	False	False	0.750	1.333	16.992	 
+172	4	3	False	False	False	0.750	1.333	50.318	 
+173	4	5	False	True	False	0.800	1.250	13.484	 
+174	5	5	False	False	True	0.720	1.000	-87.580	*
+175	4	5	False	True	False	0.800	1.250	13.421	 
+176	5	6	False	True	False	0.800	1.200	114.104	 
+177	5	4	False	True	True	0.800	1.250	-10.255	*
+178	4	4	False	False	True	0.625	1.000	-261.582	*
+179	4	3	False	False	True	0.833	1.333	-44.362	*
+180	5	5	False	False	False	0.720	1.000	6.470	 
+181	5	4	False	True	False	0.900	1.250	5.231	 
+182	4	4	False	True	False	0.875	1.000	4.458	 
+183	4	4	False	False	False	0.750	1.000	4.995	 
+184	3	4	False	False	False	0.833	1.333	13.482	 
+185	4	4	False	True	True	0.875	1.000	-681.322	*
+186	5	4	False	True	True	0.850	1.250	-348.407	*
+187	4	4	False	False	False	0.688	1.000	4.194	 
+188	6	6	True	True	False	0.861	1.000	9.155	*
+189	4	4	False	False	False	0.750	1.000	21.681	 
+190	4	4	False	True	False	0.875	1.000	3.502	 
+191	4	4	False	False	False	0.625	1.000	16.694	 
+192	5	4	False	True	False	0.800	1.250	52.116	 
+193	4	3	False	False	False	0.833	1.333	206.792	 
+194	4	4	False	True	True	0.875	1.000	-525.779	*
+195	3	4	False	False	False	0.750	1.333	26.059	 
+196	5	5	False	False	False	0.720	1.000	11.555	 
+197	5	5	False	False	True	0.600	1.000	-7.789	*
+198	4	4	False	False	False	0.750	1.000	125.217	 
+199	4	4	False	True	True	1.000	1.000	-25.643	*
+200	3	4	False	False	True	0.833	1.333	-5.154	*
+201	4	5	False	True	False	0.850	1.250	46.594	 
+202	6	6	True	True	True	0.861	1.000	-204.083	*
+203	4	4	False	True	False	0.938	1.000	13.089	 
+204	4	5	False	True	False	0.800	1.250	31.733	 
+205	4	4	False	True	True	1.000	1.000	-35.021	*
+206	5	5	False	False	False	0.720	1.000	7.567	 
+207	3	3	False	True	True	1.000	1.000	-73.411	*
+208	4	4	False	True	True	0.875	1.000	-80.856	*
+209	4	4	False	True	True	0.875	1.000	-14.292	*
+210	4	4	False	False	False	0.625	1.000	7.943	 
+211	4	4	False	True	False	0.875	1.000	54.288	 
+212	4	4	False	True	True	0.875	1.000	-28.843	*
+213	6	7	True	False	False	0.762	1.167	44.830	 
+214	5	5	False	False	True	0.680	1.000	-59.959	*
+215	5	5	False	True	False	0.800	1.000	20.145	 
+216	3	4	False	False	False	0.833	1.333	14.695	 
+217	5	4	False	True	False	0.800	1.250	40.997	 
+218	5	5	False	False	True	0.720	1.000	-11.837	*
+219	4	5	False	True	True	0.800	1.250	-9.361	*
+220	3	4	False	False	True	0.833	1.333	-13.062	*
+221	4	4	False	True	False	0.875	1.000	129.343	 
+222	4	5	False	True	True	0.850	1.250	-39.878	*
+223	5	5	False	False	True	0.720	1.000	-13.843	*
+224	5	5	False	True	True	0.800	1.000	-29.078	*
+225	4	3	False	False	False	0.833	1.333	7.472	 
+226	4	4	False	True	True	0.875	1.000	-17.175	*
+227	4	3	False	False	False	0.833	1.333	12.440	 
+228	5	5	False	False	True	0.760	1.000	-38.105	*
+229	4	4	False	True	False	0.875	1.000	52.093	 
+230	4	4	False	True	False	0.938	1.000	15.338	 
+231	5	4	False	False	True	0.750	1.250	-289.736	*
