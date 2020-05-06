@@ -553,30 +553,49 @@
     + IS is 14% but that is an over-estimate since it includes emission associated with the knot complexes
 **** Table of HST line ratios
 #+name: big-table-of-line-ratios
-| Feature          |  U_ion | 658/656 |  R_NII | 502/487 | E502/487 | 4363/5007 | E(4363/5007) |
-|------------------+--------+---------+--------+---------+----------+-----------+--------------|
-| IS WSW           | 0.0079 |  0.0809 | 0.0687 |    10.1 |      1.0 |   0.00966 |      0.00543 |
-| SW Red complex   | 0.0014 |    0.25 | 0.3207 |     8.9 |      0.3 |   0.00585 |      0.00043 |
-| NW knot          | 0.0006 |    0.33 | 0.4469 |     9.6 |      0.5 |   0.00653 |      0.00089 |
-| N knot           | 0.0012 |    0.43 | 0.6116 |     8.3 |      0.8 |   0.00708 |      0.00108 |
-| Shell A N Rim    | 0.0070 |   0.045 | 0.0177 |    10.4 |      0.6 |   0.00569 |      0.00053 |
-| Shell A N inside | 0.0065 |   0.045 | 0.0177 |     9.2 |      0.3 |   0.00610 |      0.00039 |
-| Peak             | 0.0002 |    0.09 | 0.0818 |    10.0 |      0.2 |   0.00619 |      0.00036 |
-| N complexes      | 0.0004 |    0.12 | 0.1253 |     9.9 |      0.4 |   0.00525 |      0.00024 |
-| S complexes      | 0.0085 |    0.04 | 0.0106 |     9.2 |      0.2 |   0.00596 |      0.00028 |
-| SE knot          | 0.0034 |    0.15 | 0.1693 |     9.2 |      0.3 |   0.00609 |      0.00029 |
-| Shell A S Rim    | 0.0036 |    0.05 | 0.0247 |     9.9 |      0.4 |   0.00490 |      0.00041 |
-| Shell A S inside | 0.0038 |    0.04 | 0.0106 |     9.1 |      0.3 |   0.00580 |      0.00033 |
-| IS SE            | 0.0076 | 0.03636 | 0.0055 |     9.2 |      0.3 |   0.00663 |      0.00060 |
-| IS ENE           | 0.0145 | 0.07027 | 0.0535 |    10.7 |      1.0 |   0.01292 |      0.00293 |
-| Lobe W           | 0.0086 | 0.06337 | 0.0437 |     9.8 |      0.7 |   0.02387 |      0.00770 |
-| Lobe E           | 0.0224 |   0.045 | 0.0177 |     9.7 |      0.9 |   0.01009 |      0.00697 |
-| Lobe S           | 0.0214 | 0.03333 | 0.0012 |     9.2 |      1.1 |   0.01155 |      0.00472 |
-| Lobe N           | 0.0175 | 0.05588 | 0.0330 |     7.0 |      0.8 |   0.01275 |      0.00379 |
-| Inner Halo S     | 0.0343 |  0.1792 | 0.2128 |    12.6 |      0.8 |   0.01221 |      0.00283 |
-| Inner Halo N     | 0.0199 |  0.1143 | 0.1170 |    11.7 |        3 |   0.02034 |      0.00836 |
-|------------------+--------+---------+--------+---------+----------+-----------+--------------|
+| Feature          |  U_ion | 658/656 |  R_NII | 502/487 | E502/487 | 4363/5007 | E(4363/5007) |  6583/6563 | E6583/6563 |
+|------------------+--------+---------+--------+---------+----------+-----------+--------------+------------+------------|
+| IS WSW           | 0.0079 |  0.0809 | 0.0687 |    10.1 |      1.0 |   0.00966 |      0.00543 |  0.0604483 |  0.0133716 |
+| SW Red complex   | 0.0014 |    0.25 | 0.3207 |     8.9 |      0.3 |   0.00585 |      0.00043 |   0.249824 |  0.0992992 |
+| NW knot          | 0.0006 |    0.33 | 0.4469 |     9.6 |      0.5 |   0.00653 |      0.00089 |   0.191617 |  0.0802317 |
+| N knot           | 0.0012 |    0.43 | 0.6116 |     8.3 |      0.8 |   0.00708 |      0.00108 |   0.461126 |   0.158798 |
+| Shell A N Rim    | 0.0070 |   0.045 | 0.0177 |    10.4 |      0.6 |   0.00569 |      0.00053 |  0.0149331 | 0.00448579 |
+| Shell A N inside | 0.0065 |   0.045 | 0.0177 |     9.2 |      0.3 |   0.00610 |      0.00039 |  0.0213608 | 0.00700099 |
+| Peak             | 0.0002 |    0.09 | 0.0818 |    10.0 |      0.2 |   0.00619 |      0.00036 |   0.117669 |  0.0215327 |
+| N complexes      | 0.0004 |    0.12 | 0.1253 |     9.9 |      0.4 |   0.00525 |      0.00024 |    0.14835 |  0.0468417 |
+| S complexes      | 0.0085 |    0.04 | 0.0106 |     9.2 |      0.2 |   0.00596 |      0.00028 |      0.037 |      0.011 |
+| SE knot          | 0.0034 |    0.15 | 0.1693 |     9.2 |      0.3 |   0.00609 |      0.00029 |    0.13485 |  0.0661453 |
+| Shell A S Rim    | 0.0036 |    0.05 | 0.0247 |     9.9 |      0.4 |   0.00490 |      0.00041 |  0.0154783 | 0.00820465 |
+| Shell A S inside | 0.0038 |    0.04 | 0.0106 |     9.1 |      0.3 |   0.00580 |      0.00033 | 0.00971428 | 0.00597144 |
+| IS SE            | 0.0076 | 0.03636 | 0.0055 |     9.2 |      0.3 |   0.00663 |      0.00060 |  0.0171164 |  0.0071702 |
+| IS ENE           | 0.0145 | 0.07027 | 0.0535 |    10.7 |      1.0 |   0.01292 |      0.00293 |  0.0282632 | 0.00635385 |
+| Lobe W           | 0.0086 | 0.06337 | 0.0437 |     9.8 |      0.7 |   0.02387 |      0.00770 |      0.007 |      0.007 |
+| Lobe E           | 0.0224 |   0.045 | 0.0177 |     9.7 |      0.9 |   0.01009 |      0.00697 |      0.003 |      0.003 |
+| Lobe S           | 0.0214 | 0.03333 | 0.0012 |     9.2 |      1.1 |   0.01155 |      0.00472 |      0.013 |      0.017 |
+| Lobe N           | 0.0175 | 0.05588 | 0.0330 |     7.0 |      0.8 |   0.01275 |      0.00379 |      0.010 |      0.010 |
+| Inner Halo S     | 0.0343 |  0.1792 | 0.2128 |    12.6 |      0.8 |   0.01221 |      0.00283 |      0.029 |      0.029 |
+| Inner Halo N     | 0.0199 |  0.1143 | 0.1170 |    11.7 |        3 |   0.02034 |      0.00836 |      0.025 |      0.025 |
+|------------------+--------+---------+--------+---------+----------+-----------+--------------+------------+------------|
 #+TBLFM: $4=(1.393 $5 - 0.0452) / (1 - 0.2197 $5) ;%.4f::
++ Supplement ratios with Mezcal measurements
+  + These should be better for the halo and lobes
+  + Note halo and lobes values are upper limits
+  + I am using them to substitute selected HST values in the above table, where I suspect the HST measurements are unreliable (too sensitive to exactly where the zero point is)
+  + 
+| Slit and feature |     Ha |  W | [N II] |  W | E(NII) | [N II]/Ha       |
+|------------------+--------+----+--------+----+--------+-----------------|
+| Slit I* N Knot   | 0.0042 | 40 | 0.0016 | 20 |      0 | 0.190 +/- 0.053 |
+| Slit I* SW Red   |  0.052 | 55 |  0.021 | 30 |      0 | 0.220 +/- 0.042 |
+| Slit I* N(W) Red |  0.073 | 40 |  0.017 | 20 |      0 | 0.116 +/- 0.033 |
+| Slit I* S Halo   | 0.0002 | 35 |   1e-5 | 20 |   1e-5 | 0.029 +/- 0.030 |
+| Slit D SE Blue   |  0.213 | 30 | 0.0119 | 20 |      0 | 0.037 +/- 0.011 |
+| Slit D NE Blue   |  0.189 | 30 |   0.03 | 15 |      0 | 0.079 +/- 0.030 |
+| Slit V E Lobe    | 0.0016 | 42 |   1e-5 | 20 |   1e-5 | 0.003 +/- 0.003 |
+| Slit V W Lobe    | 0.0017 | 35 |   2e-5 | 20 |   2e-5 | 0.007 +/- 0.007 |
+| Slit E* S lobe   | 0.0008 | 60 |   2e-5 | 30 |   2e-5 | 0.013 +/- 0.013 |
+| Slit E* N halo   | 0.0006 | 40 |   2e-5 | 30 |   2e-5 | 0.025 +/- 0.026 |
+| Slit F N lobe    |  0.001 | 60 |   2e-5 | 30 |   2e-5 | 0.010 +/- 0.010 |
+#+TBLFM: $7=($4 +/- $6) ($5 +/- 5)/$2 ($3 +/- 5);f3
 
 **** Densities from the [S II] longslit spectrum
 + There is only on exposure: Slit S
@@ -800,20 +819,25 @@ CLOSED: [2020-04-29 Wed 18:23]
 #+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@12$4=vsum(@I..@III)
 **** TODO Latex version of summary table
 **** TODO Graph of [N II]/Ha versus ionization parameter
-#+begin_src python :var TAB=big-table-of-ha-brightness :colnames no :return figfile :results file
+#+begin_src python :var TAB=big-table-of-line-ratios :colnames no :return figfile :results file
   import numpy as np
   from matplotlib import pyplot as plt
   import seaborn as sns
   from astropy.table import Table
+  import pyneb as pn
 
-  data = Table(rows=TAB[1:-1], names=TAB[0])
+  data = Table(rows=TAB[1:], names=TAB[0])
 
   type_list = []
   for name in data["Feature"]:
-      if "IS" in name or "Shell" in name:
+      if "IS" in name:
+          t = "intermediate shell"
+      elif "Shell" in name:
           t = "shell"
-      elif "knot" in name or "complex" in name or "Peak" in name:
+      elif "knot" in name:
           t = "knot"
+      elif "complex" in name or "Peak" in name:
+          t = "knot complex"
       elif "Lobe" in name:
           t = "lobe"
       elif "Halo" in name:
@@ -827,16 +851,45 @@ CLOSED: [2020-04-29 Wed 18:23]
   figfile = "rnii-vs-ion-par.pdf"
   fig, ax = plt.subplots()
 
-  Ugrid = np.logspace(-5.5, 0.0)
-  ax.plot(Ugrid, 3.295 / (1 + 1.6e4*Ugrid), lw=8, c="0.8")
+  # Fraction of singly ionized species
+  fplus = np.logspace(-4.0, 0.0, 401)
+  Ugrid = (1/fplus - 1.0)/1.6e4
+  #Ugrid = np.logspace(-5.5, 0.0)
+  #fplus = 1.0/(1.0 + 1.6e4*Ugrid)
+
+  nii = pn.Atom(atom='N2')
+  oiii = pn.Atom(atom='O3')
+  hi = pn.RecAtom('H', 1)
+  T = [10700.0, 10700. - 1500, 10700. + 1500]
+  den = 4000.0
+  em4363 = oiii.getEmissivity(T, den, wave=4363)
+  em5007 = oiii.getEmissivity(T, den, wave=5007)
+  em6583 = nii.getEmissivity(T, den, wave=6583)
+  em6563 = hi.getEmissivity(T, den, lev_i=3, lev_j=2)
+  em4861 = hi.getEmissivity(T, den, lev_i=4, lev_j=2)
+  O_H = 4.9e-4
+  N_H = 7.0e-5
+  rnii = N_H*fplus[None, :]*em6583[:, None]/em6563[:, None]
+
+  ax.fill_between(Ugrid, rnii[1, :], rnii[2, :], lw=0, color="k", alpha=0.07, zorder=-201)
+  ax.plot(Ugrid, rnii[0, :], lw=8, c="0.7", zorder=-200)
+  ax.plot(Ugrid, rnii[0, :], 'o', markevery=50, c="w", zorder=-199)
+  ax.text(3e-5, 1.2, r"N/H = $7.0 \times 10^{-5}$, $T = (10\,700 \pm 1500)$ K", c="0.6")
+  ax.text(5e-5, 0.2, r"N$^{+}$/N = 0.1", c="0.6", fontsize="small")
+  ax.text(8e-4, 0.02, r"N$^{+}$/N = 0.01", c="0.6", fontsize="small")
+  ax.text(0.05, 0.0025, r"N$^{+}$/N = 0.001", c="0.6", fontsize="small")
   for type_, marker, color, size in [
+          ["intermediate shell", "o", "b", 50],
           ["shell", "o", "b", 100],
-          ["knot", "o", "orange", 100],
-          ["lobe", "o", "red", 100],
-          ["halo", f"$\downarrow$", "k", 200],
+          ["knot", "o", "orange", 50],
+          ["knot complex", "o", "orange", 100],
+          ["lobe", "$\downarrow$", "red", 300],
+          ["halo", "$\downarrow$", "k", 300],
   ]:
       m = data["Type"] == type_
-      ax.scatter("U_ion", "R_NII", data=data[m], s=size, marker=marker, color=color)
+      if type_ not in ["halo", "lobe"]:
+          ax.errorbar("U_ion", "6583/6563", yerr="E6583/6563", fmt="none", data=data[m],  zorder=-100, ecolor=color)
+      ax.scatter("U_ion", "6583/6563", data=data[m], s=size, marker=marker, color=color, edgecolor="w", linewidth=0.7)
 
   ax.set(
       xscale="log",
@@ -844,7 +897,7 @@ CLOSED: [2020-04-29 Wed 18:23]
       xlim=[0.00002, 0.1],
       ylim=[0.001, 4.0],
       xlabel="Ionization parameter",
-      ylabel=r"[N II] / H$\alpha$",
+      ylabel=r"[N II] 6583 / H$\alpha$ 6563",
   )
   sns.despine()
   fig.savefig(figfile)
@@ -852,6 +905,69 @@ CLOSED: [2020-04-29 Wed 18:23]
 
 #+RESULTS:
 [[file:rnii-vs-ion-par.pdf]]
+**** BPT Graph of [O III]/H\beta versus [N II]/Ha
+#+begin_src python :var TAB=big-table-of-line-ratios :colnames no :return figfile :results file
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sns
+  from astropy.table import Table
+
+  data = Table(rows=TAB[1:], names=TAB[0])
+
+  type_list = []
+  for name in data["Feature"]:
+      if "IS" in name:
+          t = "intermediate shell"
+      elif "Shell" in name:
+          t = "shell"
+      elif "knot" in name:
+          t = "knot"
+      elif "complex" in name or "Peak" in name:
+          t = "knot complex"
+      elif "Lobe" in name:
+          t = "lobe"
+      elif "Halo" in name:
+          t = "halo"
+      else:
+          t = ""
+      type_list.append(t)
+  data["Type"] = type_list
+
+  data["R_OIII"] = 1.159*data["502/487"]
+
+  sns.set_color_codes("bright")
+  figfile = "roiii-vs-rnii.pdf"
+  fig, ax = plt.subplots()
+
+  Ugrid = np.logspace(-5.5, 0.0)
+  ax.plot(Ugrid, 14.12 * 1.6e4*Ugrid / (1 + 1.6e4*Ugrid), lw=8, c="0.8", zorder=-200)
+  for type_, marker, color, size in [
+          ["intermediate shell", "o", "b", 50],
+          ["shell", "o", "b", 100],
+          ["knot", "o", "orange", 50],
+          ["knot complex", "o", "orange", 100],
+          ["lobe", "o", "red", 100],
+          ["halo", "o", "k", 100],
+  ]:
+      m = data["Type"] == type_
+      if type_ != "halo":
+          ax.errorbar("6583/6563", "R_OIII", xerr="E6583/6563", yerr="E502/487", fmt="none", data=data[m],  zorder=-100, ecolor=color)
+      ax.scatter("6583/6563", "R_OIII", data=data[m], s=size, marker=marker, color=color)
+
+  ax.set(
+      xscale="log",
+      yscale="log",
+      xlim=[0.001, 4.0],
+      ylim=[5.0, 16.0],
+      xlabel=r"[N II] / H$\alpha$",
+      ylabel=r"[O III] / H$\beta$",
+  )
+  sns.despine()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:roiii-vs-rnii.pdf]]
 
 **** TODO Graph of [O III]/H\beta versus ionization parameter
 + 1.159 times filter ratio
@@ -871,21 +987,28 @@ CLOSED: [2020-04-29 Wed 18:23]
   + => f++ = A U_ion / (1 + A U_ion) 
   + AND (1 - f+) / f+ = A U_ion
   + f+ = 1 / (1 + A U_ion)
++ Or another way of putting it
+  + U_ion = A^-1 [f+^-1 - 1]
 
 #+begin_src python :var TAB=big-table-of-line-ratios :colnames no :return figfile :results file
   import numpy as np
   from matplotlib import pyplot as plt
   import seaborn as sns
   from astropy.table import Table
+  import pyneb as pn
 
   data = Table(rows=TAB[1:], names=TAB[0])
 
   type_list = []
   for name in data["Feature"]:
-      if "IS" in name or "Shell" in name:
+      if "IS" in name:
+          t = "intermediate shell"
+      elif "Shell" in name:
           t = "shell"
-      elif "knot" in name or "complex" in name or "Peak" in name:
+      elif "knot" in name:
           t = "knot"
+      elif "complex" in name or "Peak" in name:
+          t = "knot complex"
       elif "Lobe" in name:
           t = "lobe"
       elif "Halo" in name:
@@ -901,17 +1024,43 @@ CLOSED: [2020-04-29 Wed 18:23]
   figfile = "roiii-vs-ion-par.pdf"
   fig, ax = plt.subplots()
 
-  Ugrid = np.logspace(-5.5, 0.0)
-  ax.plot(Ugrid, 14.12 * 1.6e4*Ugrid / (1 + 1.6e4*Ugrid), lw=8, c="0.8", zorder=-200)
+  # Fraction of singly ionized species
+  fplus = np.logspace(-4.0, 0.0, 401)
+  Ugrid = (1/fplus - 1.0)/1.6e4
+
+  nii = pn.Atom(atom='N2')
+  oiii = pn.Atom(atom='O3')
+  hi = pn.RecAtom('H', 1)
+  T = [9500.0, 9500 - 500, 9500 + 500]
+  den = 4000.0
+  em4363 = oiii.getEmissivity(T, den, wave=4363)
+  em5007 = oiii.getEmissivity(T, den, wave=5007)
+  em6583 = nii.getEmissivity(T, den, wave=6583)
+  em6563 = hi.getEmissivity(T, den, lev_i=3, lev_j=2)
+  em4861 = hi.getEmissivity(T, den, lev_i=4, lev_j=2)
+  O_H = 4.9e-4
+  N_H = 7.0e-5
+  roiii = O_H*(1.0 - fplus[None, :])*em5007[:, None]/em4861[:, None]
+
+  ax.fill_between(Ugrid, roiii[1, :], roiii[2, :], lw=0, color="k", alpha=0.07, zorder=-201)
+  ax.plot(Ugrid, roiii[0, :], lw=8, c="0.7", zorder=-200)
+  ax.plot(Ugrid, roiii[0, :], 'o', markevery=50, c="w", zorder=-199)
+  ax.text(3e-5, 3.0, r"O/H = $4.9 \times 10^{-4}$, $T = (9500 \pm 500)$ K", c="0.6")
+  ax.text(1e-4, 6.0, r"O$^{2+}$/O = 0.9", c="0.6", fontsize="small")
+  ax.text(1e-3, 12.0, r"O$^{2+}$/O = 0.99", c="0.6", fontsize="small")
+  ax.text(0.04, 11.0, r"O$^{2+}$/O = 0.999", c="0.6", fontsize="small")
+
   for type_, marker, color, size in [
+          ["intermediate shell", "o", "b", 50],
           ["shell", "o", "b", 100],
-          ["knot", "o", "orange", 100],
+          ["knot", "o", "orange", 50],
+          ["knot complex", "o", "orange", 100],
           ["lobe", "o", "red", 100],
           ["halo", "o", "k", 100],
   ]:
       m = data["Type"] == type_
       ax.errorbar("U_ion", "R_OIII", yerr="E502/487", fmt="none", data=data[m],  zorder=-100, ecolor=color)
-      ax.scatter("U_ion", "R_OIII", data=data[m], s=size, marker=marker, color=color)
+      ax.scatter("U_ion", "R_OIII", data=data[m], s=size, marker=marker, color=color, edgecolor="w", linewidth=0.7)
 
   ax.set(
       xscale="log",
@@ -919,7 +1068,7 @@ CLOSED: [2020-04-29 Wed 18:23]
       xlim=[0.00002, 0.1],
       ylim=[0.0, 16.0],
       xlabel="Ionization parameter",
-      ylabel=r"[O III] / H$\beta$",
+      ylabel=r"[O III] 5007 / H$\beta$ 4861",
   )
   sns.despine()
   fig.savefig(figfile)
@@ -2445,6 +2594,88 @@ And another version that does a refined 4364/5007 ratio
 #+RESULTS:
 : None
 
+And finally a refined [N II] 6583/H\alpha 6563 ratio 
+
+#+begin_src sh :results verbatim :dir ../data/hst-cr-combine/reproject 
+xpaset -p ratios regions save $PWD/turtle-viewport-nii.reg
+#+end_src
+
+#+RESULTS:
+
+#+BEGIN_SRC python :tangle ../scripts/turtle-hst-multibin-nii-ratio.py
+  from pathlib import Path
+  import numpy as np
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from astropy.convolution import convolve_fft, Gaussian2DKernel
+  import regions as rg
+
+  FLUXSCALE = 3e-16               # approx PHOTFLAM for Ha
+
+  datadir = Path("../data/hst-cr-combine/reproject")
+  nlist = [1, 2, 4, 8, 16, 32]
+  nmax = max(nlist)
+
+  win = rg.read_ds9(datadir / "turtle-viewport-nii.reg")[0]
+
+  # do an outer envelope mask based on H alpha or [N II] 
+  fn = datadir / "turtle-F658N-1998-reproject-bin001.fits"
+  hdu = fits.open(fn)["SCALED"]
+  # Convolve to give a nice smooth boundary
+  kernel = Gaussian2DKernel(x_stddev=5)
+  hamask = convolve_fft(hdu.data, kernel) > 0e-19
+
+  ratname = "R6583-6563"
+  bandA, bandB = "F658N-1998", "F656N-1997"
+  minA, minB = 0.25, 0.2
+  outimA, outimB = None, None
+  # Correct limits since we have now put in flux units
+  minA *= FLUXSCALE
+  minB *= FLUXSCALE
+
+  for n in reversed(nlist):
+      fnA = datadir / f"turtle-{bandA}-reproject-bin{n:03d}.fits"
+      fnB = datadir / f"turtle-{bandB}-reproject-bin{n:03d}.fits"
+
+
+      hduA = fits.open(fnA)["SCALED"]
+      hduB = fits.open(fnB)["SCALED"]
+      if outimA is None:
+          hdr = hduA.header
+          outimA = np.empty_like(hduA.data)
+          outimB = np.empty_like(hduA.data)
+
+      # Minimum flux requirement
+      #hduA.data += 1e-19
+      mask = (n**2 * hduA.data > minA) & (n**2 * hduB.data > minB)
+      outimA[mask] = hduA.data[mask]
+      outimB[mask] = hduB.data[mask]
+
+
+
+  # Cut off the image at the border of the original diamond window
+  winmask = win.to_pixel(WCS(hduA.header)).to_mask()
+  mask = ~winmask.to_image(hduA.data.shape).astype(bool)
+  outimA[mask] = np.nan
+  outimB[mask] = np.nan
+
+  # Apply the outer envelope mask
+  # Others use the Ha mask
+  outimA[~hamask] = np.nan
+  outimB[~hamask] = np.nan
+
+  # This is the final intrinsic auroral-nebula ratio for [O III] Taking
+  # into account reddening (CHB=0.13) and contamination of the F437N
+  # filter by H gamma and atomic continuum
+  r = outimA/outimB
+  ratio = (1.393*r - 0.0452)/(1 - 0.2197*r)
+  out_fn =  datadir / f"turtle-{ratname}-multibin.fits"
+  fits.PrimaryHDU(header=hdr, data=ratio).writeto(out_fn, overwrite=True)
+#+END_SRC
+
+#+RESULTS:
+: None
+
 
 ***** Look at differences instead of ratios
 
@@ -2460,7 +2691,7 @@ And another version that does a refined 4364/5007 ratio
 
   hduA = fits.open(datadir / "turtle-F547M-1997-reproject.fits")["SCI"]
   hduB = fits.open(datadir / "turtle-F487N-1997-reproject.fits")["SCI"]
-  hduA.data -= hduB.data/30.5
+  hduA.data -= hduB.data/31.5
   hduA.writeto(datadir / "diff-F547M-F487N-reproject.fits", overwrite=True)
 #+end_src
 
@@ -2488,12 +2719,20 @@ And another version that does a refined 4364/5007 ratio
   hduA = fits.open(datadir / "turtle-F437N-1997-cr-reproject.fits")["SCI"]
   hduB = fits.open(datadir / "turtle-F502N-1997-reproject.fits")["SCI"]
   hduC = fits.open(datadir / "turtle-F487N-1997-reproject.fits")["SCI"]
-  hduA.data = 0.9831*hduA.data - 0.02725*hduC.data - 0.0055*hduB.data
+  hduA.data = 0.9831*hduA.data - 0.02725*hduC.data - 0.005*hduB.data
   hduA.writeto(datadir / "diff-F437N-F502N-reproject.fits", overwrite=True)
 #+end_src
 
 #+RESULTS:
 : None
+
++ Conclusions 
+  - There is some indication of excess emission
+    - Associated with N(W) Red complex
+      - This is only a change from 0.0055 to 0.0065 in the ratio
+    - And N peanut shell rim
+    - And some outer stuff - ESE intermediate shell, for instance
+  - But none of these are very convincing
 
 ***** Take profiles through the nebula
 + We can't use the save dialogs since it keeps crashing
@@ -2543,6 +2782,7 @@ xpaset -p ratios regions load $PWD/F437N-cosmic-rays.reg
   + Inner ring is clearly due to continuum contamination
 + 4861/cont shows drops at knot positions
   + Might indicate dust-scattered continuum
+  + Now I suspect that this is contamination by [N II] 5755
 + 5007/4861 has small variations (< 20% in bright nebula)
   + But they are significant
   + Peaks in outer edge of peanut shells
