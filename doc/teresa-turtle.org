@@ -647,7 +647,7 @@ This table corrects the raw 6716/6731 ratio to force the average ratio to be 0.6
 #+TBLFM: $5=0.6 $3 / @9$3;f2::$6=0.6 $4 / @9$3;f2
 
 
-#+begin_src python :var TAB=6716-6731-measurements-corrected :colnames no :return outtab :results table
+#+begin_src python :var TAB=6716-6731-measurements-corrected :colnames no :return outtab :results table :tangle ../scripts/sii-densities.py
   import numpy as np
   import pyneb as pn
   from astropy.table import Table
@@ -3451,7 +3451,7 @@ os.system("which flct")
   + Try removing the horizontal slits, to see if it makes any difference
   + Calculate moment maps
 
-** [2/2] Median image
+** [0/0] Median image
 CLOSED: [2019-05-28 Tue 08:56]
 + We need to add WCS info to all of them
   + [X] Use astrometry.net
@@ -3461,6 +3461,98 @@ CLOSED: [2019-05-28 Tue 08:56]
 + Some are [O III] images
 + Others are properly saturated, but one is deep enough to show the halo well
   + ~spm238~ although it has artefacts from the central star
+    + This is also [O III] and is 600s
+  + ~spm306~ very deep [O III] exposure of halo knots (1800s = 0.5 hr)
+  + ~spm303~ also very deep [O III] (1800s) but of S halo, which is very smooth and structureless
+  + ~spm350~ very deep [O III] (1800s) of W halo - shows N Halo Knots
+  + ~spm358~ very deep [O III] (1800s) of E halo - shows E halo knots
+
+#+begin_src python :return table
+  import pathlib
+  from astropy.io import fits
+
+  datadir = pathlib.Path("../data/imslit")
+  files = datadir.glob("*-wcs.fits")
+
+  table = [
+      ["name", "filter", "exposure", "ccd", "date"],
+      None
+  ]
+  for f in reversed(sorted(files)):
+      hdu, = fits.open(f)
+      data = [
+          f.stem,
+          hdu.header.get("FILTER"),
+          float(hdu.header.get("EXPTIME"))/1000,
+          hdu.header.get("CAMERA"),
+          hdu.header.get("DATE-OBS"),
+      ]
+      table.append(data)
+#+end_src
+
+#+RESULTS:
+| name             | filter     | exposure | ccd      |       date |
+|------------------+------------+----------+----------+------------|
+| spm414_bcr-wcs   | OIII 90A   |     15.0 | SITE3    | 2003-10-18 |
+| spm407_bcr-wcs   | SII 90A    |    100.0 | SITE3    | 2004-06-16 |
+| spm358_bcr-wcs   | OIII 90A   |   1800.0 | SITE3    | 2004-06-15 |
+| spm350_bcr-wcs   | OIII 90A   |   1800.0 | SITE3    | 2004-06-15 |
+| spm331_bcr-wcs   | Ha 90A     |    300.0 | SITE3    | 2003-10-17 |
+| spm328_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-10-17 |
+| spm306_bcr-wcs   | OIII 90A   |   1800.0 | SITE3    | 2004-06-14 |
+| spm303_bcr-wcs   | OIII 90A   |   1800.0 | SITE3    | 2004-06-14 |
+| spm296_bcr-wcs   | OIII 90A   |    100.0 | SITE3    | 2004-06-14 |
+| spm293_bcr-wcs   | OIII 90A   |    100.0 | SITE3    | 2004-06-14 |
+| spm256_bcr-wcs   | OIII 90A   |    100.0 | SITE3    | 2004-06-13 |
+| spm251_bcr-wcs   | OIII 90A   |    100.0 | SITE3    | 2004-06-13 |
+| spm242_bcr-wcs   | OIII 90A   |    100.0 | SITE3    | 2004-06-13 |
+| spm238_bcr-wcs   | OIII 90A   |    600.0 | SITE3    | 2004-06-13 |
+| spm236_bcr-wcs   | OIII 90A   |    120.0 | SITE3    | 2004-06-13 |
+| spm229_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-10-16 |
+| spm223_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-10-16 |
+| spm165_bcr-wcs   | Ha 90A     |     30.0 | SITE3    | 2003-06-06 |
+| spm134_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm127_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm124_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm121_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm118_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm116-2_bcr-wcs | OIII 60A   |    100.0 | E2V-4240 | 2011-05-21 |
+| spm115_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm111_cr-wcs    | Ha 90A     |    100.0 | E2V-4240 | 2011-05-21 |
+| spm110_u-wcs     | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
+| spm021_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
+| spm019_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
+| spm0190o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
+| spm0185o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
+| spm0183o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
+| spm017_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
+| spm0178o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
+| spm0177o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
+| spm0172o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
+| spm0128o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-19 |
+| spm0123o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
+| spm0121o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
+| spm0120o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
+| spm0115o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
+| spm0114o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-19 |
+| spm0109o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
+| spm0061o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
+| spm0056o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
+| spm0053o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
+| spm004_b-wcs     | Ha 90A     |      0.3 | None     | 2013-07-06 |
+| spm0048o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
+| spm0047o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
+| spm0042o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
+| spm0041o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
+| spm003_b-wcs     | Ha 90A     |     0.03 | None     | 2013-07-06 |
+| spm0036o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
+| spm0035o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
+| spm0030o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
+| obj1017_bcr-wcs  | pos5       |     0.06 | None     |   28/06/98 |
+| obj1012_bcr-wcs  | ha+n2      |     0.06 | None     |   28/06/98 |
+| obj1009_bcr-wcs  | Ha+n2      |     0.06 | None     |   28/06/98 |
+| obj1006_bcr-wcs  | Han2       |     0.06 | None     |   28/06/98 |
+| obj1002_bcr-wcs  | Ha+NII6580 |     0.06 | None     |   28/06/98 |
 
 *** DONE Astrometry of image+slit exposures
 CLOSED: [2019-05-26 Sun 17:53]
