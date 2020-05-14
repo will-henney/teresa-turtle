@@ -3480,11 +3480,12 @@ CLOSED: [2019-05-28 Tue 08:56]
   ]
   for f in reversed(sorted(files)):
       hdu, = fits.open(f)
+      ccd = hdu.header.get("CAMERA", hdu.header.get("DETECTOR")) 
       data = [
           f.stem,
           hdu.header.get("FILTER"),
           float(hdu.header.get("EXPTIME"))/1000,
-          hdu.header.get("CAMERA"),
+          ccd,
           hdu.header.get("DATE-OBS"),
       ]
       table.append(data)
@@ -3520,39 +3521,104 @@ CLOSED: [2019-05-28 Tue 08:56]
 | spm115_bcr-wcs   | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
 | spm111_cr-wcs    | Ha 90A     |    100.0 | E2V-4240 | 2011-05-21 |
 | spm110_u-wcs     | Ha 90A     |    100.0 | SITE3    | 2003-06-05 |
-| spm021_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
-| spm019_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
-| spm0190o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
-| spm0185o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
-| spm0183o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
-| spm017_b-wcs     | Ha 90A     |      0.1 | None     | 2013-07-06 |
-| spm0178o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
-| spm0177o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-20 |
-| spm0172o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-20 |
-| spm0128o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-19 |
-| spm0123o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
-| spm0121o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
-| spm0120o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
-| spm0115o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
-| spm0114o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-19 |
-| spm0109o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-19 |
-| spm0061o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
-| spm0056o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
-| spm0053o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
-| spm004_b-wcs     | Ha 90A     |      0.3 | None     | 2013-07-06 |
-| spm0048o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
-| spm0047o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
-| spm0042o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
-| spm0041o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
-| spm003_b-wcs     | Ha 90A     |     0.03 | None     | 2013-07-06 |
-| spm0036o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
-| spm0035o_b-wcs   | OIII 60A   |      0.1 | None     | 2015-08-18 |
-| spm0030o_b-wcs   | Ha 90A     |      0.1 | None     | 2015-08-18 |
-| obj1017_bcr-wcs  | pos5       |     0.06 | None     |   28/06/98 |
-| obj1012_bcr-wcs  | ha+n2      |     0.06 | None     |   28/06/98 |
-| obj1009_bcr-wcs  | Ha+n2      |     0.06 | None     |   28/06/98 |
-| obj1006_bcr-wcs  | Han2       |     0.06 | None     |   28/06/98 |
-| obj1002_bcr-wcs  | Ha+NII6580 |     0.06 | None     |   28/06/98 |
+| spm021_b-wcs     | Ha 90A     |      0.1 | e2vm2    | 2013-07-06 |
+| spm019_b-wcs     | Ha 90A     |      0.1 | e2vm2    | 2013-07-06 |
+| spm0190o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-20 |
+| spm0185o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-20 |
+| spm0183o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-20 |
+| spm017_b-wcs     | Ha 90A     |      0.1 | e2vm2    | 2013-07-06 |
+| spm0178o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-20 |
+| spm0177o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-20 |
+| spm0172o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-20 |
+| spm0128o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-19 |
+| spm0123o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-19 |
+| spm0121o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-19 |
+| spm0120o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-19 |
+| spm0115o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-19 |
+| spm0114o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-19 |
+| spm0109o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-19 |
+| spm0061o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-18 |
+| spm0056o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-18 |
+| spm0053o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-18 |
+| spm004_b-wcs     | Ha 90A     |      0.3 | e2vm2    | 2013-07-06 |
+| spm0048o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-18 |
+| spm0047o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-18 |
+| spm0042o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-18 |
+| spm0041o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-18 |
+| spm003_b-wcs     | Ha 90A     |     0.03 | e2vm2    | 2013-07-06 |
+| spm0036o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-18 |
+| spm0035o_b-wcs   | OIII 60A   |      0.1 | e2vm2    | 2015-08-18 |
+| spm0030o_b-wcs   | Ha 90A     |      0.1 | e2vm2    | 2015-08-18 |
+| obj1017_bcr-wcs  | pos5       |     0.06 | TK 1K    |   28/06/98 |
+| obj1012_bcr-wcs  | ha+n2      |     0.06 | TK 1K    |   28/06/98 |
+| obj1009_bcr-wcs  | Ha+n2      |     0.06 | TK 1K    |   28/06/98 |
+| obj1006_bcr-wcs  | Han2       |     0.06 | TK 1K    |   28/06/98 |
+| obj1002_bcr-wcs  | Ha+NII6580 |     0.06 | TK 1K    |   28/06/98 |
+
+Make a co-added image of all the Ha exposures with the e2vm2 chip
+
+#+begin_src python
+  import pathlib
+  from astropy.io import fits
+  from reproject import reproject_interp
+
+  datadir = pathlib.Path("../data/imslit")
+  files = datadir.glob("*-wcs.fits")
+
+  hafiles = []
+  for f in files:
+      hdu, = fits.open(f)
+      if "e2vm2" in hdu.header.get("DETECTOR", "") and "Ha" in hdu.header.get("FILTER"):
+          hafiles.append(f)
+
+
+  hdu0, = fits.open(hafiles[0])
+  image = hdu0.data
+  for f in hafiles[1:]:
+      hdu, = fits.open(f)
+      data, _ = reproject_interp(hdu, hdu0.header)
+      image += data
+
+  hdu0.data = image
+  for i, f in enumerate(hafiles):
+      hdu0.header[f"HAFILE{i:02d}"] = f.stem
+  hdu0.writeto(datadir / "stacked-ha.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
+
+#+begin_src python
+  import pathlib
+  from astropy.io import fits
+  from reproject import reproject_interp
+
+  datadir = pathlib.Path("../data/imslit")
+  files = datadir.glob("*-wcs.fits")
+
+  o3files = []
+  for f in files:
+  hdu, = fits.open(f)
+      if "e2vm2" in hdu.header.get("DETECTOR", "") and "OIII" in hdu.header.get("FILTER"):
+          o3files.append(f)
+
+
+  hdu0, = fits.open(o3files[0])
+  image = hdu0.data
+  for f in o3files[1:]:
+      hdu, = fits.open(f)
+      data, _ = reproject_interp(hdu, hdu0.header)
+      image += data
+
+  hdu0.data = image
+  for i, f in enumerate(o3files):
+      hdu0.header[f"O3FILE{i:02d}"] = f.stem
+  hdu0.writeto(datadir / "stacked-oiii.fits", overwrite=True)
+#+end_src
+
+#+RESULTS:
+: None
+
 
 *** DONE Astrometry of image+slit exposures
 CLOSED: [2019-05-26 Sun 17:53]
