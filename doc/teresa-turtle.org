@@ -5576,6 +5576,40 @@ Central velocities in [N II] - 20 km/s channels
     | 60 \to 75 |       | X     | XXX       |        |
     | 75 \to 90 |       |       | X         |        |
 + [ ] Make a plot of histogram of inclinations
+  #+begin_src python :return figfile :results file 
+    from matplotlib import pyplot as plt
+    import seaborn as sns
+    sns.set_color_codes("bright")
+
+    figfile = "turtle-inclination-histogram.pdf"
+
+    lobes = [22, 28, 10, 26, 9, 25, 22]
+    complexes = [69, 68, 81, 50, 68, 44]
+    knots = [26, 63, 47]
+    shells = [11, 22, 44, 39, 37, 40]
+    datasets = [shells, lobes, complexes, knots]
+    labels = ["shells", "lobes", "knot complexes", "individual knots"]
+    locs = "upper right", "upper right", "upper left", "upper right"
+    bins = [0, 15, 30, 45, 60, 75, 90]
+    colors = "b", "r", "y", "m"
+
+    fig, axes = plt.subplots(4, 1, sharex=True, sharey=True)
+    for ax, data, label, loc, color in zip(axes, datasets, labels, locs, colors):
+        ax.hist(data, bins=bins, label=label, color=color)
+        ax.legend(loc=loc)
+    axes[-1].set(
+        xticks=bins,
+        xlabel="Inclination to plane of sky, $|i|$, deg",
+        ylabel="Number of features",
+    )
+    sns.despine()
+    fig.savefig(figfile)
+
+  #+end_src
+
+  #+RESULTS:
+  [[file:turtle-inclination-histogram.pdf]]
+
 **** Table of 3D velocity organized by axis
 
 :PROPERTIES:
@@ -5688,6 +5722,7 @@ Central velocities in [N II] - 20 km/s channels
     | NW knot ([N II])      |    2 | 310 |      | 24. |  4. | 0.18 | 0.10 | 6.7 | 4.5 |
     | N(W) Red complex      |    2 | 300 |      | 27. |  3. | 0.16 | 0.08 | 6.0 | 3.1 |
     | Outer lobe X-/IV-/V+  |    3 | 120 | D-   | 26. | 13. | 0.14 | 0.04 | 5.2 | 3.3 |
+    | SE knot               |    2 | 135 |      |  57 |   8 | 0.09 | 0.02 | 1.5 | 0.4 |
     | SE Blue complex       |    2 | 135 |      | 54. |  8. | 0.07 | 0.02 | 1.1 | 0.4 |
 
 #+header: :var TAB=vel-radius-systems :colnames no
