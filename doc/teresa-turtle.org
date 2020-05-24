@@ -552,6 +552,9 @@
     + Inner shells are 60%
     + IS is 14% but that is an over-estimate since it includes emission associated with the knot complexes
 **** Table of HST line ratios
+:PROPERTIES:
+:ID:       6BC85271-11B3-443D-A0D0-9E36DBCDFECC
+:END:
 #+name: big-table-of-line-ratios
 | Feature          |  U_ion | 658/656 |  R_NII | 502/487 | E502/487 | 4363/5007 | E(4363/5007) |  6583/6563 | E6583/6563 |
 |------------------+--------+---------+--------+---------+----------+-----------+--------------+------------+------------|
@@ -924,6 +927,62 @@ CLOSED: [2020-04-29 Wed 18:23]
 |--------------------+---------+--------------+------------+-------------------+---------+-------+---------------+---|
 |                    |         |              |      0.372 |                   |         |       |    3.7e-1 / 0 |   |
 #+TBLFM: $8=$4 / 1000 ($7 - $6) ;s2::@8$8=0.0::@12$4=vsum(@I..@III)
+**** TODO Separating out the blue and red-shifted knot complexes
++ We now have axis E+ being redshifted knots and E- being blueshifted knots
++ It would be good to be able to distinguish them in the summary table
+  + Especially since we have now seen that they correspond to different non-overlapping output events
+  + E+ was active from 8000 to 4000 yrs ago
+  + E- was active from 3000 to 1000 yrs ago
+  + So E+ was from before the formation of the PNe and E- was after *perhaps*
++ What do we have in the big table already?
+  + SW Red Complex - /red/
+  + NW knot - /red/
+  + Peak - /red/ + /blue/ - really N(E) Red plus NE Blue
+  + N complexes - /red/ - really N(W) Red
+  + S complexes - /blue/ - really SE Blue
+  + SE knot - /blue/
++ So the one that needs further analysis is "Peak"
+  + We can look at the spectra to assign brightness between the red and blue components
++ Slit D - 1.6 arcsec to E of star
+  + The N complexes cross the slit at y \approx +3
+  + N(E) Red complex at V = +16 km/s has about 30% of Ha flux
+  + NE Blue complex at V = -42 km/s has about 15% of Ha flux
+    + Note velocities are smaller than for [N II]
+  + The other 50% comes from the shells
+  + Total S(Ha) is 5.1 \pm 0.9
+    + (don't do BG subtraction since we are dividing into components anyway)
+  + So this would mean
+    + N(E) Red: S(Ha) = 1.53
+    + NE Blue: S(Ha) = 0.77
+    + Compare with 4.0 that I had for "N complexes" and 4.9 for "Peak"
+      + But these were measured in brighter locations
+      + Still, they may be overestimates since the shell contribution has not been subtracted
+  + Inspired by Slit F below, we can calculate line ratios too (as [N II]/Ha = 4 [N II]/[O III])
+    + NE Blue: [N II]/Ha = 4 0.029 / 0.066 = 1.758 *enormous !!!*
+    + Inner shell: [N II]/Ha = 4 0.001 / 0.239 = 0.01674 - consistent with HST
+    + N(E) Red: [N II]/Ha = 4 0.015 / 0.251 = 0.239 - a little higher than HST, but roughly the same
+
+
++ Slit F - 4.6 arcsec W of star
+  + Looking at y = -5
+    + SW Faint Blue (V = -18 km/s) is 40% of flux
+    + Rest is mainly shells (possibly IS) ad SW Red complex
+    + Total S(Ha) = 1.0 \pm 0.3
+    + In [O III], we can see that SW Faint Blue has a narrow peak
+      + [N II]/[O III] = 0.01 for SW Faint Blue 
+      + [N II]/[O III] = 0.0043 for the shells
+      + [N II]/[O III] = 0.08846 for SW Red
+    + If we assume that [O III]/Hb = 12 for the shells, then [O III]/Ha = 4
+      + => [N II]/Ha = 4 [N II]/[O III]
+      + [N II]/Ha = 0.04, 0.017, 0.35 for SW FB, shells, SW R
+      + But from HST, we have measurements of 0.02 \to 0.06 for IS and 0.01 \to 0.03 for inner shells
+      + From the spectrum for the inner shell we get 4 0.00105 / 0.258 = 0.016
+    + So this all makes sense /except/ that in Fig 23a we have SW Red as being 0.03
+      + /but/ this is surely SE Blue instead - yes it is, it was an error in the labeling, now fixed
+    + So everything /really/ makes sense now
+      + Our measurement of [N II]/Ha = 0.35 for SW Red is roughly consistent with the value of 0.25 from [[id:6BC85271-11B3-443D-A0D0-9E36DBCDFECC][Table of HST line ratios]]
+    + I will go back and do ratios for NE Blue too
+
 **** DONE Graph of mass loss history
 CLOSED: [2020-05-07 Thu 23:46]
 #+begin_src python :var TAB=summary-pars :colnames no :return figfile :results file
@@ -1153,8 +1212,8 @@ CLOSED: [2020-05-05 Tue 19:54]
 + Empirically, Pottasch:2009a find
   | Element |  n+/np |  n++/np | n+/n++ |
   |---------+--------+---------+--------|
-  | N       | 4.3e-6 | 5.58e-5 | 0.077  |
-  | O       | 2.8e-5 | 4.64e-4 | 0.060  |
+  | N       | 4.3e-6 | 5.58e-5 |  0.077 |
+  | O       | 2.8e-5 | 4.64e-4 |  0.060 |
   #+TBLFM: $4=$2/$3;f3
 + So this is an ICF smaller than unity, of 0.7792
 **** DONE Graph of [O III]/H\beta versus ionization parameter
