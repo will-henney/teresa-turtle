@@ -298,10 +298,20 @@
 ***** Abundances
 + Pottasch:2009a claim that it is mot enriched in N or C (C/O < 1)
 + This is unlike most other planetary nebulae, Henry:2018a, which all show enhanced M and He
-
++ Specifically:
+  + He/H = 0.092
+  + C/H = 1.2e-4 => 12 + log10(C/H) = 8.079
+  + N/H = 7.0e-5 => 7.845
+  + O/H = 4.9e-4 => 8.69
+  + Ne/H = 1.2e-4 => 8.079
+  + So N/O = 0.1429 => log(N/O) = -0.845 (slightly > solar 0.1326)
+  + And C/O = 0.2449 => log(C/O) = -0.611 (half solar)
++ Compare Henry:2018a
+  + N/O is at low end of PN distribution but still reasonable
+  + Small C/O is very atypical of PN
 ***** Spatial variation of conditions
-+ [-] Some things I can look at
-  1. [ ] Maps of line ratios from the HST images
++ [X] Some things I can look at
+  1. [X] Maps of line ratios from the HST images
      - In theory I need to account for continuum
      - But I can check the integrated ratios using the Pottasch:2009a results
   2. [X] Electron density for different components from Ha surface brightness
@@ -418,6 +428,8 @@
 + Mainly because next to Turtle in figures of Jackie paper
 + Seems to consist entirely of knots, but that may be just the filter
 + This is a close binary, see Jones:2019a
+***** NGC 6543 and 7009
+Very similar to one another. They have wandering axes superimposed on a basic bipolar morphology. 
 *** Relative H\alpha brightness of different components
 + To start with, I am measuring these on the HST Ha image
   + Later, I can try the SPM spectra/images too, especially for the halo
@@ -945,9 +957,26 @@ CLOSED: [2020-04-29 Wed 18:23]
   + We can look at the spectra to assign brightness between the red and blue components
 + Slit D - 1.6 arcsec to E of star
   + The N complexes cross the slit at y \approx +3
-  + N(E) Red complex at V = +16 km/s has about 30% of Ha flux
   + NE Blue complex at V = -42 km/s has about 15% of Ha flux
     + Note velocities are smaller than for [N II]
+    + /Recheck this number/
+    + SPM S(Ha) at V = -42 is 0.05, but knot contribution is probably 0.025
+    + S([N II]) = 0.030, and S([O III]) = 0.067
+      + => [N II]/Ha = 4 0.030 / 0.067 = 1.79 - as before, this is big
+    + If that is true, then expected Ha is 0.030/1.79 = 0.017, not so different from 0.025
+    + Peak SPM S(Ha) = 0.25 with W = 50
+    + So, we get fraction as 0.025 30 / 0.25 50 = 0.06, or 6%
+    + *I think this is more reliable*
+    + So NE Blue S(Ha) = 5.1 0.06 = 0.306
+  + N(E) Red complex at V = +16 km/s has about 30% of Ha flux
+    + /Recheck this one too/
+    + SPM S(Ha) at V = +16 is 0.21 but knot contribution is probably less than 0.1
+    + S([N II]) = 0.020, and S([O III]) = 0.247
+      + => [N II]/Ha = 4 0.020 / 0.247 = 0.323 - highish, but nothing like SE Blue
+    + So expected Ha contribution from knots is 0.02 / 0.323 = 0.06 - very similar to 0.1
+    + So fraction is 0.1 30 / 0.25 50 = 0.24 or 24% (as opposed to initial estimate of 30%)
+    + *So this time it checks out more or less*
+    + Implies N(E) Red S(Ha) = 5.1 0.24 = 1.224
   + The other 50% comes from the shells
   + Total S(Ha) is 5.1 \pm 0.9
     + (don't do BG subtraction since we are dividing into components anyway)
@@ -961,13 +990,12 @@ CLOSED: [2020-04-29 Wed 18:23]
     + NE Blue: [N II]/Ha = 4 0.029 / 0.066 = 1.758 *enormous !!!*
     + Inner shell: [N II]/Ha = 4 0.001 / 0.239 = 0.01674 - consistent with HST
     + N(E) Red: [N II]/Ha = 4 0.015 / 0.251 = 0.239 - a little higher than HST, but roughly the same
-
-
 + Slit F - 4.6 arcsec W of star
-  + Looking at y = -5
+  + Looking at y = -5 (/slit F South/)
     + SW Faint Blue (V = -18 km/s) is 40% of flux
-    + Rest is mainly shells (possibly IS) ad SW Red complex
+    + Rest is mainly shells (possibly IS) and SW Red complex
     + Total S(Ha) = 1.0 \pm 0.3
+      + SW Faint Blue S(Ha) = 0.4
     + In [O III], we can see that SW Faint Blue has a narrow peak
       + [N II]/[O III] = 0.01 for SW Faint Blue 
       + [N II]/[O III] = 0.0043 for the shells
@@ -982,6 +1010,147 @@ CLOSED: [2020-04-29 Wed 18:23]
     + So everything /really/ makes sense now
       + Our measurement of [N II]/Ha = 0.35 for SW Red is roughly consistent with the value of 0.25 from [[id:6BC85271-11B3-443D-A0D0-9E36DBCDFECC][Table of HST line ratios]]
     + I will go back and do ratios for NE Blue too
+    + Now re-calculating knot contributions to S(Ha)
+      + SW Faint Blue
+        + [N II]/Ha = 0.04 from above
+        + S([N II]) = 0.00156 from slit F y = -3.6
+        + S([O III]) = 0.08 from slit F y = -3.6, after subtracting wing of shell
+        + [N II]/Ha = 4 0.00156 / 0.08 = 0.078, /so not so small now/
+          + This would imply S(Ha) = 0.00156 / 0.078 = 0.020
+        + SPM S(Ha) = 0.030 from the spectrum (1/2 of value, taking into account wing of shell)
+          + So these are close as usual 0.030 and 0.020
+        + Peak S(Ha) is 0.15 with W = 60 km/s
+          + So SW FB's percentage of Ha brightness is 0.030 30 / 0.15 60 = 0.1 => 10%
+          + Much less than before, except that we were looking at y = -5, and this is y = -3.6
+          + Total S(Ha) = 1.3 => SW FB has 0.13
+          + /Still quite a bit less than before/
+      + SW Red
+        + S([N II]) = 0.032 at y = -1
+        + S([O III]) = 0.1 blended component
+        + [N II]/Ha = 4 0.032 / 0.1 = 1.28
+          + This implies S(Ha) = 0.032 / 1.28 = 0.025
+        + SPM S(Ha) = 0.05 from the spectrum (1/2 of value, taking into account wing of shell)
+          + Consistent within a factor of 2
+        + Peak S(Ha) = 0.22 with W = 60
+          + so SW Red's percentage of Ha brightness is 0.05 30 / 0.22 60 = 0.114 => 11%
+          + Total S(Ha) = 2.8 +/- 0.4 => SW Red has 0.308
+  + Looking at y = +3 (/slit F North/)
+    + N(W) Red at V = +24 km/s has S([N II]) = 0.057
+    + In [O III] there is blended component with S([O III]) = 0.15
+      + After correcting for wing of shell emission
+      + So [N II]/Ha = 4 0.057 / 0.15 = 1.52 - *another big one*
+    + In Ha, there is a very blended component with about SPM S(Ha) = 0.05
+      + Whereas [O III] prediction gives 0.057 / 1.52 = 0.0375, which is close enough
+    + Peak Ha is 0.24, so fraction is 0.05 30 / 0.24 50 = 0.125, or about 12.5%
+    + Total HST S(Ha) = 3.8 +/- 0.4
+    + So N(W) Red S(Ha) = 3.8 0.125 = 0.475
++ Slit C - 4.2 arcsec E of the star
+  + Looking at y = -3
+  + SE Blue is at V = -36 km/s in [N II] S([N II]) = 0.0037
+  + In [O III] there is a blended component at V = -33 km/s S([O III]) = 0.02
+    + This would imply [N II]/Ha = 4 0.0037 / 0.02 = 0.74, which is high
+  + In Ha it is very difficult to see at all
+    + The Ha SPM Ha brightness there is 0.033 but most of this is the thermal broadened wing of the shell emission
+    + Scaling from the [O III]-derived [N II]/Ha, we get 0.005 for SE Blue contribution to Ha
+    + Peak Ha is 0.15 from the shell with width of 40 km/s
+    + Taking 30 km/s for width of SE Blue contribution, we get a fraction of 30 0.005 / 40 0.15 = 0.025
+    + So, only 2.5% of Ha surface brightness is due to SE Blue
+    + Total S(Ha) from HST there is 1.5 \pm 0.3
+    + So, we derive S(Ha) = 0.0375 for SE Blue
+    + /This is very low/ but the problem is that the knots are very faint in that slit
++ Slit F* - 2.8 arcsec E of star
+  + Looking at y = -4
+  + SE Blue at V = -34 km/s has S([N II]) = 0.021, more than 5 times higher than in slit C
+  + Unfortunately, there is no [O III]
+  + Ha flux there is about 0.06, of which maybe half is from knots, so say SPM S(Ha) = 0.03
+  + Line is saturated, but looks like peak would be 0.2
+    + So we can work out fraction as 0.03 30 / 0.2 40 = 0.1125 => 11% of total
+  + HST S(Ha) = 1.9 for that position, so knots have 1.9 0.1125 = 0.21375
+***** New big table of the red and blue knot complexes
++ Top section of rows are from the original table
++ Bottom section are new measurements
+  + SW F Blue from slit F
+  + N(E) Red and NE Blue from slit D
+  + SE Blue and SW Red were already done separately before
+| Feature        |   S(Ha) |    BG |    S' | ds |      F |   frac |     n |     M_i | R_3d |    U_ion | t_rec |      N |  R_NII | R^2 S | % S(Ha) |
+|----------------+---------+-------+-------+----+--------+--------+-------+---------+------+----------+-------+--------+--------+-------+---------|
+| SW Red complex |    0.45 | 0.027 | 0.494 | 36 |   640. | 0.0162 |  2.78 | 0.00392 | 0.19 |   0.0014 | 4.4e1 | 3.0e20 | 0.3207 | 0.018 |         |
+| NW knot        |    0.75 |  0.26 | 0.562 |  7 |    28. | 0.0007 |  6.72 | 0.00007 | 0.18 |   0.0006 | 1.8e1 | 1.4e20 | 0.4469 | 0.018 |         |
+| N knot         |    0.19 |  0.01 | 0.201 | 12 |    29. | 0.0007 |  3.07 | 0.00016 | 0.19 |   0.0012 | 4.0e1 | 1.1e20 | 0.6116 | 0.007 |         |
+| Peak           |     8.2 |   4.2 | 4.846 | 15 |  1090. | 0.0276 | 13.47 | 0.00138 | 0.24 |   0.0002 | 9.1e0 | 6.1e20 | 0.0818 | 0.279 |         |
+| N complexes    |     4.2 |  0.83 | 4.055 | 50 | 10138. | 0.2567 |  6.75 | 0.02559 | 0.24 |   0.0004 | 1.8e1 | 1.0e21 | 0.1253 | 0.234 |         |
+| S complexes    |     2.3 |   1.5 | 0.980 | 51 |  2549. | 0.0646 |  3.29 | 0.01320 | 0.07 |   0.0085 | 3.7e1 | 5.0e20 | 0.0106 | 0.005 |         |
+| SE knot        |     2.2 |   1.2 | 1.195 | 10 |   120. | 0.0030 |  8.19 | 0.00025 | 0.07 |   0.0034 | 1.5e1 | 2.5e20 | 0.1693 | 0.006 |         |
+|----------------+---------+-------+-------+----+--------+--------+-------+---------+------+----------+-------+--------+--------+-------+---------|
+|                |       1 |     0 | 1.227 |  1 |     1. | 0.3695 | 26.25 | 0.04457 |    1 | 5.193e-6 | 4.6e0 | 7.9e19 |        | 1.227 |         |
+|----------------+---------+-------+-------+----+--------+--------+-------+---------+------+----------+-------+--------+--------+-------+---------|
+| N(E) Red       |    1.24 |     0 | 1.475 | 40 |  2360. | 0.0598 |  4.55 | 0.00884 | 0.26 |   0.0004 | 2.7e1 | 5.5e20 |   0.20 | 0.100 | 24 %    |
+| SW Red         |   0.308 |     0 | 0.343 | 60 |  1235. | 0.0313 |  1.79 | 0.01176 | 0.19 |   0.0021 | 6.8e1 | 3.2e20 |   0.92 | 0.012 |         |
+| N(W) Red       |   0.475 |     0 | 0.494 | 40 |   790. | 0.0200 |  2.63 | 0.00512 | 0.16 |   0.0020 | 4.6e1 | 3.2e20 |   1.14 | 0.013 | 12.5 %  |
+|----------------+---------+-------+-------+----+--------+--------+-------+---------+------+----------+-------+--------+--------+-------+---------|
+| NE Blue        |   0.306 |     0 | 0.316 | 50 |   790. | 0.0200 |  1.88 | 0.00716 | 0.14 |   0.0037 | 6.5e1 | 2.8e20 |   1.20 | 0.006 | 6 %     |
+| SW F Blue      |    0.13 |     0 | 0.158 | 40 |   253. | 0.0064 |  1.49 | 0.00289 | 0.11 |   0.0076 | 8.2e1 | 1.8e20 |   0.05 | 0.002 | 10 %    |
+| SE Blue        | 0.21375 |     0 | 0.236 | 50 |   590. | 0.0149 |  1.63 | 0.00617 | 0.07 |   0.0171 | 7.5e1 | 2.4e20 |   0.70 | 0.001 | 11 %    |
+|----------------+---------+-------+-------+----+--------+--------+-------+---------+------+----------+-------+--------+--------+-------+---------|
+| Sum Red        |       1 |     0 | 1.227 |  1 |     1. | 0.1111 | 26.25 | 0.02572 |    1 | 5.193e-6 | 4.6e0 | 7.9e19 |        | 1.227 |         |
+| Sum Blue       |       1 |     0 | 1.227 |  1 |     1. | 0.0413 | 26.25 | 0.01622 |    1 | 5.193e-6 | 4.6e0 | 7.9e19 |        | 1.227 |         |
+| Sum Both       |       1 |     0 | 1.227 |  1 |     1. | 0.1524 | 26.25 | 0.04194 |    1 | 5.193e-6 | 4.6e0 | 7.9e19 |        | 1.227 |         |
+#+TBLFM: $4=1.234 ($2 - $3) / (1.00561 + 0.1586 $14); f3::$6=$4 $5**2;f0::$7=$6/1.234 32000;f4::$8=23.7 sqrt($4/$5);f2::$9=$6/$8 58682;f5::$11=4.89e47/ 4 $pi 1000 $8 $c ($10 $pc)**2 ;f4::$12=122/$8;s2::$13=3e15 $5 $8 1000;s2::$15=$4 $10**2 ;f3::@9$7=vsum(@I..@II)::@9$9=vsum(@I..@II)::@16$7=vsum(@III..@IIII);f4::@16$9=vsum(@III..@IIII);f5::@17$7=vsum(@IIII..@IIIII);f4::@17$9=vsum(@IIII..@IIIII);f5::@18$7=vsum(@III..@IIIII);f4::@18$9=vsum(@III..@IIIII);f5
++ Summary of results:
+  + Total mass is same as I had before: 0.045 Msun
+    + Blue: 0.018
+    + Red: 0.027 - slightly higher
+  + Total flux is only half what I had before
+    + This implies I was including some shell flux in my earlier estimates
+    + Red knots are more than twice the flux of blue knots
+  + Densities are all similar to before, except a tiny bit lower (red is roughly double blue)
+  + U_ion for 4 out of 6 cluster around 0.003
+    + *but* much lower for N(E) Red: 0.0004
+    + *and* much higher for SE Blue: 0.0172
+  + [N II]/Ha does not correlate well with U_ion
+    + I have redone these ratios below
+    + Most are of order unity (0.64, 1.20, 1.14, 1.2, 0.70 = 0.976 +/- 0.126)
+    + *but* much lower for SW Faint Blue and N(E) Red:
+      + 0.05 and 0.20 respectively
+      + Interestingly, this is an opposite pair
+      + They do not have higher ionization parameters:
+        + [0.0004, 0.0076] = 0.0040 +/- 0.0036 for them
+        + [0.0021, 0.0020, 0.0037, 0.0171] = 0.0062 +/- 0.0036
+  + I have done a new column of R^2 S, which should be proportional to optical depth to ionizing photons
+    + The idea is that if this is order 1, then the ionization parameter is reduced by e^-\tau
+    + But I need to work out constant of proportionality
+      + S = 1.0932 \alpha_eff E(Ha) n^2 dz /4\pi
+      + Recombs/cm^2/s = 1.0932 \alpha_A n^2 dz = (\alpha_A / \alpha_eff) (S/E(Ha)) / 4\pi
+      + Photons/cm^2/s = Q / 4\pi R^2
+      + so fraction absorbed = (\alpha_A / \alpha_eff) (S/E(Ha)) R^2 / Q
+      + But we need to get S into proper units first
+        + Multiply out numbers by ~PHOTFLAM = 2.903543E-16~ to get F_\lambda in erg/s/cm2/AA/pixel
+        + Multiply by rectangular width: 28.3 AA to get line flux
+        + Multiply by (10 206265)**2 to get per sr
+        + So, total is times 0.03496 to get erg/s/cm2/sr
+        + Q(H) = 4.89e47
+        + E(Ha) = 3.027e-12
+        + \alpha_A / \alpha_eff = 4 more or less
+        + So, with R in pc, we multiply S R^2 by
+          + 4 0.03496 3.086e+18**2  / 4.89e47 3.027e-12 = 0.8998
+    + Although, it doesn't look like it will be important
+***** Better calculation of [N II]/Ha for the knot complexes
+|           | Slit |  S(Ha) | S([N II]) | S([O III]) | [N II]/Ha | [O III]/Ha |
+|-----------+------+--------+-----------+------------+-----------+------------|
+| N(E) Red  | D    |  0.100 |     0.020 |      0.247 |      0.20 |       2.47 |
+| SW Red    | F    |  0.050 |     0.032 |      0.100 |      0.64 |       2.00 |
+| SW Red    | G    |  0.020 |     0.024 |      0.070 |      1.20 |       3.50 |
+| N(W) Red  | F    |  0.050 |     0.057 |      0.150 |      1.14 |       3.00 |
+|-----------+------+--------+-----------+------------+-----------+------------|
+| NE Blue   | D    |  0.025 |     0.030 |      0.067 |      1.20 |       2.68 |
+| SW F Blue | F    |  0.030 |   0.00156 |      0.080 |      0.05 |       2.67 |
+| SE Blue   | F*   |  0.030 |     0.021 |          0 |      0.70 |       0.00 |
+| SE Blue   | C    |  0.007 |    0.0037 |      0.020 |      0.53 |       2.86 |
+|-----------+------+--------+-----------+------------+-----------+------------|
+| S Shell   | E    |   0.21 |    0.0010 |       0.30 |    4.8e-3 |       1.43 |
+| N Shell   | C    |   0.18 |    0.0020 |      0.150 |      0.01 |       0.83 |
+| N knot    | H    | 0.0044 |    0.0022 |     0.0056 |      0.50 |       1.27 |
+#+TBLFM: $6=$4/$3;f2::$7=$5/$3;f2
 
 **** DONE Graph of mass loss history
 CLOSED: [2020-05-07 Thu 23:46]
