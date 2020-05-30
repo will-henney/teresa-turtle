@@ -94,6 +94,7 @@
   + log L = 3.872 +/- 0.200
   + log T = 4.875
 + Then the Vassiliadis:1994 tracks imply M_i = 2 +/- 0.5 Msun
++ But wat about Miller-Bertolami:2016a ?
 **** Nebular modelling from Bohigas:2015a - two stars?
 + Note that Bohigas:2015a propose that a composite spectrum is needed:
   1. A hot component:
@@ -215,6 +216,12 @@
   + => T = 62000 +/- 2000
 + Pottasch:2009a found 61,000 K
   + This is very close to our own value
+
+**** Excitation class from Reid:2010a
+
+*** Compare the Turtle with the sample from Gonzalez-Santamaria:2020a
++ Distance is typical
++ 
 
 *** Effects of changing the distance
 + We are using 2 \pm 0.5 kpc

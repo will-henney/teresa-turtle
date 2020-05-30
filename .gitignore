@@ -9,3 +9,5 @@ doc/auto
 *.blg
 /doc/will-turtle.synctex.gz
 .DS_Store
+*.ipynb
+.ipynb_checkpoints
