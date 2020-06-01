@@ -1,0 +1,148 @@
+J/A+A/475/217       Classification of planetary nebulae      (Quireza+, 2007)
+================================================================================
+Bayesian posterior classification of planetary nebulae according to the
+Peimbert types.
+    Quireza C., Rocha-Pinto H.J., Maciel W.J.
+   <Astron. Astrophys. 475, 217 (2007)>
+   =2007A&A...475..217Q
+================================================================================
+ADC_Keywords: Planetary nebulae ; Abundances
+Keywords: ISM: planetary nebulae: general - Galaxy: abundances -
+          Galaxy: kinematics and dynamics - Galaxy: bulge - Galaxy: halo -
+          Galaxy: disk
+
+Abstract:
+    In this paper we present a re-analysis of the criteria used to
+    characterize the Peimbert classes I, IIa, IIb, III and IV, through a
+    statistical study of a large sample of planetary nebulae previously
+    classified according to these groups. In the original classification,
+    it is usual to find planetary nebulae that cannot be associated with a
+    single type; these most likely have dubious classifications into two
+    or three types. Statistical methods can greatly contribute in
+    providing a better characterization of planetary nebulae groups.
+
+    We use the Bayes Theorem to calculate the posterior probabilities for
+    an object to be member of each of the types I, IIa, IIb, III and IV.
+    This calculation is particularly important for planetary nebulae that
+    are ambiguously classified in the traditional method. The posterior
+    probabilities are defined from the probability density function of
+    classificatory parameters of a well-defined sample, composed only by
+    planetary nebulae unambiguously fitted into the Peimbert types.
+    Because the probabilities depend on the available observational data,
+    they are conditional probabilities, and, as new observational data are
+    added to the sample, the classification of the nebula can be improved,
+    to take into account this new information.
+
+    This method differs from the original classificatory scheme, because
+    it provides a quantitative result of the representativity of the
+    object within its group. Also, through the use of marginal
+    distributions it is possible to extend the Peimbert classification
+    even to those objects for which only a few classificatory parameters
+    are known.
+
+Description:
+    Table 1 lists chemical composition, spatial and kinematic properties
+    for a sample of 476 planetary nebulae. Nebular properties have been
+    compiled from selected sources from the literature.
+
+    Table 6 lists the probability of each planetary nebula to be member of
+    a given Peimbert type. And the final classification of each planetary
+    nebulae according to the Peimbert types (prior and after the
+    statistical analysis).
+
+
+File Summary:
+--------------------------------------------------------------------------------
+ FileName   Lrecl  Records   Explanations
+--------------------------------------------------------------------------------
+ReadMe         80        .   This file
+table1.dat    198      476   Parameters and pre-classification
+refs.dat      140       88   References
+table6.dat     74      476   Posterior probabilities for the planetary
+                              nebulae to belong to Peimbert classes
+--------------------------------------------------------------------------------
+
+See also:
+   V/84  : Strasbourg-ESO Catalogue of Galactic Planetary Nebulae (Acker+, 1992)
+   V/127 : MASH Catalog of Planetary Nebulae (Parker+ 2006)
+
+Byte-by-byte Description of file: table1.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units  Label       Explanations
+--------------------------------------------------------------------------------
+   1- 14  A14   ---    Name        Planetary nebula main designation
+                                    (Common name)
+  16- 26  A11   ---    PNG         Designation of the Galactic Planetary Nebula
+  28- 32  F5.3  ---    He/H        ? Helium over hydrogen abundance ratio
+                                      by number
+      33  A1    ---  n_He/H        [:] Note about the He/H abundance ratio (1)
+  35- 53  A19   ---  r_He/H        Reference of the He/H abundance ratio
+  55- 58  F4.2  ---    lg(O/H)+12  ? Oxygen over hydrogen abundance ratio by
+                                   number
+  60- 81  A22   ---  r_lg(O/H)+12  Reference of the O/H abundance ratio
+  83- 86  F4.2  ---    lg(N/H)+12  ? Nitrogen over hydrogen abundance ratio
+                                      by number
+  88-106  A19   ---  r_lg(N/H)+12  Reference of the N/H abundance ratio
+ 108-112  F5.2  ---    lg(N/O)     ? Nitrogen over oxygen abundance ratio
+                                      by number
+ 114-117  F4.1  kpc    dhel        ? Heliocentric distance
+ 119-120  I2    ---  r_dhel        ?=- Reference of the heliocentric distance
+ 122-125  F4.1  kpc    RGal        ? Galactocentric distance
+ 127-132  F6.3  kpc    abs(Z)      ? Absolute value of the height in relation to
+                                      the Galactic plane
+ 134-139  F6.1  km/s   VLSR        ? Radial velocity relative to the Local
+                                      Sandard of Rest (2)
+ 143-147  F5.1  km/s   abs(DV)      ? Absolute value of the peculiar velocity
+ 149-154  F6.1  arcsec Theta        ? Angular diameter of the planetary nebula
+ 156-163  A8    ---  r_Theta        Reference of the angular diameter
+ 165-170  F6.1  mJy    S5GHz        ? 5GHz (6cm) radio flux density
+ 172-174  I3    ---  r_S5GHz        ?=- Reference of the 5 GHz flux density
+ 176-198  A23   ---    Type         Classification according to the Peimbert's
+                                     types
+--------------------------------------------------------------------------------
+Note (1): ":" in the He/H abundance ratio, denotes sources with He/H<0.06
+     (probable low-excitation sources); sources that have simultaneously
+     very high He/H (generally He/H>0.180) and very low N/O abundance
+     ratios; or outliers in the trend of increasing N/O versus He/H
+     (He2-152 and M1-11).
+Note (2): Radial velocities from the catalog of Durand et al. (1998, Cat.
+     <J/A+AS/132/13>) Exceptions are DdDm1 and NGC 2242, whose velocity
+     were adopted from Howard et al. (1997MNRAS.284..465H). For every
+     object, the heliocentric radial velocities have been converted to the
+     Local Standard of Rest radial velocities (see text).
+--------------------------------------------------------------------------------
+
+Byte-by-byte Description of file: refs.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units   Label     Explanations
+--------------------------------------------------------------------------------
+   1-  3  I3    ---     Ref       Reference number
+   5- 23  A19   ---     BibCode   BibCode
+  25- 50  A26   ---     Aut       Author's name
+  52-140  A89   ---     Com       Comments
+--------------------------------------------------------------------------------
+
+Byte-by-byte Description of file: table6.dat
+--------------------------------------------------------------------------------
+  Bytes Format Units  Label      Explanations
+--------------------------------------------------------------------------------
+  1- 14  A14   ---    Name       Planetary nebula main designation (Common name)
+ 16- 19  F4.2  ---    p(typeI)   Posterior probability for the membership of
+                                  each object to the type I group
+ 22- 25  F4.2  ---    p(typeIIa) Posterior probability for the membership of
+                                  each object to the type IIa group
+ 28- 31  F4.2  ---    p(typeIIb) Posterior probability for the membership of
+                                  each object to the type IIb group
+ 34- 37  F4.2  ---    p(typeIII) Posterior probability for the membership of
+                                  each object to the type III group
+ 40- 43  F4.2  ---    p(typeIV)  Posterior probability for the membership of
+                                  each object to the type IV group
+ 45- 66  A22   ---    Pre-class  Previous classification
+                                  (as in column "Type" of Table 1)
+ 68- 74  A7    ---    Post-class Posterior classification
+--------------------------------------------------------------------------------
+
+Acknowledgements:
+    Cintia Quireza, quireza(at)on.br
+================================================================================
+(End) Cintia Quireza [Obs. Nacional (MCT), Brazil], P. Vannier [CDS] 22-Oct-2007

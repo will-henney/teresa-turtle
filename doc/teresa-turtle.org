@@ -68,7 +68,35 @@
           + and decrease S by 4, to -1.722
           + This would still be close to the average S(r) tracks
           + The mean slope is -3.6 instead of -2, but the dispersion about the trend is so large that you can't see this difference
+
+
+*** Type in PN classification schemes
++ According to Quireza:2007a it is a prototype of Type IIb
+  + But then the Bayesian classification gives 90% probability of Type III
+  + And it would be even more likely if they used 2 kpc instead of 1.6 kpc
++ Galactic latitude is 37.7 => z = 2.0 sin(37.7) = 1.22 kpc
++ Peculiar velocity is \Delta V = 56 km/s
++ Compare standard criteria for Type III:
+  + z > 1 kpc (YES)
+  + \Delta V > 60 km/s  (NEARLY)
+
+
+*** Analogs of NGC 6210
++ We could look for similar classification in Quireza table
+  + Use distance, size, radio flux, and type (IIb or III)
+  + Or calculate radio luminosity as D**2 F
+  + And physical size as \theta D
 *** The central star
+**** Results from Weidmann:2020a
++ Name: 043.1+37.7
++ Sp. Type: O(H)3
++ log g = 4.80±0.2 (HB2011)
++ log T = 4.946  (HB2011)
+  + Why is this different?
+  + 88,300 K as opposed to 75,000 K
+  + It is because they use T* instead of T_eff
+    + Difference is that R* and T* are base of wind, which is Rosseland optical depth of 20
+    + Whereas R_eff, T_eff ar at \tau = 2/3
 **** Results from UV spectral fits
 + Fit to lots of UV spectra
 + Excellent paper by Herald and Bianchi Herald:2011a
@@ -182,7 +210,25 @@
   + -0.4 (12.30 +/- 0.02) + 2.726 (4.875 +/- 0.01) + 2 (3.30 +/- 0.1) + 1.28 (0.05 +/- 0.07) - 11.08
   + 3.95 +/- 0.22
   + However, the Herald:2011a method uses the FUV continuum flux to find R/D, which is why they come out with sightly lower luminosities
-
+**** Mass-loss rate on the AGB
+***** Single-scattering limit
++ Mdot = L / c V_w
++ This is the limiting factor for very long period pulsations (> 500 days)
++ Although it can be exceeded by a factor of about 3 (Miller-Bertolami:2016a)
++ Normalizing to L = 1e4 and V = 10 km/s we get
+  + 2e-5 (L_4 / V_10) Msun/yr
++ We have velocities of 7 and 15 km/s for inner and outer halo
++ So at inner halo speeds, 3x single-scat limit is 4e-5 L_4 Msun/yr
++ This is very consistent with Fig 22 if L_4 > 0.5 in last 10,000 years
++ Prior to 10,000 yr ago
+  + Mass loss rate 10x smaller: (2 \to 3)e-6 Msun/yr
+  + Could be lower luminosity, or lower period pulsation
+***** Pulsation-dependent mass loss
++ Eq (2) of MB16
+  + log Mdot = -9 + 0.0032 (P/day)
+  + Actually from Groenewegen:2009a
++ So 2e-6 => P = (9 - 5.699) / 0.0032 = 1031 days
+  + This seems rather large
 
 **** He II Zanstra temperature
 + Frew thesis equation 9.11 gives
@@ -218,7 +264,18 @@
   + This is very close to our own value
 
 **** Excitation class from Reid:2010a
-
++ Ex_neb is based on [O III] / He II for high excitation nebulae
+  + 100 I(4686) / Hb = 2.32 +/- 0.14
+  + 100 I(5007) / Hb = 968 +/- 57
+  + 100 I(4959) / Hb = 342 +/- 20
+  + => (N_1 + N_2) / 4686 = 565 +/- 43
+  + log[(N_1 + N_2) / 4686] = 2.75 +/- 0.03 => Class 4
+  + But text and table description of this method are confusing
++ Ex_OIII is just based on [O III] / Hb
+  + 13.1 +/- 0.3 => Ex = 0.45 (13.1 +/- 0.3) = 5.9 +/- 0.1
++ Ex_* method
+  + 5.54 [ 4686 / Hb + 0.78]
+  + 4686 / Hb = 0.00232 => 4.334
 *** Compare the Turtle with the sample from Gonzalez-Santamaria:2020a
 + Distance is typical
 + 

@@ -49,7 +49,7 @@ def read_tracks(datafile):
     """
     with open(datafile) as f:
         # Each track is separated by two blank lines
-        tracks = f.read().split("\n\n\n")
+        tracks = f.read().split("\n\n\n")[:-1]
         tables = []
         for track in tracks:
             lines = track.split("\n")
@@ -65,20 +65,263 @@ def read_tracks(datafile):
 
 
 tabs = read_tracks(datadir / "0100_t03.dat")
-tabs[0].meta
+[_.meta for _ in tabs]
 
-# + active=""
-#
-# -
+10**3.589592
+
+tabs[2].show_in_notebook()
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+# %matplotlib inline
+sns.set_context("talk")
 
 
+# Plot of effective temperature versus gravity, which we compare with the turtle observed values.
 
-tab = Table.read(
-    str(datadir / "0100_t03.dat"), 
-    readme=str(datadir / "ReadMe"),
-    format="ascii.cds",
+def extract_masses(data):
+    _, Mi, Mf, _ = data.meta["comments"][2].split()
+    return round(float(Mi), 2), round(float(Mf), 3)
+
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.axhline(4.875, color="k", lw=0.5)
+ax.axhline(4.792, color="k", lw=0.5)
+ax.axvspan(4.6, 5.0, color="k", alpha=0.1)
+ax.axvline(4.8, color="k", lw=0.5)
+for data in tabs:
+    try:
+        Mi, Mf = extract_masses(data)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    ax.plot(
+        "logg", "logTeff",
+        data=data, label=label,
+    )
+ax.legend()
+ax.set(
+    xlabel="$\log_{10}\, g$",
+    ylabel="$\log_{10}\, T_{\mathrm{eff}}$",
+    xlim=[4.0, 6.0],
+    ylim=[4.7, 5.0],
 )
+sns.despine()
+None
 
-# ls ../cspn-tables/models
+# From this we conclude that the $2\,M_\odot$ model is the best fit, but we cannot rule out $1.25\,M_\odot$ to $3\,M_\odot$.
+
+# Next, look at the timescales.
+
+fig, [axL, axMd, ax] = plt.subplots(3, 1, sharex=True, figsize=(12, 8))
+ax.axhline(62000, color="k", lw=0.5)
+ax.axhline(75000, color="k", lw=0.5)
+ax.axhline(20000, color="r", ls="--", lw=0.8)
+for axx in axL, axMd, ax:
+    axx.axvline(0.0, color="k", lw=0.5)
+    axx.axvspan(-100, 100, color="m", alpha=0.05)
+for data in tabs:
+    try:
+        Mi, Mf = extract_masses(data)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    data["Teff"] = 10**data["logTeff"]
+    data["L"] = 10**data["logL"]
+    data["Mdot"] = 10**data["log(-dM/dt)"]
+    ax.plot(
+        "t", "Teff",
+        data=data, label=label,
+    )
+    axMd.plot(
+        "t", "Mdot",
+        data=data, label=label,
+    )
+    axL.plot(
+        "t", "L",
+        data=data,
+    )
+ax.legend()
+ax.set(
+    xlabel="time, years",
+    ylabel="$T_{\mathrm{eff}}$, K",
+    xlim=[-100000, 100000],
+    ylim=[3000, 3e5],
+)
+ax.set_xscale("symlog", linthreshx=100)
+ax.set_yscale("log")
+axL.set(
+    ylim=[0.0, 1.5e4],
+    ylabel="$L / L_\odot$",
+)
+axMd.set(
+    ylim=[1e-8, 1e-5],
+    ylabel="$d M / dt$, $M_\odot$/yr",
+    yscale="log",
+)
+sns.despine()
+
+
+# So, conclusion from this is that we need the mass to be 1.25 to 1.5.  If it is 1.25, then the MB models have it not going through a C-star phase, which is needed to explain the low C/O ratio in nebula.
+#
+# On the other hand, if it was a triple interaction that ejected the envelope, it might have happened before the AGB got to end of its evolution. 
+
+def make_table_of_times(tabs, Teff):
+    logTeff = np.log10(Teff)
+    tTkey = f"t({Teff})"
+    rslts = {
+        "Mi": [],
+        "Mf": [],
+        tTkey: [],
+        "t_cross": [],
+        "t_tr": [],
+    }
+    for data in tabs:
+        Mi, Mf = extract_masses(data)
+        rslts["Mi"].append(Mi)
+        rslts["Mf"].append(Mf)
+        # First time to reach given Teff
+        mask = data["logTeff"] >= logTeff
+        tT = data[mask]["t"].min()
+        rslts[tTkey].append(tT)
+        # Time to cross to maximum Teff
+        icross = data["logTeff"].argmax()
+        rslts["t_cross"].append(data[icross]["t"])
+        # Transition time before t = 0
+        rslts["t_tr"].append(-data["t"].min())
+    return Table(rslts)
+
+
+times = make_table_of_times(tabs, 75000)
+
+times
+
+make_table_of_times(tabs_tb2, 75000)
+
+make_table_of_times(tabs_Z0010, 75000)
+
+
+
+# ### Less important stuff
+
+# Now, we try the appendix B tracks (how are they different?)
+
+tabs_tb2 = read_tracks(datadir / "0100_tb2.dat")
+
+tabs_tb2[0].meta
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.axhline(4.875, color="k", lw=0.5)
+ax.axhline(4.792, color="k", lw=0.5)
+ax.axvspan(4.6, 5.0, color="k", alpha=0.1)
+ax.axvline(4.8, color="k", lw=0.5)
+for data in tabs_tb2:
+    try:
+        _, Mi, Mf, _ = data.meta["comments"][2].split()
+        Mi = round(float(Mi), 2)
+        Mf = round(float(Mf), 3)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    ax.plot(
+        "logg", "logTeff",
+        data=data, label=label,
+    )
+ax.legend()
+ax.set(
+    xlabel="$\log_{10}\, g$",
+    ylabel="$\log_{10}\, T_{\mathrm{eff}}$",
+    xlim=[4.0, 6.0],
+    ylim=[4.7, 5.0],
+)
+sns.despine()
+None
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.axhline(62000, color="k", lw=0.5)
+ax.axhline(75000, color="k", lw=0.5)
+ax.axvline(0.0, color="k", lw=0.5)
+for data in tabs_tb2:
+    try:
+        _, Mi, Mf, _ = data.meta["comments"][2].split()
+        Mi = round(float(Mi), 2)
+        Mf = round(float(Mf), 3)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    data["Teff"] = 10**data["logTeff"]
+    ax.plot(
+        "t", "Teff",
+        data=data, label=label,
+    )
+ax.legend()
+ax.set(
+    xlabel="time, years",
+    ylabel="$T_{\mathrm{eff}}$, K",
+    xlim=[-10000, 10000],
+    ylim=[3000, 3e5],
+)
+ax.set_xscale("symlog", linthreshx=100)
+ax.set_yscale("log")
+sns.despine()
+
+# Now, the low metallicity tracks
+
+tabs_Z0010 = read_tracks(datadir / "0010_t03.dat")
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.axhline(4.875, color="k", lw=0.5)
+ax.axhline(4.792, color="k", lw=0.5)
+ax.axvspan(4.6, 5.0, color="k", alpha=0.1)
+ax.axvline(4.8, color="k", lw=0.5)
+for data in tabs_Z0010:
+    try:
+        _, Mi, Mf, _ = data.meta["comments"][2].split()
+        Mi = round(float(Mi), 2)
+        Mf = round(float(Mf), 3)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    ax.plot(
+        "logg", "logTeff",
+        data=data, label=label,
+    )
+ax.legend()
+ax.set(
+    xlabel="$\log_{10}\, g$",
+    ylabel="$\log_{10}\, T_{\mathrm{eff}}$",
+    xlim=[4.0, 6.0],
+    ylim=[4.7, 5.0],
+)
+sns.despine()
+None
+
+fig, ax = plt.subplots(figsize=(8, 8))
+ax.axhline(62000, color="k", lw=0.5)
+ax.axhline(75000, color="k", lw=0.5)
+ax.axvline(0.0, color="k", lw=0.5)
+for data in tabs_Z0010:
+    try:
+        _, Mi, Mf, _ = data.meta["comments"][2].split()
+        Mi = round(float(Mi), 2)
+        Mf = round(float(Mf), 3)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    data["Teff"] = 10**data["logTeff"]
+    ax.plot(
+        "t", "Teff",
+        data=data, label=label,
+    )
+ax.legend()
+ax.set(
+    xlabel="time, years",
+    ylabel="$T_{\mathrm{eff}}$, K",
+    xlim=[-10000, 10000],
+    ylim=[3000, 3e5],
+)
+ax.set_xscale("symlog", linthreshx=100)
+ax.set_yscale("log")
+sns.despine()
 
 
