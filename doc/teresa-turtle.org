@@ -70,6 +70,66 @@
           + The mean slope is -3.6 instead of -2, but the dispersion about the trend is so large that you can't see this difference
 
 
+
+*** Beto conversation [2020-06-05 Fri]
+
+**** Nebulae with FLIERS
++ This is a cohesive class according to Garcia-Diaz:2012a
+  + NGC 2392 - Eskimo
+    + 197.8+17.3
+    + Gaia D = 2.00 +/- 0.20
+    + Inner shell expansion is very fast!
+      + +/- 120 km/s along major axis (seen pole on)
+      + Twisted peanut morphology
+      + 1/3 to 2/3 the radius of outer shell
+      + Timescale < 1000 yrs
+    + Outer shell (equivalent to Turtle intermediate shell) is expanding much slower:
+      + 16 km/s
+      + r = 23 arcsec = 0.156 pc
+      + kinematic timescale: 9500 years
+    + X-rays from wind
+      + Kastner:2012a
+    + Cometary knots, equatorial ring in outer shell, close to plane of sky
+    + FLIERS
+      + Jet at PA=70, +/- 180 km/s
+      + Caps at PA=10, +/- 55 km/s
+  + Type IIa
+    + He/H = 0.88, 12 + log O/H = 8.5, N/O = 0.4
+    + |z| = 0.47 kpc, |dV| = 62.6
+  + CSPN
+    + O(H)6f + ?
+    + log T, log g, log L = 4.68, 4.0, 4.11
+    + Herald:2011a - Teff = 45000, Vw = 300 km/s, Mdot = (1 - 2)e-8 Msun/yr
+    + Binary: Miszalski:2019c, Guerrero:2019a
+  + NGC 7009 - Saturn
+    + 037.7-34.5
+    + Gaia D = 1.15 +/- 0.16
+    + Like the Eskimo but seen from the side
+    + Type IIa
+    + CSPN
+      + Sp. Type: O(H)
+      + log T, log g, log L = 4.94, 4.90, 3.97
+        + Gd2013, MK1992
+      + Guerrero:2013
+        + Mdot = 2.9e-9
+    + H_2 emission in knots in NGC 7009 and 6543
+  + NGC 6543 - Cat's Eye
+    + 096.4+29.9
+    + Gaia D = 1.63 +/- 0.18
+    + Type IIa
+    + CSPN:
+      + Sp. Type: Of-WR(H)
+      + log T, log g, log L = 4.781, 4.7, 3.58
+        + GM2019, HB2011
+    + Herald:2011a - Teff = 60000 K, Vw = 1500 km/s, Mdot = (2 - 3)e-8 Msun/yr
+     
+
+**** Binaries
++ Beto thinks that binary hypothesis is overblown
+**** Bertolami 
++ Single star formation must dominate
++ Planets can effect shaping
+
 *** Type in PN classification schemes
 + According to Quireza:2007a it is a prototype of Type IIb
   + But then the Bayesian classification gives 90% probability of Type III
@@ -276,6 +336,7 @@
 + Ex_* method
   + 5.54 [ 4686 / Hb + 0.78]
   + 4686 / Hb = 0.00232 => 4.334
++ 
 *** Compare the Turtle with the sample from Gonzalez-Santamaria:2020a
 + Distance is typical
 + 
@@ -459,9 +520,10 @@
     + Also Huggins:2017a, but these are mainly very high velocity jets
       + 7 out of 9 have V > 100 km/s, up to 500 km/s
 
-
 **** Analogs of Turtle among other PNe and PrePNe
 
+***** Mendez:1992a
++ This is a very good paper that shows that most nebulae are optically thin in He I and H I continua
 ***** Helix nebula
 + Much older, but also claimed to be polypolar, see sec 4.6 of ODell:2004b
 + If we fast-forward the lobes another 10,000 years, then at 90 km/s (axis A) they would propagate 0.92 pc
@@ -477,10 +539,456 @@
 + Quote from Fig 6 caption of Jones:2020a
   : FORS2 image of the post-CE PN Fg 1 (Credit: ESO/H. Boffin). The observed jets have been shown to pre-date the central nebula by a few thousand years, while the central star is a double-degenerate binary with an orbital period of 1.195d [72].
 + So this is similar to what we are finding with the dynamic age of the outer lobes being older
++ Type IIa so missing from our similarity samples
 ***** Jonckheere 320
 + This has lop-sided [N II] emission, similar to turtle
-***** IC 4634
++ Type III but at 4.1 kpc so missing from cousins
++ Rechy-Garcia:2020a have an in-depth study with images and slit spectra
+***** Table of cousins
+|          | Class | Sp. Type           | log T | log g | log L | Exc |  N/O |  C/O |   D |  2 R | Vexp |    t | Multi | Asym |    L | Mol | Dust |
+|----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
+| NGC 6210 | III   | O(H)3 / EL         | 4.946 |  4.80 | 3.870 |   4 | 0.14 | 0.25 |   2 | 0.28 |   34 | 4.03 | Yes   | Yes  |  530 | no  | Sil  |
+|----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
+| J 320    | III   | O(H)3 V((f))       | 4.929 |  4.70 | 3.700 |   4 | 0.04 |      | 4.1 | 0.14 | 17.5 | 3.91 | Yes   |      |  386 |     |      |
+| IC 4642  | III   | ab. lines          | 5.064 |   5.8 | 3.663 |  12 |      |      | 2.7 | 0.20 |   21 | 4.66 | No    | No   |  437 |     |      |
+| NGC 1535 | III   | O(H)5 + ?          | 4.929 |  4.80 | 3.440 |   8 | 0.10 | 0.8: | 2.0 | 0.18 |   32 | 2.75 | No    | No   |  640 | no  |      |
+| NGC 5307 | III   | O(H)3.5 V          | 4.934 |  5.29 | 3.757 |   9 | 0.22 |      | 2.3 | 0.14 |   11 | 6.22 | Yes   | Yes  |  503 |     |      |
+| NGC 6326 | III   | O(H)5-8 ((fc)) + ? | 4.958 |  5.20 | 3.799 |   9 |      |      | 2.5 | 0.14 | 16.5 | 4.15 | Yes   | ?    |  438 | CO  |      |
+|----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
+| IC 4634  | IIb   | O(H)3 If*          | 4.623 |  4.10 | 3.040 |   3 |      |      | 2.5 | 0.07 |   20 | 1.71 |       |      |  625 | no  |      |
+| NGC 3211 | IIb   | EL                 | 5.160 |  5.60 | 3.300 |  10 |      |      | 2.5 | 0.19 |   29 | 3.20 |       |      | 1425 |     |      |
+| NGC 6826 | IIb   | O(H)3f + ?         | 4.700 |  5.00 | 4.093 |  11 |      | 0.9: | 1.9 | 0.23 |   16 | 7.03 |       |      | 1390 | no  |      |
+| NGC 7662 | IIb   | O(H)               | 5.102 |  5.70 | 3.780 |  10 |      | 1.0: | 0.8 | 0.10 |   20 | 2.44 |       |      |  404 | no  |      |
+#+TBLFM: $13=$-2 $pc / 2 $-1 $km 1000 $yr ;f2
++ These are all the ones that are Type III or Type IIb that satisfy the following
+  + 2 R between 0.05 and 0.3
+    + Originally, this was between half and twice Turtle value
+    + But, I have revised Turtle diameter upwards to be the IS diameter
+    + So doesn't make such sense now!
+  + L between 300 and 2000
+    + where L = D**2 S(5 GHz), so prop to radio luminosity
+    + Turtle has L = 530
+    + For the Type III, these are all 386 \to 640, so nicely centered
+    + For the Type IIb, we have some brighter ones
++ C/O Ratios are from Delgado-Inglada:2014a
+  + Average of ORL and CEL values
+  + Turtle has smallish errors +/- 0.05
+  + Others have very large errors +/- 0.5, so could be C-rich or O-rich
++ Molecules
+  + CO from Guzman-Ramirez:2018a, only 6326 detected
+  + H_2 from Kastner:1996a - none detected
+***** New table using better distances and sizes
+|          |         PN | log T | log g | log L | D(Frew) | D(Gaia) |   D |    a |    b | lg SHa |     FHa |  lg R | FHa (Frew) |       |    m |    M |   log  L* |
+|----------+------------+-------+-------+-------+---------+---------+-----+------+------+--------+---------+-------+------------+-------+------+------+-----------|
+| NGC 6210 | 043.1+37.7 | 4.946 |  4.80 | 3.870 |    2.05 |         |   2 |   14 |   14 | -1.66  | 3.3e-10 | -1.17 |            | 683.5 | 12.0 |  0.5 | 4.2688560 |
+|----------+------------+-------+-------+-------+---------+---------+-----+------+------+--------+---------+-------+------------+-------+------+------+-----------|
+| IC 3568  | 123.6+34.5 |  4.84 |  4.05 |  3.68 |    2.27 |         |     |      |      |        |         |       |            |       |      |      |           |
+| J 320    | 190.3-17.7 | 4.929 |  4.70 | 3.700 |    4.83 |   2.956 | 3.9 |  9.4 |  6.3 | -1.81  | 7.0e-11 | -1.14 |    1.8e-11 |   3.9 | 14.2 |  1.2 | 3.9225832 |
+| NGC 1535 | 206.4-40.5 | 4.929 |  4.80 | 3.440 |    1.78 |     1.2 | 1.5 | 33.3 | 32.1 | −2.23  | 4.8e-10 | -0.92 |    1.2e-10 |   4.0 | 12.4 |  1.5 | 3.8126365 |
+| NGC 5307 | 312.3+10.5 | 4.934 |  5.29 | 3.757 |    3.16 |      8: | 3.2 | 18.8 | 12.9 | −1.97  | 2.0e-10 | -0.92 |    4.6e-11 |   4.3 | 10.8 | -1.7 | 5.1243840 |
+| IC 4642  | 334.3-09.3 | 5.064 |   5.8 | 3.663 |    2.63 |   4.632 | 3.6 | 24.1 | 21.7 | -2.59  | 1.0e-10 | -0.70 |    2.7e-11 |   3.7 | 11.5 | -1.3 | 5.3010690 |
+| NGC 6326 | 338.1-08.3 | 4.958 |  5.20 | 3.799 |    3.14 |     2.8 | 3.0 | 20.6 | 13.7 | −2.08  | 1.8e-10 | -0.91 |    4.0e-11 |   4.5 | 12.1 | -0.3 | 4.6137505 |
+#+TBLFM: $12=10**$-1 $pi $-2 $-3 / 203265**2 ;s2::$13=log10(1000 $-5 $au sqrt($-3 $-4) / 2 $pc) ; f2::$15=$12/$14;f1::$17=$16 - (5 log10(1000 $8) - 5) ;f1::$18=-0.4 $16 + 2.726 $3 + 2 log10($8 1000) + 1.28 0.05 - 11.08::@2$15=10**(-1.12 - $11);f1
 
++ m is average of B, V, G magnitudes
+
+***** Type IIb sample
++ These are thin-disk rather than thick-disk, so may be a bit higher mass than the Turtle
++ Excitation class is from https://link.springer.com/content/pdf/bbm%3A978-3-662-03448-4%2F1.pdf
+****** He2-77		
++ *not a PN according to Frew*
++ 298.1-00.7
++ Sp. Type: /not in Weidmann:2020a/
++ Excitation class: 2
+****** IC4406		
++ 319.6+15.7
++ Excitation class: 4
++ Sp. Type: [WR]
++ 
+****** IC 4634	
++ 000.3+12.2
+  + Sp. Type: O(H)3 If*
+  + log T, log g = 4.623, 4.10
+  + log L = 3.040
+  + A bit sub-luminous and coolish (40 kK)
++ This has lobes and knots that look very similar, but knot axis it is seen edge-on
++ It is Type IIb rather than Type III because it is z = 0.5 kpc and dV = 20 km/s
++ Excitation class: 3
++ Kinematics SPM
+  + Main shell splitting +/- 20 km/s
+  + Polar knots are faster moving: 30-40 km/s projected
+    + Two different axes
++ Guerrero:2008a have a more in-depth study
+  + Identify bow shock structures
+  + Compare with IC 4593 and NGC 7009 (also NGC 6543 and 6572)
+****** J900
++ 194.2+02.5
++ Otsuka:2020a
++ This is He-burner so don't use
++ Also dusty and ionization stratified
++ Excitation class: 10
+****** M3-6	
++ 253.9+05.7
++ Sp. Type: O(H)3I(f*)
++ log T, log g, log L = 4.763, 4.50, 4.000
++ Excitation class: 4
++ Ali:2016a have IFU spectra
++ Long and thin with low ionization caps
++ No kinematics since not in Tylenda:1994b
+****** NGC 3211		
++ 286.3-04.8
++ Excitation class: 10
++ Sp. Type: EL
++ log T, log g, log L = 5.160, 5.60, 3.300
++ So a bit too hot
++ Tiny and bright, but has the classic optically thin structure
++ Vexp = 29 km/s Tylenda:1994b
+****** NGC 6309	
++ 009.6+14.8
++ Excitation class: 10
++ Sp. Type: O(He)?
++ log T, log g, log L = 4.822, 4.70, 3.799
++ https://en.wikipedia.org/wiki/NGC_6309
++ The Box Nebula - has knots and a sort of point-symmetric structure
+****** NGC 6629	
++ 009.4-05.0
++ Excitation class: 5
++ Very neat and tidy elliptical
++ Sp. Type: [WC 5] so ignore
++ log T, log g, log L = 4.672, 3.90, 3.820
+****** NGC 6826	
++ 083.5+12.7
++ Excitation class: 11
++ But 100 4686/4861 < 4 according to Tylenda:1994b, so can't be
++ Has the really bright ansae
++ Sp. Type: O(H)3f + ?
++ log T, log g, log L = 4.700±0.043, 5.00, 4.093
+  + A bit hot
++ Vexp = 16 km/s Tylenda:1994b
++ IR spectrum shows 30 micron feature Delgado-Inglada:2014a
+****** NGC 7662	
++ 106.5-17.6
++ SPM gives Vexp = 20 km/s from [N II]
++ Diameter is 12 arcsec for inner rim, but 30 arcsec for outer shell
+  + Quireza:2007a give 26 arcsec, so that must be the outer shell
++ Excitation class: 10
++ Sp. Type: O(H)
++ log T, log g, log L = 5.102±0.034, 5.70, 3.780
++ Blue Snowball nebula - looks a bit like the Eskimo
+***** Nebulae that match the Type III characteristics
++ Characteristics
+  + Low N/O
+  + High z
+  + High dV
++ [X] Need to check out CSPN of all these to see if similar T_eff
+  + Look in catalog of Weidmann:2020a
+****** NGC 6210
++ 043.1+37.7
++ 100 4686/4861 = 2.5
++ Added here to be homogeneous
++ Data from Frew:2016a
+  + D = 1.74 ± 0.33 if thin
+    + 2.05 ± 0.58 mean relation
+  + a x b = 14 x 14 arcsec
+  + E(B-V) = 0.05 ± 0.07
+  + log10 S(Ha) = -1.12 ± 0.08
+    + Checking brightness against our measurements
+    + S' column in [[id:0CA50980-C2C9-4718-ABE6-44177D753BAC][Table of brightnesses]] gives the brightness (multiply by 0.03496 to but in cgs.sr^-1)
+    + Inner shell has roughly S' = 0.8 => log10 SHa = -1.56
+      + Diameters: a x b = 14 x 12 => A = \pi a b = 5.3e+02 arcsec^2
+      + Flux = 5.3e+02 0.8 0.03496 / (206265**2) = 3.48e-10 erg/s/cm^2, close enough to observed value of 3.176e-10 
+    + Intermediate shell has roughly S' = 0.095 => log10 SHa = -2.48
+      + Diameters: a x b = 21 x 15  => A = \pi a b = 989 arcsec^2
+      + Flux = 1.11e+03 0.095 0.03496 / (206265**2) = 7.72e-11
+    + Turn it around, convert flux to brightness, assuming 14 x 14 arcsec
+      + S = 3.176e-10 (206265**2) / pi 14 14 = 0.02194 cgs/sr => log10(SHa) = -1.66
++ Sp. Type: O(H)3 / EL
++ log T, log g, log L = 4.946, 4.80±0.2, 3.870
+  + T is too high since they have taken T* instead of Teff
++ Expansion velocity 34.2 km/s according to Rechy-Garcia:2020a
+  + 24 km/s according to Tylenda:1994b
++ Excitation class: 4
++ Diameter is given as 17 arcsec, although 20 arcsec would be better for Intermediate shell => 0.15 pc
++ C/O = 0.25 Delgado-Inglada:2014a
++ IR Dust spectrum shows crystalline silicates Delgado-Inglada:2014a, Cohen:2005a
+****** TODO IC 3568
++ 123.6+34.5
++ CSPN
+  + Sp. Type: O(H)3
+  + Log T, log g, log L = 4.699, 4.05, 3.960
+    + Ref MK1992
+      + Mendez:1992a
+    + m_V = 13.72
++ Frew data:
+  + a x b = 17.7 x 17.8 arcsec
+  + E(B - V) = 0.12 ± 0.04
+  + Log S(Ha) = −1.94 ± 0.06
+  + log r = −0.93 => 0.12 pc
+  + D = 2.27 +/- 0.42
++ Excitation class: 3
++ Kinematics:
+  + Weinberger:1989a - V(exp) = 16
+  + Timescale = 7000 years
++ Miller:2019a
+  + log T = 4.84
+  + log L = 3.68
++ Timescales
+  + Heating rate is 10 K/yr for 1.1 to 1.2 Msun initial mass
+    + Fig 4 of Miller-Bertolami:2019a
+    + This is from Teff = 10,000 K up to max Teff
+  + 3 K/yr for 1.0 Msun
+  + 50 K/yr for 1.5 Msun
+  + So, if Teff = 69,600 K, then t  60,000 / (dT/dt)
+    + 20,000 yrs for 1.0 Msun
+    + 6000 years for 1.2 Msun
+    + 1000 years for 1.5 Msun
++ Initial-final mass relation
+  + Miller-Bertolami:2019a Fig 2
+  + Good Fit is Mf = 0.5 + 0.1 (Mi - 1.0)
+****** J 320
++ 190.3-17.7
++ Parallax = 0.3383 +/- 0.0981 => D = 2.956 +/- 0.8572
+  + Smaller than what I had before by 30%
++ Frew:2016a data
+  + D = 4.83 ± 0.92 - a bit larger than before
+    + 5.78 ± 1.66 if not so optically thinn
+  + a x b = 9.4 x 6.3 arcsec
+  + E(B-V) = 0.13 ± 0.08
+  + log S(Ha) = -1.81 ± 0.10
++ Frew:2008a Table 3.1 Ha Flux: −10.88 ± 0.04 => 10**(-10.88 + 0.13) = 1.778e-11
++ Sp. Type: O(H)3 V((f))
++ log T, log g, log L = 4.929, 4.70, 3.700±0.074
++ Expansion velocity 16 km/s according to Rechy-Garcia:2020a
+  + 17.7 according to Tylenda:1994b
+  + 15: according to Weinberger:1989a 
++ Excitation class: 4
++ 100 4686/4861 = 3
++ Distance is 4.1 kpc
+****** IC 4642
++ 334.3-09.3
++ Parallax: 0.2159 +/- 0.0694 => D = 4.632 +/- 1.489
+  + This is nearly double what I had before
++ Frew:2016a data
+  + D = 2.63 ± 0.52 very similar to in Quireza
+  + a x b = 24.1 x 21.7 arcsec
+    + This is indeed the shell diameters, unlike with the Turtle
+  + E(B-V) = 0.17 ± 0.11
+  + log10 S(Ha) = -2.59 ± 0.12
++ Frew:2008a Table 3.1 Ha Flux: −10.74 ± 0.04 => 10**(-10.74 + 0.17) = 2.692e-11
++ This does not have the asymmetric lobes, but otherwise is a good match as a Type III PNe
++ CSPN is log T, log g = 5.064, 5.8
+  + So, a bit hotter than turtle
++ Log L = 3.663
+  + Similar
++ Sp. Type: "absorption lines" whatever that means
++ 100 4686/4861 = 110
++ Excitation class: 12
++ Expansion velocity = 21 km/s Tylenda:1994b
+  + 34 km/s [O III] or 14 km/s Ha Weinberger:1989a so take your pick!
++ Images:
+  + Weidmann:2016a
+    + [[file:~/Dropbox/Teresa-Turtle/data/cousin-nebulae/Weidmann-2016/99.fits]]
+    + This is supposedly [N II] but it will mainly be Ha
+    + Plate scale is 0.74 arcsec/pixel
+    + Major-minor diameters is 34 x 28 pix = 25 x 21 arcsec for shell
+    + Or 20 x 12 pix for rim = 15 x 9 arcsec
+    + Major axis of rim is perpendicular to major axis of shell
++ Catalog gave diameter as 15 arcsec, but we should revise that to 23 arcsec for the shell
+  + => 2 R = 0.3011 pc
+
+
+****** TODO NGC 1535
++ *This is the symmetric twin*
+  + Identical to 6210 except for lacking the multipolar outflows and asymmetries
++ 206.4-40.5
++ Parallax: 0.8232 +/- 0.0630 => D = 1.2 +/- 0.093
+  + Much smaller than before
++ Frew:2016a data
+  + D = 1.47 +/- 0.27 if optically thin
+    + 1.78 ± 0.50 on the mean relation
+  + a x b = 33.3 x 32.1 arcsec
+  + E(B-V) = 0.02 ± 0.02
+  + log S(Ha) = −2.23 ± 0.06
++ Frew:2008a Table 3.1 Ha Flux: −9.95 ± 0.04 => 1.12e-10 10**0.02 = 1.173e-10
++ Vexp = 19.5 Tylenda:1994b
+  + 19 to 20 km/s very consistent in Weinberger:1989a
+  + This must be the rim - see below
++ Shell kinematics
+  + Corradi:2007a
+  + Vshell = 32 km/s
+  + Vrim = 22 km/s
+  + SPM spectra
+    + http://kincatpn.astrosen.unam.mx/image.php?id=232&display=Full&type=a
++ 100 4686/4861 = 13 Tylenda:1994b
++ log T, log g = 4.929, 4.80±0.3
+  + But T may be less than this
+  + Herald:2011a have it almost exactly the same as 6210
+  + log g = 4.8 +/- 0.3 and T = 74,400 K
++ Log L = 3.440
++ Sp. Type: O(H)5 + ?
++ Nebular morphology
+  + Shell and rim - pretty similar to Turtle
++ C/O = 0.61 +/- 0.10 Kwitter:1996
+  + So O-rich but higher C/O than 6210
++ Check abundances:
+  + C/H = 8.57 (Maciel:1994a: AC83, P84)
+  + N/H = 7.54 (Maciel:1994a: K80)
+  + O/H = 8.55 (Quireza)
+  + This means that C/O about 1
++ Wind Mdot and V are almost identical to Turtle
++ Has a smooth halo
++ Excitation Class: 8
+
+******* TODO More details about NGC 1535
+
+******** Geometry
++ From PanSTARRS/DR1 from [[http://aladin.unistra.fr/AladinLite/?target=04%2014%2015.691-12%2044%2022.65&fov=0.05&survey=P%2FPanSTARRS%2FDR1%2Fcolor-z-zg-g][Aladin]]
++ Rim: diameter 16 arcsec
++ Shell: diameters 46 x 40 arcsec
++ Halo: smoothly falls off, diameter at least 80 arcsec
+
+
+******** Imaging
++ Adam Block/Mount Lemmon SkyCenter/University of Arizona
+  + https://skycenter.arizona.edu/astrophotography/ngc1535
+
+******** Kinematics
++ Corradi:2007a have the rim (22 km/s) expanding slower than the shell (32 km/s)
++ Clayton:1998a find a "bipolar" structure to the tim velocity splitting
+  + But the evidence is not very convincing
++ Sabbadin:1984b have the rim (radius = 10 arcsec) expanding at about 20 km/s and the shell expanding slower!
++ Bannerjee:1991a doesn't really add anything interesting
+  + but does suggest that n ~ r^-3
++ SPM [N II] data gives
+  + Rim d\lambda = 0.434 \AA => V = 3e5 0.434/6583 = 20 km/s
+  + Shell d\lambda = 0.666 \AA => V =  3e5 0.666/6583 = 30.3 km/s
++ So, this is broadly consistent with Corradi:2007a
+  + Hubble-type pattern
+
+******** Spectrophotometry
++ Adam:1985a
+  + Strange ideas about wind contributing to He II ionization, but his is because they have a low Teff for CSPN
+  + 4686/4861 = 0.15
+  + F(Hb) = 3.98e-11 erg/cm^2/s but without correcting for extinction
++ Barker:1989a
+  + 4686/4861 = 0.1 \to 0.3 depending on position
+  + Ne = 6000 pcc
+  + Te = 11,000 K
+  + N/H = 6e-5
+  + C/H = 2.2e-4
+  + O/H = 3.3e-4
+  + [N II]/Ha ~= 0.01
++ Kwitter:1996a
+  + O/H = 3.12e-4
+  + C/O = 0.61
+  + N/O = 0.06
+
+
+******** Molecular hydrogen and IR
++ Unexpected - maybe it is interstellar
++ Bowers:1995a - detection in UV
++ Luhman:1997a - no emission of H2 in IR - so probably interstellar
++ Hora:1999a - IR spectrum dominated by H recomb lines
+******** 
+
+****** TODO NGC 5307
++ *This is multipolar*
+  + Lots of asymmetries too
++ 312.3+10.5
++ Sp. Type: O(H)3.5 V
++ log T, log g, log L = 4.934±0.010, 5.29, 3.757±0.046
+  + So not too dissimilar - a bit hotter and higher g
++ Frew:2016a data
+  + D = 2.63 ± 0.49 if thin
+    + 3.16 ± 0.90 on mean relation
+    + A tad higher than Quireza
+  + a x b = 18.8 x 12.9
+  + E(B-V) = 0.28 ± 0.05
+  + log10 S(Ha) = −1.97 ± 0.08
++ Frew:2008a Table 3.1 Ha Flux: −10.62 ± 0.04 => 2.399e-11 10**0.28 = 4.571e-11
++ Gaia distance is 8.17 but dP/P is about unity, so untrustworthy
++ Has slit spectra from SPM catalog
+  + http://kincatpn.astrosen.unam.mx/image.php?id=18&display=Full&type=b
+  + Splitting of H\alpha is +/- 35 km/s
++ But Vexp = 11 km/s from Tylenda:1994b
+  + Weinberger:1989a agrees for [O III], but other ions are 15
+  + SPM gives 35 for Ha
++ Diameter of right part is about 8 arcsec from SPM spectra
+  + Compared with 12.6 in catalog, so that must include the lobes
++ Rim is more diffuse than in Turtle, but similar relative size - elongated
++ Excitation Class: 9
+
+****** NGC 6326
++ *Also has multipolar tendencies*
+  + Extensive knot system
+  + Not much sign of the inner rim in HST images, but a diffuse rim is more visible in  Miszalski:2011a images
++ 338.1-08.3
++ Gaia distance:
+  + 2.8, just a bit higher than before
++ Frew:2016a distance and other data:
+  + D = 3.14 ± 0.91 - even higher
+  + a x b = 20.6 x 13.7 arcsec
+  + E(B-V) = 0.20 ± 0.09
+  + log(SHa) = −2.08 ± 0.11
++ Frew:2008a Table 3.1 Ha Flux: −10.60 ± 0.04 => 10**(-10.6 + 0.2) = 3.981e-11
++ Sp. Type: O(H)5-8 ((fc)) + ?
++ log T, log g, log L = 4.958, 5.20, 3.799
+  + So almost identical to NGC 5307
++ Binary (P=0.37 d) with MS star - Miszalski:2011a
++ Electron density ~= 1000 pcc, so lower density than Turtle by factor of a few
+  + Not sure how this is possible, since size and radio luminosity are similar
++ ADF(O) ~= 20, so higher than Turtle
+  + Wesson:2018a
+  + But this is mainly in the center, where the recomb lines are brighter
+  + In the main [O III] ring, the ADF is low
++ Excitation Class: 9 
++ Kinematics
+  + SPM: http://kincatpn.astrosen.unam.mx/image.php?id=19&dir=NGC6326&name=NGC%206326&png=338.1-08.3
+  + Has [N II] knots at projected velocity > 50 km/s but true velocity maybe much higher because close to plane of sky
+
+
+****** NGC 6439 
++ 011.0+05.8
++ No CSPN spectral classification that I can find
++ Has IR spectrum (2.5 to 5 micron) from Ohsawa:2016a
+  + Emission lines only.  No dust features
++ IR spectrum from Delgado-Inglada:2014a shows PAHs(?) and crystalline silicates
++ Garcia-Rojas:2018a have some abundances:
+  + But they say that it is at galactocentric distance of 2 kpc, which means that distance must be 6 kpc
+  + They say it is from the bulge population
++ Smith:2017c on the other hand say it is from disk population
++ Delgado-Inglada:2015a say it is bulge too
+  + Because within 10 deg of gal long = 0
+  + And it has N/O and C/O approximately unity
++ So best ditch it
+****** Rejected for having a He or [WC] CSPN (or some other reason)
+******* M 3-9
++ 359.9+05.1
++ Very low He/H -seems to be in bulge
+******* IC 5217
++ /don't use/
++ 100.6-05.4
++ Sp. Type: [WC]?
++ log T, log g, log L = 4.978, 5.50, 4.061
++ Very bipolar with narrow waist, so ditch it
++ Excitation Class: 6
+
+******* NGC 6369
++ Little Ghost
++ 002.4+05.8
++ [WO 3] spectral type, so He-burning
++ log T, log g = 4.792±0.070, 5.10
++ log L = 3.700
++ Excitation Class: 4
+
+******* NGC 6567
++ 011.7-00.6
++ Clumpy, but not really multipolar
++ Sp. Type: wels / [WC]
++ Nebular C/O = 2 - 3 Hyung:1993a
++ log T, log g, log L = 4.797, 4.40, 3.620
++ Otsuka:2009a have it being a He-burning post-AGB model
++ Excitation Class: 4
 ***** IC 4776
 + Not sure how similar this one really is
 + Sowicka:2017a
@@ -539,6 +1047,7 @@ Very similar to one another. They have wandering axes superimposed on a basic bi
 + h is the thickness of a shell
 + S' is the BG-subtracted surface brightness
   + Now corrected for continuum and [N II] contribution to F656N
+  + And corrected for extinction
 + Fluxes are calculated in three different ways (only one of the 3 is used for each feature)
   1. F1 uses Area = ds^2
   2. F2 uses Area = \pi R h (semi-circular annulus)
