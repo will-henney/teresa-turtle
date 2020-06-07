@@ -91,11 +91,17 @@ df.query('Name == "J320"')
 
 df.query('Name == "Fg1"')
 
-df.query('Name == "NGC 2392"')
+# These are all ones with FLIERS: Eskimo, Cat's Eye, Saturn
 
-df.query('Name == "NGC 6543"')
+df.query('Name in ["NGC 2392", "NGC 6543", "NGC 7009"]')
 
-df.query('Name == "NGC 7009"')
+# These are all excitation class 4, same as Turtle. 
+
+df.query('Name in ["NGC 6567", "NGC 6790", "NGC 6807", "NGC 6891"]')
+
+# These are ones with boring looking shells and rims.
+
+df.query('Name in ["NGC 3242", "NGC 1514", "NGC 2022", "NGC 7662", "NGC 6826"]')
 
 df.query('Name == "IC4634"')
 
@@ -128,6 +134,8 @@ df_all[["Name", "dhel", "D", "theta", "Theta", "R", "Rpc"]]
 df_all
 
 dfG.query("PNG in ['197.8+17.3', '037.7-34.5', '096.4+29.9']")
+
+dfG.query("PNG in ['165.5-15.2', '196.6-10.9', '261.0+32.0', '083.5+12.7', '106.5-17.6']")
 
 # ## Testing stuff
 
