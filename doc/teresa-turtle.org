@@ -78,6 +78,7 @@
   + NGC 2392 - Eskimo
     + 197.8+17.3
     + Gaia D = 2.00 +/- 0.20
+      + log R = -0.758		
     + Inner shell expansion is very fast!
       + +/- 120 km/s along major axis (seen pole on)
       + Twisted peanut morphology
@@ -105,6 +106,7 @@
   + NGC 7009 - Saturn
     + 037.7-34.5
     + Gaia D = 1.15 +/- 0.16
+      + log R = -1.106	
     + Like the Eskimo but seen from the side
     + Type IIa
     + Excitation class: 7
@@ -119,6 +121,7 @@
     + 096.4+29.9
     + Excitation class: 5
     + Gaia D = 1.63 +/- 0.18
+      + log R = -1.130
     + Type IIa
     + CSPN:
       + Sp. Type: Of-WR(H)
@@ -530,15 +533,21 @@
 
 ***** Mendez:1992a
 + This is a very good paper that shows that most nebulae are optically thin in He I and H I continua
-***** Helix nebula
+***** Helix nebula, NGC 7293
 + Much older, but also claimed to be polypolar, see sec 4.6 of ODell:2004b
 + If we fast-forward the lobes another 10,000 years, then at 90 km/s (axis A) they would propagate 0.92 pc
 + This is about the same size as the outer bow-shock features seen around the Helix
++ 036.1-57.1
++ Type I - N rich, so do not consider!
++ /Do not use/
 ***** NGC 2440
 + Multipolar, but otherwise very different from Turtle
 + Shows lots of knots/elephant trunks
 + Progenitor seems to be high-mass (3 Msun, Henry:2018a)
-***** Fg 1
++ Type IIa, very N-rich
++ Star is very hot: 2e5 K and 1000 Lsun
++ /Do not use/
+***** Fg 1 (Fleming 1)
 :PROPERTIES:
 :ID:       D1CDC3FA-0F4C-417F-824F-47BA7CE8408C
 :END:
@@ -546,6 +555,11 @@
   : FORS2 image of the post-CE PN Fg 1 (Credit: ESO/H. Boffin). The observed jets have been shown to pre-date the central nebula by a few thousand years, while the central star is a double-degenerate binary with an orbital period of 1.195d [72].
 + So this is similar to what we are finding with the dynamic age of the outer lobes being older
 + Type IIa so missing from our similarity samples
++ 290.5+07.9
++ Sp. Type: O(H)3-4 + ?
+  + log T, log g, log L = 4.903, 5.0, 3.27
++ Gaia distance: 2.11 +/- 0.27
+  + log R = -1.088
 ***** Jonckheere 320
 + This has lop-sided [N II] emission, similar to turtle
 + Type III but at 4.1 kpc so missing from cousins
@@ -573,32 +587,43 @@
 + Group III-A: Lop-sidedly asymmetric, as well as multipolar
   + NGC 6210 - Turtle
 + Group IIb-S
-  + NGC 6691
+  + NGC 6891
   + NGC 6629
 + Group IIb-M
   + IC 4634
   + NGC 6309
 ***** Big Table of comparison nebulae
 + Incorporating data from Phillips:2003c
-|          |            | WJH   | Morph  | T_Z(He II) |    \eta | T_eff |     L |
-|----------+------------+-------+--------+------------+------+-------+-------|
-| NGC 1535 | 206.4-40.5 | III-S | E      |         76 |  2.0 |    85 |  2700 |
-| IC 3568  | 123.6+34.5 | III-S | E      |         45 | 1.35 |    69 |  4800 |
-|----------+------------+-------+--------+------------+------+-------+-------|
-| IC 4642  | 334.3-09.3 | III-C | R      |        114 |  2.0 |   115 |  4600 |
-|----------+------------+-------+--------+------------+------+-------+-------|
-| J320     | 190.3-17.7 | III-M | P, BR  |         57 |  1.6 |    85 |  5000 |
-| NGC 5307 | 312.3+10.5 | III-M | P, BR  |         84 |  1.9 |    86 |  5700 |
-| NGC 6326 | 338.1-08.3 | III-M | E (BR) |        102 |  1.3 |    91 |  6300 |
-|----------+------------+-------+--------+------------+------+-------+-------|
-| NGC 6210 | 043.1+37.7 | III-A | R (BR) |         61 |  1.2 |    88 |  7400 |
-|----------+------------+-------+--------+------------+------+-------+-------|
-| NGC 3242 | 261.0+32.0 | IIb-C | E(P)   |         90 |  1.6 |       |       |
-| NGC 6826 | 083.5+12.7 | IIb-C | E(P)   |         56 |  1.6 |    50 | 12400 |
-| NGC 7662 | 106.5-17.6 | IIb-C | E      |        110 |  1.4 |   126 |  6000 |
-| NGC 3211 | 286.3-04.8 | IIb-C | R      |        122 |  1.6 |   145 |  2000 |
-|----------+------------+-------+--------+------------+------+-------+-------|
-|          |            |       |        |            |      |       |       |
+|          |            | WJH   | Morph    | T_Z(He II) |    \eta | T_eff |     L |   D |    R |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| NGC 1535 | 206.4-40.5 | III-S | E        |         76 |  2.0 |    85 |  2700 | 1.5 | 0.12 |
+| IC 3568  | 123.6+34.5 | III-S | E        |         45 | 1.35 |    69 |  4800 | 2.3 | 0.12 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| IC 4642  | 334.3-09.3 | III-C | R        |        114 |  2.0 |   115 |  4600 | 3.6 |  0.2 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| J320     | 190.3-17.7 | III-M | P, BR    |         57 |  1.6 |    85 |  5000 | 3.9 | 0.07 |
+| NGC 5307 | 312.3+10.5 | III-M | P, BR    |         84 |  1.9 |    86 |  5700 | 3.2 | 0.12 |
+| NGC 6326 | 338.1-08.3 | III-M | E (BR)   |        102 |  1.3 |    91 |  6300 | 3.0 | 0.12 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| NGC 6210 | 043.1+37.7 | III-A | R (BR)   |         61 |  1.2 |    88 |  7400 | 2.0 |      |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| NGC 6891 | 054.1-12.1 | IIb-S | R(P)     |         54 |  1.5 |    50 | 10500 | 2.5 | 0.08 |
+| NGC 6629 | 009.4-05.0 | IIb-S | R        |         50 |  1.4 |    47 |  6600 | 2.2 | 0.09 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| NGC 3242 | 261.0+32.0 | IIb-C | E(P)     |         90 |  1.6 |    89 |  6200 | 1.5 | 0.11 |
+| NGC 6826 | 083.5+12.7 | IIb-C | E(P)     |         56 |  1.6 |    50 | 12400 | 1.6 | 0.08 |
+| NGC 7662 | 106.5-17.6 | IIb-C | E        |        110 |  1.4 |   126 |  6000 | 2.0 | 0.07 |
+| NGC 3211 | 286.3-04.8 | IIb-C | R        |        122 |  1.6 |   145 |  2000 | 3.6 | 0.14 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| IC 4634  | 000.3+12.2 | IIb-M | E(P, BR) |            |      |    42 |  1100 |     |      |
+| NGC 6309 | 009.6+14.8 | IIb-M | E(P, BR) |         97 |  1.6 |    66 |  6300 | 3.0 | 0.17 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| NGC 2392 | 197.8+17.3 | IIa-C | E        |         68 |  2.5 |    45 | 12800 | 2.0 | 0.17 |
+| NGC 7009 | 037.7-34.5 | IIa-C | E(P)     |         88 |  1.4 |    87 |  9300 | 1.2 | 0.08 |
+| NGC 6543 | 096.4+29.9 | IIa-C | E(BR)    |         63 |  1.4 |    60 |  3800 | 1.6 | 0.07 |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
+| Fg 1     | 290.5+07.9 | IIa-M | BC       |            |      |    80 |  1800 | 2.1 | 0.08 |
+| NGC 6578 | 010.8-01.8 | IIa-M | R        |         60 |  1.4 |    65 |  6300 | 1.9 | 0.05 |
 ***** Table of cousins
 |          | Class | Sp. Type           | log T | log g | log L | Exc |  N/O |  C/O |   D |  2 R | Vexp |    t | Multi | Asym |    L | Mol | Dust |
 |----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
@@ -661,6 +686,74 @@
 | H 1-13    |                      |
 | H 1-21    |                      |
 | Lots more |                      |
+***** Sample from Schonberner:2018a
++ They measure expansion ages from proper motions
++ And fit evolution tracks to get masses
++ [ ] Look for overlap with our sample
+  + IC 418 - IIa, cool, still optically thick
+  + IC 2448
+    + 285.7-14.9	
+    + - IIb - possibly include in the IIb-S group, hotter than NGC 6891 and NGC 6629
+    + Teff = 95000 K
+    + Gaia distance: 3.5 +/- 0.5 kpc
+    + They had 2 +/- 0.3
+  + IC 4593
+    + 025.3+40.8
+    + Type IV - because low O/H - halo
+    + But lots of lop-sidedness
+  + NGC 3242
+    + Already in the Ansae Boys group
+    + IIb-C
+    + Has closer distance and lower luminosity than we do
+  + NGC 3918
+    + 294.6+04.7
+    + Type IIa
+    + Polar jets
+    + Rays in halo, suggesting optically thick
+    + Teff = 112,000 K so too hot for us
+  + NGC 5882
+    + 327.8+10.0
+    + Teff = 58000 K
+    + Type IIa
+    + Lots of structure
+  + NGC 6543
+    + Already include in the FLIER famiy
+    + IIa
+    + Teff = 68000 K
+    + Slightly larger D and L than we have
+  + NGC 6578
+    + In our multipolar Ia group
+    + Teff = 57000 K
+    + Higher D but lower L than we had - how?
+  + NGC 6826
+    + IIb-C in our Ansae Boys
+    + Teff = 46000 K, a bit lower than us
+    + Same distance, but lower L
+  + NGC 6891
+    + IIb - already in IIb-S
+    + Teff = 50000 K
+    + They have it closer and lower L
+  + NGC 7009
+    + In our IIa-C
+  + NGC 7662
+    + IIb-C - we already had it
+    + Teff = 119,000 K - too hot
+****** DONE Relation between kinematic ages and "real" ages
+CLOSED: [2020-06-07 Sun 22:37]
++ Quote from Schonberner:2018a
+  : We would like to emphasize here that the age as defined by Eq. (1) should not be mistaken as the real post-AGB age. Rather, it represents the present timescale of expansion of the measured feature. The real age is usually higher because of the accelerated nebular expansion. A thorough evaluation of the off- set between the kinematic ages from Eq. (1) and the real ones by means of radiation-hydrodynamics simulations can be found in Schönberner et al. (2014). Especially for young objects with cool central stars, the real (=post-AGB) age can be higher by 20–100%.
++ So, the optimistic take is that t(post-AGB) > t(kinematic) by a factor of 1.2 \to 2 at early times.
++ From Schonberner:2014a, the t(post-AGB) \approx 1.5 t(kinematic) for log T \approx 4.8, unless the halo density gradient is r^-2 (in which case it is \approx 1)
+****** Spread in kinematic ages vs spread in masses
++ They derive masses principally from the luminosity on the horizontal track
+  + The variation is Mf = 0.53 \to 0.56 Msun for final mass
+  + Using my simple fit, Mi = 1.0 + 10 (Mf - 0.5), so this is Mi = 1.3 to 1.6 Msun
+  + From actual models, it is more like 1 \to 1.3 Msun
+  + Crossing time is 35,000 to 10,000 yrs for these models
+    + But "transition time" is > 5000 years, so it is not entirely clear where the t=0 point should be
+    + But even so, the times are ridiculously long
++ Kinematic ages are all in range 1500 to 2500 years
++ No clear correlation with mass or Teff
 ***** Simple-looking double-shell nebulae
 + Some of these are also listed elsewhere
 + See https://twitter.com/AstroBin_com/status/1073746571215466497/photo/1
@@ -668,6 +761,11 @@
   + 261.0+32.0
   + Type IIb
   + Excitation class: 9
+  + CSPN
+    + Sp. Type: O(H) + ? / sdO
+    + log T, log g, log L = 4.949, 4.75, 3.79
+  + Gaia distance: 1.47 +/- 0.19
+    + log R = -0.951
   + Very similar to NGC 6826
     + This has been said many times before
     + Both have polar ansae
@@ -691,6 +789,7 @@
   + /include in transition objects/
   + 106.5-17.6
   + Gaia distance: 1.98 +/- 0.29
+    + log R = -1.132	
   + Type IIb
   + More structure than others
   + Star hotter than 1e5 K
@@ -699,6 +798,7 @@
   + /include in transition objects/
   + 083.5+12.7
   + Gaia distance: 1.58 +/- 0.12
+    + log R = -1.117
   + Type IIb
   + See also [[id:2F1B5C32-C514-4AD5-B3CC-84309A8A6D1D][down here]]
   + Similar to NGC 3242
@@ -756,26 +856,34 @@
 + log T, log g, log L = 5.160, 5.60, 3.300
 + So a bit too hot
 + Tiny and bright, but has the classic optically thin structure
++ Gaia distance: 3.6 +/- 2.7
+  + log R = -0.852
 + Vexp = 29 km/s Tylenda:1994b
 ****** NGC 6309	
 + 009.6+14.8
 + Excitation class: 10
 + Sp. Type: O(He)?
 + log T, log g, log L = 4.822, 4.70, 3.799
++ Gaia distance: 3.03 +/- 0.95
+  + log R = -0.776
 + https://en.wikipedia.org/wiki/NGC_6309
 + The Box Nebula - has knots and a sort of point-symmetric structure
 ****** NGC 6629	
 + 009.4-05.0
 + Excitation class: 5
 + Very neat and tidy elliptical
++ Gaia distance: 2.20 +/- 0.24
+  + log R = -1.053
 + Sp. Type: O(H)
 + log T, log g, log L = 4.672, 3.90, 3.820
-****** NGC 6691
+****** NGC 6891
 + 054.1-12.1
 + Excitation class: 4
 + Another symmetrical one, although the rim is elliptical and there is some interesting structure in the shell
 + Sp. Type: O(H)3 Ib(f*)
 + log T, log g, log L = 4.699, 4.00, 4.020
++ Gaia distance: 2.46 +/- 0.31
+  + log R = -1.095
 ****** NGC 6826	
 :PROPERTIES:
 :ID:       2F1B5C32-C514-4AD5-B3CC-84309A8A6D1D
@@ -1122,7 +1230,15 @@
 + Miszalski:2019a
 ***** NGC 6578
 + Has a "fan" on one side, which may be an analog of the knot complexes
-
++ 010.8-01.8
++ Type IIa/b
+  + N/O = 0.25
++ Tz(HeII) = 60, \eta = 1.4
++ Morph: R (weird)
++ SP. Type: Of / wels
++ log T, log g, log L = 4.813, 4.2, 3.799
++ Gaia distance: 1.85 +/- 0.24
+  + log R = -1.266
 ***** M 3-1
 + Mainly because next to Turtle in figures of Jackie paper
 + Seems to consist entirely of knots, but that may be just the filter

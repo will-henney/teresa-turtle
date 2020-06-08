@@ -103,6 +103,14 @@ df.query('Name in ["NGC 6567", "NGC 6790", "NGC 6807", "NGC 6891"]')
 
 df.query('Name in ["NGC 3242", "NGC 1514", "NGC 2022", "NGC 7662", "NGC 6826"]')
 
+# Other random multipolar nebulae:
+
+df.query('Name in ["NGC 7293", "NGC 2440", "Fg1", "NGC 6578"]')
+
+# Ones from Schonberner:2018a
+
+df.query('Name in ["IC418", "IC2448", "IC4593", "NGC 3918", "NGC 5882", "NGC 6891", "NGC 7662"]')
+
 df.query('Name == "IC4634"')
 
 # A new selection that has R = 0.05 to 0.2 and L = 300 to 1000 and D < 3 kpc
@@ -135,7 +143,9 @@ df_all
 
 dfG.query("PNG in ['197.8+17.3', '037.7-34.5', '096.4+29.9']")
 
-dfG.query("PNG in ['165.5-15.2', '196.6-10.9', '261.0+32.0', '083.5+12.7', '106.5-17.6']")
+dfG.query('PNG in ["290.5+07.9", "010.8-01.8", "285.7-14.9"]')
+
+dfG.query("PNG in ['165.5-15.2', '196.6-10.9', '261.0+32.0', '083.5+12.7', '106.5-17.6', '054.1-12.1', '009.4-05.0', '286.3-04.8', '009.6+14.8', '000.3+12.2']")
 
 # ## Testing stuff
 
