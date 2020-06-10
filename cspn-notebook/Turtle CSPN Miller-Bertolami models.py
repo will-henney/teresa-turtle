@@ -211,7 +211,7 @@ coustab["log L"] = np.round(np.log10(coustab["L"]), 2)
 
 def fcol(label):
     peimb, symm = label.split('-')
-    color = {"III": "k", "IIb": "m", "IIa": "r"}[peimb]
+    color = {"III": "b", "IIb": "c", "IIa": "r"}[peimb]
     return color
 
 def fmark(label):
@@ -255,8 +255,16 @@ for data in tabs:
 
 
 m = beartab["Bear"] == "Triple"
-ax.scatter("log T", "log L", data=beartab[m], color="orange", marker="v", s=50, label="Triple")
-ax.scatter("log T", "log L", data=beartab[~m], color="orange", marker="v", s=20, label="Likely")
+ax.scatter(
+    "log T", "log L", data=beartab[m], 
+    color="g", marker="v", s=100, label="Triple",
+    facecolors="none",
+)
+ax.scatter(
+    "log T", "log L", data=beartab[~m], 
+    color="g", marker="v", s=50, label="Likely",
+    facecolors="none",
+)
 for _n, _x, _y, _c, _m in coustab[m_use][["Name", "log T", "log L", "c", "marker"]]:
     size = 800 if "6210" in _n else 100
     ax.scatter(_x, _y, c=_c, marker=_m, s=size)
@@ -268,13 +276,14 @@ ax.set(
     ylim=[2.0, None],
 )
 sns.despine()
+fig.savefig("hr-planetaries.pdf")
 None
 # -
 
 m = beartab["Bear"] == "Triple"
 ~m
 
-
+# ls
 
 
 

@@ -635,6 +635,35 @@
 |          |            |       |          |        23. |      |   27. |       |     | 0.04 |       |     |
 #+TBLFM: @24$5=vsdev(@2..@23);f0::@24$7=vsdev(@2..@23);f0::@24$10=vsdev(@2..@23);f2
 
++ Average luminosities:
+  + III: vmeane([2700, 4800, 5000, 5700, 6300, 7400])
+    + = 5300 +/- 650
+    + log L = 3.72 +/- 0.05
+  + IIb: vmeane([10500, 6600, 4800, 6200, 12400, 6300])
+    + = 7800 +/- 1200
+    + log L = 3.89 +/- 0.07
+  + IIa: vmeane([9300, 3800, 3800, 6300])
+    + = 5800 +/- 1300
+  + IIb + IIa:  vmeane([10500, 6600, 4800, 6200, 12400, 6300, 9300, 3800, 3800, 6300])
+    + = 7000 +/- 900
+    + log L = 3.85 +/- 0.06
++ Comparison with Stanghellini:2020a Table 4
+  + Objects with Gaia distances with relative errrors less than 20%
+  + Very few objects overlap
+    | Name     |        Gal | Type  | T_Z | T_eff | log T           | S20 log T       |     L | log L | S20 log L       |
+    |----------+------------+-------+-----+-------+-----------------+-----------------+-------+-------+-----------------|
+    | IC 2448  | 285.7-14.9 | IIb-S |  85 |    95 | 4.954 +/- 0.024 | 4.944 +/- 0.010 |  4900 | 3.690 | 3.752 +/- 0.324 |
+    | NGC 3242 | 261.0+32.0 | IIb-C |  90 |    89 | 4.952 +/- 0.002 | 4.954 +/- 0.010 |  6200 | 3.792 | 3.795 +/- 0.27  |
+    | NGC 7662 | 106.5-17.6 | IIb-C | 110 |   126 | 5.072 +/- 0.029 | 5.051 +/- 0.069 |  6000 | 3.778 | 3.964 +/- 0.462 |
+    | NGC 2392 | 197.8+17.3 | IIa-C |  68 |    45 | 4.752 +/- 0.088 | 4.870 +/- 0.007 | 12800 | 4.107 | 4.546 +/- 0.199 |
+    | NGC 5882 | 327.8+10.0 | IIa-C |  67 |    58 | 4.796 +/- 0.031 | 4.845 +/- 0.019 |  3800 | 3.580 | 3.306 +/- 0.277 |
+    #+TBLFM: $6=3 + log10(vmeane([$4, $5]));f3::$9=log10($8);f3
+  + In most cases, the Gaia luminosities are slightly higher, except for NGC 5882 where it is lower
+    + In all cases, they are consistent within the errors
+    + Except for the Eskimo, where Gaia has it being much brighter
+  + Temperatures are generally consistent (especially with Zanstra He II)
+
+
 #+begin_src python :var TAB=big-cousins-tab :colnames no
   from astropy.table import Table
   import numpy as np

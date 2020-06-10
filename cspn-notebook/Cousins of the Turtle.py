@@ -121,7 +121,7 @@ df.query('Name in ["NGC 6879", "NGC 1514", "IC4637", "Sp3"]')
 
 df.query('Name in ["IC418", "IC2448", "IC4593", "NGC 3918", "NGC 5882", "NGC 6891", "NGC 7662"]')
 
-df.query('Name == "IC418"')
+df.query('PNG  in ["264.4-12.7",]')
 
 # A new selection that has R = 0.05 to 0.2 and L = 300 to 1000 and D < 3 kpc
 
