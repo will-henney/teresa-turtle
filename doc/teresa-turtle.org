@@ -531,6 +531,10 @@
 
 **** Analogs of Turtle among other PNe and PrePNe
 
+***** Sample methodology
++ What we have ended up with are "young adult", H-burning planetary nebulae
++ Compare with the "young" PNe of Sahai:2011a and 
+
 ***** Mendez:1992a
 + This is a very good paper that shows that most nebulae are optically thin in He I and H I continua
 ***** Helix nebula, NGC 7293
@@ -594,36 +598,102 @@
   + NGC 6309
 ***** Big Table of comparison nebulae
 + Incorporating data from Phillips:2003c
-|          |            | WJH   | Morph    | T_Z(He II) |    \eta | T_eff |     L |   D |    R |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| NGC 1535 | 206.4-40.5 | III-S | E        |         76 |  2.0 |    85 |  2700 | 1.5 | 0.12 |
-| IC 3568  | 123.6+34.5 | III-S | E        |         45 | 1.35 |    69 |  4800 | 2.3 | 0.12 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| IC 4642  | 334.3-09.3 | III-C | R        |        114 |  2.0 |   115 |  4600 | 3.6 |  0.2 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| J320     | 190.3-17.7 | III-M | P, BR    |         57 |  1.6 |    85 |  5000 | 3.9 | 0.07 |
-| NGC 5307 | 312.3+10.5 | III-M | P, BR    |         84 |  1.9 |    86 |  5700 | 3.2 | 0.12 |
-| NGC 6326 | 338.1-08.3 | III-M | E (BR)   |        102 |  1.3 |    91 |  6300 | 3.0 | 0.12 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| NGC 6210 | 043.1+37.7 | III-A | R (BR)   |         61 |  1.2 |    88 |  7400 | 2.0 |      |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| NGC 6891 | 054.1-12.1 | IIb-S | R(P)     |         54 |  1.5 |    50 | 10500 | 2.5 | 0.08 |
-| NGC 6629 | 009.4-05.0 | IIb-S | R        |         50 |  1.4 |    47 |  6600 | 2.2 | 0.09 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| NGC 3242 | 261.0+32.0 | IIb-C | E(P)     |         90 |  1.6 |    89 |  6200 | 1.5 | 0.11 |
-| NGC 6826 | 083.5+12.7 | IIb-C | E(P)     |         56 |  1.6 |    50 | 12400 | 1.6 | 0.08 |
-| NGC 7662 | 106.5-17.6 | IIb-C | E        |        110 |  1.4 |   126 |  6000 | 2.0 | 0.07 |
-| NGC 3211 | 286.3-04.8 | IIb-C | R        |        122 |  1.6 |   145 |  2000 | 3.6 | 0.14 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| IC 4634  | 000.3+12.2 | IIb-M | E(P, BR) |            |      |    42 |  1100 |     |      |
-| NGC 6309 | 009.6+14.8 | IIb-M | E(P, BR) |         97 |  1.6 |    66 |  6300 | 3.0 | 0.17 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| NGC 2392 | 197.8+17.3 | IIa-C | E        |         68 |  2.5 |    45 | 12800 | 2.0 | 0.17 |
-| NGC 7009 | 037.7-34.5 | IIa-C | E(P)     |         88 |  1.4 |    87 |  9300 | 1.2 | 0.08 |
-| NGC 6543 | 096.4+29.9 | IIa-C | E(BR)    |         63 |  1.4 |    60 |  3800 | 1.6 | 0.07 |
-|----------+------------+-------+----------+------------+------+-------+-------+-----+------|
-| Fg 1     | 290.5+07.9 | IIa-M | BC       |            |      |    80 |  1800 | 2.1 | 0.08 |
-| NGC 6578 | 010.8-01.8 | IIa-M | R        |         60 |  1.4 |    65 |  6300 | 1.9 | 0.05 |
+#+name: big-cousins-tab
+| Name     |        Gal | WJH   | Morph    | T_Z(He II) |    \eta | T_eff |     L |   D |    R | Image | Use |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| NGC 1535 | 206.4-40.5 | III-S | E        |         76 |  2.0 |    85 |  2700 | 1.5 | 0.12 | ML-UA | Y   |
+| IC 3568  | 123.6+34.5 | III-S | E        |         45 | 1.35 |    69 |  4800 | 2.3 | 0.12 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| IC 4642  | 334.3-09.3 | III-C | R        |        114 |  2.0 |   115 |  4600 | 3.6 |  0.2 |       |     |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| J320     | 190.3-17.7 | III-M | P, BR    |         57 |  1.6 |    85 |  5000 | 3.9 | 0.07 | JS    | Y   |
+| NGC 5307 | 312.3+10.5 | III-M | P, BR    |         84 |  1.9 |    86 |  5700 | 3.2 | 0.12 | JS    | Y   |
+| NGC 6326 | 338.1-08.3 | III-M | E (BR)   |        102 |  1.3 |    91 |  6300 | 3.0 | 0.12 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| NGC 6210 | 043.1+37.7 | III-A | R (BR)   |         61 |  1.2 |    88 |  7400 | 2.0 | 0.07 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| NGC 6891 | 054.1-12.1 | IIb-S | R(P)     |         54 |  1.5 |    50 | 10500 | 2.5 | 0.08 | JS    | Y   |
+| NGC 6629 | 009.4-05.0 | IIb-S | R        |         50 |  1.4 |    47 |  6600 | 2.2 | 0.09 | JS    | Y   |
+| IC 2448  | 285.7-14.9 | IIb-S | E        |         85 |  1.8 |    95 |  4800 | 3.5 | 0.09 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| NGC 3242 | 261.0+32.0 | IIb-C | E(P)     |         90 |  1.6 |    89 |  6200 | 1.5 | 0.11 | JS    | Y   |
+| NGC 6826 | 083.5+12.7 | IIb-C | E(P)     |         56 |  1.6 |    50 | 12400 | 1.6 | 0.08 | JS    | Y   |
+| NGC 7662 | 106.5-17.6 | IIb-C | E        |        110 |  1.4 |   126 |  6000 | 2.0 | 0.07 | JS    |     |
+| NGC 3211 | 286.3-04.8 | IIb-C | R        |        122 |  1.6 |   145 |  2000 | 3.6 | 0.14 |       |     |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| IC 4634  | 000.3+12.2 | IIb-M | E(P, BR) |            |      |    42 |  1100 | 2.8 |      | JS    |     |
+| NGC 6309 | 009.6+14.8 | IIb-M | E(P, BR) |         97 |  1.6 |    66 |  6300 | 3.0 | 0.17 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| NGC 2392 | 197.8+17.3 | IIa-C | E        |         68 |  2.5 |    45 | 12800 | 2.0 | 0.17 | JS    |     |
+| NGC 7009 | 037.7-34.5 | IIa-C | E(P)     |         88 |  1.4 |    87 |  9300 | 1.2 | 0.08 | JS    | Y   |
+| NGC 6543 | 096.4+29.9 | IIa-C | E(BR)    |         63 |  1.4 |    60 |  3800 | 1.6 | 0.07 | JS    | Y   |
+| NGC 5882 | 327.8+10.0 | IIa-C | E(P)     |         67 |  1.4 |    58 |  3800 | 2.0 | 0.06 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+| Fg 1     | 290.5+07.9 | IIa-M | BC       |            |      |    80 |  1800 | 2.1 | 0.08 | ESO   |     |
+| NGC 6578 | 010.8-01.8 | IIa-M | R        |         60 |  1.4 |    65 |  6300 | 1.9 | 0.05 | JS    | Y   |
+|----------+------------+-------+----------+------------+------+-------+-------+-----+------+-------+-----|
+|          |            |       |          |        23. |      |   27. |       |     | 0.04 |       |     |
+#+TBLFM: @24$5=vsdev(@2..@23);f0::@24$7=vsdev(@2..@23);f0::@24$10=vsdev(@2..@23);f2
+
+#+begin_src python :var TAB=big-cousins-tab :colnames no
+  from astropy.table import Table
+  import numpy as np
+  
+  TAB = [[_ if _ else np.nan for _ in row] for row in TAB]
+
+  data = Table(rows=TAB[1:], names=TAB[0])
+
+  data.write("cousins.ecsv", format="ascii.ecsv")
+
+#+end_src
+
+#+RESULTS:
+: None
+
+****** Check the physical sizes
++ In the figure: 30mm = 0.2 pc
++ The column L in the table is the *diameter* (not radius) in mm
+
+ | Name     | D, kpc | diam, as | Feature     | R, pc | L, mm |
+ |----------+--------+----------+-------------+-------+-------|
+ | NGC 1535 |    1.5 |       20 | Rim         |  0.07 |   21. |
+ | IC 3568  |    2.3 |       19 | Shell       |  0.11 |   33. |
+ | J 320    |    3.9 |        8 | Rim major   |  0.08 |   24. |
+ | NGC 5307 |    3.2 |       20 | Knots major |  0.16 |   48. |
+ | NGC 6326 |    3.0 |       15 | Shell minor |  0.11 |   33. |
+ | NGC 6210 |      2 |       14 | Rim major   |  0.07 |   21. |
+ |----------+--------+----------+-------------+-------+-------|
+ | NGC 6891 |    2.5 |       18 | Shell       |  0.11 |   33. |
+ | NGC 6629 |    2.2 |       17 | Shell       |  0.09 |   27. |
+ | IC 2448  |    3.5 |       20 | Shell NS    |  0.17 |   51. |
+ | NGC 3242 |    1.5 |       42 | Shell NS    |  0.15 |   45. |
+ | NGC 6826 |    1.6 |       27 | Shell NS    |  0.10 |   30. |
+ | IC 4634  |    2.8 |       10 | Shell NS    |  0.07 |   21. |
+ | NGC 6309 |    2.0 |       20 | Ring major  |  0.10 |   30. |
+ |----------+--------+----------+-------------+-------+-------|
+ | NGC 7009 |    1.2 |       25 | Shell NS    |  0.07 |   21. |
+ | NGC 6543 |    1.6 |       29 | Shell NS    |  0.11 |   33. |
+ | Fg 1     |    1.5 |       60 | Shell NS    |  0.22 |   66. |
+ | NGC 6578 |    1.9 |       16 | Shell NS    |  0.07 |   21. |
+ | NGC 5882 |    2.0 |       16 | Shell Vert  |  0.08 |   24. |
+ #+TBLFM: $5=1000 $2 $3 $au / 2 $pc;f2::$6=$5 30 / 0.1
+
+****** Figures of comparison nebulae
++ NGC1535
+  + [[file:~/Dropbox/Teresa-Turtle/figs/cousins/ngc1535.jpg]]
+    + Copyright by Creator(s), Mount Lemmon SkyCenter, and University of Arizona.
+    + https://skycenter.arizona.edu/astrophotography/ngc1535
+    + Nice photo of shell and rim, but missing the halo
++ IC 3568 and many many others
+  + [[file:~/Dropbox/Teresa-Turtle/figs/cousins/IC_3568_Judy_Schmidt.jpg]]
+  + [[file:~/Dropbox/Teresa-Turtle/figs/cousins/IC_2448_Judy_Schmidt.png]]
+  + [[file:~/Dropbox/Teresa-Turtle/figs/cousins/NGC_6889_Judy_Schmidt.png]]
+  + [[file:~/Dropbox/Teresa-Turtle/figs/cousins/IC_4634_Judy_Schmidt.png]]
+  + Judy Schmidt
+  + License: [[https://creativecommons.org/licenses/by/2.0][CC BY 2.0]]
+  + https://www.flickr.com/photos/54209675@N00/9998867675
++ Fleming 1
+  + ESO Boffin:2012a
 ***** Table of cousins
 |          | Class | Sp. Type           | log T | log g | log L | Exc |  N/O |  C/O |   D |  2 R | Vexp |    t | Multi | Asym |    L | Mol | Dust |
 |----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
@@ -686,6 +756,67 @@
 | H 1-13    |                      |
 | H 1-21    |                      |
 | Lots more |                      |
+***** Other possible triples
++ From Bear:2017a Table 1
++ Triple and "Likely Triple"
+#+name: bear-triples
+| Gal        | Name            | Bear   | Tz(He I) | Tz(He II) | Sp        | log g | log T | log L | * |
+|------------+-----------------+--------+----------+-----------+-----------+-------+-------+-------+---|
+| 035.9−01.1 | Sh 2-71         | Triple |     29.5 |         0 | B8V       |   6.8 | 5.196 |  3.11 |   |
+| 043.1+37.7 | NGC 6210        | Triple |       51 |        62 | O(H) 3    |   4.8 | 4.946 |  3.87 | * |
+| 057.2−08.9 | NGC 6879        | Triple |       38 |         0 | O(He) 3f  |  4.34 | 4.835 | 3.617 | * |
+| 165.5−15.2 | NGC 1514        | Triple |       19 |        51 | A0 + sdO  |  5.50 | 4.954 |   3.4 | * |
+| 166.1+10.4 | IC 2149         | Triple |       31 |        49 | O(H) 4f   |   3.6 | 4.623 | 3.014 |   |
+| 189.1+19.8 | NGC 2371-2      | Triple |       50 |       100 | [WO 1]    |   6.3 |  5.13 | 3.317 |   |
+| 292.6+01.2 | NGC 3699        | Triple |          |           |           |       |       |       |   |
+| 296.4−06.9 | He 2-71         | Triple |          |           |           |       |       |       |   |
+| 307.2−03.4 | NGC 5189        | Triple |       45 |        80 | [WO 1] +? |  6.62 | 5.217 |   3.7 |   |
+| 321.0+03.9 | He 2-113        | Triple |       37 |         0 | [WC 10]   |   3.4 |  4.49 |  3.72 |   |
+| 332.9−09.9 | He 3-1333       | Triple |       17 |         0 | [WC 10]   |       | 4.505 |  4.06 |   |
+| 342.9−04.9 | He 2-207        | Triple |          |           |           |       |       |       |   |
+| 345.4+00.1 | IC 4637         | Triple |       28 |        48 | O(H) + ?  |  4.05 | 4.699 |  3.55 | * |
+| 350.9+04.4 | H 2-1           | Triple |       29 |        60 | O(H) 5-9  |  3.35 | 4.519 | 3.920 |   |
+| 026.6−01.5 | K 4-5           | Likely |          |           |           |       |       |       |   |
+| 049.4+02.4 | He 2-428        | Likely |          |           | O5 +?     |   4.6 |  4.55 |  3.15 |   |
+| 167.4−09.1 | K 3-66          | Likely |       30 |         0 | O         |       |  4.47 |       |   |
+| 174.2−14.6 | H 3-29          | Likely |          |           |           |       |       |       |   |
+| 194.2+02.5 | J 900           | Likely |       97 |       107 | wels      |   6.0 | 5.113 | 3.745 |   |
+| 234.8+02.4 | NGC 2440        | Likely |      214 |       173 | cont      |  6.70 | 5.275 | 2.964 |   |
+| 259.1+00.9 | He 2-11         | Likely |       89 |         0 | O + ?     |  4.50 | 5.146 |  3.75 |   |
+| 277.1−03.8 | NGC 2899        | Likely |      110 |         0 | F V: + ?  |   5.8 |  5.04 |  4.25 |   |
+| 285.4−05.3 | IC 2553         | Likely |       72 |       100 | [WO 3]    |   7.4 |   5.0 | 2.602 |   |
+| 293.6+01.2 | He 2-70         | Likely |          |           |           |       |       |       |   |
+| 298.3−04.8 | NGC 4071        | Likely |      114 |       118 |           |       |       |       |   |
+| 315.0−00.3 | He 2-111        | Likely |          |           |           |       |       |       |   |
+| 341.2−24.6 | Lo 18           | Likely |          |           |           |       |       |       |   |
+| 341.8+05.4 | NGC 6153        | Likely |       76 |        97 | wels      |   5.4 | 5.037 |  3.75 |   |
+| 342.5−14.3 | Sp 3            | Likely |          |           | O3 +  ?   |       | 4.699 |       | * |
+| 355.4−04.0 | Hf 2-1          | Likely |          |           | [WO 2]    |   5.9 | 5.049 | 3.505 |   |
+| 358.9−00.7 | M 1-26/He 2-277 | Likely |       31 |         0 | O(H) f    |   3.3 | 4.519 |  3.65 |   |
+#+TBLFM: $10=4.65 < $8 < 5.0 ? string("*") : string("") 
+
+#+begin_src python :var TAB=bear-triples :colnames no
+  from astropy.table import Table
+  import numpy as np
+  
+  TAB = [[_ if _ else np.nan for _ in row] for row in TAB]
+
+  data = Table(rows=TAB[1:], names=TAB[0])
+
+  data.write("bear-triples.ecsv", format="ascii.ecsv")
+
+#+end_src
+
+#+RESULTS:
+: None
+
++ Closest to Turtle in Teff
+  + NGC 6879
+  + NGC 1514
+    + Crystal Ball
+  + IC 4637
+  + Sp 3 
+
 ***** Sample from Schonberner:2018a
 + They measure expansion ages from proper motions
 + And fit evolution tracks to get masses
@@ -696,7 +827,12 @@
     + - IIb - possibly include in the IIb-S group, hotter than NGC 6891 and NGC 6629
     + Teff = 95000 K
     + Gaia distance: 3.5 +/- 0.5 kpc
+      + log R = -1.046
     + They had 2 +/- 0.3
+    + CSPN
+      + Sp. Type: O(H)3 III-V
+      + log T, log g, log L = 4.993, 5.4, 3.68
+      + But that is T*: HB2011 give Teff = 95
   + IC 4593
     + 025.3+40.8
     + Type IV - because low O/H - halo
@@ -716,6 +852,13 @@
     + Teff = 58000 K
     + Type IIa
     + Lots of structure
+    + /Why don't we use this?/
+    + Gaia distance: 2.0
+      + log R = -1.234
+    + CSPN:
+      + Sp Type: O(H) f
+      + log T, log g, log L = 4.833, 3.8, 3.58
+    + Tz(He II) = 66.9, \eta = 1.38
   + NGC 6543
     + Already include in the FLIER famiy
     + IIa
@@ -780,6 +923,7 @@ CLOSED: [2020-06-07 Sun 22:37]
   + Long period binary Jones:2017c
   + Equatorial dust ring and multipolar inner shell, so not so simple after all
     + Best to cancel this one
+    + /But maybe re-instate since it is on list of triples/
 + NGC 2022
   + 196.6-10.9
   + N-rich
@@ -805,6 +949,58 @@ CLOSED: [2020-06-07 Sun 22:37]
   + Except for:
     + More unstable looking inner shell - multiple arcs
     + Strong texture to the intermediate shell
+***** Type IIa sample
++ IC418 - seems to be marginally optically thick
+  + 215.2-24.2
+  + CSPN:
+    + O(H)f
+    + log T, log g, log L = 4.556, 3.7, 3.86
+    + So T = 35 kK - likely to be still optically thick
+  + Tz(HeII) = 44.5, \eta = 1.2 Phillips:2003c
+    + Again, indicating optically thick
++ NGC 5979
+  + 322.5-05.2
+  + Tz(He II) = 127.5 - too hot!
+  + O(H)3-4, log T = 5.2
+  + N/O says IIa, but high z-height
++ NGC 6572
+  + 034.6+11.8
+  + Looks optically thick
+  + Of-WR(H) - so we probably wouldn't want it
+  + log T, log g, log L = 4.778, 4.2, 3.17
+  + Tz(He II) = 66.8, \eta = 1.0
+    + So certainly optically thick
+***** Type I sample
++ Very few of these, and none seem to fit the criteria for Teff, etc
++ NGC 6153
+  + 341.8+05.4
+  + Very strange abundances and high ADF - possibly 2-phase model
+  + /But this is probably the closest Type I to making our cut/
+  + CSPN:
+    + wels, but mabe nebular contamination?
+    + He-rich according to Liu:2000
+    + log T, log g, log L = 5.037, 5.4, 3.75
+    + So a bit too hot for our sample anyhow, T = 110 kK
+  + Tz(HeII) = 97, \eta = 1.3
++ He2-111 is old, with hot and low-luminosity star: log T = 5.24, log L = 2.66
+  + Dopita:2018a
++ He2-152
+  + 333.4+01.1
+  + Tz(HeII) = 129 kK
++ Hb5
+  + 359.3-00.9
+  + Tz(HeII) = 130 kK
+  + log g = 5.9 - a bit high
+  + log T = 5.1
+  + log L = 3.5
++ M1-35
+  + 003.9-02.3
+  + Finally!
+    + Although probably a bulge object
+  + log g = 4.6
+  + log T = 4.828
+  + log L = 3.898
+  + Sp. Type: wels
 ***** Type IIb sample
 + These are thin-disk rather than thick-disk, so may be a bit higher mass than the Turtle
 + Excitation class is from https://link.springer.com/content/pdf/bbm%3A978-3-662-03448-4%2F1.pdf

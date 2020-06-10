@@ -75,6 +75,7 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 # %matplotlib inline
 sns.set_context("talk")
+sns.set_color_codes()
 
 
 # Plot of effective temperature versus gravity, which we compare with the turtle observed values.
@@ -199,6 +200,81 @@ times
 make_table_of_times(tabs_tb2, 75000)
 
 make_table_of_times(tabs_Z0010, 75000)
+
+# ## HR diagram with cousin nebulae
+
+# +
+coustab = Table.read("../doc/cousins.ecsv")
+coustab = coustab[:-1]
+coustab["log T"] = np.round(3.0 + np.log10(0.5*(coustab["T_eff"] + coustab["T_Z(He II)"])), 2)
+coustab["log L"] = np.round(np.log10(coustab["L"]), 2)
+
+def fcol(label):
+    peimb, symm = label.split('-')
+    color = {"III": "k", "IIb": "m", "IIa": "r"}[peimb]
+    return color
+
+def fmark(label):
+    peimb, symm = label.split('-')
+    marker = {"S": "o", "C": "d", "M": "P", "A": "*"}[symm]
+    return marker
+
+
+
+coustab["c"] = [fcol(_) for _ in coustab["WJH"]]
+coustab["marker"] = [fmark(_) for _ in coustab["WJH"]]
+
+
+m_use = coustab["Use"] == "Y"
+coustab[m_use]
+# -
+
+for _x, _y, _c, _m in coustab[m_use][["log L", "log T", "c", "marker"]]:
+    print(_x, _y, _c, _m)
+
+beartab = Table.read("../doc/bear-triples.ecsv")
+beartab
+
+# +
+fig, ax = plt.subplots(figsize=(8, 8))
+#ax.axvspan(4.7, 5.0, 0.6, 0.9, color="k", alpha=0.1)
+lw = 0.5
+for data in tabs:
+    try:
+        Mi, Mf = extract_masses(data)
+        label = f"({Mi}, {Mf})"
+    except:
+        continue
+    ax.plot(
+        "logTeff", "logL",
+        data=data, label=label,
+        zorder=-100, c="k", lw=lw,
+    )
+    lw += 0.2
+    
+
+
+m = beartab["Bear"] == "Triple"
+ax.scatter("log T", "log L", data=beartab[m], color="orange", marker="v", s=50, label="Triple")
+ax.scatter("log T", "log L", data=beartab[~m], color="orange", marker="v", s=20, label="Likely")
+for _n, _x, _y, _c, _m in coustab[m_use][["Name", "log T", "log L", "c", "marker"]]:
+    size = 800 if "6210" in _n else 100
+    ax.scatter(_x, _y, c=_c, marker=_m, s=size)
+ax.legend()
+ax.set(
+    ylabel="$\log_{10}\, L/L_\odot$",
+    xlabel="$\log_{10}\, T_{\mathrm{eff}}$",
+    xlim=[5.5, 3.8],
+    ylim=[2.0, None],
+)
+sns.despine()
+None
+# -
+
+m = beartab["Bear"] == "Triple"
+~m
+
+
 
 
 

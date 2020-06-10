@@ -65,6 +65,8 @@ df
 qstring = "p_typeIIb + p_typeIII > 0.9 & p_typeIII >  2*p_typeIIb"
 qIII = "`Post_class` == 'III'"
 qIIb = "`Post_class` == 'IIb'"
+qIIa = "`Post_class` == 'IIa'"
+qI = "`Post_class` == 'I'"
 
 df.query(qstring).describe()
 
@@ -107,15 +109,29 @@ df.query('Name in ["NGC 3242", "NGC 1514", "NGC 2022", "NGC 7662", "NGC 6826"]')
 
 df.query('Name in ["NGC 7293", "NGC 2440", "Fg1", "NGC 6578"]')
 
+# Ones listed as possible triples from Bear & Soker (2017)
+
+df.query('Name in ["NGC 2371-72", "NGC 5189", "H2-1", "He3-133"]')
+
+# Others from Triple list, but close to Turtle in Teff
+
+df.query('Name in ["NGC 6879", "NGC 1514", "IC4637", "Sp3"]')
+
 # Ones from Schonberner:2018a
 
 df.query('Name in ["IC418", "IC2448", "IC4593", "NGC 3918", "NGC 5882", "NGC 6891", "NGC 7662"]')
 
-df.query('Name == "IC4634"')
+df.query('Name == "IC418"')
 
 # A new selection that has R = 0.05 to 0.2 and L = 300 to 1000 and D < 3 kpc
 
-qstring_physical = "0.08 < R < 0.2 & 500 < L < 3000 & dhel < 4.2"
+qstring_physical = "0.08 < R < 0.2 & 100 < L < 5000 & dhel < 4.2"
+
+df.query(qI)
+
+df.query(qI).query(qstring_physical)
+
+df.query(qIIa).query(qstring_physical)
 
 df.query(qIII).query(qstring_physical)
 
@@ -143,7 +159,7 @@ df_all
 
 dfG.query("PNG in ['197.8+17.3', '037.7-34.5', '096.4+29.9']")
 
-dfG.query('PNG in ["290.5+07.9", "010.8-01.8", "285.7-14.9"]')
+dfG.query('PNG in ["290.5+07.9", "010.8-01.8", "285.7-14.9", "327.8+10.0"]')
 
 dfG.query("PNG in ['165.5-15.2', '196.6-10.9', '261.0+32.0', '083.5+12.7', '106.5-17.6', '054.1-12.1', '009.4-05.0', '286.3-04.8', '009.6+14.8', '000.3+12.2']")
 
