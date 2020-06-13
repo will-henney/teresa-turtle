@@ -239,6 +239,8 @@ beartab
 fig, ax = plt.subplots(figsize=(8, 8))
 #ax.axvspan(4.7, 5.0, 0.6, 0.9, color="k", alpha=0.1)
 lw = 0.5
+tkin = 3500.0
+logTion = 4.3
 for data in tabs:
     try:
         Mi, Mf = extract_masses(data)
@@ -249,6 +251,16 @@ for data in tabs:
         "logTeff", "logL",
         data=data, label=label,
         zorder=-100, c="k", lw=lw,
+    )
+    t0 = np.interp(logTion, data["logTeff"], data["t"])
+    logT = np.interp(tkin + t0, data["t"], data["logTeff"])
+    logL = np.interp(tkin + t0, data["t"], data["logL"])
+    ax.plot(logT, logL, "*", c="k")
+    m = (data["t"] > t0 + tkin/1.5) & (data["t"] < t0 + tkin*1.5)
+    ax.plot(
+        "logTeff", "logL",
+        data=data[m], label="_nolabel_",
+        zorder=-100, c="y", lw=7, alpha=0.4,
     )
     lw += 0.2
     
