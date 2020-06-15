@@ -1680,10 +1680,11 @@ Very similar to one another. They have wandering axes superimposed on a basic bi
 + Ionized mass
   + Proportional to F/n
     + Following calculation is relative to total shells+knots+lobes (that is, not the halos)
-  + Inner shells: 0.02863 + 0.10384 + 0.01305 + 0.11136 = 26%
-  + Intermediate shells: 0.21860 + 0.01022 + 0.22271 = 45%
-  + Knot complexes: 0.07475 + 0.11044 + 0.00594 + 0.01729 = 21%
-  + Lobes: 0.03579 + 0.03153 + 0.00824 +  0.00746 = 8%
+  + Inner shells: 0.02863 + 0.10384 + 0.01305 + 0.11136 = 0.25688 = 26%
+  + Intermediate shells: 0.21860 + 0.01022 + 0.22271 = 0.45153 = 45%
+  + Knot complexes: 0.07475 + 0.11044 + 0.00594 + 0.01729 = 0.20842 = 21%
+  + Lobes: 0.03579 + 0.03153 + 0.00824 +  0.00746 = 0.08302 = 8%
+  + Total: 1.0
 + Ionization parameter
   + Proportional to 1/(R^2 n) if optically thin
     + F / n c = Q / 4 \pi R^2 n c with Q = 4.89e47 and R from R_3d in pc
@@ -2257,13 +2258,21 @@ CLOSED: [2020-04-29 Wed 18:23]
 | Sum Both       |       1 |     0 | 1.227 |  1 |     1. | 0.1524 | 26.25 | 0.04194 |    1 | 5.193e-6 | 4.6e0 | 7.9e19 |        | 1.227 |         |
 #+TBLFM: $4=1.234 ($2 - $3) / (1.00561 + 0.1586 $14); f3::$6=$4 $5**2;f0::$7=$6/1.234 32000;f4::$8=23.7 sqrt($4/$5);f2::$9=$6/$8 58682;f5::$11=4.89e47/ 4 $pi 1000 $8 $c ($10 $pc)**2 ;f4::$12=122/$8;s2::$13=3e15 $5 $8 1000;s2::$15=$4 $10**2 ;f3::@9$7=vsum(@I..@II)::@9$9=vsum(@I..@II)::@16$7=vsum(@III..@IIII);f4::@16$9=vsum(@III..@IIII);f5::@17$7=vsum(@IIII..@IIIII);f4::@17$9=vsum(@IIII..@IIIII);f5::@18$7=vsum(@III..@IIIII);f4::@18$9=vsum(@III..@IIIII);f5
 + Summary of results:
-  + Total mass is same as I had before: 0.045 Msun
+  + Total mass is same as I had before: 0.045 on this scale
     + Blue: 0.018
     + Red: 0.027 - slightly higher
+    + But the scale is /not/ solar masses
+      + Total is 0.2857 of whole nebula
+      + 0.2867 on this scale is 0.372 Msun, so multiply by 1.3
+    + => Blue: 0.023 Msun; Red: 0.0351 Msun, Total: 0.0581 Msun
+    + Add 10% more to get back to total we had before: Blue 0.025 Red 0.038
   + Total flux is only half what I had before
     + This implies I was including some shell flux in my earlier estimates
     + Red knots are more than twice the flux of blue knots
   + Densities are all similar to before, except a tiny bit lower (red is roughly double blue)
+  + Mdot:
+    + Blue: 0.025 / 2000 = 1.25e-5 Msun/yr
+    + Red: 0.038 / 4000 = 9.5e-6 Msun /yr
   + U_ion for 4 out of 6 cluster around 0.003
     + *but* much lower for N(E) Red: 0.0004
     + *and* much higher for SE Blue: 0.0172
