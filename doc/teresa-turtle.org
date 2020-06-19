@@ -12,6 +12,12 @@
 
 * NGC 6210
 
+** TODO Figure changes from Michael comments
++ [ ] Bigger arrowheads in Figs 5 and 6
++ [ ] Bigger velocity labels in Fig A4
++ [ ] Correct spelling in Fig 4, change "skirt" -> "knot complexes"
+  + Maybe replace the HST images, or at least get the full info on them
+
 ** Notes for discussion section
 
 *** Physical parameters of the nebula and star
