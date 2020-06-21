@@ -12,11 +12,22 @@
 
 * NGC 6210
 
-** TODO Figure changes from Michael comments
-+ [ ] Bigger arrowheads in Figs 5 and 6
+** Final things for paper
+
+*** Data availability statement
+
+**** DOI for HST images
++ DOI: 10.17909/t9-9g3w-nd31
++ Dataset Title: WFPC2 images of NGC 6210
+
+*** TODO [2/3] Figure changes from Michael comments
++ [X] Bigger arrowheads in Figs 5 and 6
 + [ ] Bigger velocity labels in Fig A4
-+ [ ] Correct spelling in Fig 4, change "skirt" -> "knot complexes"
-  + Maybe replace the HST images, or at least get the full info on them
++ [X] Correct spelling in Fig 4, change "skirt" -> "knot complexes"
+  + [X] Maybe replace the HST images, or at least get the full info on them
+  + [X] Add scale bars
+
+
 
 ** Notes for discussion section
 
@@ -739,7 +750,7 @@ The ones that we use in the Figure
 | NGC 5307 | III-M | O(H)3.5 V          |         4.934 |          5.29 |         3.757 |             9 |          8.63 |          0.22 |               | 2.3 | 0.14 |   11 | 6.22        | Yes   | Yes  |  503 |     |      |
 | NGC 6326 | III-M | O(H)5-8 ((fc)) + ? |         4.958 |          5.20 |         3.799 |             9 |          8.93 |          0.11 |               | 2.5 | 0.14 | 16.5 | 4.15        | Yes   | ?    |  438 | CO  |      |
 | NGC 6210 | III-A | O(H)3 / EL         |         4.946 |          4.80 |         3.870 |             4 |          8.72 |          0.14 |          0.25 |   2 | 0.28 |   34 | 4.03        | Yes   | Yes  |  530 | no  | Sil  |
-|----------+-------+--------------------+---------------+---------------+---------------+---------------+---------------+---------------+q---------------+-----+------+------+-------------+-------+------+------+-----+------|
+|----------+-------+--------------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+-----+------+------+-------------+-------+------+------+-----+------|
 | NGC 6891 | IIb-S | O(H)3 Ib(f*)       |         4.699 |          4.00 |         4.020 |             4 |          8.62 |          0.13 |               |     |      |      | 0.00 / 0.00 |       |      |      |     |      |
 | NGC 6629 | IIb-S | O(H)               |         4.672 |          3.90 |         3.820 |             5 |          8.65 |          0.07 |               |     |      |      | 0.00 / 0.00 |       |      |      |     |      |
 | IC 2448  | IIb-S | O(H)3 III-V        |         4.977 |           5.4 |          3.68 |               |          8.59 |          0.27 |               |     |      |      | 0.00 / 0.00 |       |      |      |     |      |
@@ -760,13 +771,13 @@ The ones that we use in the Figure
 + The ones that we don't use
   + Most are too hot
   + But why did we dump IC 4634? Too cool, that is why: 42 kK
-|          | Class | Sp. Type           | log T | log g | log L | Exc |  N/O |  C/O |   D |  2 R | Vexp |    t | Multi | Asym |    L | Mol | Dust |
-|----------+-------+--------------------+-------+-------+-------+-----+------+------+-----+------+------+------+-------+------+------+-----+------|
-| IC 4634  | IIb-M | O(H)3 If*          | 4.623 |  4.10 | 3.040 |   3 |      |      | 2.5 | 0.07 |   20 | 1.71 | Yes   | No   |  625 | no  |      |
-| IC 4642  | III   | ab. lines          | 5.064 |   5.8 | 3.663 |  12 |      |      | 2.7 | 0.20 |   21 | 4.66 | No    | No   |  437 |     |      |
-| NGC 7662 | IIb   | O(H)               | 5.102 |  5.70 | 3.780 |  10 |      | 1.0: | 0.8 | 0.10 |   20 | 2.44 |       |      |  404 | no  |      |
-| NGC 3211 | IIb   | EL                 | 5.160 |  5.60 | 3.300 |  10 |      |      | 2.5 | 0.19 |   29 | 3.20 |       |      | 1425 |     |      |
-|          |       |                    |       |       |       |     |      |      |     |      |      |      |       |      |      |     |      |
+|          | Class | Sp. Type  | log T | log g | log L | Exc | N/O |  C/O |   D |  2 R | Vexp |    t | Multi | Asym |    L | Mol | Dust |
+|----------+-------+-----------+-------+-------+-------+-----+-----+------+-----+------+------+------+-------+------+------+-----+------|
+| IC 4634  | IIb-M | O(H)3 If* | 4.623 |  4.10 | 3.040 |   3 |     |      | 2.5 | 0.07 |   20 | 1.71 | Yes   | No   |  625 | no  |      |
+| IC 4642  | III   | ab. lines | 5.064 |   5.8 | 3.663 |  12 |     |      | 2.7 | 0.20 |   21 | 4.66 | No    | No   |  437 |     |      |
+| NGC 7662 | IIb   | O(H)      | 5.102 |  5.70 | 3.780 |  10 |     | 1.0: | 0.8 | 0.10 |   20 | 2.44 |       |      |  404 | no  |      |
+| NGC 3211 | IIb   | EL        | 5.160 |  5.60 | 3.300 |  10 |     |      | 2.5 | 0.19 |   29 | 3.20 |       |      | 1425 |     |      |
+|          |       |           |       |       |       |     |     |      |     |      |      |      |       |      |      |     |      |
 #+TBLFM: $13=$-2 $pc / 2 $-1 $km 1000 $yr ;f2
 + These are all the ones that are Type III or Type IIb that satisfy the following
   + 2 R between 0.05 and 0.3
@@ -844,89 +855,89 @@ The ones that we use in the Figure
 + From Bear:2017a Table 1
 + Triple and "Likely Triple"
 #+name: bear-triples
-|        Gal | Name            | Bear   | Tz(He I) | Tz(He II) | Sp         | log g | log T | log L | * |
-|------------+-----------------+--------+----------+-----------+------------+-------+-------+-------+---|
-| 035.9−01.1 | Sh 2-71         | Triple |     29.5 |         0 | B8V        |   6.8 | 5.196 |  3.11 |   |
-| 043.1+37.7 | NGC 6210        | Triple |       51 |        62 | O(H) 3     |   4.8 | 4.946 |  3.87 | * |
-| 057.2−08.9 | NGC 6879        | Triple |       38 |         0 | O(He) 3f   |  4.34 | 4.835 | 3.617 | * |
-| 165.5−15.2 | NGC 1514        | Triple |       19 |        51 | A0 + sdO   |  5.50 | 4.954 |   3.4 | * |
-| 166.1+10.4 | IC 2149         | Triple |       31 |        49 | O(H) 4f    |   3.6 | 4.623 | 3.014 |   |
-| 189.1+19.8 | NGC 2371-2      | Triple |       50 |       100 | [WO 1]     |   6.3 |  5.13 | 3.317 |   |
-| 292.6+01.2 | NGC 3699        | Triple |          |           |            |       |       |       |   |
-| 296.4−06.9 | He 2-71         | Triple |          |           |            |       |       |       |   |
-| 307.2−03.4 | NGC 5189        | Triple |       45 |        80 | [WO 1] +?  |  6.62 | 5.217 |   3.7 |   |
-| 321.0+03.9 | He 2-113        | Triple |       37 |         0 | [WC 10]    |   3.4 |  4.49 |  3.72 |   |
-| 332.9−09.9 | He 3-1333       | Triple |       17 |         0 | [WC 10]    |       | 4.505 |  4.06 |   |
-| 342.9−04.9 | He 2-207        | Triple |          |           |            |       |       |       |   |
-| 345.4+00.1 | IC 4637         | Triple |       28 |        48 | O(H) + ?   |  4.05 | 4.699 |  3.55 | * |
-| 350.9+04.4 | H 2-1           | Triple |       29 |        60 | O(H) 5-9   |  3.35 | 4.519 | 3.920 |   |
-|------------+-----------------+--------+----------+-----------+------------+-------+-------+-------+---|
-| 026.6−01.5 | K 4-5           | Likely |          |           |            |       |       |       |   |
-| 049.4+02.4 | He 2-428        | Likely |          |           | O5 +?      |   4.6 |  4.55 |  3.15 |   |
-| 167.4−09.1 | K 3-66          | Likely |       30 |         0 | O          |       |  4.47 |       |   |
-| 174.2−14.6 | H 3-29          | Likely |          |           |            |       |       |       |   |
-| 194.2+02.5 | J 900           | Likely |       97 |       107 | wels       |   6.0 | 5.113 | 3.745 |   |
-| 234.8+02.4 | NGC 2440        | Likely |      214 |       173 | cont       |  6.70 | 5.275 | 2.964 |   |
-| 259.1+00.9 | He 2-11         | Likely |       89 |         0 | O + ?      |  4.50 | 5.146 |  3.75 |   |
-| 277.1−03.8 | NGC 2899        | Likely |      110 |         0 | F V: + ?   |   5.8 |  5.04 |  4.25 |   |
-| 285.4−05.3 | IC 2553         | Likely |       72 |       100 | [WO 3]     |   7.4 |   5.0 | 2.602 |   |
-| 293.6+01.2 | He 2-70         | Likely |          |           |            |       |       |       |   |
-| 298.3−04.8 | NGC 4071        | Likely |      114 |       118 |            |       |       |       |   |
-| 315.0−00.3 | He 2-111        | Likely |          |           |            |       |       |       |   |
-| 341.2−24.6 | Lo 18           | Likely |          |           |            |       |       |       |   |
-| 341.8+05.4 | NGC 6153        | Likely |       76 |        97 | wels       |   5.4 | 5.037 |  3.75 |   |
-| 342.5−14.3 | Sp 3            | Likely |          |           | O3 +  ?    |       | 4.699 |       | * |
-| 355.4−04.0 | Hf 2-1          | Likely |          |           | [WO 2]     |   5.9 | 5.049 | 3.505 |   |
-| 358.9−00.7 | M 1-26/He 2-277 | Likely |       31 |         0 | O(H) f     |   3.3 | 4.519 |  3.65 |   |
-|------------+-----------------+--------+----------+-----------+------------+-------+-------+-------+---|
-| 006.7-02.2 | M~1$-$41        | Triple |          |           | (WN)?      |  7.20 | 5.260 | 3.079 |   |
-| 010.1+00.7 |                 | Triple |          |           |            |       |       |       |   |
-| 013.3+01.1 |                 | Triple |          |           |            |       |       |       |   |
-| 051.0-04.5 |                 | Triple |          |           |            |       |       |       |   |
-| 089.0+00.3 | NGC~7026        | Triple |          |           | [WO 3]     |  4.40 | 4.965 | 2.913 | * |
-| 102.9-02.3 | A~79            | Triple |          |           | F0 V + ?   |  7.30 | 4.389 | 2.404 |   |
-| 222.9-01.1 |                 | Triple |          |           |            |       |       |       |   |
-| 231.8+04.1 | NGC~2438        | Triple |          |           | O(H) + ?   |  6.62 | 5.057 | 2.756 |   |
-| 235.7+07.1 |                 | Triple |          |           |            |       |       |       |   |
-| 257.5+00.6 | VBRC~1          | Triple |          |           | FV: + ?    |       |       |       |   |
-| 274.6+03.5 |                 | Triple |          |           |            |       |       |       |   |
-| 290.7-01.7 |                 | Triple |          |           |            |       |       |       |   |
-| 292.6+01.2 |                 | Triple |          |           |            |       |       |       |   |
-| 296.4-06.9 |                 | Triple |          |           |            |       |       |       |   |
-| 302.6-00.9 |                 | Triple |          |           |            |       |       |       |   |
-| 317.1-05.7 |                 | Triple |          |           |            |       |       |       |   |
-| 318.3-02.5 |                 | Triple |          |           |            |       |       |       |   |
-| 329.3-02.8 |                 | Triple |          |           |            |       |       |       |   |
-| 342.9-04.9 |                 | Triple |          |           |            |       |       |       |   |
-| 358.5+02.6 |                 | Triple |          |           |            |       |       |       |   |
-|------------+-----------------+--------+----------+-----------+------------+-------+-------+-------+---|
-| 010.2+00.3 |                 | Likely |          |           |            |       |       |       |   |
-| 031.3-00.5 |                 | Likely |          |           |            |       |       |       |   |
-| 031.9-00.3 |                 | Likely |          |           |            |       |       |       |   |
-| 033.1-06.3 |                 | Likely |          |           |            |       |       |       |   |
-| 055.5-01.7 |                 | Likely |          |           |            |       |       |       |   |
-| 064.1-00.9 |                 | Likely |          |           |            |       |       |       |   |
-| 068.8-00.0 |                 | Likely |          |           |            |       |       |       |   |
-| 093.3-02.4 |                 | Likely |          |           |            |       |       |       |   |
-| 095.9+03.5 |                 | Likely |          |           |            |       |       |       |   |
-| 100.4+04.6 |                 | Likely |          |           |            |       |       |       |   |
-| 229.6-02.7 |                 | Likely |          |           |            |       |       |       |   |
-| 231.4+04.3 |                 | Likely |          |           |            |       |       |       |   |
-| 277.7-03.5 | VBRC~2          | Likely |          |           | DAO        |       | 5.079 | 2.210 |   |
-| 282.9+03.8 |                 | Likely |          |           |            |       |       |       |   |
-| 288.4+00.3 |                 | Likely |          |           |            |       |       |       |   |
-| 293.6+01.2 |                 | Likely |          |           |            |       |       |       |   |
-| 298.3-04.8 |                 | Likely |          |           |            |       |       |       |   |
-| 300.4-00.9 |                 | Likely |          |           |            |       |       |       |   |
-| 318.9+00.7 |                 | Likely |          |           |            |       |       |       |   |
-| 328.3+00.7 |                 | Likely |          |           |            |       |       |       |   |
-| 331.4+00.5 |                 | Likely |          |           |            |       |       |       |   |
-| 335.4-01.1 |                 | Likely |          |           |            |       |       |       |   |
-| 342.9-02.0 |                 | Likely |          |           |            |       |       |       |   |
-| 346.9+12.4 |                 | Likely |          |           |            |       |       |       |   |
-| 351.1+03.1 |                 | Likely |          |           |            |       |       |       |   |
-| 355.1+03.7 |                 | Likely |          |           |            |       |       |       |   |
-| 357.6+01.0 |                 | Likely |          |           |            |       |       |       |   |
+|        Gal | Name            | Bear   | Tz(He I) | Tz(He II) | Sp        | log g | log T | log L | * |
+|------------+-----------------+--------+----------+-----------+-----------+-------+-------+-------+---|
+| 035.9−01.1 | Sh 2-71         | Triple |     29.5 |         0 | B8V       |   6.8 | 5.196 |  3.11 |   |
+| 043.1+37.7 | NGC 6210        | Triple |       51 |        62 | O(H) 3    |   4.8 | 4.946 |  3.87 | * |
+| 057.2−08.9 | NGC 6879        | Triple |       38 |         0 | O(He) 3f  |  4.34 | 4.835 | 3.617 | * |
+| 165.5−15.2 | NGC 1514        | Triple |       19 |        51 | A0 + sdO  |  5.50 | 4.954 |   3.4 | * |
+| 166.1+10.4 | IC 2149         | Triple |       31 |        49 | O(H) 4f   |   3.6 | 4.623 | 3.014 |   |
+| 189.1+19.8 | NGC 2371-2      | Triple |       50 |       100 | [WO 1]    |   6.3 |  5.13 | 3.317 |   |
+| 292.6+01.2 | NGC 3699        | Triple |          |           |           |       |       |       |   |
+| 296.4−06.9 | He 2-71         | Triple |          |           |           |       |       |       |   |
+| 307.2−03.4 | NGC 5189        | Triple |       45 |        80 | [WO 1] +? |  6.62 | 5.217 |   3.7 |   |
+| 321.0+03.9 | He 2-113        | Triple |       37 |         0 | [WC 10]   |   3.4 |  4.49 |  3.72 |   |
+| 332.9−09.9 | He 3-1333       | Triple |       17 |         0 | [WC 10]   |       | 4.505 |  4.06 |   |
+| 342.9−04.9 | He 2-207        | Triple |          |           |           |       |       |       |   |
+| 345.4+00.1 | IC 4637         | Triple |       28 |        48 | O(H) + ?  |  4.05 | 4.699 |  3.55 | * |
+| 350.9+04.4 | H 2-1           | Triple |       29 |        60 | O(H) 5-9  |  3.35 | 4.519 | 3.920 |   |
+|------------+-----------------+--------+----------+-----------+-----------+-------+-------+-------+---|
+| 026.6−01.5 | K 4-5           | Likely |          |           |           |       |       |       |   |
+| 049.4+02.4 | He 2-428        | Likely |          |           | O5 +?     |   4.6 |  4.55 |  3.15 |   |
+| 167.4−09.1 | K 3-66          | Likely |       30 |         0 | O         |       |  4.47 |       |   |
+| 174.2−14.6 | H 3-29          | Likely |          |           |           |       |       |       |   |
+| 194.2+02.5 | J 900           | Likely |       97 |       107 | wels      |   6.0 | 5.113 | 3.745 |   |
+| 234.8+02.4 | NGC 2440        | Likely |      214 |       173 | cont      |  6.70 | 5.275 | 2.964 |   |
+| 259.1+00.9 | He 2-11         | Likely |       89 |         0 | O + ?     |  4.50 | 5.146 |  3.75 |   |
+| 277.1−03.8 | NGC 2899        | Likely |      110 |         0 | F V: + ?  |   5.8 |  5.04 |  4.25 |   |
+| 285.4−05.3 | IC 2553         | Likely |       72 |       100 | [WO 3]    |   7.4 |   5.0 | 2.602 |   |
+| 293.6+01.2 | He 2-70         | Likely |          |           |           |       |       |       |   |
+| 298.3−04.8 | NGC 4071        | Likely |      114 |       118 |           |       |       |       |   |
+| 315.0−00.3 | He 2-111        | Likely |          |           |           |       |       |       |   |
+| 341.2−24.6 | Lo 18           | Likely |          |           |           |       |       |       |   |
+| 341.8+05.4 | NGC 6153        | Likely |       76 |        97 | wels      |   5.4 | 5.037 |  3.75 |   |
+| 342.5−14.3 | Sp 3            | Likely |          |           | O3 +  ?   |       | 4.699 |       | * |
+| 355.4−04.0 | Hf 2-1          | Likely |          |           | [WO 2]    |   5.9 | 5.049 | 3.505 |   |
+| 358.9−00.7 | M 1-26/He 2-277 | Likely |       31 |         0 | O(H) f    |   3.3 | 4.519 |  3.65 |   |
+|------------+-----------------+--------+----------+-----------+-----------+-------+-------+-------+---|
+| 006.7-02.2 | M~1$-$41        | Triple |          |           | (WN)?     |  7.20 | 5.260 | 3.079 |   |
+| 010.1+00.7 |                 | Triple |          |           |           |       |       |       |   |
+| 013.3+01.1 |                 | Triple |          |           |           |       |       |       |   |
+| 051.0-04.5 |                 | Triple |          |           |           |       |       |       |   |
+| 089.0+00.3 | NGC~7026        | Triple |          |           | [WO 3]    |  4.40 | 4.965 | 2.913 | * |
+| 102.9-02.3 | A~79            | Triple |          |           | F0 V + ?  |  7.30 | 4.389 | 2.404 |   |
+| 222.9-01.1 |                 | Triple |          |           |           |       |       |       |   |
+| 231.8+04.1 | NGC~2438        | Triple |          |           | O(H) + ?  |  6.62 | 5.057 | 2.756 |   |
+| 235.7+07.1 |                 | Triple |          |           |           |       |       |       |   |
+| 257.5+00.6 | VBRC~1          | Triple |          |           | FV: + ?   |       |       |       |   |
+| 274.6+03.5 |                 | Triple |          |           |           |       |       |       |   |
+| 290.7-01.7 |                 | Triple |          |           |           |       |       |       |   |
+| 292.6+01.2 |                 | Triple |          |           |           |       |       |       |   |
+| 296.4-06.9 |                 | Triple |          |           |           |       |       |       |   |
+| 302.6-00.9 |                 | Triple |          |           |           |       |       |       |   |
+| 317.1-05.7 |                 | Triple |          |           |           |       |       |       |   |
+| 318.3-02.5 |                 | Triple |          |           |           |       |       |       |   |
+| 329.3-02.8 |                 | Triple |          |           |           |       |       |       |   |
+| 342.9-04.9 |                 | Triple |          |           |           |       |       |       |   |
+| 358.5+02.6 |                 | Triple |          |           |           |       |       |       |   |
+|------------+-----------------+--------+----------+-----------+-----------+-------+-------+-------+---|
+| 010.2+00.3 |                 | Likely |          |           |           |       |       |       |   |
+| 031.3-00.5 |                 | Likely |          |           |           |       |       |       |   |
+| 031.9-00.3 |                 | Likely |          |           |           |       |       |       |   |
+| 033.1-06.3 |                 | Likely |          |           |           |       |       |       |   |
+| 055.5-01.7 |                 | Likely |          |           |           |       |       |       |   |
+| 064.1-00.9 |                 | Likely |          |           |           |       |       |       |   |
+| 068.8-00.0 |                 | Likely |          |           |           |       |       |       |   |
+| 093.3-02.4 |                 | Likely |          |           |           |       |       |       |   |
+| 095.9+03.5 |                 | Likely |          |           |           |       |       |       |   |
+| 100.4+04.6 |                 | Likely |          |           |           |       |       |       |   |
+| 229.6-02.7 |                 | Likely |          |           |           |       |       |       |   |
+| 231.4+04.3 |                 | Likely |          |           |           |       |       |       |   |
+| 277.7-03.5 | VBRC~2          | Likely |          |           | DAO       |       | 5.079 | 2.210 |   |
+| 282.9+03.8 |                 | Likely |          |           |           |       |       |       |   |
+| 288.4+00.3 |                 | Likely |          |           |           |       |       |       |   |
+| 293.6+01.2 |                 | Likely |          |           |           |       |       |       |   |
+| 298.3-04.8 |                 | Likely |          |           |           |       |       |       |   |
+| 300.4-00.9 |                 | Likely |          |           |           |       |       |       |   |
+| 318.9+00.7 |                 | Likely |          |           |           |       |       |       |   |
+| 328.3+00.7 |                 | Likely |          |           |           |       |       |       |   |
+| 331.4+00.5 |                 | Likely |          |           |           |       |       |       |   |
+| 335.4-01.1 |                 | Likely |          |           |           |       |       |       |   |
+| 342.9-02.0 |                 | Likely |          |           |           |       |       |       |   |
+| 346.9+12.4 |                 | Likely |          |           |           |       |       |       |   |
+| 351.1+03.1 |                 | Likely |          |           |           |       |       |       |   |
+| 355.1+03.7 |                 | Likely |          |           |           |       |       |       |   |
+| 357.6+01.0 |                 | Likely |          |           |           |       |       |       |   |
 #+TBLFM: $10=4.65 < $8 < 5.0 ? string("*") : string("") 
 
 
@@ -3193,6 +3204,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
           "Date",
           "Photmode",
           "Exposure",
+          "Proposal",
       ],
       None,
   ]
@@ -3206,6 +3218,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
               f'{h["DATE-OBS"]} {h["TIME-OBS"]}',
               hi["PHOTMODE"],
               h["EXPTIME"],
+              h["PROPOSID"],
           ]
           table.append(data)
       except:
@@ -3213,68 +3226,68 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 #+end_src
 
 #+RESULTS:
-| Name      | Date                | Photmode                 | Exposure |
-|-----------+---------------------+--------------------------+----------|
-| u37b010cm | 1997-08-06 09:58:13 | WFPC2,1,A2D7,F375N,,CAL  |    260.0 |
-| u4js060er | 1998-06-30 13:41:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
-| u4js0609r | 1998-06-30 13:29:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
-| u66b0505r | 2000-06-24 18:49:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
-| u4js060hr | 1998-06-30 13:47:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
-| ua011002m | 2008-01-18 03:30:17 | WFPC2,1,A2D7,F502N,,CAL  |    160.0 |
-| u37b0102m | 1997-08-06 08:04:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
-| u4js0604r | 1998-06-30 13:16:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
-| u66b0508r | 2000-06-24 19:55:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
-| u37b0109m | 1997-08-06 09:44:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
-| u66b0503r | 2000-06-24 18:32:14 | WFPC2,1,A2D7,F502N,,CAL  |    300.0 |
-| u4js060cr | 1998-06-30 13:36:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
-| u4js0602r | 1998-06-30 13:10:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
-| u37b0104m | 1997-08-06 09:22:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
-| u8s10403m | 2004-03-02 18:20:15 | WFPC2,1,A2D7,F547M,,CAL  |     60.0 |
-| ua011004m | 2008-01-18 03:37:17 | WFPC2,1,A2D7,F656N,,CAL  |    100.0 |
-| u4js060dr | 1998-06-30 13:39:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
-| u37b010bm | 1997-08-06 09:53:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
-| u66b0504r | 2000-06-24 18:42:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |
-| u4js0608r | 1998-06-30 13:26:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
-| ua011003m | 2008-01-18 03:35:17 | WFPC2,1,A2D7,F656N,,CAL  |     40.0 |
-| u39h0702t | 1996-07-02 03:06:16 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
-| u37b0103m | 1997-08-06 08:19:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
-| u66b0502r | 2000-06-24 18:27:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
-| u37b0108m | 1997-08-06 09:40:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |
-| u4js0605m | 1998-06-30 13:18:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
-| u37b010dm | 1997-08-06 10:04:13 | WFPC2,1,A2D7,F375N,,CAL  |    200.0 |
-| u4js060br | 1998-06-30 13:34:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
-| u37b0105m | 1997-08-06 09:26:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |
-| u4js0603r | 1998-06-30 13:13:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
-| ua011005m | 2008-01-18 03:43:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
-| u8s10402m | 2004-03-02 18:11:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
-| u66b0507r | 2000-06-24 19:53:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |
-| u37b010am | 1997-08-06 09:49:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |
-| u4js060gr | 1998-06-30 13:45:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
-| u4js0606r | 1998-06-30 13:20:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |
-| u39h0701t | 1996-07-02 02:57:16 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
-| u4js060ar | 1998-06-30 13:32:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |
-| u66b0501r | 2000-06-24 18:22:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |
-| u8s10401m | 2004-03-02 18:03:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |
-| ua011006m | 2008-01-18 03:52:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
-| u37b0106m | 1997-08-06 09:31:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
-| u66b0506r | 2000-06-24 18:56:14 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |
-| u4js060fr | 1998-06-30 13:43:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
-| u4js0607r | 1998-06-30 13:23:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |
-| u37b0101m | 1997-08-06 07:49:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
-| ua011001m | 2008-01-18 03:27:17 | WFPC2,1,A2D7,F502N,,CAL  |    100.0 |
-| ua011007m | 2008-01-18 04:58:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |
-| u37b0107m | 1997-08-06 09:35:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |
-| u4js0601r | 1998-06-30 13:07:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
+| Name      | Date                | Photmode                 | Exposure | Proposal |
+|-----------+---------------------+--------------------------+----------+----------|
+| u37b010cm | 1997-08-06 09:58:13 | WFPC2,1,A2D7,F375N,,CAL  |    260.0 |     6792 |
+| u4js060er | 1998-06-30 13:41:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |     7501 |
+| u4js0609r | 1998-06-30 13:29:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |     7501 |
+| u66b0505r | 2000-06-24 18:49:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |     8773 |
+| u4js060hr | 1998-06-30 13:47:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |     7501 |
+| ua011002m | 2008-01-18 03:30:17 | WFPC2,1,A2D7,F502N,,CAL  |    160.0 |    11122 |
+| u37b0102m | 1997-08-06 08:04:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |     6792 |
+| u4js0604r | 1998-06-30 13:16:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |     7501 |
+| u66b0508r | 2000-06-24 19:55:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |     8773 |
+| u37b0109m | 1997-08-06 09:44:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |     6792 |
+| u66b0503r | 2000-06-24 18:32:14 | WFPC2,1,A2D7,F502N,,CAL  |    300.0 |     8773 |
+| u4js060cr | 1998-06-30 13:36:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |     7501 |
+| u4js0602r | 1998-06-30 13:10:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |     7501 |
+| u37b0104m | 1997-08-06 09:22:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |     6792 |
+| u8s10403m | 2004-03-02 18:20:15 | WFPC2,1,A2D7,F547M,,CAL  |     60.0 |     9740 |
+| ua011004m | 2008-01-18 03:37:17 | WFPC2,1,A2D7,F656N,,CAL  |    100.0 |    11122 |
+| u4js060dr | 1998-06-30 13:39:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |     7501 |
+| u37b010bm | 1997-08-06 09:53:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |     6792 |
+| u66b0504r | 2000-06-24 18:42:14 | WFPC2,1,A2D7,F658N,,CAL  |    300.0 |     8773 |
+| u4js0608r | 1998-06-30 13:26:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |     7501 |
+| ua011003m | 2008-01-18 03:35:17 | WFPC2,1,A2D7,F656N,,CAL  |     40.0 |    11122 |
+| u39h0702t | 1996-07-02 03:06:16 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |     6347 |
+| u37b0103m | 1997-08-06 08:19:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |     6792 |
+| u66b0502r | 2000-06-24 18:27:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |     8773 |
+| u37b0108m | 1997-08-06 09:40:13 | WFPC2,1,A2D7,F547M,,CAL  |    160.0 |     6792 |
+| u4js0605m | 1998-06-30 13:18:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |     7501 |
+| u37b010dm | 1997-08-06 10:04:13 | WFPC2,1,A2D7,F375N,,CAL  |    200.0 |     6792 |
+| u4js060br | 1998-06-30 13:34:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |     7501 |
+| u37b0105m | 1997-08-06 09:26:13 | WFPC2,1,A2D7,F487N,,CAL  |    160.0 |     6792 |
+| u4js0603r | 1998-06-30 13:13:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |     7501 |
+| ua011005m | 2008-01-18 03:43:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |    11122 |
+| u8s10402m | 2004-03-02 18:11:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |     9740 |
+| u66b0507r | 2000-06-24 19:53:14 | WFPC2,1,A2D7,F555W,,CAL  |     40.0 |     8773 |
+| u37b010am | 1997-08-06 09:49:13 | WFPC2,1,A2D15,F656N,,CAL |    160.0 |     6792 |
+| u4js060gr | 1998-06-30 13:45:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |     7501 |
+| u4js0606r | 1998-06-30 13:20:13 | WFPC2,1,A2D15,F502N,,CAL |     40.0 |     7501 |
+| u39h0701t | 1996-07-02 02:57:16 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |     6347 |
+| u4js060ar | 1998-06-30 13:32:13 | WFPC2,1,A2D15,F658N,,CAL |     40.0 |     7501 |
+| u66b0501r | 2000-06-24 18:22:14 | WFPC2,1,A2D7,F502N,,CAL  |    200.0 |     8773 |
+| u8s10401m | 2004-03-02 18:03:15 | WFPC2,1,A2D7,F185W,,CAL  |    300.0 |     9740 |
+| ua011006m | 2008-01-18 03:52:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |    11122 |
+| u37b0106m | 1997-08-06 09:31:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |     6792 |
+| u66b0506r | 2000-06-24 18:56:14 | WFPC2,1,A2D7,F658N,,CAL  |    200.0 |     8773 |
+| u4js060fr | 1998-06-30 13:43:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |     7501 |
+| u4js0607r | 1998-06-30 13:23:13 | WFPC2,1,A2D15,F658N,,CAL |    100.0 |     7501 |
+| u37b0101m | 1997-08-06 07:49:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |     6792 |
+| ua011001m | 2008-01-18 03:27:17 | WFPC2,1,A2D7,F502N,,CAL  |    100.0 |    11122 |
+| ua011007m | 2008-01-18 04:58:17 | WFPC2,1,A2D7,F658N,,CAL  |    400.0 |    11122 |
+| u37b0107m | 1997-08-06 09:35:13 | WFPC2,1,A2D15,F502N,,CAL |    160.0 |     6792 |
+| u4js0601r | 1998-06-30 13:07:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |     7501 |
 
 ***** Organize the exposures
 
-****** 1996-07-02
+****** 1996-07-02: Proposal 6347
 | Name      | Date                | Photmode                | Exposure |
 |-----------+---------------------+-------------------------+----------|
 | u39h0701t | 1996-07-02 02:57:16 | WFPC2,1,A2D7,F658N,,CAL |    400.0 |
 | u39h0702t | 1996-07-02 03:06:16 | WFPC2,1,A2D7,F658N,,CAL |    200.0 |
 
-****** 1997-08-06
+****** 1997-08-06: Proposal 6792
 | Name      | Date                | Photmode                 | Exposure |
 |-----------+---------------------+--------------------------+----------|
 | u37b0101m | 1997-08-06 07:49:13 | WFPC2,1,A2D7,F437N,,CAL  |    800.0 |
@@ -3296,7 +3309,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 | u37b010cm | 1997-08-06 09:58:13 | WFPC2,1,A2D7,F375N,,CAL  |    260.0 |
 | u37b010dm | 1997-08-06 10:04:13 | WFPC2,1,A2D7,F375N,,CAL  |    200.0 |
 
-****** 1998-06-30
+****** 1998-06-30: Proposal 7501
 | Name      | Date                | Photmode                 | Exposure |
 |-----------+---------------------+--------------------------+----------|
 | u4js0601r | 1998-06-30 13:07:13 | WFPC2,1,A2D15,F502N,,CAL |    100.0 |
@@ -3319,7 +3332,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 | u4js060gr | 1998-06-30 13:45:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
 | u4js060hr | 1998-06-30 13:47:13 | WFPC2,1,A2D15,F555W,,CAL |     40.0 |
 
-****** 2000-06-24
+****** 2000-06-24: Proposal 8773
 | Name      | Date                | Photmode                | Exposure |
 |-----------+---------------------+-------------------------+----------|
 | u66b0501r | 2000-06-24 18:22:14 | WFPC2,1,A2D7,F502N,,CAL |    200.0 |
@@ -3333,7 +3346,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 | u66b0507r | 2000-06-24 19:53:14 | WFPC2,1,A2D7,F555W,,CAL |     40.0 |
 | u66b0508r | 2000-06-24 19:55:14 | WFPC2,1,A2D7,F555W,,CAL |     40.0 |
 
-****** 2004-03-02
+****** 2004-03-02: Proposal 9740
 | Name      | Date                | Photmode                | Exposure |
 |-----------+---------------------+-------------------------+----------|
 | u8s10401m | 2004-03-02 18:03:15 | WFPC2,1,A2D7,F185W,,CAL |    300.0 |
@@ -3341,7 +3354,7 @@ No.    Name      Ver    Type      Cards   Dimensions   Format
 |-----------+---------------------+-------------------------+----------|
 | u8s10403m | 2004-03-02 18:20:15 | WFPC2,1,A2D7,F547M,,CAL |     60.0 |
 
-****** 2008-01-18
+****** 2008-01-18: Proposal 11122
 | Name      | Date                | Photmode                | Exposure |
 |-----------+---------------------+-------------------------+----------|
 | ua011001m | 2008-01-18 03:27:17 | WFPC2,1,A2D7,F502N,,CAL |    100.0 |
@@ -4754,11 +4767,12 @@ os.system("which flct")
 #+begin_src python :return figfile :results file
   import numpy as np
   from matplotlib import pyplot as plt
+  import matplotlib.patheffects as path_effects
   import seaborn as sns
   from astropy.io import fits
   from astropy.wcs import WCS
 
-  figfile = "../figs/oiii-propermotions.pdf"
+  figfile = "../figs/oiii-propermotions.jpg"
 
   hdu = fits.open("../propermotions/oiii/oiii-ago1997-win.fits")[0]
   w = WCS(hdu)
@@ -4776,36 +4790,71 @@ os.system("which flct")
   # A faint version for the faint emission
   step = slice(None, None, 10), slice(None, None, 10)
   vx[im < 0.08] = np.nan
-  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
-            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.2)
+  Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+                headwidth=4, headlength=6, minlength=0.01,
+                units="xy", scale=0.04, width=1.5, minshaft=2.0, color="w", alpha=0.2)
+  Q.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.07, facecolor='white',
+              capstyle="projecting", alpha=0.2,
+          ),
+      ]
+  )
   step = slice(None, None, 5), slice(None, None, 5)
   vx[im < 0.5] = np.nan
-  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
-            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.4)
+  Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+                headwidth=4, headlength=6, minlength=0.01,
+                units="xy", scale=0.04, width=1.5, minshaft=2.0, color="w", alpha=0.4)
+  Q.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.07, facecolor='white',
+              capstyle="projecting", alpha=0.4,
+          ),
+      ]
+  )
   # A bright version for the bright emission
   vx[im < 3.0] = np.nan
   Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
-            units="xy", scale=0.08, width=0.7, minshaft=2.0, color="w", alpha=1.0)
-  ax.quiverkey(Q, 0.1, 0.1, 1.0,
+                headwidth=4, headlength=6, minlength=0.01,
+                units="xy", scale=0.04, width=1.5, minshaft=2.0, color="w", alpha=1.0)
+  Q.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.1, facecolor='white', capstyle="projecting",
+          ),
+      ]
+  )
+  QK = ax.quiverkey(Q, 0.1, 0.1, 1.0,
                "10 mas / yr", labelcolor="w",
                fontproperties=dict(size=5))
+  QK.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.1, facecolor='white', capstyle="projecting",
+          ),
+      ]
+  )
   ax.text(0.05, 0.95, "[O III] proper motions", color="w", transform=ax.transAxes)
-  fig.tight_layout(rect=(0.15, 0.05, 1.0, 1.0))
-  fig.savefig(figfile)
+  ax.set(xlabel="RA", ylabel="Dec")
+  fig.tight_layout(rect=(0.15, 0.1, 1.0, 1.0))
+  fig.savefig(figfile, dpi=1200)
 #+end_src
 
 #+RESULTS:
-[[file:../figs/oiii-propermotions.pdf]]
+[[file:../figs/oiii-propermotions.jpg]]
 
 [N II]
 #+begin_src python :return figfile :results file
   import numpy as np
   from matplotlib import pyplot as plt
+  import matplotlib.patheffects as path_effects
   import seaborn as sns
   from astropy.io import fits
   from astropy.wcs import WCS
 
-  figfile = "../figs/nii-propermotions.pdf"
+  figfile = "../figs/nii-propermotions.jpg"
 
   hdu = fits.open("../propermotions/nii/n6210n2008sm.fits")[0]
   w = WCS(hdu)
@@ -4818,28 +4867,46 @@ os.system("which flct")
   X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
 
 
-  fig, ax = plt.subplots(figsize=(5, 5), subplot_kw=dict(projection=w))
+  fig, ax = plt.subplots(figsize=(5, 4.5), subplot_kw=dict(projection=w))
   im[im < 0.0] = 0.0
   ax.imshow(np.sqrt(im), vmin=0.0, vmax=None, origin="lower", cmap="viridis")
   step = slice(None, None, 5), slice(None, None, 5)
   # A faint version for the faint emission
   vx[im < 0.02] = np.nan
-  ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
-            units="xy", scale=0.1, width=0.5, minshaft=2.0, color="w", alpha=0.4)
+  Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
+                headwidth=4, headlength=6, minlength=0.01,
+                units="xy", scale=0.04, width=1.5, minshaft=2.0, color="w", alpha=0.4)
+  Q.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.07, facecolor='white',
+              capstyle="projecting", alpha=0.4,
+          ),
+      ]
+  )
   # A bright version for the bright emission
   vx[im < 0.1] = np.nan
   Q = ax.quiver(X[step], Y[step], vx[step], vy[step], pivot="middle",
-                units="xy", scale=0.08, width=0.7, minshaft=2.0, color="w", alpha=1.0)
+                headwidth=4, headlength=6, minlength=0.01,
+                units="xy", scale=0.04, width=1.5, minshaft=2.0, color="w", alpha=1.0)
+  Q.set_path_effects(
+      [
+          path_effects.PathPatchEffect(
+              edgecolor='black', linewidth=0.1, facecolor='white', capstyle="projecting",
+          ),
+      ]
+  )
   ax.quiverkey(Q, 0.1, 0.1, 1.0,
                "10 mas / yr", labelcolor="w",
                fontproperties=dict(size=5))
   ax.text(0.05, 0.95, "[N II] proper motions", color="w", transform=ax.transAxes)
-  fig.tight_layout(rect=(0.15, 0.05, 1.0, 1.0))
-  fig.savefig(figfile)
+  ax.set(xlabel="RA", ylabel="Dec")
+  fig.tight_layout(rect=(0.2, 0.06, 1.0, 1.04))
+  fig.savefig(figfile, dpi=1200)
 #+end_src
 
 #+RESULTS:
-[[file:../figs/nii-propermotions.pdf]]
+[[file:../figs/nii-propermotions.jpg]]
 
 ** Basic data on NGC 6210
 + Coordinates
