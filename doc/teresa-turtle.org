@@ -20,9 +20,25 @@
 + DOI: 10.17909/t9-9g3w-nd31
 + Dataset Title: WFPC2 images of NGC 6210
 
-*** TODO [2/3] Figure changes from Michael comments
+
+**** Sort out SPM catalog better
++ [ ] Include the later observations
++ [ ] Make FITS files available
+
+*** DONE Caption for the 3D figure
+CLOSED: [2020-06-22 Mon 12:10]
+
+*** DONE Distance measurements in intro
+CLOSED: [2020-06-21 Sun 21:35]
+
+*** DONE Fix description of SPM spectra
+CLOSED: [2020-06-22 Mon 00:32]
+
+*** Maybe move observational methods to appendix
+*** TODO [2/4] Figure changes from Michael comments
 + [X] Bigger arrowheads in Figs 5 and 6
 + [ ] Bigger velocity labels in Fig A4
++ [-]Fix the evo tracks in Fig 19 
 + [X] Correct spelling in Fig 4, change "skirt" -> "knot complexes"
   + [X] Maybe replace the HST images, or at least get the full info on them
   + [X] Add scale bars
