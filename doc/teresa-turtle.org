@@ -14,6 +14,194 @@
 
 ** Final things for paper
 
+*** TODO [2/8] Beto comments
+1. [X] Figure A1, A3, A4 - make numbers bigger
+2. [ ] Figure 8 indicate star
+3. [X] Add star to all the figure
+4. [ ] Eskimo comparison
+   + Add two discussion
+5. [ ] Mention occulting bar
+6. [ ] Mention peanut shape
+7. [ ] Move appendix A to main
+8. [ ] Telescope operators
+
+*** Michael new comments
+
+**** Global comments in Michael's email
+La gran mayoría de mis comentarios son asuntos triviales.  Lo que me parece más relevante es lo siguiente:
+
+***** DONE a) Según pude ver, no está definido o explicado el “nominal systemic velocity”.  Me parece que debemos hacer eso.
+CLOSED: [2020-07-01 Wed 00:00]
+Now defined in first para of sec 4.
+***** DONE b) Puse el crédito y los agradecimientos que solicita el CI del IA en la página inicial y la sección de agradecimientos, respectivamente.  También puse los proyectos que me involucran en los agradecimientos.  
+CLOSED: [2020-07-01 Wed 00:01]
+
+***** DONE c) Tengo mis preocupaciones con las Figuras 2 y 3, pero vean mis comentarios y evalúen si hace falta algún cambio.   
+CLOSED: [2020-07-01 Wed 13:43]
+Canceled
+***** DONE d) A veces, se indica el inner shell como tal y a veces con el adjetivo “peanut”.  Preferiría homogeneizar.  
+CLOSED: [2020-07-01 Wed 00:01]
+Peanut eliminated throughout.
+***** DONE e) Según pude ver, NUNCA referimos a la Figura 15 en el texto.  Es una lástima, porque es una figura útil.  
+CLOSED: [2020-07-01 Wed 00:01]
+Added description of this in text. Last para of sec 5.1
+***** TODO f) Normalmente, agradezco de nombre a los operadores de telescopio.  Indiqué los operadores de telescopio en la Tabla 1 para las temporadas donde tengo esa información.  No tengo la información para las temporadas en junio 1998 y julio 2013.  ¿Beto?
+Pendiente
+
+
+**** Inline comments in file
+***** DONE Page 1
+CLOSED: [2020-07-01 Wed 00:04]
+: Add a footnote: Based upon observations carried out at the
+: Observatorio Astronómico Nacional on the Sierra San Pedro Mártir
+: (OAN-SPM), Baja California, Méxicoꃑ
+Added to acknowledgments instead. MNRAS instructions imply that facilities are acknowledged there. 
+
+***** TODO Page 2
+: From this figure, it’s hard to determine which label to associate with
+: each slit.  It can be sorted out based upon Table 1 and the text (page
+: 4, top right).  I don’t think that this is ideal, but it is workable
+: if modifying the figure is a pain.  I think it would help if each type
+: of letter corresponded to slits drawn with a single line style, e.g.,
+: if all the “*” letters corresponded to dashed lines, but consider the
+: pain involved before launching into this.  A change to this figure
+: will require the text referred to above.  I think it would be helpful
+: if the figure caption referred the reader to Table 1 and §2 if they
+: wish to identify individual slits.
+
++ *PENDIENTE*
++ I could redo this figure if required
+***** TODO Page 3
+: The letter identifiers here are lower case here, which is inconsistent
+: with Table 1.  However, the caption specifically refers to the 2015
+: observing run, so that should not be too confusing.  Likewise, the
+: reader should be able to figure out that A* from Table 1 corresponds
+: to “a” here.  The best approach would be to homogenize with Table 1,
+: but that may also be painful.
++ *PENDIENTE*
++ I could redo this figure if required
+
+***** DONE Page 3, Fig 3 caption
+CLOSED: [2020-06-30 Tue 20:23]
+: or the central star?
+DONE
+
+***** Page 4, Table 1
+
+****** DONE Heading alignment
+CLOSED: [2020-06-30 Tue 20:26]
+OK
+****** DONE [S II] slit out of order
+CLOSED: [2020-06-30 Tue 20:27]
+Fixed
+****** DONE slot -> slit
+CLOSED: [2020-06-30 Tue 20:28]
+FIxed
+****** TODO Telescope operators
++ [ ] Still need to fill in some blanks
++ [X] Are these supposed to go in the table - I guess not
+***** DONE Page 4, Figure 4
+CLOSED: [2020-06-30 Tue 20:30]
+: systemic velocity -> nominal systemic velocity
+***** DONE Page 5 Fig 7
+CLOSED: [2020-06-30 Tue 20:41]
+: major projected -> projected major
+***** DONE Page 5 text
+CLOSED: [2020-06-30 Tue 20:42]
+: We -> we
+***** DONE Page 6 - systemic velocity
+CLOSED: [2020-06-30 Tue 21:27]
+: defined somewhere?
+Now defined in Intro to this section
+***** DONE Page 6 - ditch the peanut
+CLOSED: [2020-06-30 Tue 21:29]
+: A: I find the “peanut” addition a bit distracting.  Most of the time
+: “inner shell” is used and that’s what’s indicated in Fig. 1
+I searched and removed all of these
+***** DONE Page 7 sec 4.1
+CLOSED: [2020-06-30 Tue 21:31]
+: Add a reference to Fig. 8?
+Added
+***** DONE Page 7 sec 4.3
+CLOSED: [2020-06-30 Tue 21:34]
+Fixed figure reference inconsistency
+***** DONE Page 8 sec 4.3
+CLOSED: [2020-06-30 Tue 21:35]
+More similar fixes
+***** DONE Page 8 sec 4.4
+CLOSED: [2020-06-30 Tue 21:36]
+Nominal systemic now defined earlier
+***** DONE Page 9 Fig 11
+CLOSED: [2020-06-30 Tue 21:37]
+Fix double word
+***** DONE Page 9 sec 5.1
+CLOSED: [2020-06-30 Tue 22:43]
+: Fig 16 out of order
+The real problem here is not having referred to Fig 15, which is now fixed by adding text to beginning of this para
+***** DONE Page 10 Fig 12
+CLOSED: [2020-06-30 Tue 22:52]
+: a) The labelling of V- and V+ is hard to read (panel b).  A change of
+: colour would help.
+The text was partially transparent - now fixed
+: b) Should “VIII-“ not be “VII-“?  Its velocity is closer to that of VII+. 
+True, but is position is more like VIII+ 
+***** DONE Page 10 sec 5.2
+CLOSED: [2020-06-30 Tue 22:54]
+Fix fig reference
+***** DONE Page 11 Table 2
+CLOSED: [2020-06-30 Tue 23:28]
+: Inner shell?
+No, it is intermediate shell. Now written out in full
+
+: Inconsistent with Fig 10
+Now fixed all references in text and figure to consistently use NE and NW - no parentheses!
+***** DONE Page 13, Fig 14
+CLOSED: [2020-06-30 Tue 23:30]
+: w.r.t. plane of the sky?
+Yes. Fixed
+***** DONE Page 13, Fig 15
+CLOSED: [2020-06-30 Tue 23:30]
+This figure is now referred to in text.
+***** DONE Page 13, Fig. 17
+CLOSED: [2020-06-30 Tue 23:33]
+Individual knots now labeled
+***** DONE Page 14, Fig 19
+CLOSED: [2020-06-30 Tue 23:37]
+: Why are there multiple symbol shapes of each colour?
+For the different morphologies.  Now mentioned in caption
+***** DONE Page 15
+CLOSED: [2020-06-30 Tue 23:38]
+Fixed Bohigas citation
+***** DONE Page 16 - ADF
+CLOSED: [2020-06-30 Tue 23:40]
+: Liu et al. (2004) find an ADF of about 3, which is not unusual and so
+: not indicative of a multiple star system in the currently fashionable
+: “explanation for the high ADF regime.
+I don't want to mention this. AFAIK even those claiming "binary is necessary for high-ADF" are not claiming the converse: "high-ADF necessary for binary".
+***** TODO Page 19 - telescope operators
+: people: I usually thank the telescope operators by name.  In Table 1,
+: I’ve marked the telescope operators involved for the observing runs
+: where I have the information: Felipe Montalvo, Salvador Monrroy.  I
+: presume Beto has the information for 1998 and 2013.
+***** DONE Page 19 - acknowledgments
+CLOSED: [2020-06-30 Tue 23:43]
+Added text.
+***** DONE Page 20 - appendix B
+CLOSED: [2020-06-30 Tue 23:49]
+Fixed fig reference.
+***** DONE Pages 21, 22
+CLOSED: [2020-06-30 Tue 23:52]
+Fixed numeric value of systemic velocity.
+***** DONE Page 24
+CLOSED: [2020-06-30 Tue 23:54]
+Changed Mezcal to MES-SPM. Also thoughout.
+***** DONE Page 25 Fig C1
+CLOSED: [2020-07-01 Wed 00:00]
+: They’re all the same size?
+It's because I change them to purple. Fixed
+
+: What does the shaded area represent?
+The +/- T range.  Now descrbed.
 *** Data availability statement
 
 **** DOI for HST images
@@ -4705,7 +4893,7 @@ os.system("which flct")
 #+end_src
 
 #+RESULTS:
-: /Users/will/Source/google-cloud-sdk/bin:/usr/local/texlive/2017/bin/x86_64-darwin:/Users/will/anaconda/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Users/will/Source/google-cloud-sdk/bin:/usr/local/texlive/2017/bin/x86_64-darwin:/Users/will/anaconda/bin:/Users/will/.local/bin
+: /Users/will/miniconda3/envs/science/bin:/Users/will/miniconda3/envs/science/bin:/Users/will/miniconda3/condabin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/Users/will/.local/bin
 : /Users/will/.local/bin/flct
 
 **** Convert velocities into radial and non-radial part
