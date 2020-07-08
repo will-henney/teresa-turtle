@@ -14,16 +14,19 @@
 
 ** Final things for paper
 
-*** TODO [2/8] Beto comments
+*** TODO [8/9] Beto comments
 1. [X] Figure A1, A3, A4 - make numbers bigger
-2. [ ] Figure 8 indicate star
+2. [X] Figure 8 indicate star
 3. [X] Add star to all the figure
 4. [ ] Eskimo comparison
-   + Add two discussion
-5. [ ] Mention occulting bar
-6. [ ] Mention peanut shape
-7. [ ] Move appendix A to main
-8. [ ] Telescope operators
+   + Add to discussion
+5. [X] Add Eskimo to Fig 20
+6. [X] Mention occulting bar in caption to Fig 4
+7. [X] Mention peanut shape
+   - this was already mentioned in introduction
+   - I now repeat it in sec 4.1
+8. [X] Move appendix A to main
+9. [X] Telescope operators
 
 *** Michael new comments
 
@@ -307,7 +310,7 @@ CLOSED: [2020-06-22 Mon 00:32]
       + Timescale < 1000 yrs
     + Outer shell (equivalent to Turtle intermediate shell) is expanding much slower:
       + 16 km/s
-      + r = 23 arcsec = 0.156 pc
+      + r = 23 arcsec = 0.22 pc
       + kinematic timescale: 9500 years
     + X-rays from wind
       + Kastner:2012a
@@ -926,6 +929,7 @@ CLOSED: [2020-06-22 Mon 00:32]
  | Fg 1     |    1.5 |       60 | Shell NS    |  0.22 |   66. |
  | NGC 6578 |    1.9 |       16 | Shell NS    |  0.07 |   21. |
  | NGC 5882 |    2.0 |       16 | Shell Vert  |  0.08 |   24. |
+ | NGC 2392 |    2.0 |       46 | Shell       |  0.22 |   66. |
  #+TBLFM: $5=1000 $2 $3 $au / 2 $pc;f2::$6=$5 30 / 0.1
 
 ****** Figures of comparison nebulae
