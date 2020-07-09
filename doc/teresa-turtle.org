@@ -14,11 +14,12 @@
 
 ** Final things for paper
 
-*** TODO [8/9] Beto comments
+*** DONE [10/10] Beto comments
+CLOSED: [2020-07-08 Wed 23:57]
 1. [X] Figure A1, A3, A4 - make numbers bigger
 2. [X] Figure 8 indicate star
 3. [X] Add star to all the figure
-4. [ ] Eskimo comparison
+4. [X] Eskimo comparison
    + Add to discussion
 5. [X] Add Eskimo to Fig 20
 6. [X] Mention occulting bar in caption to Fig 4
@@ -27,6 +28,7 @@
    - I now repeat it in sec 4.1
 8. [X] Move appendix A to main
 9. [X] Telescope operators
+10. [X] (Will) Add in reference to some of the recent Guerrero papers on jets 
 
 *** Michael new comments
 
