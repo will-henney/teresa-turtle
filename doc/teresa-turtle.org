@@ -14,6 +14,34 @@
 
 ** Final things for paper
 
+*** DONE Beto more comments 
+CLOSED: [2020-07-16 Thu 21:39]
++ [X] 6.2.1 - reference to thesis of Margarita Pereyra
+  + Added citations of Richer et al (2008, 2010) too
++ [X] 6.2.4 - BRETT - Lopez Meaburn 1993
+  + also cite Balick+ (1994) and Lopez (1997)
++ [X] Magnetic fields - mention them
+  + cite García-Segura & López (2000)
+*** DONE Michael more comments
+CLOSED: [2020-07-16 Thu 21:39]
++ [X] Table 2 caption - completely rewritten
++ [X] [N II] and [O III] in wrong order - fixed
++ [X] IRAF footnote - added both URLs, removed funding acknowledgement
++ [X] Too much effort to fix this
+  : This figure has RA and DEC scales, whereas Figs. 7 and 9-11 do not.
+  : Also, there is no central star symbol here.  Do we want make
+  : Figs. 7-11 all uniform?
++ [X] Splitting controversy - leave as is. See if referee complains
++ [X] SE -> SW - fixed
++ [X] Ha flux dominated by inner shell - fixed
++ [X] Inconsistent velocities - changed in figures
+  : The velocities I’ve highlighted don’t correspond to the velocities
+  : shown in Figs. 12 and 15.
+  The values in table are more accurate
++ [X] Add dz column to Table 3 - too much work (explained in email)
++ [X] He II asymmetry - added sentence explaining gap-between-slits loophole
++ [X] NGC 6629 missing in text - added
+
 *** DONE [10/10] Beto comments
 CLOSED: [2020-07-08 Wed 23:57]
 1. [X] Figure A1, A3, A4 - make numbers bigger
@@ -30,7 +58,7 @@ CLOSED: [2020-07-08 Wed 23:57]
 9. [X] Telescope operators
 10. [X] (Will) Add in reference to some of the recent Guerrero papers on jets 
 
-*** Michael new comments
+*** TODO Michael new comments
 
 **** Global comments in Michael's email
 La gran mayoría de mis comentarios son asuntos triviales.  Lo que me parece más relevante es lo siguiente:
@@ -50,7 +78,8 @@ Peanut eliminated throughout.
 ***** DONE e) Según pude ver, NUNCA referimos a la Figura 15 en el texto.  Es una lástima, porque es una figura útil.  
 CLOSED: [2020-07-01 Wed 00:01]
 Added description of this in text. Last para of sec 5.1
-***** TODO f) Normalmente, agradezco de nombre a los operadores de telescopio.  Indiqué los operadores de telescopio en la Tabla 1 para las temporadas donde tengo esa información.  No tengo la información para las temporadas en junio 1998 y julio 2013.  ¿Beto?
+***** DONE f) Normalmente, agradezco de nombre a los operadores de telescopio.  Indiqué los operadores de telescopio en la Tabla 1 para las temporadas donde tengo esa información.  No tengo la información para las temporadas en junio 1998 y julio 2013.  ¿Beto?
+CLOSED: [2020-07-14 Tue 12:57]
 Pendiente
 
 
@@ -62,7 +91,8 @@ CLOSED: [2020-07-01 Wed 00:04]
 : (OAN-SPM), Baja California, Méxicoꃑ
 Added to acknowledgments instead. MNRAS instructions imply that facilities are acknowledged there. 
 
-***** TODO Page 2
+***** DONE Page 2
+CLOSED: [2020-07-14 Tue 12:57]
 : From this figure, it’s hard to determine which label to associate with
 : each slit.  It can be sorted out based upon Table 1 and the text (page
 : 4, top right).  I don’t think that this is ideal, but it is workable
@@ -76,7 +106,8 @@ Added to acknowledgments instead. MNRAS instructions imply that facilities are a
 
 + *PENDIENTE*
 + I could redo this figure if required
-***** TODO Page 3
+***** DONE Page 3
+CLOSED: [2020-07-14 Tue 12:57]
 : The letter identifiers here are lower case here, which is inconsistent
 : with Table 1.  However, the caption specifically refers to the 2015
 : observing run, so that should not be too confusing.  Likewise, the
@@ -183,7 +214,8 @@ CLOSED: [2020-06-30 Tue 23:40]
 : not indicative of a multiple star system in the currently fashionable
 : “explanation for the high ADF regime.
 I don't want to mention this. AFAIK even those claiming "binary is necessary for high-ADF" are not claiming the converse: "high-ADF necessary for binary".
-***** TODO Page 19 - telescope operators
+***** DONE Page 19 - telescope operators
+CLOSED: [2020-07-14 Tue 12:57]
 : people: I usually thank the telescope operators by name.  In Table 1,
 : I’ve marked the telescope operators involved for the observing runs
 : where I have the information: Felipe Montalvo, Salvador Monrroy.  I
@@ -9044,22 +9076,25 @@ After subtracting instrumental width: W = 19 km/s
 + Both these are to improve consistency of overlaps and continuity
 + NE Blue Complex
   #+name: nii-ne-blue
-  | slit |          |    x |    y |   y1 |   y2 |  VV |      S |   V |
-  |------+----------+------+------+------+------+-----+--------+-----|
-  | d*   | spm119   | +8.4 | +0.8 | -1.5 |  3.0 | -91 | 0.0005 | -51 |
-  | c'   | spm0031  | +4.2 | +3.3 | -0.3 |  6.5 | -92 |  0.008 | -52 |
-  | e*   | spm116   | +3.5 | +1.8 | -0.4 |  4.5 | -90 |  0.018 | -50 |
-  | f*   | spm112   | +2.7 | +1.6 | -1.4 |  5.5 | -88 |  0.042 | -48 |
-  | d'   | spm0037  | +1.6 | +3.3 | -0.9 |    7 | -85 |  0.030 | -45 |
-  | e'   | spm0043  | -1.0 | +2.5 | -0.3 |    6 | -85 |  0.011 | -45 |
-  | g    | spm112-2 | -1.5 | +2.8 | -0.3 |  6.5 | -80 |  0.004 | -40 |
-  |------+----------+------+------+------+------+-----+--------+-----|
-  | w    | spm329   |  1.3 | -2.5 | -0.7 |  2.7 | -86 |  0.009 | -46 |
-  | w    | spm329   |  3.5 | -2.0 |  2.1 |  4.8 | -93 | 0.0045 | -53 |
-  | o    | obj1003  |  6.1 | -0.4 |  8.5 |  4.6 | -91 |  0.025 | -51 |
-  | o    | obj1003  |  3.2 | -0.3 |  4.8 | -0.3 | -85 |  0.045 | -45 |
-  | t    | spm224   | -0.6 |  0.1 | -1.4 |  2.7 | -83 | 0.0010 | -43 |
-#+TBLFM: $8=$-2 + 40
+  | slit |          |    x |    y |   y1 |   y2 |  VV |      S |   V |   S dy |   V S dy |
+  |------+----------+------+------+------+------+-----+--------+-----+--------+----------|
+  | d*   | spm119   | +8.4 | +0.8 | -1.5 |  3.0 | -91 | 0.0005 | -51 | 0.0023 |  -0.1173 |
+  | c'   | spm0031  | +4.2 | +3.3 | -0.3 |  6.5 | -92 |  0.008 | -52 | 0.0544 |  -2.8288 |
+  | e*   | spm116   | +3.5 | +1.8 | -0.4 |  4.5 | -90 |  0.018 | -50 | 0.0882 |    -4.41 |
+  | f*   | spm112   | +2.7 | +1.6 | -1.4 |  5.5 | -88 |  0.042 | -48 | 0.2898 | -13.9104 |
+  | d'   | spm0037  | +1.6 | +3.3 | -0.9 |    7 | -85 |  0.030 | -45 | 0.2370 |  -10.665 |
+  | e'   | spm0043  | -1.0 | +2.5 | -0.3 |    6 | -85 |  0.011 | -45 | 0.0693 |  -3.1185 |
+  | g    | spm112-2 | -1.5 | +2.8 | -0.3 |  6.5 | -80 |  0.004 | -40 | 0.0272 |   -1.088 |
+  |------+----------+------+------+------+------+-----+--------+-----+--------+----------|
+  | w    | spm329   |  1.3 | -2.5 | -0.7 |  2.7 | -86 |  0.009 | -46 | 0.0306 |  -1.4076 |
+  | w    | spm329   |  3.5 | -2.0 |  2.1 |  4.8 | -93 | 0.0045 | -53 | 0.0122 |  -0.6466 |
+  | o    | obj1003  |  6.1 | -0.4 |  8.5 |  4.6 | -91 |  0.025 | -51 | 0.0975 |  -4.9725 |
+  | o    | obj1003  |  3.2 | -0.3 |  4.8 | -0.3 | -85 |  0.045 | -45 | 0.2295 | -10.3275 |
+  | t    | spm224   | -0.6 |  0.1 | -1.4 |  2.7 | -83 | 0.0010 | -43 | 0.0041 |  -0.1763 |
+  |------+----------+------+------+------+------+-----+--------+-----+--------+----------|
+  |      |          |      |      |      |      |     |        |  40 | 0.3739 | -17.5305 |
+  |      |          |      |      |      |      |     |        |  40 |      0 |    -46.9 |
+#+TBLFM: $9=$-2 + 40::$10=abs($6-$5) $8;f4::$11=$-1 $-2::@14$10..@14$11=vsum(@II..@III)::@15$11=@-1/@-1$-1;f1
 + N Red Complex
   #+name: nii-n-red
   | slit |          |     x |    y |   y1 |   y2 |  VV |      S |  V |
