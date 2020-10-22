@@ -12,7 +12,7 @@
 
 * NGC 6210
 
-** Final things for paper
+*** Final things for paper
 
 *** DONE Beto more comments 
 CLOSED: [2020-07-16 Thu 21:39]
@@ -58,7 +58,8 @@ CLOSED: [2020-07-08 Wed 23:57]
 9. [X] Telescope operators
 10. [X] (Will) Add in reference to some of the recent Guerrero papers on jets 
 
-*** TODO Michael new comments
+*** DONE Michael new comments
+CLOSED: [2020-08-25 Tue 09:20]
 
 **** Global comments in Michael's email
 La gran mayoría de mis comentarios son asuntos triviales.  Lo que me parece más relevante es lo siguiente:
@@ -133,7 +134,8 @@ Fixed
 ****** DONE slot -> slit
 CLOSED: [2020-06-30 Tue 20:28]
 FIxed
-****** TODO Telescope operators
+****** DONE Telescope operators
+CLOSED: [2020-08-25 Tue 09:20]
 + [ ] Still need to fill in some blanks
 + [X] Are these supposed to go in the table - I guess not
 ***** DONE Page 4, Figure 4
@@ -260,9 +262,10 @@ CLOSED: [2020-06-21 Sun 21:35]
 CLOSED: [2020-06-22 Mon 00:32]
 
 *** Maybe move observational methods to appendix
-*** TODO [2/4] Figure changes from Michael comments
+*** DONE [3/3] Figure changes from Michael comments
+CLOSED: [2020-10-03 Sat 18:12]
 + [X] Bigger arrowheads in Figs 5 and 6
-+ [ ] Bigger velocity labels in Fig A4
++ [X] Bigger velocity labels in Fig A4
 + [-]Fix the evo tracks in Fig 19 
 + [X] Correct spelling in Fig 4, change "skirt" -> "knot complexes"
   + [X] Maybe replace the HST images, or at least get the full info on them
@@ -6720,6 +6723,143 @@ So these are positive, which means that the observed velocity should be more blu
 #+END_SRC
 
 
+*** Reconstruct Fig 3 from the paper              :refreply:
+
+**** TODO Finally find the mapping between slit labels and slits
+
+*** Do a 1D spectrum figure
++ Use slit E in [N II] and [O III]
+  + spm0043o in nii
+  + spm0045o in oiii
+  + Take a slice at y = 1 \to 4
+### file :return figfile
+
+#+begin_src python :results file :return figfile
+  import numpy as np
+  from matplotlib import pyplot as plt
+  import seaborn as sn
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  from pathlib import Path
+  from astropy.modeling import models, fitting
+
+  sn.set_color_codes()
+
+  fitter = fitting.SLSQPLSQFitter()
+
+  datadir = Path("../data/PVoffset")
+  vsys = -40.0
+  figfile = "turtle-1d-line-profiles.pdf"
+  oiii = fits.open(datadir / "011-spm0045o_bcrx-oiii-PA002-sep-001.fits")[0]
+  nii = fits.open(datadir / "021-spm0043o_bcrx-nii-PA002-sep+000.fits")[0]
+  heii = fits.open(datadir / "021-spm0043o_bcrx-heii-PA002-sep+000.fits")[0]
+  ha = fits.open(datadir / "021-spm0043o_bcrx-ha-PA002-sep+000.fits")[0]
+
+  def get_1d_spectrum(hdu, ymin, ymax, vmin, vmax):
+      """
+      Extract a 1D spectrum from a PV array contained in `hdu`
+
+      The spectrum is summed along the slit from `ymin` to `ymax`.
+      Returns 2-tuple of velocities, fluxes
+      """
+      w = WCS(hdu.header)
+      [j2, j1], [i1, i2] = w.world_to_array_index_values(
+          [vmin, vmax],
+          [ymin, ymax],
+      )
+      flux = hdu.data[j1:j2+1, i1:i2+1].sum(axis=0)
+      vels, _ = w.array_index_to_world_values(
+          [0]*len(flux),
+          np.arange(i1, i2+1),
+      )
+      return vels, flux
+
+  #y1, y2 = 1, 4
+  y1, y2 = 2.3, 4.2
+  v1, v2 = vsys - 90.0, vsys + 90.0
+  v_o, f_o = get_1d_spectrum(oiii, y1, y2, v1, v2)
+  v_n, f_n = get_1d_spectrum(nii, y1, y2, v1, v2)
+  v_ha, f_ha = get_1d_spectrum(ha, y1, y2, v1, v2)
+
+  f_o /= f_o.max()
+  f_n /= f_n.max()
+  f_ha /= f_ha.max()
+
+  # Fit 4 gaussians
+  sig = 6.0
+  gg_init = (
+      models.Gaussian1D(0.1, -80.0, sig, fixed={"stddev": False})
+      + models.Gaussian1D(0.4, -60.0, 1.1*sig, fixed={"stddev": False})
+      + models.Gaussian1D(1.0, -25.0, sig, fixed={"stddev": False})
+      + models.Gaussian1D(0.3, -10.0, 1.3*sig, fixed={"stddev": False})
+      + models.Chebyshev1D(1)
+  )
+  gg_fit_o = fitter(gg_init, v_o, f_o)
+
+  gg_init = (
+      models.Gaussian1D(0.1, -80.0, sig, fixed={"stddev": False})
+      + models.Gaussian1D(0.05, -60.0, 1.2*sig, fixed={"stddev": False})
+      + models.Gaussian1D(0.3, gg_fit_o[2].mean.value, sig, fixed={"stddev": False})
+      + models.Gaussian1D(1.0, -10.0, 1.1*sig, fixed={"stddev": False})
+      + models.Chebyshev1D(1)
+  )
+  gg_fit_n = fitter(gg_init, v_n, f_n)
+
+
+  def transform(f, gamma=1.0):
+      rslt = np.sign(f)*np.abs(f)**gamma
+      return rslt
+
+  c_n, c_ha, c_o = "y", "m", "c"
+  fig, axes = plt.subplots(4, 1, sharex=True)
+  axes[0].plot(v_n, f_n, lw=2, c=c_n, label="[N II]")
+  axes[1].plot(v_ha, f_ha, lw=2, c=c_ha, label="H alpha")
+  axes[2].plot(v_o, f_o, lw=2, c=c_o, label="[O III]")
+
+  for g in gg_fit_o[:-1]:
+      axes[2].plot(v_o, g(v_o), lw=0.5, c="k", label="_nolabel_")
+      axes[2].plot([g.mean.value]*2, 0.8 + 0.1*np.array([-1, 1]),
+              lw=1.5, color=c_o)
+
+  for g in gg_fit_n[:-1]:
+      axes[0].plot(v_n, g(v_n), lw=0.5, c="k", label="_nolabel_")
+      axes[0].plot([g.mean.value]*2, 0.8 + 0.1*np.array([-1, 1]),
+              lw=1.5, color=c_n)
+
+  r_n = (f_n - gg_fit_n(v_n))
+  axes[3].plot(v_n, r_n, lw=1, c=c_n, label="[N II]")
+  r_o = (f_o - gg_fit_o(v_o))
+  axes[3].plot(v_o, r_o, lw=1, c=c_o, label="[O III]")
+
+  faint = dict(lw=0.5, ls="--", alpha=0.5, color="k")
+
+  for ax in axes:
+      ax.axvline(vsys, **faint)
+      ax.axhline(0.0, **faint)
+
+  for ax in axes[:-1]:
+      ax.set(ylim=[-0.1, 1.1])
+      ax.legend()
+
+  axes[1].set(
+      ylabel="Relative line flux",
+  )
+  axes[-1].set(
+      xlim=[vsys-100.0, vsys+100.0],
+      xlabel="Heliocentric velocity, km/s",
+      ylim=[-0.021, 0.021],
+      ylabel="Fit residuals",
+  )
+  axes[-1].legend(fontsize="x-small").set_title("(data - model)", prop={"size": "x-small"})
+
+  sn.despine()
+  fig.savefig(figfile)
+#+end_src
+
+#+RESULTS:
+[[file:turtle-1d-line-profiles.pdf]]
+
+
 ** Finally make the spectral maps
 + Again, initially copied from Owl version
   + [[id:B7F104C4-6CAA-4462-81A9-FBCB4C86BDE2][Construct spectral maps @ teresa-owl.org]]
@@ -11310,3 +11450,4 @@ So, she has 11 positions missing
 | west053 |  0.3048 | -10.116 |       1 |      -2.97 | 300 | 101 |     0.625 |      55 |       0 |          1 | spec122-crop-ha.fits          |
 | west084 |  0.6168 |  -9.612 |       1 |      -3.04 | 300 | 101 |     0.624 |      55 |       0 |          1 | spec125-crop-ha.fits          |
 | west122 |  0.9936 |  -8.784 |       1 |      -3.17 | 300 | 101 |     0.623 |      55 |       0 |          1 | spec130-crop-ha.fits          |
+qq
