@@ -12,6 +12,8 @@
 
 * NGC 6210
 
+
+
 *** Final things for paper
 
 *** DONE Beto more comments 
@@ -6798,7 +6800,7 @@ So these are positive, which means that the observed velocity should be more blu
 
   gg_init = (
       models.Gaussian1D(0.1, -80.0, sig, fixed={"stddev": False})
-      + models.Gaussian1D(0.05, -60.0, 1.2*sig, fixed={"stddev": False})
+      + models.Gaussian1D(0.05, -60.0, 1.1*sig, fixed={"stddev": False})
       + models.Gaussian1D(0.3, gg_fit_o[2].mean.value, sig, fixed={"stddev": False})
       + models.Gaussian1D(1.0, -10.0, 1.1*sig, fixed={"stddev": False})
       + models.Chebyshev1D(1)
@@ -6810,28 +6812,30 @@ So these are positive, which means that the observed velocity should be more blu
       rslt = np.sign(f)*np.abs(f)**gamma
       return rslt
 
-  c_n, c_ha, c_o = "y", "m", "c"
-  fig, axes = plt.subplots(4, 1, sharex=True)
+  c_n, c_ha, c_o = "r", "m", "c"
+  fig, axes = plt.subplots(4, 1, sharex=True, figsize=(3.7, 5))
   axes[0].plot(v_n, f_n, lw=2, c=c_n, label="[N II]")
   axes[1].plot(v_ha, f_ha, lw=2, c=c_ha, label="H alpha")
   axes[2].plot(v_o, f_o, lw=2, c=c_o, label="[O III]")
 
-  for g in gg_fit_o[:-1]:
+  axes[2].plot(v_o, gg_fit_o(v_o), lw=0.5, c="k", ls="--", label="_nolabel_" )
+  for g, lw in zip(gg_fit_o[:-1], [1, 2, 2, 1]):
       axes[2].plot(v_o, g(v_o), lw=0.5, c="k", label="_nolabel_")
       axes[2].plot([g.mean.value]*2, 0.8 + 0.1*np.array([-1, 1]),
-              lw=1.5, color=c_o)
-
-  for g in gg_fit_n[:-1]:
+                   lw=lw, color=c_o)
+      SCALE = 1
+      axes[0].plot(v_n, gg_fit_n(v_n), lw=0.5, c="k", ls="--", label="_nolabel_" )
+  for g, lw in zip(gg_fit_n[:-1], [1, 2, 2, 1]):
       axes[0].plot(v_n, g(v_n), lw=0.5, c="k", label="_nolabel_")
-      axes[0].plot([g.mean.value]*2, 0.8 + 0.1*np.array([-1, 1]),
-              lw=1.5, color=c_n)
+      axes[0].plot([g.mean.value]*2, (0.8 + 0.1*np.array([-1, 1]))/SCALE,
+                   lw=lw, color=c_n)
 
   r_n = (f_n - gg_fit_n(v_n))
   axes[3].plot(v_n, r_n, lw=1, c=c_n, label="[N II]")
   r_o = (f_o - gg_fit_o(v_o))
   axes[3].plot(v_o, r_o, lw=1, c=c_o, label="[O III]")
 
-  faint = dict(lw=0.5, ls="--", alpha=0.5, color="k")
+  faint = dict(lw=0.8, ls="--", alpha=0.7, color="k")
 
   for ax in axes:
       ax.axvline(vsys, **faint)
@@ -6839,7 +6843,9 @@ So these are positive, which means that the observed velocity should be more blu
 
   for ax in axes[:-1]:
       ax.set(ylim=[-0.1, 1.1])
-      ax.legend()
+      ax.legend(fontsize="xx-small")
+
+  axes[0].set(ylim=[-0.1/SCALE, 1.1/SCALE])
 
   axes[1].set(
       ylabel="Relative line flux",
@@ -6847,12 +6853,13 @@ So these are positive, which means that the observed velocity should be more blu
   axes[-1].set(
       xlim=[vsys-100.0, vsys+100.0],
       xlabel="Heliocentric velocity, km/s",
-      ylim=[-0.021, 0.021],
+      ylim=[-0.041, 0.041],
       ylabel="Fit residuals",
   )
-  axes[-1].legend(fontsize="x-small").set_title("(data - model)", prop={"size": "x-small"})
+  axes[-1].legend(fontsize="xx-small", loc="upper left", bbox_to_anchor=(0.0, 1.0)).set_title("(data $-$ model)", prop={"size": "xx-small"})
 
   sn.despine()
+  fig.tight_layout(h_pad=0.0)
   fig.savefig(figfile)
 #+end_src
 
