@@ -5155,6 +5155,16 @@ os.system("which flct")
 #+RESULTS:
 [[file:../figs/nii-propermotions.jpg]]
 
+
+**** [2020-11-30 Mon] Systematic uncertainties in proper motion
++ Compare NW knot and SE knot
++ NW knot
+  + R_proj = 8 +/- 1 arcsec
+  + V_pos = 11 +/- 8
++ SE knot
+  + R_proj = 6 +/- 1 arcsec
+  + V_pos = 39 +/- 10
+
 ** Basic data on NGC 6210
 + Coordinates
   + (RA, Dec) = (16 44 29.5195973292, +23 47 59.491267229) sexagesimal
