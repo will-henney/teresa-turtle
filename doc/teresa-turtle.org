@@ -4940,6 +4940,9 @@ os.system("which flct")
 : /Users/will/.local/bin/flct
 
 **** Convert velocities into radial and non-radial part
+:PROPERTIES:
+:ID:       2EEF89D6-A11B-446F-9C08-49194B9754C0
+:END:
 #+begin_src python
   from astropy.io import fits
   from astropy.wcs import WCS
@@ -4953,6 +4956,9 @@ os.system("which flct")
       hvy = fits.open(f"../propermotions/{line}/{line}-vely-win.fits")[0]
 
       Vx, Vy = hvx.data, hvy.data
+      if line == "nii":
+           Vx += 0.1
+           Vy += 0.1
       ny, nx = hvx.data.shape
       w = WCS(hvx.header)
       j0, i0 = w.world_to_array_index_values(ra0, dec0)
@@ -5110,6 +5116,8 @@ os.system("which flct")
   vy = fits.open("../propermotions/nii/nii-vely-win.fits")[0].data
   vx[abs(vx) > 1.0] = np.nan
   vy[abs(vy) > 1.0] = np.nan
+  vx += 0.1
+  vy += 0.1
   ny, nx = im.shape
   X, Y = np.meshgrid(np.arange(nx), np.arange(ny))
 
@@ -5157,13 +5165,56 @@ os.system("which flct")
 
 
 **** [2020-11-30 Mon] Systematic uncertainties in proper motion
+:PROPERTIES:
+:ID:       135E0BA9-DDC0-4B7B-B480-D7F13C029255
+:END:
 + Compare NW knot and SE knot
++ Translation from PM to V_los
+  + 95 km/s = 10 mas/yr
 + NW knot
   + R_proj = 8 +/- 1 arcsec
-  + V_pos = 11 +/- 8
+  + V_pos = 11 +/- 8 km/s
+    + 1.2 mas/yr
+  + t = 6700 (+40,000 -3500) yr 
 + SE knot
   + R_proj = 6 +/- 1 arcsec
   + V_pos = 39 +/- 10
+    + 4.1 mas/yr
+  + t = 1500 +/- 400 yr
++ Difference between them is 2.9 mas/yr
+  + Half that is 1.5 mas/yr
+  + So shifting by that would make the timescales the same
+  + Or would it? See below
+
+
+***** Remeasuring proper motions with different shifts
++ These are the values with the original shifts that are in the paper
+  |         |   Vr |   Vth |
+  | SE knot | 0.48 | -0.07 |
+  | NW knot | 0.12 |  0.16 |
+  | N knot  | 0.66 |  0.08 |
+  | Shell N | 0.59 |  0.16 |
+  | Shell S | 0.46 |  0.02 |
++ And these are the values with the extra (0.1, 0.1) shift
+  |         |   Vr |   Vth |
+  | SE knot | 0.35 | -0.08 |
+  | NW knot | 0.25 |  0.17 |
+  | N knot  | 0.78 |  0.03 |
+  | Shell N | 0.66 |  0.05 |
+  | Shell S | 0.32 |  0.03 |
++ Compare with [O III] for the Shell
+  |         |   Vr |   Vth |
+  | SE knot | 0.33 | -0.07 |
+  | NW knot |  0.4 |  0.05 |
+  | N knot  | 1.08 |  0.03 |
+  | Shell N | 0.56 | -0.04 |
+  | Shell S | 0.57 |  0.21 |
++ 1 pix in 10 years is 100 / 10 = 10 mas/yr
+  + So 0.14 pix is 1.4 mas/yr
++ So, even with the hypot(0.1, 0.1) = 0.14 pix shift, we still get a difference between the two sides
+  + SE knot: t = 1000 6 +/- 1 / 10 0.35 = 1700 +/- 300
+  + NW knot: t = 1000 8 +/- 1 / 10 0.25 = 3200 +/- 400.
+
 
 ** Basic data on NGC 6210
 + Coordinates
