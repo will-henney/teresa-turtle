@@ -4943,6 +4943,7 @@ os.system("which flct")
 :PROPERTIES:
 :ID:       2EEF89D6-A11B-446F-9C08-49194B9754C0
 :END:
+
 #+begin_src python
   from astropy.io import fits
   from astropy.wcs import WCS
@@ -4956,9 +4957,6 @@ os.system("which flct")
       hvy = fits.open(f"../propermotions/{line}/{line}-vely-win.fits")[0]
 
       Vx, Vy = hvx.data, hvy.data
-      if line == "nii":
-           Vx += 0.1
-           Vy += 0.1
       ny, nx = hvx.data.shape
       w = WCS(hvx.header)
       j0, i0 = w.world_to_array_index_values(ra0, dec0)
@@ -4988,7 +4986,61 @@ os.system("which flct")
 #+RESULTS:
 : None
 
+Another version that is shifted by 0.15 pix in [N II]
 
+#+begin_src python
+  from astropy.io import fits
+  from astropy.wcs import WCS
+  import numpy as np
+
+  # Position of star
+  ra0, dec0 = 251.1230789, 23.7999977
+
+  for line in "nii",:
+      hvx = fits.open(f"../propermotions/{line}/{line}-velx-win.fits")[0]
+      hvy = fits.open(f"../propermotions/{line}/{line}-vely-win.fits")[0]
+
+      Vx, Vy = hvx.data, hvy.data
+      # Do the shift
+      Vx += 0.1
+      Vy += 0.1
+    
+      ny, nx = hvx.data.shape
+      w = WCS(hvx.header)
+      j0, i0 = w.world_to_array_index_values(ra0, dec0)
+      X, Y = np.meshgrid(np.arange(nx) - i0, np.arange(ny) - j0)
+      R = np.hypot(X, Y)
+      rx = X/R
+      ry = Y/R
+      V = np.hypot(Vx, Vy)
+      Vr = Vx*rx + Vy*ry
+      Vth = -Vx*ry + Vy*rx
+      theta = np.degrees(np.arccos(Vr/V))
+
+      PA = np.degrees(np.arctan2(-X, Y)) % 360.0
+    
+      fits.PrimaryHDU(header=hvx.header, data=Vr).writeto(
+          f"../propermotions/{line}/{line}-Vr-win-SHIFT.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=V).writeto(
+          f"../propermotions/{line}/{line}-V-win-SHIFT.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=Vth).writeto(
+          f"../propermotions/{line}/{line}-Vth-win-SHIFT.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=theta).writeto(
+          f"../propermotions/{line}/{line}-theta-win-SHIFT.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=R).writeto(
+          f"../propermotions/{line}/{line}-R-win-SHIFT.fits", overwrite=True,
+      )
+      fits.PrimaryHDU(header=hvx.header, data=PA).writeto(
+          f"../propermotions/{line}/{line}-PA-win-SHIFT.fits", overwrite=True,
+      )
+#+end_src
+
+#+RESULTS:
+: None
 
 
 **** Conversion to physical velocities
@@ -5195,6 +5247,8 @@ os.system("which flct")
   | N knot  | 0.66 |  0.08 |
   | Shell N | 0.59 |  0.16 |
   | Shell S | 0.46 |  0.02 |
+  + Note that the SW knot has a higher Vr here than we have in the paper
+  + Not sure why ....
 + And these are the values with the extra (0.1, 0.1) shift
   |         |   Vr |   Vth |
   | SE knot | 0.35 | -0.08 |
@@ -5214,8 +5268,130 @@ os.system("which flct")
 + So, even with the hypot(0.1, 0.1) = 0.14 pix shift, we still get a difference between the two sides
   + SE knot: t = 1000 6 +/- 1 / 10 0.35 = 1700 +/- 300
   + NW knot: t = 1000 8 +/- 1 / 10 0.25 = 3200 +/- 400.
+***** DONE [#A] Repeat more carefully but including all the knot regions
+CLOSED: [2020-12-01 Tue 19:05]
+:PROPERTIES:
+:EXPORT_OPTIONS: toc:nil num:nil
+:EXPORT_FILE_NAME: turtle-pm-check
+:END:
++ The PM values that we use in the paper are from the [[id:AC5273A6-804B-4270-A3F2-07A2EB0A1393][Table of 3D velocity organized by axis]]
++ These are in pixels, so need to be multiplied by 10 to get mas/yr or by 95 to get km/s
++ We will repeat those here, but then do the measurements again on both the standard and shifted PM maps
++ We will use the maps of R and PA to choose the regions to measure
++ Note that I changed the definition of SE Blue a little to make it more reasonable
+  + It is now the region closer to the star than the SE knot, so as not to include any shell emission
++ And also N(E) Red 
+  + I expanded it to 2 arcsec radius and moved it to cover more of the complex (previously, it had covered just the far eastern tip)
++ Columns:
+  + PM_r (PAPER) :: This is what we currently have in the paper
+  + PM_r (BEST) :: New measurements, but using the same alignment of the two epochs as we used before
+  + PM_r (SHIFT) :: New measurements, now with the second epoch shifted by 0.15 pixels along PA315
+  + PM_th :: The non-radial component of proper motion.  This is always small except for
+    1. SW Faint Blue, which is noisy
+    2. NW knot.   Not sure why this has non-radial component
++ There are some small changes between PM_r(BEST) and PM_r(PAPER), but these are all within the estimated uncertainties
+| System           |  PA | Axis | R_proj  | PM_r (PAPER)  | PM_r (BEST)    | PM_r (SHIFT)  | PM_th           |
+|------------------+-----+------+---------+---------------+---------------+---------------+-----------------|
+| SW Red complex   | 250 | E+   | 7 +/- 2 | 0.19 +/- 0.03 | 0.18 +/- 0.04 | 0.24 +/- 0.05 | 0.02 +/- 0.05   |
+| N(E) Red complex |   0 | E+   | 4 +/- 2 | 0.05 +/- 0.04 | 0.04 +/- 0.06 | 0.14 +/- 0.04 | 0.02 +/- 0.05   |
+| NW knot ([N II]) | 310 | E+   | 8 +/- 1 | 0.12 +/- 0.08 | 0.08 +/- 0.06 | 0.22 +/- 0.06 | 0.15 +/- 0.03   |
+| N(W) Red complex | 300 | E+   | 6 +/- 2 | 0.10 +/- 0.04 | 0.07 +/- 0.04 | 0.20 +/- 0.04 | 0.01 +/- 0.05   |
+| NE Blue complex  |  60 | E-   | 5 +/- 1 | 0.24 +/- 0.05 | 0.25 +/- 0.03 | 0.21 +/- 0.03 | -0.02 +/- 0.003 |
+| SW Faint Blue    | 225 | E-   | 7 +/- 1 | 0.27 +/- 0.04 | 0.18 +/- 0.10 | 0.18 +/- 0.09 | 0.15 +/- 0.03   |
+| SE knot          | 135 | E-   | 5 +/- 1 | 0.41 +/- 0.10 | 0.44 +/- 0.03 | 0.30 +/- 0.04 | -0.09 +/- 0.06  |
+| SE Blue complex  | 135 | E-   | 3 +/- 2 | 0.41 +/- 0.10 | 0.34 +/- 0.12 | 0.21 +/- 0.11 | -0.03 +/- 0.08  |
 
-
+****** Red knots
++ Calculate timescales per feature/system and also for the average of all red knots
++ Remove some of the columns that we aren't using, so we have room for the time columns
++ Times are in kyr
++ The BEST columns are for our preferred solution for the alignment
++ The SHIFT columns are with the worst-case shift of 0.15 pix at PA=315
+| System           |  PA | Axis | R_proj  | PM_r (BEST)     | PM_r (SHIFT)    | t (BEST)        | t (SHIFT)     |
+|------------------+-----+------+---------+-----------------+-----------------+-----------------+---------------|
+| SW Red complex   | 250 | E+   | 7 +/- 2 | 0.18 +/- 0.04   | 0.24 +/- 0.05   | 3.89 +/- 1.41   | 2.92 +/- 1.03 |
+| N(E) Red complex |   0 | E+   | 4 +/- 2 | 0.04 +/- 0.06   | 0.14 +/- 0.04   | 10.00 +/- 15.81 | 2.86 +/- 1.65 |
+| NW knot ([N II]) | 310 | E+   | 8 +/- 1 | 0.08 +/- 0.06   | 0.22 +/- 0.06   | 10.00 +/- 7.60  | 3.64 +/- 1.09 |
+| N(W) Red complex | 300 | E+   | 6 +/- 2 | 0.07 +/- 0.04   | 0.20 +/- 0.04   | 8.57 +/- 5.67   | 3.00 +/- 1.17 |
+|------------------+-----+------+---------+-----------------+-----------------+-----------------+---------------|
+|                  |     |      | 7.000   | 0.105 +/- 0.025 | 0.192 +/- 0.025 | 6.67 +/- 1.59   | 3.65 +/- 0.47 |
+#+TBLFM: $7=$4 / 10  $5; f2::$8=$4 / 10 $6 ; f2::@6$4=vmean(@I..@II) ; f3::@6$5=vmean(@I..@II) +/- 0.025 ; f3::@6$6=vmean(@I..@II) +/- 0.025 ; f3
++ To calculate the means (last row), we ignore the +/- on the positions since these are region sizes, not uncertainties
++ The +/- of the PM is taken as mean of +/- on individual values, divided by sqrt(N)
+****** Blue knots
++ Repeat but for the blue knots
+| System          |  PA | Axis | R_proj  | PM_r (BEST)     | PM_r (SHIFT)    | t (BEST)      | t (SHIFT)     |
+|-----------------+-----+------+---------+-----------------+-----------------+---------------+---------------|
+| NE Blue complex |  60 | E-   | 5 +/- 1 | 0.25 +/- 0.03   | 0.21 +/- 0.03   | 2.00 +/- 0.47 | 2.38 +/- 0.59 |
+| SW Faint Blue   | 225 | E-   | 7 +/- 1 | 0.18 +/- 0.10   | 0.18 +/- 0.09   | 3.89 +/- 2.23 | 3.89 +/- 2.02 |
+| SE knot         | 135 | E-   | 5 +/- 1 | 0.44 +/- 0.03   | 0.30 +/- 0.04   | 1.14 +/- 0.24 | 1.67 +/- 0.40 |
+| SE Blue complex | 135 | E-   | 3 +/- 2 | 0.34 +/- 0.12   | 0.21 +/- 0.11   | 0.88 +/- 0.67 | 1.43 +/- 1.21 |
+|-----------------+-----+------+---------+-----------------+-----------------+---------------+---------------|
+|                 |     |      | 5.462   | 0.338 +/- 0.035 | 0.237 +/- 0.030 | 1.62 +/- 0.17 | 2.30 +/- 0.29 |
+#+TBLFM: $7=$4 / 10  $5; f2::$8=$4 / 10 $6 ; f2::@6$4=vmean(@I..@II) ; f3::@6$5=vmean(@I..@II) +/- 0.035 ; f3::@6$6=vmean(@I..@II) +/- 0.03 ; f3
+****** Difference between red and blue knots
++ With the BEST alignment we have
+  + Red knots: t = 6.7 +/- 1.6 kyr (total range 4 \to 10)
+  + Blue knots: t = 1.6 +/- 0.2 kyr (total range 1 \to 4)
+  + Mean difference: dt = 5.1 +/- 1.6 => larger than 3 sigma
+  + No time overlap of ejections
++ With the SHIFT alignment
+  + Red knots: t = 3.7 +/- 0.5 kyr (total range 3 \to 4)
+  + Blue knots: t = 2.3 +/- 0.3 kyr (total range 1 \to 4)
+  + Mean difference: dt = 1.4 +/- 0.6 kyr => larger than 2 sigma
+  + Possible time overlap of ejections
+    + SW Faint Blue is contemporaneous with the Red knots
+      + *but* this is also the least certain measurement
+    + The red knots may easily all have been ejected at the same time (roughly 3500 yrs ago)
+    + The blue knots are /marginally/ consistent with a common ejection time of about 2000 yrs ago
+      
+***** EARLIER VERSION of Taking averages of the red and blue knot timescales
++ For individual objects, the random errors in the proper motions are quite large, but these can be reduced by averaging all the red knots and all of the blue knots
++ Hopefully, this will reduce the fractional uncertainty by a bit
++ Then the dominant term that remains will be the systematic uncertainty, which is not reduced by averaging
++ Red knots: E+
+  | Knot    |          V |  eV |           R |  eR |
+  |---------+------------+-----+-------------+-----|
+  | NW knot |         11 |   8 |           8 |   1 |
+  | NW red  |         10 |   4 |           6 |   2 |
+  | SW red  |         18 |   3 |           7 |   2 |
+  | NE red  |          5 |   4 |           4 |   1 |
+  |---------+------------+-----+-------------+-----|
+  |         | 11 +/- 2.7 | 2.4 | 6.3 +/- 0.9 | 0.8 |
+  #+TBLFM: @6$2=vmeane(@I..@II);f1::@6$3=vmean(@I..@II)/sqrt(4);f1::@6$4=vmeane(@I..@II);f1::@6$5=vmean(@I..@II)/sqrt(4);f1
++ Blue knots: E-
+  | Knot    |            V |  eV |           R |  eR |
+  |---------+--------------+-----+-------------+-----|
+  | SE knot |           39 |  10 |           6 |   1 |
+  | SE blue |           39 |  10 |           5 |   1 |
+  | NE blue |           23 |   5 |           5 |   1 |
+  | SW Fb   |           26 |   4 |           7 |   1 |
+  |---------+--------------+-----+-------------+-----|
+  |         | 31.8 +/- 4.2 | 3.6 | 5.8 +/- 0.5 | 0.5 |
+  #+TBLFM: @6$2=vmeane(@I..@II);f1::@6$3=vmean(@I..@II)/sqrt(4);f1::@6$4=vmeane(@I..@II);f1::@6$5=vmean(@I..@II)/sqrt(4);f1
++ In these tables, the final row has the following:
+  + V column :: Sample mean POS velocity +/- sample dispersion
+  + eV column :: s.e.m of POS velocity (average random error divided by sqrt of number of samples)
+  + R column :: Sample mean projected radius +/- sample dispersion
+  + eR column :: s.e.m. of R
++ One could argue that the eR should be ignored, since these are really the size of the knots or complexes, and the actual error in determining the radius is very small
++ In that case, we estimate the timescale as R/V with relative error given by (eV/V)
+  + But with conversion of V from km/s to to mas/yr (multiply by 10/95)
++ Mean timescales:
+  + Red knots: 6.3 / (10/95) 11.0 = 5.4 kyr
+  + Red uncertainty: (2.4/11) 5.441 = 1.2 kyr
+  + Blue knots: 5.8 / (10/95) 31.8 = 1.7 kyr
+  + Blue uncertainty: (3.6/31.8) 1.882 = 0.2 kyr
++ Final result with random errors:
+  + Red: 5.4 +/- 1.2 kyr
+  + Blue: 1.7 +/- 0.2 kyr
+  + Difference: 3.7 +/- 1.22 => 2.9 sigma significance
++ Effect of systematic errors:
+  + Error is 1.5 mas/yr = 14.25 km/s
+  + But due to spread of angles, average would be more like 10 km/s
+  + So the velocities would be
+    + 21.8 Red
+    + 21.0 Blue
 ** Basic data on NGC 6210
 + Coordinates
   + (RA, Dec) = (16 44 29.5195973292, +23 47 59.491267229) sexagesimal
@@ -7531,6 +7707,9 @@ Central velocities in [N II] - 20 km/s channels
   [[file:turtle-inclination-histogram.pdf]]
 
 **** Table of 3D velocity organized by axis
+:PROPERTIES:
+:ID:       AC5273A6-804B-4270-A3F2-07A2EB0A1393
+:END:
 
 :PROPERTIES:
 :ID:       FD05EAD1-3069-4967-986F-1E5F1644DE34
