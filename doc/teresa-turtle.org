@@ -2611,6 +2611,7 @@ CLOSED: [2020-05-07 Thu 23:46]
   data["Type"] = type_list
 
   data["t"] = 0.5*(data["t_start"] + data["t_end"])
+  data["t"] *= -1
   data["dt"] = 0.5*(data["t_end"] - data["t_start"])
   data["mdot"] = [float(_) for _ in data["Mdot, Msun/yr"]]
   sns.set_color_codes("bright")
@@ -2628,13 +2629,14 @@ CLOSED: [2020-05-07 Thu 23:46]
       # ax.scatter("t", "mdot", data=data[m], s=size, marker=marker, color=color, edgecolor="w", linewidth=0.7)
 
   ax.set(
-      xscale="linear",
+      xscale="log",
       yscale="log",
-      xlim=[-45, 0],
+      xlim=[45, 1],
       ylim=[1e-6, 1e-4],
       xlabel="Time before present, 1000 yr",
       ylabel=r"Mass-loss rate, $M_{\odot}$ / yr",
   )
+  ax.minorticks_on()
   sns.despine()
   fig.tight_layout()
   fig.savefig(figfile)
@@ -6810,7 +6812,7 @@ Try the same but for the HST images
       heliocorr = c.radial_velocity_correction(
           'barycentric', obstime=time, location=spm)
       heliocorr2 = 0.0 # helio_topo_from_header(hdr)
-      id_, _ = os.path.splitext(os.path.basename(fn))
+ id_, _ = os.path.splitext(os.path.basename(fn))
       outtab.append([id_, time.iso.split()[0],
                      time.mjd,
                      hdr.get('ST'), hdr.get('RA', 0.0), hdr.get('DEC', 0.0),
